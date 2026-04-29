@@ -1,0 +1,39 @@
+name: Deploy Static Assets to S3
+
+on:
+  push:
+    branches: [main]
+    paths: ['libraries/**']
+
+env:
+  AWS_REGION: 'eu-central-1'
+  S3_BUCKET: 'trainerstudio-static-assets'
+  CLOUDFRONT_DISTRIBUTION_ID: 'EROQSBBKFF34L'
+
+jobs:
+  deploy:
+    name: Sync to S3 + Invalidate CloudFront
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::533267322764:role/trainerstudio-static-deploy
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Sync libraries to S3
+        run: |
+          aws s3 sync libraries/ s3://${{ env.S3_BUCKET }}/libraries/ \
+            --delete \
+            --cache-control "public, max-age=31536000, immutable"
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/libraries/*"
