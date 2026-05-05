@@ -1,5 +1,6 @@
 import react from '@vitejs/plugin-react';
 import { spawn } from 'node:child_process';
+import { createReadStream } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -185,6 +186,8 @@ async function mediaStatus(exercise) {
   return {
     sourceClip: await pathExists(sourcePath),
     defaultClip: await pathExists(defaultPath),
+    sourceUrl: `/api/library/video?variant=source&slug=${encodeURIComponent(cdnslug)}`,
+    defaultUrl: `/api/library/video?variant=default&slug=${encodeURIComponent(cdnslug)}`,
     sourcePath: path.relative(repoRoot, sourcePath),
     defaultPath: path.relative(repoRoot, defaultPath),
     downloadedOriginals: sourceOriginals.filter((name) => name.startsWith(`${exercise.id}_`)),
@@ -271,6 +274,31 @@ function exerciseEditorPlugin() {
           const exercises = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
           const exercise = exercises.find((item) => item.id === id);
           send(res, 200, { status: await mediaStatus(exercise) });
+        } catch (error) {
+          send(res, 500, { error: error.message });
+        }
+      });
+
+      server.middlewares.use('/api/library/video', async (req, res) => {
+        try {
+          const url = new URL(req.url, 'http://localhost');
+          const slug = url.searchParams.get('slug');
+          const variant = url.searchParams.get('variant');
+          if (!slug || !['source', 'default'].includes(variant) || !/^[a-zA-Z0-9_-]+$/.test(slug)) {
+            send(res, 400, { error: 'Expected valid slug and variant' });
+            return;
+          }
+
+          const videoPath = path.join(libraryRoot, slug, variant, `${slug}.mp4`);
+          if (!(await pathExists(videoPath))) {
+            send(res, 404, { error: 'Video not found' });
+            return;
+          }
+
+          res.statusCode = 200;
+          res.setHeader('Content-Type', 'video/mp4');
+          res.setHeader('Cache-Control', 'no-store');
+          createReadStream(videoPath).pipe(res);
         } catch (error) {
           send(res, 500, { error: error.message });
         }

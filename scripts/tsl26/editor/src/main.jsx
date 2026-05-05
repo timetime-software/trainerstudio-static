@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { AlertTriangle, Check, FileVideo, Play, Save, Search, Sparkles, Star } from 'lucide-react';
+import { AlertTriangle, Check, ChevronLeft, ChevronRight, FileVideo, Play, Save, Search, Sparkles, Star } from 'lucide-react';
 import './styles.css';
 
 const emptyStatus = { sourceClip: false, defaultClip: false, downloadedOriginals: [], arkTask: null };
@@ -135,6 +135,10 @@ function firstVideo(exercise) {
   return mediaFor(exercise).find((item) => item.type === 'video' || item.url.includes('youtube.com/embed') || item.url.endsWith('.mp4'));
 }
 
+function videoBySource(exercise, source) {
+  return mediaFor(exercise).find((item) => item.type === 'video' && item.source === source);
+}
+
 function firstImage(exercise) {
   return mediaFor(exercise).find((item) => item.type === 'image' || item.thumbnailUrl || /\.(png|jpe?g|webp)$/i.test(item.url));
 }
@@ -144,6 +148,9 @@ function hasDefaultVideo(exercise) {
 }
 
 function defaultIndicatorFor(exercise) {
+  if (exercise?.metadata?.defaultVideoInvalid) {
+    return { className: 'invalidDefault', label: 'Default invalid' };
+  }
   if (exercise?.metadata?.reviewed) {
     return { className: 'validated', label: 'Validated' };
   }
@@ -172,11 +179,16 @@ function updateExercise(exercise, patch) {
   };
 }
 
+function idFromUrl() {
+  return new URLSearchParams(window.location.search).get('id') || '';
+}
+
 function App() {
   const [exercises, setExercises] = useState([]);
   const [selectedId, setSelectedId] = useState('');
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState('all');
+  const [mediaVariant, setMediaVariant] = useState('default');
   const [status, setStatus] = useState(emptyStatus);
   const [dirty, setDirty] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -193,9 +205,11 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         const slugs = data.librarySlugs || [];
+        const queryId = idFromUrl();
+        const queryExercise = data.exercises.find((exercise) => exercise.id === queryId);
         const firstLibraryExercise = data.exercises.find((exercise) => slugs[0] && (exercise.cdnslug || exercise.cdnSlug) === slugs[0]);
         setExercises(data.exercises);
-        setSelectedId(firstLibraryExercise?.id || data.exercises[0]?.id || '');
+        setSelectedId(queryExercise?.id || firstLibraryExercise?.id || data.exercises[0]?.id || '');
         setLibrarySlugs(slugs);
         setLibraryRelation(data.libraryRelation || null);
         setPaths({ jsonPath: data.jsonPath, ndjsonPath: data.ndjsonPath });
@@ -203,6 +217,34 @@ function App() {
   }, []);
 
   const selected = exercises.find((exercise) => exercise.id === selectedId) || exercises[0];
+
+  function selectExercise(id, replace = false) {
+    if (!id || id === selectedId) return;
+    setSelectedId(id);
+    const url = new URL(window.location.href);
+    url.searchParams.set('id', id);
+    window.history[replace ? 'replaceState' : 'pushState']({}, '', url);
+  }
+
+  useEffect(() => {
+    if (!selected?.id) return;
+    const urlId = idFromUrl();
+    if (urlId !== selected.id) {
+      selectExercise(selected.id, true);
+    }
+  }, [selected?.id]);
+
+  useEffect(() => {
+    function handlePopState() {
+      const id = idFromUrl();
+      if (id && exercises.some((exercise) => exercise.id === id)) {
+        setSelectedId(id);
+      }
+    }
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [exercises]);
 
   async function refreshStatus(id = selected?.id) {
     if (!id) return;
@@ -236,6 +278,7 @@ function App() {
       const matchesFilter =
         filter === 'all' ||
         (filter === 'priority' && exercise.priority === true) ||
+        (filter === 'invalidDefault' && exercise.metadata?.defaultVideoInvalid === true) ||
         (filter === 'library' && librarySlugSet.has(slug)) ||
         (filter === 'notInLibrary' && !librarySlugSet.has(slug)) ||
         (filter === 'missingFolder' && slug && !librarySlugSet.has(slug)) ||
@@ -365,7 +408,15 @@ function App() {
 
   if (!selected) return <main className="loading">Loading exercises...</main>;
 
+  const selectedIndex = filtered.findIndex((exercise) => exercise.id === selected.id);
+  const previousExercise = selectedIndex > 0 ? filtered[selectedIndex - 1] : null;
+  const nextExercise = selectedIndex >= 0 && selectedIndex < filtered.length - 1 ? filtered[selectedIndex + 1] : null;
   const video = firstVideo(selected);
+  const selectedVideo =
+    mediaVariant === 'default'
+      ? (status.defaultClip ? { type: 'video', url: status.defaultUrl, source: 'uploaded' } : videoBySource(selected, 'uploaded'))
+      : (status.sourceClip ? { type: 'video', url: status.sourceUrl, source: 'source' } : videoBySource(selected, 'source'));
+  const previewVideo = selectedVideo || video;
   const image = firstImage(selected);
   const aiTaskStatus = status.arkTask?.error ? 'failed' : status.arkTask?.status || null;
   const taskStatusLabels = {
@@ -387,27 +438,30 @@ function App() {
   return (
     <main className="app">
       <aside className="sidebar">
-        <div className="toolbar">
-          <div className="search">
-            <Search size={16} />
-            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search exercises" />
+        <div className="sidebarHeader">
+          <div className="toolbar">
+            <div className="search">
+              <Search size={16} />
+              <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search exercises" />
+            </div>
+            <select value={filter} onChange={(event) => setFilter(event.target.value)}>
+              <option value="all">All</option>
+              <option value="priority">Priority</option>
+              <option value="invalidDefault">Default invalid</option>
+              <option value="library">In library</option>
+              <option value="notInLibrary">Not in library</option>
+              <option value="missingFolder">Missing folder</option>
+              <option value="youtube">YouTube</option>
+              <option value="missingDefault">Missing default</option>
+              <option value="pendingReview">Pending review</option>
+              <option value="reviewed">Reviewed</option>
+              <option value="inactive">Inactive</option>
+            </select>
           </div>
-          <select value={filter} onChange={(event) => setFilter(event.target.value)}>
-            <option value="all">All</option>
-            <option value="priority">Priority</option>
-            <option value="library">In library</option>
-            <option value="notInLibrary">Not in library</option>
-            <option value="missingFolder">Missing folder</option>
-            <option value="youtube">YouTube</option>
-            <option value="missingDefault">Missing default</option>
-            <option value="pendingReview">Pending review</option>
-            <option value="reviewed">Reviewed</option>
-            <option value="inactive">Inactive</option>
-          </select>
-        </div>
-        <div className="count">
-          {filtered.length} / {exercises.length} · {librarySlugs.length} folders
-          {relationIssues > 0 && <span className="relationWarning"> · {relationIssues} relation issues</span>}
+          <div className="count">
+            {filtered.length} / {exercises.length} · {librarySlugs.length} folders
+            {relationIssues > 0 && <span className="relationWarning"> · {relationIssues} relation issues</span>}
+          </div>
         </div>
         <div className="list">
           {filtered.map((exercise) => {
@@ -416,7 +470,7 @@ function App() {
               <button
                 className={exercise.id === selected.id ? 'row active' : 'row'}
                 key={exercise.id}
-                onClick={() => setSelectedId(exercise.id)}
+                onClick={() => selectExercise(exercise.id)}
               >
                 <span className="rowTop">
                   <span className="rowTitle">
@@ -429,6 +483,7 @@ function App() {
                   </span>
                   <span className="badges">
                     {exercise.priority === true && <Star size={13} className="priorityIcon" />}
+                    {exercise.metadata?.defaultVideoInvalid === true && <AlertTriangle size={13} className="warningIcon" />}
                     {librarySlugs.includes(exercise.cdnslug || exercise.cdnSlug) && <span title="In library">L</span>}
                     {(exercise.cdnslug || exercise.cdnSlug) && !librarySlugs.includes(exercise.cdnslug || exercise.cdnSlug) && <AlertTriangle size={13} className="warningIcon" />}
                     {exercise.metadata?.reviewed && <Check size={13} />}
@@ -450,6 +505,23 @@ function App() {
             </p>
           </div>
           <div className="headerActions">
+            <div className="stepActions">
+              <button
+                title="Previous exercise"
+                onClick={() => previousExercise && selectExercise(previousExercise.id)}
+                disabled={!previousExercise}
+              >
+                <ChevronLeft size={17} />
+              </button>
+              <span>{selectedIndex >= 0 ? selectedIndex + 1 : '-'} / {filtered.length}</span>
+              <button
+                title="Next exercise"
+                onClick={() => nextExercise && selectExercise(nextExercise.id)}
+                disabled={!nextExercise}
+              >
+                <ChevronRight size={17} />
+              </button>
+            </div>
             <button
               className={selected.metadata?.reviewed ? 'review reviewed' : 'review'}
               onClick={() => setReviewed(selected, selected.metadata?.reviewed !== true)}
@@ -462,11 +534,28 @@ function App() {
           </div>
         </div>
 
+        <div className="mediaToolbar" aria-label="Video variant">
+          <button
+            className={mediaVariant === 'source' ? 'active' : ''}
+            onClick={() => setMediaVariant('source')}
+            disabled={!status.sourceClip && !videoBySource(selected, 'source')}
+          >
+            Original
+          </button>
+          <button
+            className={mediaVariant === 'default' ? 'active' : ''}
+            onClick={() => setMediaVariant('default')}
+            disabled={!status.defaultClip && !videoBySource(selected, 'uploaded')}
+          >
+            Default
+          </button>
+        </div>
+
         <div className="mediaBox">
-          {video?.url?.endsWith('.mp4') ? (
-            <video src={video.url} controls playsInline />
-          ) : video?.url ? (
-            <iframe src={video.url} allow="autoplay; encrypted-media; picture-in-picture" />
+          {previewVideo?.url?.endsWith('.mp4') || previewVideo?.url?.startsWith('/api/library/video') ? (
+            <video src={previewVideo.url} controls playsInline />
+          ) : previewVideo?.url ? (
+            <iframe src={previewVideo.url} allow="autoplay; encrypted-media; picture-in-picture" />
           ) : image?.url || image?.thumbnailUrl ? (
             <img src={image.thumbnailUrl || image.url} />
           ) : (
@@ -555,6 +644,19 @@ function App() {
               <label className="check">
                 <input type="checkbox" checked={selected.priority === true} onChange={(event) => patchSelected({ priority: event.target.checked })} />
                 Priority
+              </label>
+              <label className="check">
+                <input
+                  type="checkbox"
+                  checked={selected.metadata?.defaultVideoInvalid === true}
+                  onChange={(event) => patchSelected({
+                    metadata: {
+                      defaultVideoInvalid: event.target.checked,
+                      defaultVideoInvalidAt: event.target.checked ? new Date().toISOString() : null,
+                    },
+                  })}
+                />
+                Regenerate default
               </label>
               <label className="check">
                 <input

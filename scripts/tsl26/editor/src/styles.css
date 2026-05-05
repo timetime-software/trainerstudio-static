@@ -51,6 +51,16 @@ button:disabled {
   padding: 14px;
 }
 
+.sidebarHeader {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  margin: -14px -14px 8px;
+  padding: 14px 14px 8px;
+  border-bottom: 1px solid #dce2dd;
+  background: #eef2ed;
+}
+
 .toolbar {
   display: grid;
   gap: 8px;
@@ -89,7 +99,7 @@ select {
 }
 
 .count {
-  margin: 12px 2px 8px;
+  margin: 10px 2px 0;
   font-size: 12px;
   color: #5b6861;
 }
@@ -152,6 +162,11 @@ select {
 .defaultDot.missingDefault {
   border-color: #9a3428;
   background: #d84a3a;
+}
+
+.defaultDot.invalidDefault {
+  border-color: #a66500;
+  background: #f2a51a;
 }
 
 .rowTop strong {
@@ -221,6 +236,34 @@ select {
   flex-shrink: 0;
 }
 
+.stepActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 38px;
+  padding: 0 5px;
+  border: 1px solid #ccd5cf;
+  border-radius: 7px;
+  background: #ffffff;
+}
+
+.stepActions button {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.stepActions span {
+  min-width: 54px;
+  text-align: center;
+  font-size: 12px;
+  color: #5b6861;
+}
+
 h1 {
   margin: 0;
   font-size: 26px;
@@ -254,12 +297,36 @@ p {
   color: #1d5f4d;
 }
 
+.mediaToolbar {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 16px;
+  padding: 4px;
+  border: 1px solid #ccd5cf;
+  border-radius: 7px;
+  background: #ffffff;
+}
+
+.mediaToolbar button {
+  min-width: 86px;
+  height: 30px;
+  padding: 0 10px;
+  border: 0;
+  background: transparent;
+}
+
+.mediaToolbar button.active {
+  color: #ffffff;
+  background: #27745f;
+}
+
 .mediaBox {
   display: grid;
   place-items: center;
   width: 100%;
   aspect-ratio: 16 / 9;
-  margin-top: 18px;
+  margin-top: 10px;
   border: 1px solid #d7ded9;
   border-radius: 8px;
   background: #ffffff;
