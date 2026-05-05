@@ -26,6 +26,7 @@ const DEFAULT_PROMPT = [
   'Only change the visual appearance. Replace the real athlete with the illustrated trainer character from the reference images, keeping a consistent coach identity, clean fitness illustration style, crisp outlines, simplified anatomy, and smooth vector-like shading.',
   'Use a clean pure white background matching the references. Keep the trainer centered and fully visible.',
   'Do not add text, labels, logos, captions, watermarks, extra people, extra props, gym backgrounds, decorative elements, or equipment that is not necessary for the original exercise movement.',
+  'Remove or neutralize any visible brand marks from the source video or generated illustration, including sportswear logos, shoe logos, sock logos, equipment brands, and small trademark details such as Nike swooshes.',
   'The output must be silent, seamless, instructional, and suitable for a public exercise CDN.',
 ].join(' ');
 

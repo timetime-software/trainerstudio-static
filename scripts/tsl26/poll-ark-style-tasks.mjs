@@ -175,11 +175,17 @@ async function main() {
   const shouldPoll = args.poll && !args.once;
   for (let attempt = 1; attempt <= (shouldPoll ? args.maxPolls : 1); attempt++) {
     let pending = 0;
+    let downloaded = 0;
 
     for (const record of records) {
       const result = await handleRecord(args, record);
       if (!isTerminalStatus(result.status)) pending++;
+      if (result.downloaded) downloaded++;
       console.log(`${record.cdnslug}: ${result.status ?? result.reason}`);
+    }
+
+    if (downloaded > 0) {
+      console.log('Reminder: run `npm run videos:sync-json` so exercises.json points to the TrainerStudio CDN videos before importing.');
     }
 
     if (!shouldPoll || pending === 0) return;

@@ -156,6 +156,22 @@ Cuando una tarea termina con `status: "succeeded"` y devuelve una URL de video,
 libraries/tsl26/<cdnslug>/default/<cdnslug>.mp4
 ```
 
+Despues de descargar videos finales, actualizar la metadata antes de importar:
+
+```bash
+npm run videos:sync-json
+```
+
+Este paso antepone en `scripts/tsl26/data/exercises.json` y
+`scripts/tsl26/data/exercises.ndjson` el video final servido desde:
+
+```text
+https://cdn.trainerstudio.com/libraries/tsl26/<cdnslug>/default/<cdnslug>.mp4
+```
+
+El script de estado tambien imprime este recordatorio cuando descarga algun
+video con `--download`.
+
 El resultado de Ark puede venir a 720p aunque el source sea 480p. En la prueba
 real `barbell_squats` descargo:
 
@@ -186,6 +202,7 @@ libraries/tsl26/barbell_squats/default/barbell_squats.mp4
 npm run videos:clips
 npm run videos:style-tasks
 npm run videos:style-status
+npm run videos:sync-json
 npm run transform
 npm run i18n:apply
 npm run import
