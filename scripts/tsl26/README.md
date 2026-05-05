@@ -1,7 +1,4 @@
-# TSL26
-
-Biblioteca publica de ejercicios preparada para publicarse desde el CDN
-`trainerstudio-static`.
+# TSL26 CDN / Ark POC
 
 La salida servible vive en `libraries/tsl26`:
 
@@ -14,7 +11,7 @@ tsl26/
     <cdnslug>.mp4
 ```
 
-## Contrato Publico
+## Layout Relevante
 
 `references/` y `<cdnslug>/{source,default}` son el resultado que deberia quedar
 estable para CDN:
@@ -34,14 +31,7 @@ desde el nombre en ingles en lowercase y con underscores. Si dos ejercicios
 comparten el mismo nombre, el slug lleva el `sourceId` como sufijo para evitar
 colisiones en CDN.
 
-## Generar Clips
-
-Requisitos:
-
-```bash
-python3 -m pip install --user yt-dlp
-ffmpeg -version
-```
+## Clips Fuente
 
 Generar todos los clips disponibles en `scripts/tsl26/data/exercises.json`:
 
@@ -77,13 +67,32 @@ libraries/tsl26/barbell_bench_press/source/barbell_bench_press.mp4
 libraries/tsl26/wide_grip_pull_ups/source/wide_grip_pull_ups.mp4
 ```
 
-## Crear Tareas de Estilo con Ark
+Los 5 clips iniciales ya generados y subidos al CDN son:
 
-Una vez que los clips de 4s estan en `<cdnslug>/source` y publicados en el CDN,
-se pueden crear tareas de transformacion enviando:
+```text
+barbell_bench_press
+barbell_squats
+barbell_deadlifts
+wide_grip_pull_ups
+standing_bicep_curls
+```
+
+Validacion rapida de CDN:
+
+```bash
+curl -I https://cdn.trainerstudio.com/libraries/tsl26/barbell_bench_press/source/barbell_bench_press.mp4
+```
+
+## Ark Style Tasks
+
+Una tarea envia:
 
 - 2 imagenes de referencia publicas en CDN.
 - 1 video de referencia publico en CDN por cada clip original.
+- `duration: 4`
+- `ratio: "16:9"`
+- `generate_audio: false`
+- `watermark: false`
 
 Las referencias por defecto son:
 
@@ -92,25 +101,24 @@ https://cdn.trainerstudio.com/libraries/tsl26/references/man.png
 https://cdn.trainerstudio.com/libraries/tsl26/references/man2.png
 ```
 
-Validar el payload sin llamar a la API:
-
-```bash
-cd /Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26
-npm run videos:style-tasks -- --dry-run --limit=1
-```
-
-Crear tareas reales:
-
-```bash
-export ARK_API_KEY=...
-npm run videos:style-tasks -- --limit=10
-```
-
 El prompt por defecto es unico para todas las tareas. Pide mantener exactamente
 el movimiento, timing, encuadre y duracion del video original, cambiando solo el
 aspecto visual al entrenador ilustrado de las referencias sobre fondo blanco. En
 cada tarea solo cambia la URL `video_url` del clip en
 `libraries/tsl26/<cdnslug>/source/<cdnslug>.mp4`.
+
+Validar payload:
+
+```bash
+cd /Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26
+npm run videos:style-tasks -- --dry-run --ids=barbell_squats --overwrite-output
+```
+
+Crear tareas reales:
+
+```bash
+ARK_API_KEY='...' npm run videos:style-tasks -- --ids=barbell_squats,barbell_deadlifts --overwrite-output
+```
 
 Opciones utiles:
 
@@ -132,11 +140,13 @@ Cada linea guarda el `clipUrl`, las imagenes de referencia, el payload enviado y
 la respuesta de Ark para poder reconciliar los resultados despues. Si Ark rechaza
 un clip, el error se guarda con `status: "create_failed"` y el batch continua.
 
+## Estado y Descarga
+
 Consultar estado y descargar resultados completados:
 
 ```bash
-npm run videos:style-status -- --once
-npm run videos:style-status -- --poll --download
+ARK_API_KEY='...' npm run videos:style-status -- --once --ids=barbell_squats,barbell_deadlifts
+ARK_API_KEY='...' npm run videos:style-status -- --poll --download --ids=barbell_squats,barbell_deadlifts
 ```
 
 Cuando una tarea termina con `status: "succeeded"` y devuelve una URL de video,
@@ -145,6 +155,30 @@ Cuando una tarea termina con `status: "succeeded"` y devuelve una URL de video,
 ```text
 libraries/tsl26/<cdnslug>/default/<cdnslug>.mp4
 ```
+
+El resultado de Ark puede venir a 720p aunque el source sea 480p. En la prueba
+real `barbell_squats` descargo:
+
+```text
+libraries/tsl26/barbell_squats/default/barbell_squats.mp4
+1280x720, 4.041667s
+```
+
+## Aprendido en la POC
+
+- `barbell_squats` creo tarea correctamente: `cgt-20260505224622-9xqhn`.
+- `barbell_deadlifts` creo tarea correctamente y quedo `running` en la ultima
+  comprobacion de la sesion.
+- `standing_bicep_curls` fue rechazado por Ark antes de crear tarea:
+  `InputVideoSensitiveContentDetected.PrivacyInformation`. El mensaje dice que
+  el video de entrada puede contener una persona real. El script ahora registra
+  ese fallo y continua con el batch.
+- Los logs `scripts/tsl26/source/ark-style-*.ndjson` son salida operativa local y
+  estan ignorados por Git.
+- Para repetir pruebas, usar `--overwrite-output`; si no, el script considera ya
+  procesado cualquier `clipUrl` presente en `ark-style-tasks.ndjson`.
+- Las URLs firmadas de resultado de Ark expiran; descargar cuanto antes con
+  `videos:style-status --download`.
 
 ## Scripts Disponibles
 
@@ -157,14 +191,5 @@ npm run i18n:apply
 npm run import
 ```
 
-`videos:clips` es el flujo actual para CDN. El resto de scripts vienen del import
-original de My PT Hub y se conservan para poder regenerar el dataset o validar
-importaciones si hace falta.
-
-## Estado Actual
-
 El dataset contiene 1203 ejercicios. En la ultima comprobacion local, 833 tenian
 un video de YouTube detectable en `media`.
-
-No se ha ejecutado todavia la descarga completa de esos 833 clips; solo se ha
-validado el flujo con `mypthub_196` y `mypthub_942`.
