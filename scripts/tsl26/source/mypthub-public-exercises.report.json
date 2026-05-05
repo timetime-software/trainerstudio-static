@@ -1,0 +1,2865 @@
+{
+  "inputPath": "/Users/iagolast/Workspace/.claude-worktrees/trainerstudio/feat/payments/backend/scripts/download-mypthub-library/data/mypthub-exercises.csv",
+  "outputPath": "/Users/iagolast/Workspace/.claude-worktrees/trainerstudio/feat/payments/backend/scripts/download-mypthub-library/data/mypthub-public-exercises.json",
+  "totalRows": 1678,
+  "transformed": 1203,
+  "skipped": [
+    {
+      "row": 2,
+      "id": "1300077",
+      "name": "Belly Twist",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 3,
+      "id": "1300076",
+      "name": "Boat (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 4,
+      "id": "1300074",
+      "name": "Boat",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 5,
+      "id": "1300072",
+      "name": "Bound Angle",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 6,
+      "id": "1300071",
+      "name": "Bow (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 7,
+      "id": "1300070",
+      "name": "Bow",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 8,
+      "id": "1300069",
+      "name": "Bridge (Advanced)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 9,
+      "id": "1300067",
+      "name": "Bridge (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 10,
+      "id": "1300060",
+      "name": "Bridge (Intermediate)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 11,
+      "id": "1300059",
+      "name": "Camel Pose (Advanced)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 12,
+      "id": "1300057",
+      "name": "Camel Pose (Intermediate)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 13,
+      "id": "1300053",
+      "name": "Camel Pose (Single arm)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 14,
+      "id": "1299769",
+      "name": "Cat Cow",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 15,
+      "id": "1299768",
+      "name": "Chair Pose (Advanced)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 16,
+      "id": "1299766",
+      "name": "Dancers Pose (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 17,
+      "id": "1299765",
+      "name": "Downward Dog",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 18,
+      "id": "1299763",
+      "name": "Downward Dog (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 19,
+      "id": "1299762",
+      "name": "Dancers Pose",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 20,
+      "id": "1299761",
+      "name": "Crow Pose (Intermediate)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 21,
+      "id": "1299759",
+      "name": "Crow Pose (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 22,
+      "id": "1299758",
+      "name": "Crow Pose (Advanced)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 23,
+      "id": "1299757",
+      "name": "Cow Face (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 24,
+      "id": "1299755",
+      "name": "Cow Face Pose",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 25,
+      "id": "1299753",
+      "name": "Cobra Pose",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 26,
+      "id": "1299752",
+      "name": "Cobra Pose (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 27,
+      "id": "1299744",
+      "name": "Childs Pose (Intermediate)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 28,
+      "id": "1299742",
+      "name": "Childs Pose (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 29,
+      "id": "1299739",
+      "name": "Chair Pose (Intermediate)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 30,
+      "id": "1299738",
+      "name": "Chair Pose (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 31,
+      "id": "1299736",
+      "name": "Half Moon Pose (With Prop)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 32,
+      "id": "1299734",
+      "name": "Half Moon (Bind)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 33,
+      "id": "1299730",
+      "name": "Half Moon Pose",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 34,
+      "id": "1299728",
+      "name": "Half Lord of the Fishes",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 35,
+      "id": "1299725",
+      "name": "Half Lord of the Fishes (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 36,
+      "id": "1299723",
+      "name": "Gate Pose (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 37,
+      "id": "1299722",
+      "name": "Gate Pose (Advanced)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 38,
+      "id": "1299721",
+      "name": "Forward Fold (With Prop)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 39,
+      "id": "1299720",
+      "name": "Extended Side Angle",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 40,
+      "id": "1299717",
+      "name": "Extended Side Angle (With prop)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 41,
+      "id": "1299716",
+      "name": "Extended Side Angle (With bind)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 42,
+      "id": "1299715",
+      "name": "Extended Side Angle (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 43,
+      "id": "1299711",
+      "name": "Easy Pose",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 44,
+      "id": "1299710",
+      "name": "Eagle Pose",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 45,
+      "id": "1299706",
+      "name": "Eagle Pose (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 46,
+      "id": "1299701",
+      "name": "Camel Pose (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 47,
+      "id": "1299417",
+      "name": "Sphinx",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 48,
+      "id": "1299416",
+      "name": "Standing Big Toe Pose",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 49,
+      "id": "1299415",
+      "name": "Forward Fold (Single Leg)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 50,
+      "id": "1299413",
+      "name": "Seated Spinal Twist (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 51,
+      "id": "1299407",
+      "name": "Seated Spinal Twist (Advanced)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 52,
+      "id": "1299406",
+      "name": "Seated Forward Fold",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 53,
+      "id": "1299404",
+      "name": "Seated Forward Fold (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 54,
+      "id": "1299403",
+      "name": "Plank Pose",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 55,
+      "id": "1299400",
+      "name": "Plank Pose (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 56,
+      "id": "1299398",
+      "name": "Mountain Pose",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 57,
+      "id": "1299397",
+      "name": "Lotus Pose",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 58,
+      "id": "1299396",
+      "name": "Locust",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 59,
+      "id": "1299393",
+      "name": "Locust (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 60,
+      "id": "1299391",
+      "name": "Hero Pose",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 61,
+      "id": "1299390",
+      "name": "Hero Pose (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 62,
+      "id": "1299388",
+      "name": "Warrior 2",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 63,
+      "id": "1299385",
+      "name": "Warrior 1 (Intermediate)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 64,
+      "id": "1299383",
+      "name": "Warrior 1 (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 65,
+      "id": "1299382",
+      "name": "Upward Dog (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 66,
+      "id": "1299381",
+      "name": "Upward Dog (Advanced)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 67,
+      "id": "1299380",
+      "name": "Triangle",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 68,
+      "id": "1299379",
+      "name": "Triangle (With block)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 69,
+      "id": "1299377",
+      "name": "Triangle (Half bind)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 70,
+      "id": "1299376",
+      "name": "Tree Pose",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 71,
+      "id": "1299374",
+      "name": "Tree Pose (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 72,
+      "id": "1299373",
+      "name": "Standing Single Leg Balance",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 73,
+      "id": "1299372",
+      "name": "Standing Forward Fold",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 74,
+      "id": "1299371",
+      "name": "Standing Forward Fold (Intermediate)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 75,
+      "id": "1299370",
+      "name": "Warrior 3 (Beginner)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 76,
+      "id": "1299369",
+      "name": "Warrior 3 (Intermediate)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 77,
+      "id": "1299368",
+      "name": "Wide Leg Forward Fold",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 78,
+      "id": "1299365",
+      "name": "Warrior 3",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 79,
+      "id": "1097394",
+      "name": "Stretching",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 82,
+      "id": "1067182",
+      "name": "Split Stance Banded Shoulder Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 89,
+      "id": "1067160",
+      "name": "Single Arm Banded Lat Raise",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 123,
+      "id": "130344",
+      "name": "Swimming",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 171,
+      "id": "123720",
+      "name": "Seated Bent Knee Toe Pull Achilles Stretch",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 187,
+      "id": "121620",
+      "name": "Lying Cross Over Knee Pull Down",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 371,
+      "id": "26178",
+      "name": "Alternating Dumbbell Curtsy Squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 372,
+      "id": "25930",
+      "name": "Reverse Grip Dumbbell Preacher Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 373,
+      "id": "25929",
+      "name": "Laying Svend Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 374,
+      "id": "25928",
+      "name": "Alternating Dumbbell Hammer Preacher Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 375,
+      "id": "25927",
+      "name": "Dumbbell Hammer Preacher Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 376,
+      "id": "25926",
+      "name": "Alternating Dumbbell Preacher Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 377,
+      "id": "25924",
+      "name": "Alternating Dumbbell Upright Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 378,
+      "id": "25923",
+      "name": "Single Leg Dumbbell Seated Calf Raises",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 379,
+      "id": "25920",
+      "name": "Single Arm Cable Preacher Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 380,
+      "id": "25918",
+      "name": "Plyometric TRX Curtsy Squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 381,
+      "id": "25915",
+      "name": "TRX Side Plank",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 382,
+      "id": "25914",
+      "name": "TRX Plank",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 383,
+      "id": "25910",
+      "name": "TRX Glute Bridges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 384,
+      "id": "25909",
+      "name": "TRX Hamstring Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 385,
+      "id": "25908",
+      "name": "TRX Pistol Squat Jumps",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 386,
+      "id": "25907",
+      "name": "TRX Squat Jumps",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 387,
+      "id": "25906",
+      "name": "TRX Single Leg Squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 388,
+      "id": "25904",
+      "name": "TRX Squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 389,
+      "id": "25903",
+      "name": "TRX Pike",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 390,
+      "id": "25901",
+      "name": "TRX Mountain Climbers",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 391,
+      "id": "25900",
+      "name": "TRX Jackknife",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 392,
+      "id": "25899",
+      "name": "TRX Bicep Curl",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 393,
+      "id": "25898",
+      "name": "TRX Tricep Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 394,
+      "id": "25897",
+      "name": "TRX Chest Flyes",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 395,
+      "id": "25896",
+      "name": "TRX Chest Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 396,
+      "id": "25895",
+      "name": "TRX Y Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 397,
+      "id": "25893",
+      "name": "Battle Rope Waves",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 398,
+      "id": "25891",
+      "name": "Single Arm Sled Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 399,
+      "id": "25890",
+      "name": "Sled Lunge Push",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 400,
+      "id": "25888",
+      "name": "Sled Reverse Flyes",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 401,
+      "id": "25887",
+      "name": "Overhead Backward Sled Walks",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 402,
+      "id": "25879",
+      "name": "Landmine Double Arm Jammer",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 404,
+      "id": "25876",
+      "name": "Weighted Glute Ham Raise Machine",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 405,
+      "id": "25875",
+      "name": "Weight Plate Sissy Squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 406,
+      "id": "25874",
+      "name": "Sissy Squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 407,
+      "id": "25873",
+      "name": "Weighted Chin Ups",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 408,
+      "id": "25872",
+      "name": "Smith Machine Overhand Horizontal Pull Ups",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 409,
+      "id": "25871",
+      "name": "Smith Machine Static Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 410,
+      "id": "25870",
+      "name": "Smith Machine Alternating Reverse Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 412,
+      "id": "25868",
+      "name": "Smith Machine Shoulder Press Behind The Head",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 414,
+      "id": "25865",
+      "name": "Single Arm Tricep Press Down Machine",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 415,
+      "id": "25864",
+      "name": "Single Arm Bicep Curl Machine",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 418,
+      "id": "25861",
+      "name": "Single Arm Leverage Iso Row",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 419,
+      "id": "25846",
+      "name": "Boxing",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 421,
+      "id": "25844",
+      "name": "Jogging Incline",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 422,
+      "id": "25843",
+      "name": "Running Incline",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 423,
+      "id": "25842",
+      "name": "Wind Bike",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 424,
+      "id": "25838",
+      "name": "Sky Divers",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 425,
+      "id": "25837",
+      "name": "Press Up Burpees",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 426,
+      "id": "25836",
+      "name": "Scorpian Press Ups",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 427,
+      "id": "25835",
+      "name": "Spiderman Press Ups",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 428,
+      "id": "25834",
+      "name": "Crossover Mountain Climbers",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 429,
+      "id": "25833",
+      "name": "Squat Thrusts",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 430,
+      "id": "25832",
+      "name": "Straight Leg Bodyweight Glute Kickbacks",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 431,
+      "id": "25831",
+      "name": "Alternating Bench Glute Kickbacks",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 432,
+      "id": "25830",
+      "name": "Single Leg Bench Glute Kickbacks",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 433,
+      "id": "25829",
+      "name": "Bench Glute Kickbacks",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 434,
+      "id": "25827",
+      "name": "Box Press Ups",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 435,
+      "id": "25826",
+      "name": "Narrow Grip Press Ups From The Knees",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 436,
+      "id": "25825",
+      "name": "Press Ups From The Knees",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 437,
+      "id": "25824",
+      "name": "Bodyweight Curtsy Squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 438,
+      "id": "25823",
+      "name": "Feet Elevated Bench Dips",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 439,
+      "id": "25822",
+      "name": "Alternating Reverse Bodyweight Lunges Front Foot Elevated",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 440,
+      "id": "25821",
+      "name": "Static Bodyweight Lunges Front Foot Elevated",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 441,
+      "id": "25820",
+      "name": "Alternating Bodyweight Lunges Onto A Step",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 442,
+      "id": "25819",
+      "name": "Bodyweight Lunges Onto A Step",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 443,
+      "id": "25818",
+      "name": "Plyometric Bodyweight Bulgarian Split Squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 444,
+      "id": "25817",
+      "name": "Static Alternating Lateral Bodyweight Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 445,
+      "id": "25816",
+      "name": "Static Lateral Bodyweight Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 446,
+      "id": "25815",
+      "name": "Alternating Lateral Bodyweight Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 447,
+      "id": "25814",
+      "name": "Lateral Bodyweight Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 448,
+      "id": "25813",
+      "name": "Static Bodyweight Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 449,
+      "id": "25812",
+      "name": "Alternating Reverse Bodyweight Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 450,
+      "id": "25811",
+      "name": "Reverse Bodyweight Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 451,
+      "id": "25810",
+      "name": "Alternating Bodyweight Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 452,
+      "id": "25809",
+      "name": "Bodyweight Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 453,
+      "id": "25808",
+      "name": "Wide Stance Bodyweight Squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 454,
+      "id": "25807",
+      "name": "Single Leg Hip Thrusts",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 455,
+      "id": "25770",
+      "name": "Roll Back To Straddle",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 456,
+      "id": "25769",
+      "name": "Squat To Toe Touch",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 457,
+      "id": "25768",
+      "name": "Scorpian Stretch",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 458,
+      "id": "25767",
+      "name": "Cross Body Toe To Palm",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 459,
+      "id": "25766",
+      "name": "Alternating Step Groiners",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 460,
+      "id": "25765",
+      "name": "Foam Roll Hip Flexors",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 461,
+      "id": "25752",
+      "name": "Double Kettlebell Hang Cleans",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 462,
+      "id": "25751",
+      "name": "Seated Single Arm Kettlebell Shoulder Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 463,
+      "id": "25750",
+      "name": "Overhead Kettlebell Squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 464,
+      "id": "25749",
+      "name": "Alternating Kettlebell Lunge Pass Through",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 466,
+      "id": "25747",
+      "name": "Single Arm Kettlebell Upright Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 467,
+      "id": "25746",
+      "name": "Kettlebell Upright Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 468,
+      "id": "25745",
+      "name": "Kettlebell Briefcase Deadlifts",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 469,
+      "id": "25744",
+      "name": "Single Kettlebell Deadlifts",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 470,
+      "id": "25743",
+      "name": "Kettlebell Sumo Squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 471,
+      "id": "25742",
+      "name": "Double Kettlebell Clean & Split Jerk",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 472,
+      "id": "25741",
+      "name": "Single Arm Kettlebell Clean & Split Jerk",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 473,
+      "id": "25740",
+      "name": "Double Kettlebell Clean & Jerk",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 474,
+      "id": "25739",
+      "name": "Double Kettlebell Dead Cleans",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 475,
+      "id": "25738",
+      "name": "Single Arm Kettlebell Hang Cleans",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 476,
+      "id": "25737",
+      "name": "Kettlebell Renegade Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 477,
+      "id": "25736",
+      "name": "Kettlebell Press Ups",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 478,
+      "id": "25723",
+      "name": "Back Supported Hanging Leg Raises",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 479,
+      "id": "25722",
+      "name": "Hanging Knee Raises",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 480,
+      "id": "25721",
+      "name": "Side Plank With Rotation",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 481,
+      "id": "25720",
+      "name": "Side Plank",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 482,
+      "id": "25719",
+      "name": "Press Up Plank",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 483,
+      "id": "25717",
+      "name": "Banded Shoulder Rotations",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 484,
+      "id": "25716",
+      "name": "Banded Broomstick Stretch",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 485,
+      "id": "25715",
+      "name": "Behind The Head Band Pull Aparts",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 486,
+      "id": "25714",
+      "name": "X Band Walks",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 487,
+      "id": "25713",
+      "name": "Band Assisted Chin Ups",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 488,
+      "id": "25712",
+      "name": "Banded Front Raises",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 489,
+      "id": "25711",
+      "name": "Banded Hip Abductions",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 490,
+      "id": "25710",
+      "name": "Dynaband Facepulls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 491,
+      "id": "25709",
+      "name": "Dynaband Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 492,
+      "id": "25708",
+      "name": "Dynaband Chest Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 493,
+      "id": "25707",
+      "name": "Slingshot Clams",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 494,
+      "id": "25706",
+      "name": "Slingshot Glute Bridges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 495,
+      "id": "25705",
+      "name": "Slingshot Hip Thrusts",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 496,
+      "id": "25704",
+      "name": "Slingshot Walks",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 497,
+      "id": "25695",
+      "name": "Plank Forearms On An Exercise Ball",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 498,
+      "id": "25694",
+      "name": "Press Up Plank Feet On An Exercise Ball",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 499,
+      "id": "25693",
+      "name": "Press Up Plank Hands On An Exercise Ball",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 500,
+      "id": "25692",
+      "name": "Plank Feet On An Exercise Ball",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 501,
+      "id": "25691",
+      "name": "Reverse Hyperextension over a swiss ball",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 502,
+      "id": "25690",
+      "name": "High Cable Flyes",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 504,
+      "id": "25688",
+      "name": "Single Arm Cable Curls Handle",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 505,
+      "id": "25687",
+      "name": "Alternating Cable Curls Handles",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 506,
+      "id": "25686",
+      "name": "Cable Curls Handles",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 507,
+      "id": "25685",
+      "name": "Straight Arm Pulldowns Bar Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 508,
+      "id": "25684",
+      "name": "Single Arm Chest Supported Cable Tricep Extension",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 509,
+      "id": "25683",
+      "name": "Single Arm Reverse Grip Chest Supported Cable Tricep Extension",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 510,
+      "id": "25682",
+      "name": "Single Arm Hammer Grip Chest Supported Cable Tricep Extension",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 511,
+      "id": "25681",
+      "name": "Chest Supported Tricep Extension Rope",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 512,
+      "id": "25680",
+      "name": "Chest Supported Tricep Extension Straight Bar",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 513,
+      "id": "25679",
+      "name": "Chest Supported Tricep Extension V Bar",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 514,
+      "id": "25678",
+      "name": "Chest Supported Straight Arm Pulldowns Rope",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 515,
+      "id": "25677",
+      "name": "Chest Supported Straight Arm Pulldowns Bar Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 516,
+      "id": "25676",
+      "name": "Chest Supported Straight Arm Pulldowns V Bar",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 517,
+      "id": "25675",
+      "name": "Chest Supported Cable Face Pulls V Bar",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 518,
+      "id": "25674",
+      "name": "Chest Supported Cable Face Pulls Rope",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 519,
+      "id": "25673",
+      "name": "Chest Supported Cable Face Pulls Handles",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 520,
+      "id": "25672",
+      "name": "Chest Supported Alternating Cable Rear Delt Flyes",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 521,
+      "id": "25671",
+      "name": "Chest Supported Cable Rear Delt Flyes",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 522,
+      "id": "25670",
+      "name": "Alternating Chest Supported Cable Rows Two Point",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 523,
+      "id": "25669",
+      "name": "Chest Supported Cable Rows Two Point",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 524,
+      "id": "25668",
+      "name": "Single Arm Chest Supported Cable Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 525,
+      "id": "25667",
+      "name": "Chest Supported Cable Rows From One Point",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 526,
+      "id": "25666",
+      "name": "Cable Front Delt Raise Lying On A Bench",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 527,
+      "id": "25665",
+      "name": "Cable Curls Lying On A Bench",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 528,
+      "id": "25664",
+      "name": "Single Arm Chest Supported Cable Rear Delt Flyes",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 529,
+      "id": "25663",
+      "name": "Chest Supported Cable Spider Curls Rope Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 530,
+      "id": "25662",
+      "name": "Chest Supported Cable Spider Curls V Bar Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 531,
+      "id": "25661",
+      "name": "Chest Supported Cable Spider Curls Bar Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 532,
+      "id": "25660",
+      "name": "Chest Supported Single Arm Cable Spider Curls Handle Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 533,
+      "id": "25659",
+      "name": "Chest Supported Cable Spider Curls Handle Attachments",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 534,
+      "id": "25658",
+      "name": "Single Arm Chest Supported Cable Hammer Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 535,
+      "id": "25657",
+      "name": "Alternating Chest Supported Cable Hammer Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 536,
+      "id": "25656",
+      "name": "Chest Supported Cable Hammer Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 537,
+      "id": "25655",
+      "name": "Chest Supported Single Arm Cable Curls Handle Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 538,
+      "id": "25654",
+      "name": "Alternating Chest Supported Cable Curls Handle Attachments",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 539,
+      "id": "25653",
+      "name": "Chest Supported Cable Curls Handle Attachments",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 540,
+      "id": "25652",
+      "name": "Single Arm Cable Anti Gravity Press Handle Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 541,
+      "id": "25651",
+      "name": "Alternating Cable Anti Gravity Press Handle Attachments",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 542,
+      "id": "25650",
+      "name": "Cable Anti Gravity Press Handle Attachments",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 543,
+      "id": "25649",
+      "name": "Chest Supported Reverse Grip Cable Front Raise Bar Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 544,
+      "id": "25648",
+      "name": "Chest Supported Cable Anti Gravity Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 545,
+      "id": "25647",
+      "name": "Chest Supported Cable Front Raises Bar Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 546,
+      "id": "25646",
+      "name": "Chest Supported Single Arm Cable Front Raises",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 547,
+      "id": "25645",
+      "name": "Chest Supported Alternating Cable Front Raises",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 548,
+      "id": "25644",
+      "name": "Chest Supported Cable Front Raises",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 549,
+      "id": "25643",
+      "name": "Concentration Hammer Cable Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 550,
+      "id": "25642",
+      "name": "Single Arm Seated Hammer Cable Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 551,
+      "id": "25641",
+      "name": "Alternating Seated Hammer Cable Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 552,
+      "id": "25640",
+      "name": "Seated Hammer Cable Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 553,
+      "id": "25639",
+      "name": "Single Arm Seated Cable Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 554,
+      "id": "25638",
+      "name": "Alternating Seated Cable Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 555,
+      "id": "25637",
+      "name": "Seated Cable Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 556,
+      "id": "25636",
+      "name": "Cable Concentration Curls Over A Bench",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 557,
+      "id": "25635",
+      "name": "Seated Cable Tricep Extensions Rope Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 558,
+      "id": "25634",
+      "name": "Incline Cable Tricep Extensions Rope Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 559,
+      "id": "25633",
+      "name": "Cable Pullovers Rope Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 560,
+      "id": "25632",
+      "name": "Cable Skull Crushers V Bar Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 561,
+      "id": "25631",
+      "name": "Cable Pullovers V Bar Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 562,
+      "id": "25630",
+      "name": "Seated Cable Overhead Tricep Extensions Bar Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 563,
+      "id": "25629",
+      "name": "Incline Cable Skull Crushers Bar Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 564,
+      "id": "25628",
+      "name": "Cable Pullovers Bar Attachment",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 565,
+      "id": "25627",
+      "name": "Seated Single Arm Cable Rear Delt Flyes",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 566,
+      "id": "25626",
+      "name": "Seated Alternating Cable Rear Delt Flyes",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 567,
+      "id": "25625",
+      "name": "Decline Narrow Grip Cable Bench Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 568,
+      "id": "25624",
+      "name": "Decline Cable Bench Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 569,
+      "id": "25623",
+      "name": "Narrow Grip Cable Bench Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 570,
+      "id": "25622",
+      "name": "Cable Bench Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 571,
+      "id": "25621",
+      "name": "Narrow Grip Cable Incline Bench Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 572,
+      "id": "25620",
+      "name": "Cable Incline Bench Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 573,
+      "id": "25619",
+      "name": "Seated Cable Narrow Grip Bench Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 574,
+      "id": "25618",
+      "name": "Seated Cable Bench Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 575,
+      "id": "25617",
+      "name": "Seated Cable Flyes",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 576,
+      "id": "25616",
+      "name": "Seated Cable Chest Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 577,
+      "id": "25615",
+      "name": "Seated Single Arm Cable Front Delt Raise",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 578,
+      "id": "25614",
+      "name": "Seated Cable Front Delt Raise",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 579,
+      "id": "25613",
+      "name": "Seated Alternating Cable Front Delt Raise",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 580,
+      "id": "25612",
+      "name": "Decline Cable Chest Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 581,
+      "id": "25611",
+      "name": "Flat Cable Chest Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 582,
+      "id": "25610",
+      "name": "Seated Single Arm Cable Shoulder Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 583,
+      "id": "25609",
+      "name": "Alternating Cable Shoulder Press seated",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 584,
+      "id": "25608",
+      "name": "Single Arm Standing Cable Shoulder Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 585,
+      "id": "25602",
+      "name": "Wide Grip EZ Bar 21's",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 586,
+      "id": "25601",
+      "name": "Narrow Grip Barbell 21s",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 587,
+      "id": "25600",
+      "name": "Wide Grip Barbell Preacher Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 588,
+      "id": "25599",
+      "name": "Wide Grip EZ Bar Preacher Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 590,
+      "id": "25597",
+      "name": "barbell curtsy squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 591,
+      "id": "25596",
+      "name": "Incline Barbell Guillotione press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 592,
+      "id": "25595",
+      "name": "Wide Grip EZ Bar Upright Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 593,
+      "id": "25594",
+      "name": "Narrow Grip EZ Bar Upright Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 594,
+      "id": "25593",
+      "name": "Wide Grip Upright Barbell Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 595,
+      "id": "25592",
+      "name": "Standing Barbell Twist|seated-barbell-twist",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 596,
+      "id": "25591",
+      "name": "Reverse Grip EZ Bar bicep curls (Narrow)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 597,
+      "id": "25590",
+      "name": "Reverse Grip EZ Bar bicep curls (Wide)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 598,
+      "id": "25589",
+      "name": "Barbell Push Press In Front",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 599,
+      "id": "25588",
+      "name": "standing EZ bar front raises",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 600,
+      "id": "25587",
+      "name": "standing barbell front raises",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 601,
+      "id": "25586",
+      "name": "Chest Supported EZ Bar Front Raises",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 602,
+      "id": "25585",
+      "name": "Chest Supported EZ Bar Bicep Curls Wide Grip",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 603,
+      "id": "25584",
+      "name": "Chest Supported EZ Bar Bicep Curls Narrow Grip",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 604,
+      "id": "25583",
+      "name": "Narrow Grip EZ Bar Tricep Press To Chin",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 605,
+      "id": "25582",
+      "name": "Deficit Hex Bar Deadlift From Frame",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 606,
+      "id": "25581",
+      "name": "Deficit Hex Bar Deadlift From Handles",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 607,
+      "id": "25580",
+      "name": "hex dead from handles",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 608,
+      "id": "25579",
+      "name": "Stiff leg dead from a deficit",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 609,
+      "id": "25578",
+      "name": "Standing Wide Grip EZ Bar Overhead Tricep Extensions",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 610,
+      "id": "25577",
+      "name": "Incline Wide Grip EZ Bar Tricep Extensions Behind The Head",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 611,
+      "id": "25576",
+      "name": "Incline Wide Grip EZ Bar Skullcrushers",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 612,
+      "id": "25575",
+      "name": "Incline Narrow Grip EZ bar Tricep Extensions Behind The Head",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 613,
+      "id": "25574",
+      "name": "Decline Wide Grip EZ Bar Bent Arm Pullovers",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 614,
+      "id": "25573",
+      "name": "Decline Wide Grip EZ Bar Pullovers",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 615,
+      "id": "25572",
+      "name": "Decline Narrow Grip EZ Bar Bent Arm Pullovers",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 616,
+      "id": "25571",
+      "name": "Decline Narrow Grip EZ Bar Pullovers",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 617,
+      "id": "25570",
+      "name": "Decline Wide Grip EZ Bar Tricep Extensions Behind The Head",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 618,
+      "id": "25569",
+      "name": "Decline Wide Grip EZ Bar Skullcrushers",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 619,
+      "id": "25568",
+      "name": "Decline Narrow Grip EZ Bar Tricep Extensions Behind The Head",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 620,
+      "id": "25567",
+      "name": "Wide Grip EZ Bar Bent Arm Pullovers",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 621,
+      "id": "25566",
+      "name": "Wide Grip EZ Bar Pullovers",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 622,
+      "id": "25565",
+      "name": "Narrow Grip EZ Bar Bent Arm Pullovers",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 623,
+      "id": "25564",
+      "name": "Narrow Grip EZ Bar Pullovers",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 624,
+      "id": "25563",
+      "name": "Wide Grip EZ Bar Tricep Extensions Behind The Head",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 625,
+      "id": "25562",
+      "name": "Wide Grip EZ Bar Skullcrushers",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 626,
+      "id": "25561",
+      "name": "barbell pullover",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 627,
+      "id": "25560",
+      "name": "Alternating Barbell Side Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 628,
+      "id": "25559",
+      "name": "seated barbell shoulder press (behind the neck)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 629,
+      "id": "25558",
+      "name": "Pendlay row snatch grip",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 630,
+      "id": "25557",
+      "name": "Pendlay Row",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 631,
+      "id": "25556",
+      "name": "barbell overhead pause squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 632,
+      "id": "25555",
+      "name": "Alternating Barbell Reverse Lunges (Clean Grip)",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 633,
+      "id": "25554",
+      "name": "Barbell clean grip reverse lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 634,
+      "id": "25553",
+      "name": "barbell clean grip alternating lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 635,
+      "id": "25552",
+      "name": "barbell clean grip lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 636,
+      "id": "25551",
+      "name": "barbell overhead reverse lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 637,
+      "id": "25550",
+      "name": "barbell overhead alternating reverse lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 638,
+      "id": "25549",
+      "name": "barbell overhead lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 639,
+      "id": "25548",
+      "name": "barbell overhead alternating lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 640,
+      "id": "25547",
+      "name": "Barbell reverse lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 641,
+      "id": "25546",
+      "name": "Barbell Alternating Reverse Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 642,
+      "id": "25545",
+      "name": "single leg barbell glute bridge",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 643,
+      "id": "25544",
+      "name": "Front Barbell Pause Squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 644,
+      "id": "25543",
+      "name": "barbell pause squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 645,
+      "id": "25542",
+      "name": "Chained Barbell Pause Front Squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 646,
+      "id": "25541",
+      "name": "Chained Barbell Pause Squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 647,
+      "id": "25540",
+      "name": "Chained Barbell Front Squats To A Bench",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 648,
+      "id": "25539",
+      "name": "Chained Barbell Front Squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 649,
+      "id": "25537",
+      "name": "Barbell Squats To A Bench Chained",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 651,
+      "id": "25535",
+      "name": "hang clean and jerk",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 652,
+      "id": "25534",
+      "name": "hang clean and press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 653,
+      "id": "25533",
+      "name": "clean & jerk from blocks",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 654,
+      "id": "25532",
+      "name": "clean & press from blocks",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 655,
+      "id": "25531",
+      "name": "deadlifts from blocks",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 656,
+      "id": "25530",
+      "name": "pause sumo deads",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 657,
+      "id": "25529",
+      "name": "Pause Deadlifts",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 658,
+      "id": "25528",
+      "name": "Chained Stiff Legged Deadlifts",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 659,
+      "id": "25527",
+      "name": "Chained Sumo Stiff Legged Deadlifts",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 660,
+      "id": "25526",
+      "name": "Narrow Grip Incline Barbell Bench Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 661,
+      "id": "25525",
+      "name": "Narrow Grip Decline Barbell Bench Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 662,
+      "id": "25498",
+      "name": "Single Leg Dumbbell Calf Raises",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 663,
+      "id": "25497",
+      "name": "Static Dumbbell Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 664,
+      "id": "25496",
+      "name": "Dumbbell Clean & Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 665,
+      "id": "25494",
+      "name": "Dumbbell Scissor Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 666,
+      "id": "25493",
+      "name": "Static Dumbbell Lunges Front Foot Elevated",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 667,
+      "id": "25492",
+      "name": "Alternating Reverse Dumbbell Lunges Off Of A Step",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 668,
+      "id": "25491",
+      "name": "Reverse Dumbbell Lunges Off A Step",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 669,
+      "id": "25490",
+      "name": "Dumbbell Bulgarian Split Squat Jumps",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 670,
+      "id": "25488",
+      "name": "Alternating Dumbbell Side Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 671,
+      "id": "25487",
+      "name": "Dumbbell Side Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 672,
+      "id": "25485",
+      "name": "Dumbbell Lunges",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 673,
+      "id": "25484",
+      "name": "Overhead Dumbbell Squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 674,
+      "id": "25483",
+      "name": "High Grip Dumbbell Squats",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 675,
+      "id": "25482",
+      "name": "Briefcase Deadlifts",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 676,
+      "id": "25481",
+      "name": "Wide Stance Dumbbell Deadlifts",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 677,
+      "id": "25480",
+      "name": "Narrow Stance Dumbbell Deadlifts",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 678,
+      "id": "25479",
+      "name": "Wide Stance Dumbbell Romanian Deadlifts",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 680,
+      "id": "25477",
+      "name": "Narrow Stance Dumbbell Romanian Deadlifts",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 681,
+      "id": "25476",
+      "name": "Wide Stance Stiff Leg Dumbbell Deadlifts",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 682,
+      "id": "25475",
+      "name": "Narrow Stance Stiff Leg Dumbbell Deadlifts",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 683,
+      "id": "25474",
+      "name": "Single Leg Dumbbell Deadlifts",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 684,
+      "id": "25473",
+      "name": "Neutral Grip Decline Dumbbell Chest Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 685,
+      "id": "25472",
+      "name": "Alternating Bent Over Rows Neutral Grip",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 686,
+      "id": "25471",
+      "name": "Alternating Bent Over Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 687,
+      "id": "25470",
+      "name": "Standing Single Arm Rows Overhand Grip",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 688,
+      "id": "25469",
+      "name": "Standing Single Arm Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 689,
+      "id": "25468",
+      "name": "Single Arm Rows Overhand Grip",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 690,
+      "id": "25467",
+      "name": "Seated Dumbbell Spider Curls Knee Supported",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 691,
+      "id": "25466",
+      "name": "Chest Supported Rotating Dumbbell Spider Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 692,
+      "id": "25465",
+      "name": "Chest Supported Dumbbell Hammer Spider Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 693,
+      "id": "25464",
+      "name": "Chest Supported Dumbbell Shrugs",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 694,
+      "id": "25463",
+      "name": "Chest Supported Dumbbell High External Rotation",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 695,
+      "id": "25462",
+      "name": "Chest Supported Dumbbell Rear Delt Flyes Overhand Grip",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 696,
+      "id": "25461",
+      "name": "Chest Supported Dumbbell Rear Delt Flyes",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 697,
+      "id": "25460",
+      "name": "Seated High Dumbbell Internal & External Rotation",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 698,
+      "id": "25459",
+      "name": "Seated Dumbbell Internal & External Rotation",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 699,
+      "id": "25458",
+      "name": "Dumbbell High Internal & External Rotation",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 700,
+      "id": "25457",
+      "name": "Dumbbell Internal & External Rotation",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 701,
+      "id": "25456",
+      "name": "Dumbbell Anti Gravity Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 703,
+      "id": "25454",
+      "name": "Chest Supported Dumbbell Front Raises",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 704,
+      "id": "25453",
+      "name": "Seated Dumbbell Rear Delt Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 705,
+      "id": "25452",
+      "name": "Single Arm Seated Dumbbell Front Raises",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 706,
+      "id": "25451",
+      "name": "Alternating Seated Dumbbell Front Raises",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 707,
+      "id": "25450",
+      "name": "Seated Dumbbell Front Raises",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 708,
+      "id": "25449",
+      "name": "Seated Single Arm Dumbbell Lat Raises",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 709,
+      "id": "25448",
+      "name": "Alternating Seated Dumbbell Lat Raises",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 710,
+      "id": "25447",
+      "name": "Seated W Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 711,
+      "id": "25446",
+      "name": "Single Arm Seated Dumbbell Shoulder Press Neutral Grip",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 712,
+      "id": "25445",
+      "name": "Alternating Seated Dumbbell Shoulder Press Neutral Grip",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 713,
+      "id": "25444",
+      "name": "Seated Dumbbell Shoulder Press Neutral Grip",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 714,
+      "id": "25443",
+      "name": "Single Arm Seated Dumbbell Shoulder Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 715,
+      "id": "25442",
+      "name": "Alternating Seated Dumbbell Shoulder Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 716,
+      "id": "25440",
+      "name": "Standing Rear Delt Rows Head Against Bench",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 717,
+      "id": "25439",
+      "name": "Standing Rear Delt Flyes Head Against Bench Overhand Grip",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 718,
+      "id": "25438",
+      "name": "Bent Over Dumbbell Rear Delt Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 719,
+      "id": "25437",
+      "name": "Bent Over Dumbbell Rear Delt Flyes Overhand Grip",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 720,
+      "id": "25436",
+      "name": "Bent Over Dumbbell Rear Delt Flyes",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 721,
+      "id": "25435",
+      "name": "Alternate Standing Neutral Grip Dumbbell Shoulder Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 722,
+      "id": "25434",
+      "name": "Standing Neutral Grip Dumbbell Shoulder Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 723,
+      "id": "25433",
+      "name": "Standing W Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 724,
+      "id": "25432",
+      "name": "Standing Dumbbell Arnold Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 725,
+      "id": "25431",
+      "name": "Alternating Decline Press Up Renegade Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 726,
+      "id": "25430",
+      "name": "Decline Press Up Renegade Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 727,
+      "id": "25429",
+      "name": "Alternating Decline Dumbbell Renegade Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 728,
+      "id": "25428",
+      "name": "Decline Dumbbell Renegade Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 729,
+      "id": "25427",
+      "name": "Alternating Dumbbell Renegade Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 730,
+      "id": "25426",
+      "name": "Dumbbell Renegade Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 731,
+      "id": "25425",
+      "name": "Decline Dumbbell Press Ups",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 732,
+      "id": "25424",
+      "name": "Alternating Dumbbell Press Up Renegade Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 733,
+      "id": "25423",
+      "name": "Dumbbell Press Up Renegade Rows",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 734,
+      "id": "25422",
+      "name": "Press Ups With Dumbbells",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 735,
+      "id": "25421",
+      "name": "Narrow Grip Press Up Off A Dumbbell",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 736,
+      "id": "25420",
+      "name": "Narrow Decline Chest Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 737,
+      "id": "25419",
+      "name": "Bent Arm Dumbbell Pull Overs",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 738,
+      "id": "25418",
+      "name": "Narrow Flat Dumbbell Chest Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 739,
+      "id": "25417",
+      "name": "Flat Dumbbell Tricep Extensions",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 740,
+      "id": "25416",
+      "name": "Flat Dumbbell Flyes With A Twist",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 741,
+      "id": "25415",
+      "name": "Alternating Dumbbell Chest Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 742,
+      "id": "25414",
+      "name": "Narrow Incline Dumbbell Chest Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 743,
+      "id": "25413",
+      "name": "Incline Dumbbell Tricep Extensions",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 744,
+      "id": "25412",
+      "name": "Single Arm Incline Dumbbell Tricep Extension",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 745,
+      "id": "25411",
+      "name": "Single Arm Incline Dumbbell Chest Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 746,
+      "id": "25410",
+      "name": "Alternating Incline Dumbbell Chest Press",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 747,
+      "id": "25409",
+      "name": "Single Arm Wrist Curls Over A Bench Palm Down",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 748,
+      "id": "25408",
+      "name": "Single Arm Wrist Curls Over A Bench Palm Up",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 749,
+      "id": "25407",
+      "name": "Seated Dumbbell Overhead Tricep Extensions",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 750,
+      "id": "25406",
+      "name": "Seated Single Arm Dumbbell Overhead Tricep Extensions",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 751,
+      "id": "25405",
+      "name": "Single Arm Laying Tricep Kickbacks",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 752,
+      "id": "25404",
+      "name": "Laying Alternate Tricep Kickbacks",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 753,
+      "id": "25403",
+      "name": "Laying Tricep Kickbacks",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 754,
+      "id": "25402",
+      "name": "Seated Alternating Tricep Kickbacks",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 755,
+      "id": "25401",
+      "name": "Kneeling Tricep Kickbacks",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 756,
+      "id": "25400",
+      "name": "Bent Over Alternating Tricep Kickbacks",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 757,
+      "id": "25399",
+      "name": "Single Arm Rotating Incline Bicep Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 758,
+      "id": "25398",
+      "name": "Rotating Incline Bicep Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 759,
+      "id": "25397",
+      "name": "Single Arm Incline Bicep Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 760,
+      "id": "25396",
+      "name": "Incline Alternating Bicep Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 761,
+      "id": "25395",
+      "name": "Single Arm Incline Hammer Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 762,
+      "id": "25394",
+      "name": "Incline Alternating Hammer Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 763,
+      "id": "25393",
+      "name": "Standing Single Arm Rotating Bicep Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 764,
+      "id": "25392",
+      "name": "Standing Rotating Bicep Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 765,
+      "id": "25391",
+      "name": "Dumbbell Concentration Curls Rotating",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 766,
+      "id": "25390",
+      "name": "Seated Single Arm Rotating Bicep Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 767,
+      "id": "25389",
+      "name": "Seated Alternate Rotating Bicep Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 769,
+      "id": "25387",
+      "name": "Seated Single Arm Bicep Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 770,
+      "id": "25386",
+      "name": "Seated Alternating Dumbbell Bicep Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 771,
+      "id": "25384",
+      "name": "Seated Single Arm Hammer Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 772,
+      "id": "25382",
+      "name": "Standing Single Arm Bicep Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 773,
+      "id": "25381",
+      "name": "Standing Alternate Bicep Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 774,
+      "id": "25380",
+      "name": "Standing Single Arm Hammer Curls",
+      "reason": "no mappable primary muscles"
+    },
+    {
+      "row": 1245,
+      "id": "614",
+      "name": "Plank With Rotation",
+      "reason": "no mappable primary muscles"
+    }
+  ],
+  "unmappedMuscles": {},
+  "unmappedEquipment": {},
+  "media": {
+    "youtubeVideos": 833,
+    "imagesFromYoutubeThumbnail": 833,
+    "withoutMedia": 370
+  }
+}
