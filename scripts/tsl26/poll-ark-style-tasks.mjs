@@ -53,6 +53,22 @@ function readRecords(input) {
     .map((line) => JSON.parse(line));
 }
 
+function latestRecordKey(record) {
+  return record.cdnslug ?? record.id ?? taskIdFromRecord(record);
+}
+
+function latestCreatedRecords(records) {
+  const byKey = new Map();
+
+  for (const record of records) {
+    const key = latestRecordKey(record);
+    if (!key) continue;
+    byKey.set(key, record);
+  }
+
+  return [...byKey.values()];
+}
+
 function appendOutput(output, record) {
   mkdirSync(dirname(output), { recursive: true });
   writeFileSync(output, `${JSON.stringify(record)}\n`, { flag: 'a' });
@@ -146,8 +162,7 @@ async function handleRecord(args, record) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const records = readRecords(args.input).filter((record) => {
-    if (record.status !== 'created') return false;
+  const records = latestCreatedRecords(readRecords(args.input).filter((record) => record.status === 'created')).filter((record) => {
     if (!args.ids) return true;
     return args.ids.has(record.id) || args.ids.has(record.cdnslug) || args.ids.has(taskIdFromRecord(record));
   });
