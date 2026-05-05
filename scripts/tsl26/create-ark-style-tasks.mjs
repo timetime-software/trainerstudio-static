@@ -21,10 +21,12 @@ const DEFAULT_REFERENCE_IMAGES = [
 ];
 
 const DEFAULT_PROMPT = [
-  'Transform [Video 1] into a polished TrainerStudio exercise demonstration using the visual style, lighting, body silhouette, clean studio background, and fitness reference look from [Image 1] and [Image 2].',
-  'Preserve the original exercise movement, camera framing, tempo, and full-body visibility from [Video 1].',
-  'Keep the subject anatomically consistent, avoid adding text, logos, captions, watermarks, extra people, equipment not present in the source exercise, or distracting background objects.',
-  'The output should be a silent, seamless 4-second exercise clip suitable for a public fitness exercise library.',
+  'Restyle [Video 1] into the TrainerStudio visual style shown in [Image 1] and [Image 2].',
+  'The result must be exactly the same exercise demonstration as the original video: preserve the movement, repetitions, timing, body pose sequence, camera angle, framing, crop, scale, and 4-second duration from [Video 1].',
+  'Only change the visual appearance. Replace the real athlete with the illustrated trainer character from the reference images, keeping a consistent coach identity, clean fitness illustration style, crisp outlines, simplified anatomy, and smooth vector-like shading.',
+  'Use a clean pure white background matching the references. Keep the trainer centered and fully visible.',
+  'Do not add text, labels, logos, captions, watermarks, extra people, extra props, gym backgrounds, decorative elements, or equipment that is not necessary for the original exercise movement.',
+  'The output must be silent, seamless, instructional, and suitable for a public exercise CDN.',
 ].join(' ');
 
 function parseArgs(argv) {
@@ -213,10 +215,17 @@ async function createTask(args, payload) {
   }
 
   if (!response.ok) {
-    throw new Error(`Ark request failed with ${response.status}: ${text}`);
+    const error = new Error(`Ark request failed with ${response.status}: ${text}`);
+    error.status = response.status;
+    error.body = body;
+    throw error;
   }
 
   return body;
+}
+
+function taskIdFromResponse(task) {
+  return task?.id ?? task?.task_id ?? task?.data?.id ?? task?.data?.task_id ?? null;
 }
 
 function appendOutput(output, record) {
@@ -255,23 +264,47 @@ async function main() {
   }
 
   let processed = 0;
+  let failed = 0;
   for (const clip of pendingClips) {
     const payload = buildPayload(args, referenceImageUrls, clip.url);
     console.log(`[${processed + 1}/${pendingClips.length}] ${clip.id} ${basename(clip.localPath)}`);
-    const task = await createTask(args, payload);
-    appendOutput(args.output, {
-      createdAt: new Date().toISOString(),
-      id: clip.id,
-      cdnslug: clip.cdnslug,
-      clipUrl: clip.url,
-      referenceImageUrls,
-      payload,
-      task,
-    });
+    try {
+      const task = await createTask(args, payload);
+      const taskId = taskIdFromResponse(task);
+      appendOutput(args.output, {
+        createdAt: new Date().toISOString(),
+        status: 'created',
+        id: clip.id,
+        cdnslug: clip.cdnslug,
+        clipUrl: clip.url,
+        referenceImageUrls,
+        payload,
+        taskId,
+        statusUrl: taskId ? `${args.endpoint}/${taskId}` : null,
+        task,
+      });
+    } catch (error) {
+      failed++;
+      appendOutput(args.output, {
+        createdAt: new Date().toISOString(),
+        status: 'create_failed',
+        id: clip.id,
+        cdnslug: clip.cdnslug,
+        clipUrl: clip.url,
+        referenceImageUrls,
+        payload,
+        error: {
+          message: error.message,
+          httpStatus: error.status ?? null,
+          body: error.body ?? null,
+        },
+      });
+      console.error(error.message);
+    }
     processed++;
   }
 
-  console.log(`Done: ${processed} task(s). Output: ${args.output}`);
+  console.log(`Done: ${processed} clip(s), failed=${failed}. Output: ${args.output}`);
 }
 
 main().catch((error) => {

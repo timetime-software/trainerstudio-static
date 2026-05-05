@@ -106,6 +106,12 @@ export ARK_API_KEY=...
 npm run videos:style-tasks -- --limit=10
 ```
 
+El prompt por defecto es unico para todas las tareas. Pide mantener exactamente
+el movimiento, timing, encuadre y duracion del video original, cambiando solo el
+aspecto visual al entrenador ilustrado de las referencias sobre fondo blanco. En
+cada tarea solo cambia la URL `video_url` del clip en
+`libraries/tsl26/<cdnslug>/source/<cdnslug>.mp4`.
+
 Opciones utiles:
 
 ```bash
@@ -123,13 +129,29 @@ scripts/tsl26/source/ark-style-tasks.ndjson
 ```
 
 Cada linea guarda el `clipUrl`, las imagenes de referencia, el payload enviado y
-la respuesta de Ark para poder reconciliar los resultados despues.
+la respuesta de Ark para poder reconciliar los resultados despues. Si Ark rechaza
+un clip, el error se guarda con `status: "create_failed"` y el batch continua.
+
+Consultar estado y descargar resultados completados:
+
+```bash
+npm run videos:style-status -- --once
+npm run videos:style-status -- --poll --download
+```
+
+Cuando una tarea termina con `status: "succeeded"` y devuelve una URL de video,
+`--download` guarda el resultado en:
+
+```text
+libraries/tsl26/<cdnslug>/default/<cdnslug>.mp4
+```
 
 ## Scripts Disponibles
 
 ```bash
 npm run videos:clips
 npm run videos:style-tasks
+npm run videos:style-status
 npm run transform
 npm run i18n:apply
 npm run import

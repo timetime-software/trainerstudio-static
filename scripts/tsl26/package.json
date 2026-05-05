@@ -8,6 +8,7 @@
     "i18n:apply": "node --experimental-strip-types apply-i18n-shards.ts",
     "import": "node --experimental-strip-types import-public-exercises.ts",
     "videos:clips": "node download-youtube-clips.mjs",
-    "videos:style-tasks": "node create-ark-style-tasks.mjs"
+    "videos:style-tasks": "node create-ark-style-tasks.mjs",
+    "videos:style-status": "node poll-ark-style-tasks.mjs"
   }
 }

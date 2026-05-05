@@ -1,2 +1,3 @@
 node_modules/
 .DS_Store
+scripts/tsl26/source/ark-style-*.ndjson
