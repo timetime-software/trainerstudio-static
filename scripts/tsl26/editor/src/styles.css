@@ -124,6 +124,36 @@ select {
   gap: 8px;
 }
 
+.rowTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.defaultDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  flex: 0 0 auto;
+}
+
+.defaultDot.hasDefault {
+  border-color: #9aa39d;
+  background: #a8b0aa;
+}
+
+.defaultDot.validated {
+  border-color: #1f7a62;
+  background: #2fac82;
+}
+
+.defaultDot.missingDefault {
+  border-color: #9a3428;
+  background: #d84a3a;
+}
+
 .rowTop strong {
   min-width: 0;
   overflow: hidden;
@@ -245,9 +275,38 @@ p {
   background: #ffffff;
 }
 
+.statusGrid .primaryStatus {
+  border-color: #94c7b6;
+  background: #f0faf6;
+}
+
 .statusGrid strong {
   font-size: 12px;
   color: #5d6862;
+}
+
+.statusGrid small {
+  overflow: hidden;
+  color: #5d6862;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.state {
+  font-weight: 700;
+}
+
+.state.ready {
+  color: #1d6f59;
+}
+
+.state.working {
+  color: #93670f;
+}
+
+.state.missing {
+  color: #9a3428;
 }
 
 .actions {
@@ -255,6 +314,12 @@ p {
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 14px;
+}
+
+.actions .primary {
+  border-color: #27745f;
+  background: #27745f;
+  color: #ffffff;
 }
 
 .running {

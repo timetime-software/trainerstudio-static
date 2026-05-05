@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Check, Download, FileVideo, Play, RefreshCw, Save, Search, Sparkles } from 'lucide-react';
+import { Check, FileVideo, Play, Save, Search, Sparkles } from 'lucide-react';
 import './styles.css';
 
-const emptyStatus = { sourceClip: false, defaultClip: false, downloadedOriginals: [] };
+const emptyStatus = { sourceClip: false, defaultClip: false, downloadedOriginals: [], arkTask: null };
 
 function asLines(value) {
   return Array.isArray(value) ? value.join('\n') : '';
@@ -139,6 +139,20 @@ function firstImage(exercise) {
   return mediaFor(exercise).find((item) => item.type === 'image' || item.thumbnailUrl || /\.(png|jpe?g|webp)$/i.test(item.url));
 }
 
+function hasDefaultVideo(exercise) {
+  return mediaFor(exercise).some((item) => item.type === 'video' && item.source === 'uploaded');
+}
+
+function defaultIndicatorFor(exercise) {
+  if (exercise?.metadata?.reviewed) {
+    return { className: 'validated', label: 'Validated' };
+  }
+  if (hasDefaultVideo(exercise)) {
+    return { className: 'hasDefault', label: 'Default ready' };
+  }
+  return { className: 'missingDefault', label: 'Missing default' };
+}
+
 function updateExercise(exercise, patch) {
   return {
     ...exercise,
@@ -188,11 +202,16 @@ function App() {
 
   const selected = exercises.find((exercise) => exercise.id === selectedId) || exercises[0];
 
+  async function refreshStatus(id = selected?.id) {
+    if (!id) return;
+    const res = await fetch(`/api/media/status?id=${encodeURIComponent(id)}`);
+    const data = await res.json();
+    setStatus(data.status || emptyStatus);
+  }
+
   useEffect(() => {
     if (!selected?.id) return;
-    fetch(`/api/media/status?id=${encodeURIComponent(selected.id)}`)
-      .then((res) => res.json())
-      .then((data) => setStatus(data.status || emptyStatus));
+    refreshStatus(selected.id);
   }, [selected?.id, running]);
 
   const filtered = useMemo(() => {
@@ -293,20 +312,21 @@ function App() {
       const data = await res.json();
       setLog(data.output || data.error || JSON.stringify(data, null, 2));
     } finally {
+      await refreshStatus();
       setRunning('');
     }
   }
 
-  function terminalDefaultState(output) {
+  function terminalVideoState(output) {
     if (/downloaded=true|Reminder: run `npm run videos:sync-json`/i.test(output)) return 'downloaded';
     if (/: succeeded/i.test(output)) return 'succeeded';
-    if (/: failed|: cancelled|: expired/i.test(output)) return 'failed';
-    if (/No created tasks to poll/i.test(output)) return 'missing';
+    if (/: failed|: cancelled|: expired|Ark request failed|No created tasks to poll/i.test(output)) return 'failed';
+    if (/Missing ARK_API_KEY/i.test(output)) return 'failed';
     return null;
   }
 
-  async function pollDefault() {
-    setRunning('Generating default');
+  async function generateAiVideo() {
+    setRunning('Generando video con IA');
     setLog('');
 
     const maxAttempts = 24;
@@ -318,22 +338,21 @@ function App() {
         const res = await fetch('/api/media/action', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'generate-default', id: selected.id, arkApiKey: arkApiKey.trim() || undefined }),
+          body: JSON.stringify({ action: 'generate-ai-video', id: selected.id, arkApiKey: arkApiKey.trim() || undefined }),
         });
         const data = await res.json();
         const chunk = data.output || data.error || JSON.stringify(data, null, 2);
-        outputLog += `${attempt === 1 ? '' : '\n\n'}[poll ${attempt}/${maxAttempts}]\n${chunk}`;
+        outputLog += `${attempt === 1 ? '' : '\n\n'}[intento ${attempt}/${maxAttempts}]\n${chunk}`;
         setLog(outputLog);
 
-        await fetch(`/api/media/status?id=${encodeURIComponent(selected.id)}`)
-          .then((statusRes) => statusRes.json())
-          .then((statusData) => setStatus(statusData.status || emptyStatus));
+        await refreshStatus(selected.id);
 
-        const terminal = terminalDefaultState(chunk);
-        if (terminal === 'downloaded' || terminal === 'failed' || terminal === 'missing') break;
+        const terminal = terminalVideoState(chunk);
+        if (terminal === 'downloaded' || terminal === 'failed') break;
         if (attempt < maxAttempts) await new Promise((resolve) => setTimeout(resolve, intervalMs));
       }
     } finally {
+      await refreshStatus();
       setRunning('');
     }
   }
@@ -342,6 +361,19 @@ function App() {
 
   const video = firstVideo(selected);
   const image = firstImage(selected);
+  const aiTaskStatus = status.arkTask?.error ? 'failed' : status.arkTask?.status || null;
+  const taskStatusLabels = {
+    created: 'Tarea creada',
+    queued: 'En cola',
+    running: 'Procesando',
+    succeeded: 'Completado',
+    failed: 'Fallido',
+    cancelled: 'Cancelado',
+    expired: 'Expirado',
+  };
+  const defaultState = status.defaultClip ? 'Listo' : running === 'Generando video con IA' ? 'Generando' : taskStatusLabels[aiTaskStatus] || 'Pendiente';
+  const defaultStateClass = status.defaultClip ? 'ready' : running === 'Generando video con IA' || ['created', 'queued', 'running'].includes(aiTaskStatus) ? 'working' : 'missing';
+  const sourceState = status.sourceClip ? 'Listo' : 'Falta source';
 
   return (
     <main className="app">
@@ -364,21 +396,31 @@ function App() {
         </div>
         <div className="count">{filtered.length} / {exercises.length} · {librarySlugs.length} folders</div>
         <div className="list">
-          {filtered.map((exercise) => (
-            <button
-              className={exercise.id === selected.id ? 'row active' : 'row'}
-              key={exercise.id}
-              onClick={() => setSelectedId(exercise.id)}
-            >
-              <span className="rowTop">
-                <strong>{exercise.name}</strong>
-                <span className="badges">
-                  {librarySlugs.includes(exercise.cdnslug || exercise.cdnSlug) && <span title="In library">L</span>}
-                  {exercise.metadata?.reviewed && <Check size={13} />}
+          {filtered.map((exercise) => {
+            const defaultIndicator = defaultIndicatorFor(exercise);
+            return (
+              <button
+                className={exercise.id === selected.id ? 'row active' : 'row'}
+                key={exercise.id}
+                onClick={() => setSelectedId(exercise.id)}
+              >
+                <span className="rowTop">
+                  <span className="rowTitle">
+                    <span
+                      className={`defaultDot ${defaultIndicator.className}`}
+                      title={defaultIndicator.label}
+                      aria-label={defaultIndicator.label}
+                    />
+                    <strong>{exercise.name}</strong>
+                  </span>
+                  <span className="badges">
+                    {librarySlugs.includes(exercise.cdnslug || exercise.cdnSlug) && <span title="In library">L</span>}
+                    {exercise.metadata?.reviewed && <Check size={13} />}
+                  </span>
                 </span>
-              </span>
-            </button>
-          ))}
+              </button>
+            );
+          })}
         </div>
       </aside>
 
@@ -413,27 +455,28 @@ function App() {
           )}
         </div>
 
-        <div className="statusGrid">
-          <div><strong>source</strong><span>{status.sourceClip ? 'ready' : 'missing'}</span></div>
-          <div><strong>default</strong><span>{status.defaultClip ? 'ready' : 'missing'}</span></div>
-          <div><strong>original</strong><span>{status.downloadedOriginals?.length || 0}</span></div>
+        <div className="statusGrid" aria-label="Media status">
+          <div>
+            <strong>Source video</strong>
+            <span className={status.sourceClip ? 'state ready' : 'state missing'}>{sourceState}</span>
+          </div>
+          <div className="primaryStatus">
+            <strong>Default generado</strong>
+            <span className={`state ${defaultStateClass}`}>{defaultState}</span>
+            {status.arkTask?.taskId && <small>Task ID: {status.arkTask.taskId}</small>}
+          </div>
+          <div>
+            <strong>Originales</strong>
+            <span>{status.downloadedOriginals?.length || 0} descargados</span>
+          </div>
         </div>
 
         <div className="actions">
-          <button onClick={() => run('download-youtube', 'Downloading')} disabled={Boolean(running)}>
-            <Download size={16} /> YouTube to source
+          <button title="Muestra el prompt y payload que se enviarian para crear el task" onClick={() => run('preview-source-task', 'Previewing task')} disabled={Boolean(running)}>
+            <Play size={16} /> Previsualizar task
           </button>
-          <button onClick={() => run('preview-source-task', 'Previewing')} disabled={Boolean(running)}>
-            <Play size={16} /> Preview task
-          </button>
-          <button onClick={() => run('generate-source-task', 'Generating')} disabled={Boolean(running)}>
-            <Sparkles size={16} /> Generate source
-          </button>
-          <button onClick={pollDefault} disabled={Boolean(running)}>
-            <FileVideo size={16} /> Try default
-          </button>
-          <button onClick={() => run('sync-default', 'Syncing')} disabled={Boolean(running)}>
-            <RefreshCw size={16} /> Sync default
+          <button className="primary" title="Descarga source si hace falta, crea o reutiliza la tarea de IA, consulta el estado, descarga el resultado y sincroniza el default" onClick={generateAiVideo} disabled={Boolean(running)}>
+            <Sparkles size={16} /> Generar video con IA
           </button>
         </div>
 

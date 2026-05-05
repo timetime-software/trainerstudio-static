@@ -134,6 +134,7 @@ function loadExistingOutput(output) {
       .split('\n')
       .filter(Boolean)
       .map((line) => JSON.parse(line))
+      .filter((row) => row.status === 'created')
       .map((row) => row.clipUrl)
       .filter(Boolean),
   );

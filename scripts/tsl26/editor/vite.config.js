@@ -12,6 +12,8 @@ const jsonPath = path.join(toolDir, 'data/exercises.json');
 const ndjsonPath = path.join(toolDir, 'data/exercises.ndjson');
 const libraryRoot = path.join(repoRoot, 'libraries/tsl26');
 const envPath = path.join(editorDir, '.env');
+const arkTasksPath = path.join(toolDir, 'source/ark-style-tasks.ndjson');
+const arkTaskStatusPath = path.join(toolDir, 'source/ark-style-task-status.ndjson');
 
 function readBody(req) {
   return new Promise((resolve, reject) => {
@@ -85,6 +87,41 @@ async function runCommandSequence(steps, extraEnv = {}) {
   };
 }
 
+async function runAiVideoFlow(id, extraEnv = {}) {
+  const results = [];
+
+  const pushResult = async (command, args) => {
+    const result = await runCommand(command, args, extraEnv);
+    results.push({ command, args, ...result });
+    return result;
+  };
+
+  const downloadResult = await pushResult('node', ['download-youtube-clips.mjs', `--ids=${id}`]);
+  if (!downloadResult.ok) return commandSequenceResult(results);
+
+  const createResult = await pushResult('node', ['create-ark-style-tasks.mjs', `--ids=${id}`]);
+  if (!createResult.ok || /failed=[1-9]\d*|Ark request failed/i.test(createResult.output)) {
+    return commandSequenceResult(results, false);
+  }
+
+  const pollResult = await pushResult('node', ['poll-ark-style-tasks.mjs', `--ids=${id}`, '--once', '--download']);
+  if (!pollResult.ok || /No created tasks to poll|: failed|: cancelled|: expired/i.test(pollResult.output)) {
+    return commandSequenceResult(results, false);
+  }
+
+  await pushResult('node', ['--experimental-strip-types', 'sync-cdn-media.ts']);
+  return commandSequenceResult(results);
+}
+
+function commandSequenceResult(results, ok = results.every((result) => result.ok)) {
+  return {
+    ok,
+    code: ok ? 0 : (results.at(-1)?.code ?? 1),
+    elapsedMs: results.reduce((total, result) => total + result.elapsedMs, 0),
+    output: results.map((result) => `$ ${result.command} ${result.args.join(' ')}\n${result.output}`.trim()).join('\n\n'),
+  };
+}
+
 async function pathExists(filePath) {
   try {
     await fs.access(filePath);
@@ -92,6 +129,49 @@ async function pathExists(filePath) {
   } catch {
     return false;
   }
+}
+
+async function readNdjson(filePath) {
+  const raw = await fs.readFile(filePath, 'utf8').catch(() => '');
+  return raw
+    .split('\n')
+    .filter(Boolean)
+    .map((line) => {
+      try {
+        return JSON.parse(line);
+      } catch {
+        return null;
+      }
+    })
+    .filter(Boolean);
+}
+
+function taskIdFromRecord(record) {
+  return record?.taskId ?? record?.task?.id ?? record?.task?.task_id ?? record?.task?.data?.id ?? record?.task?.data?.task_id ?? null;
+}
+
+async function latestArkTask(exercise) {
+  const cdnslug = exercise?.cdnslug || exercise?.cdnSlug;
+  const id = exercise?.id;
+  if (!cdnslug && !id) return null;
+
+  const matchesExercise = (record) => record?.id === id || record?.cdnslug === cdnslug;
+  const created = (await readNdjson(arkTasksPath)).filter(matchesExercise).at(-1);
+  const statuses = (await readNdjson(arkTaskStatusPath)).filter(matchesExercise);
+  const latestStatus = statuses.at(-1);
+  const taskId = taskIdFromRecord(latestStatus) || taskIdFromRecord(created);
+
+  if (!created && !latestStatus && !taskId) return null;
+
+  return {
+    taskId,
+    status: latestStatus?.status || created?.status || null,
+    createdAt: created?.createdAt || null,
+    checkedAt: latestStatus?.checkedAt || null,
+    downloaded: latestStatus?.downloaded === true,
+    resultVideoUrl: latestStatus?.resultVideoUrl || null,
+    error: created?.error?.message || null,
+  };
 }
 
 async function mediaStatus(exercise) {
@@ -108,6 +188,7 @@ async function mediaStatus(exercise) {
     sourcePath: path.relative(repoRoot, sourcePath),
     defaultPath: path.relative(repoRoot, defaultPath),
     downloadedOriginals: sourceOriginals.filter((name) => name.startsWith(`${exercise.id}_`)),
+    arkTask: await latestArkTask(exercise),
   };
 }
 
@@ -191,6 +272,8 @@ function exerciseEditorPlugin() {
               { command: 'node', args: ['poll-ark-style-tasks.mjs', `--ids=${id}`, '--once', '--download'] },
               { command: 'node', args: ['--experimental-strip-types', 'sync-cdn-media.ts'] },
             ], extraEnv);
+          } else if (action === 'generate-ai-video') {
+            result = await runAiVideoFlow(id, extraEnv);
           } else {
             send(res, 400, { error: `Unknown action: ${action}` });
             return;
