@@ -43,8 +43,13 @@ function cdnSlugFor(exercise: PublicExerciseDocument): string | undefined {
   return exercise.cdnslug ?? exercise.cdnSlug;
 }
 
-function cdnUrlFor(cdnBaseUrl: string, cdnslug: string): string {
-  return `${cdnBaseUrl.replace(/\/+$/, '')}/libraries/tsl26/${cdnslug}/default/${cdnslug}.mp4`;
+type LocalVideoSlugs = {
+  defaultSlugs: Set<string>;
+  sourceSlugs: Set<string>;
+};
+
+function cdnUrlFor(cdnBaseUrl: string, cdnslug: string, variant: 'default' | 'source'): string {
+  return `${cdnBaseUrl.replace(/\/+$/, '')}/libraries/tsl26/${cdnslug}/${variant}/${cdnslug}.mp4`;
 }
 
 async function pathExists(filePath: string): Promise<boolean> {
@@ -56,8 +61,9 @@ async function pathExists(filePath: string): Promise<boolean> {
   }
 }
 
-async function findFinalVideoSlugs(libraryRoot: string): Promise<Set<string>> {
-  const slugs = new Set<string>();
+async function findLocalVideoSlugs(libraryRoot: string): Promise<LocalVideoSlugs> {
+  const defaultSlugs = new Set<string>();
+  const sourceSlugs = new Set<string>();
   const entries = await fs.readdir(libraryRoot, { withFileTypes: true });
 
   for (const entry of entries) {
@@ -65,30 +71,44 @@ async function findFinalVideoSlugs(libraryRoot: string): Promise<Set<string>> {
       continue;
     }
 
-    const videoPath = path.join(libraryRoot, entry.name, 'default', `${entry.name}.mp4`);
-    if (await pathExists(videoPath)) {
-      slugs.add(entry.name);
-    }
+    const defaultPath = path.join(libraryRoot, entry.name, 'default', `${entry.name}.mp4`);
+    const sourcePath = path.join(libraryRoot, entry.name, 'source', `${entry.name}.mp4`);
+    if (await pathExists(defaultPath)) defaultSlugs.add(entry.name);
+    if (await pathExists(sourcePath)) sourceSlugs.add(entry.name);
   }
 
-  return slugs;
+  return { defaultSlugs, sourceSlugs };
 }
 
-function syncExerciseMedia(exercise: PublicExerciseDocument, finalVideoSlugs: Set<string>, cdnBaseUrl: string): boolean {
+function syncExerciseMedia(exercise: PublicExerciseDocument, localVideoSlugs: LocalVideoSlugs, cdnBaseUrl: string): boolean {
   const cdnslug = cdnSlugFor(exercise);
-  if (!cdnslug || !finalVideoSlugs.has(cdnslug)) {
+  if (!cdnslug) {
     return false;
   }
 
-  const cdnUrl = cdnUrlFor(cdnBaseUrl, cdnslug);
+  const linkedMedia: ExerciseMedia[] = [];
+  if (localVideoSlugs.defaultSlugs.has(cdnslug)) {
+    linkedMedia.push({
+      type: 'video',
+      url: cdnUrlFor(cdnBaseUrl, cdnslug, 'default'),
+      source: 'uploaded',
+    });
+  }
+  if (localVideoSlugs.sourceSlugs.has(cdnslug)) {
+    linkedMedia.push({
+      type: 'video',
+      url: cdnUrlFor(cdnBaseUrl, cdnslug, 'source'),
+      source: 'source',
+    });
+  }
+  if (linkedMedia.length === 0) {
+    return false;
+  }
+
   const media = Array.isArray(exercise.media) ? exercise.media : [];
   const nextMedia = [
-    {
-      type: 'video',
-      url: cdnUrl,
-      source: 'uploaded',
-    },
-    ...media.filter((item) => item?.url !== cdnUrl),
+    ...linkedMedia,
+    ...media.filter((item) => !linkedMedia.some((linked) => linked.url === item?.url)),
   ];
 
   const changed = JSON.stringify(media) !== JSON.stringify(nextMedia);
@@ -127,17 +147,18 @@ async function main(): Promise<void> {
     throw new Error('Input JSON must be an array of public exercise documents');
   }
 
-  const finalVideoSlugs = await findFinalVideoSlugs(libraryRoot);
-  const changed = parsed.filter((exercise) => syncExerciseMedia(exercise, finalVideoSlugs, cdnBaseUrl));
+  const localVideoSlugs = await findLocalVideoSlugs(libraryRoot);
+  const changed = parsed.filter((exercise) => syncExerciseMedia(exercise, localVideoSlugs, cdnBaseUrl));
 
   await writeJson(inputPath, parsed, dryRun);
   await writeNdjson(ndjsonPath, parsed, dryRun);
 
-  console.log(`Final CDN videos found: ${finalVideoSlugs.size}`);
+  console.log(`Default CDN videos found: ${localVideoSlugs.defaultSlugs.size}`);
+  console.log(`Source CDN videos found: ${localVideoSlugs.sourceSlugs.size}`);
   console.log(`${dryRun ? '[DRY RUN] Would update' : 'Updated'} exercises: ${changed.length}`);
   for (const exercise of changed.slice(0, 20)) {
     const cdnslug = cdnSlugFor(exercise);
-    console.log(`- ${exercise.id} ${cdnslug}: ${cdnUrlFor(cdnBaseUrl, cdnslug ?? '')}`);
+    console.log(`- ${exercise.id} ${cdnslug}`);
   }
   if (changed.length > 20) {
     console.log(`... ${changed.length - 20} more`);
