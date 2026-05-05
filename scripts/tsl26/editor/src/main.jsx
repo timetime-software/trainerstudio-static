@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Check, FileVideo, Play, Save, Search, Sparkles } from 'lucide-react';
+import { AlertTriangle, Check, FileVideo, Play, Save, Search, Sparkles, Star } from 'lucide-react';
 import './styles.css';
 
 const emptyStatus = { sourceClip: false, defaultClip: false, downloadedOriginals: [], arkTask: null };
@@ -184,6 +184,7 @@ function App() {
   const [log, setLog] = useState('');
   const [paths, setPaths] = useState({});
   const [librarySlugs, setLibrarySlugs] = useState([]);
+  const [libraryRelation, setLibraryRelation] = useState(null);
   const [editorTab, setEditorTab] = useState('main');
   const [arkApiKey, setArkApiKey] = useState(() => localStorage.getItem('tsl26.arkApiKey') || '');
 
@@ -196,6 +197,7 @@ function App() {
         setExercises(data.exercises);
         setSelectedId(firstLibraryExercise?.id || data.exercises[0]?.id || '');
         setLibrarySlugs(slugs);
+        setLibraryRelation(data.libraryRelation || null);
         setPaths({ jsonPath: data.jsonPath, ndjsonPath: data.ndjsonPath });
       });
   }, []);
@@ -217,7 +219,9 @@ function App() {
   const filtered = useMemo(() => {
     const term = query.trim().toLowerCase();
     const libraryOrder = new Map(librarySlugs.map((slug, index) => [slug, index]));
+    const librarySlugSet = new Set(librarySlugs);
     return exercises.filter((exercise) => {
+      const slug = exercise.cdnslug || exercise.cdnSlug;
       const haystack = [
         exercise.id,
         exercise.cdnslug,
@@ -231,8 +235,10 @@ function App() {
       const matchesTerm = !term || haystack.includes(term);
       const matchesFilter =
         filter === 'all' ||
-        (filter === 'library' && libraryOrder.has(exercise.cdnslug || exercise.cdnSlug)) ||
-        (filter === 'notInLibrary' && !libraryOrder.has(exercise.cdnslug || exercise.cdnSlug)) ||
+        (filter === 'priority' && exercise.priority === true) ||
+        (filter === 'library' && librarySlugSet.has(slug)) ||
+        (filter === 'notInLibrary' && !librarySlugSet.has(slug)) ||
+        (filter === 'missingFolder' && slug && !librarySlugSet.has(slug)) ||
         (filter === 'youtube' && firstVideo(exercise)?.url?.includes('youtube')) ||
         (filter === 'missingDefault' && !exercise.media?.some((item) => item.source === 'uploaded')) ||
         (filter === 'reviewed' && exercise.metadata?.reviewed === true) ||
@@ -374,6 +380,9 @@ function App() {
   const defaultState = status.defaultClip ? 'Listo' : running === 'Generando video con IA' ? 'Generando' : taskStatusLabels[aiTaskStatus] || 'Pendiente';
   const defaultStateClass = status.defaultClip ? 'ready' : running === 'Generando video con IA' || ['created', 'queued', 'running'].includes(aiTaskStatus) ? 'working' : 'missing';
   const sourceState = status.sourceClip ? 'Listo' : 'Falta source';
+  const selectedSlug = selected.cdnslug || selected.cdnSlug;
+  const selectedHasFolder = selectedSlug ? librarySlugs.includes(selectedSlug) : false;
+  const relationIssues = (libraryRelation?.orphanFolders?.length || 0) + (libraryRelation?.missingFolders?.length || 0) + (libraryRelation?.duplicateSlugs?.length || 0);
 
   return (
     <main className="app">
@@ -385,8 +394,10 @@ function App() {
           </div>
           <select value={filter} onChange={(event) => setFilter(event.target.value)}>
             <option value="all">All</option>
+            <option value="priority">Priority</option>
             <option value="library">In library</option>
             <option value="notInLibrary">Not in library</option>
+            <option value="missingFolder">Missing folder</option>
             <option value="youtube">YouTube</option>
             <option value="missingDefault">Missing default</option>
             <option value="pendingReview">Pending review</option>
@@ -394,7 +405,10 @@ function App() {
             <option value="inactive">Inactive</option>
           </select>
         </div>
-        <div className="count">{filtered.length} / {exercises.length} · {librarySlugs.length} folders</div>
+        <div className="count">
+          {filtered.length} / {exercises.length} · {librarySlugs.length} folders
+          {relationIssues > 0 && <span className="relationWarning"> · {relationIssues} relation issues</span>}
+        </div>
         <div className="list">
           {filtered.map((exercise) => {
             const defaultIndicator = defaultIndicatorFor(exercise);
@@ -414,7 +428,9 @@ function App() {
                     <strong>{exercise.name}</strong>
                   </span>
                   <span className="badges">
+                    {exercise.priority === true && <Star size={13} className="priorityIcon" />}
                     {librarySlugs.includes(exercise.cdnslug || exercise.cdnSlug) && <span title="In library">L</span>}
+                    {(exercise.cdnslug || exercise.cdnSlug) && !librarySlugs.includes(exercise.cdnslug || exercise.cdnSlug) && <AlertTriangle size={13} className="warningIcon" />}
                     {exercise.metadata?.reviewed && <Check size={13} />}
                   </span>
                 </span>
@@ -429,6 +445,9 @@ function App() {
           <div>
             <h1>{selected.i18n?.name?.es || selected.name}</h1>
             <p>{selected.name} · {selected.category} · {selected.equipment || 'no equipment'}</p>
+            <p className={selectedHasFolder ? 'relationLine ok' : 'relationLine warning'}>
+              {selectedSlug || 'sin cdnslug'} {selectedHasFolder ? '· carpeta asociada' : '· falta carpeta 1:1'}
+            </p>
           </div>
           <div className="headerActions">
             <button
@@ -532,6 +551,10 @@ function App() {
               <label className="check">
                 <input type="checkbox" checked={selected.isActive !== false} onChange={(event) => patchSelected({ isActive: event.target.checked })} />
                 Active
+              </label>
+              <label className="check">
+                <input type="checkbox" checked={selected.priority === true} onChange={(event) => patchSelected({ priority: event.target.checked })} />
+                Priority
               </label>
               <label className="check">
                 <input

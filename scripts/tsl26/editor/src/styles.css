@@ -171,6 +171,26 @@ select {
   flex-shrink: 0;
 }
 
+.priorityIcon {
+  color: #b26b00;
+  fill: #ffd166;
+  stroke-width: 2;
+}
+
+.warningIcon,
+.relationWarning,
+.relationLine.warning {
+  color: #a13f2a;
+}
+
+.relationLine {
+  font-size: 12px;
+}
+
+.relationLine.ok {
+  color: #27745f;
+}
+
 .badges span {
   display: grid;
   place-items: center;

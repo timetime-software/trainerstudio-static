@@ -192,6 +192,40 @@ async function mediaStatus(exercise) {
   };
 }
 
+async function readLibrarySlugs() {
+  return (await fs.readdir(libraryRoot, { withFileTypes: true }).catch(() => []))
+    .filter((entry) => entry.isDirectory() && entry.name !== 'references')
+    .map((entry) => entry.name)
+    .sort();
+}
+
+function buildLibraryRelation(exercises, librarySlugs) {
+  const exercisesBySlug = new Map();
+  const duplicateSlugs = [];
+
+  for (const exercise of exercises) {
+    const slug = exercise.cdnslug || exercise.cdnSlug;
+    if (!slug) continue;
+    const matches = exercisesBySlug.get(slug) || [];
+    matches.push({ id: exercise.id, name: exercise.name });
+    exercisesBySlug.set(slug, matches);
+  }
+
+  for (const [slug, matches] of exercisesBySlug.entries()) {
+    if (matches.length > 1) duplicateSlugs.push({ slug, exercises: matches });
+  }
+
+  const librarySlugSet = new Set(librarySlugs);
+  return {
+    folders: librarySlugs.length,
+    matchedFolders: librarySlugs.filter((slug) => exercisesBySlug.has(slug)).length,
+    exerciseSlugs: exercisesBySlug.size,
+    missingFolders: [...exercisesBySlug.keys()].filter((slug) => !librarySlugSet.has(slug)).sort(),
+    orphanFolders: librarySlugs.filter((slug) => !exercisesBySlug.has(slug)),
+    duplicateSlugs,
+  };
+}
+
 function exerciseEditorPlugin() {
   return {
     name: 'exercise-file-editor',
@@ -200,13 +234,11 @@ function exerciseEditorPlugin() {
         try {
           if (req.method === 'GET') {
             const exercises = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
-            const librarySlugs = (await fs.readdir(libraryRoot, { withFileTypes: true }).catch(() => []))
-              .filter((entry) => entry.isDirectory() && entry.name !== 'references')
-              .map((entry) => entry.name)
-              .sort();
+            const librarySlugs = await readLibrarySlugs();
             send(res, 200, {
               exercises,
               librarySlugs,
+              libraryRelation: buildLibraryRelation(exercises, librarySlugs),
               jsonPath: path.relative(repoRoot, jsonPath),
               ndjsonPath: path.relative(repoRoot, ndjsonPath),
             });
