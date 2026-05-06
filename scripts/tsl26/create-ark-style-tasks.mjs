@@ -24,6 +24,7 @@ const DEFAULT_PROMPT = [
   'Restyle [Video 1] into the TrainerStudio visual style shown in [Image 1] and [Image 2].',
   'The result must be exactly the same exercise demonstration as the original video: preserve the movement, repetitions, timing, body pose sequence, camera angle, framing, crop, scale, and 4-second duration from [Video 1].',
   'Only change the visual appearance. Replace the real athlete with the illustrated trainer character from the reference images, keeping a consistent coach identity, clean fitness illustration style, crisp outlines, simplified anatomy, and smooth vector-like shading.',
+  'Important: the athlete\'s face in [Video 1] is intentionally blurred or pixelated for privacy. Do NOT preserve the blur, mosaic, or any anonymization artifact in the output. The trainer in the result must have a clear, fully visible illustrated face that matches the coach identity from [Image 1] and [Image 2] — same hairstyle, beard, skin tone, and facial features as the reference character.',
   'Use a clean pure white background matching the references. Keep the trainer centered and fully visible.',
   'Do not add text, labels, logos, captions, watermarks, extra people, extra props, gym backgrounds, decorative elements, or equipment that is not necessary for the original exercise movement.',
   'Remove or neutralize any visible brand marks from the source video or generated illustration, including sportswear logos, shoe logos, sock logos, equipment brands, and small trademark details such as Nike swooshes.',

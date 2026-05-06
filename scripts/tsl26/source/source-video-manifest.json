@@ -1,19 +1,19 @@
 {
   "library": "tsl26",
-  "generatedAt": "2026-05-06T06:17:10.849Z",
+  "generatedAt": "2026-05-06T06:52:04.804Z",
   "total": 1,
   "records": [
     {
-      "id": "mypthub_284",
-      "name": "Barbell Floor Press",
-      "cdnslug": "barbell_floor_press",
-      "youtubeId": "6oYxYBhuJh8",
-      "youtubeUrl": "https://www.youtube.com/embed/6oYxYBhuJh8",
-      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/mypthub_284_barbell-floor-press_source.mp4",
-      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/barbell_floor_press/source/barbell_floor_press.mp4",
+      "id": "mypthub_175",
+      "name": "Standing Dumbbell Overhead Tricep Extension",
+      "cdnslug": "standing_dumbbell_overhead_tricep_extension",
+      "youtubeId": "nApPBxOnxXo",
+      "youtubeUrl": "https://www.youtube.com/embed/nApPBxOnxXo",
+      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/mypthub_175_standing-dumbbell-overhead-tricep-extension_source.mp4",
+      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/standing_dumbbell_overhead_tricep_extension/source/standing_dumbbell_overhead_tricep_extension.mp4",
       "sourceDownloaded": true,
       "clipBuilt": true,
-      "lastProcessedAt": "2026-05-06T06:17:10.849Z",
+      "lastProcessedAt": "2026-05-06T06:52:04.804Z",
       "error": null
     }
   ]

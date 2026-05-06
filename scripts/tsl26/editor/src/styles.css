@@ -154,6 +154,11 @@ select {
   background: #a8b0aa;
 }
 
+.defaultDot.hasDefault.pendingSync {
+  border-color: #c69a2e;
+  background: repeating-linear-gradient(45deg, #d6b35a 0 3px, #f3d987 3px 6px);
+}
+
 .defaultDot.validated {
   border-color: #1f7a62;
   background: #2fac82;

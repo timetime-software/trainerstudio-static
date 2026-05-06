@@ -147,15 +147,20 @@ function hasDefaultVideo(exercise) {
   return mediaFor(exercise).some((item) => item.type === 'video' && item.source === 'uploaded');
 }
 
-function defaultIndicatorFor(exercise) {
+function defaultIndicatorFor(exercise, defaultSlugSet) {
   if (exercise?.metadata?.defaultVideoInvalid) {
     return { className: 'invalidDefault', label: 'Default invalid' };
   }
   if (exercise?.metadata?.reviewed) {
     return { className: 'validated', label: 'Validated' };
   }
+  const slug = exercise?.cdnslug || exercise?.cdnSlug;
+  const fileExists = slug && defaultSlugSet?.has(slug);
+  if (fileExists) {
+    return { className: 'hasDefault', label: 'Default ready (file on disk)' };
+  }
   if (hasDefaultVideo(exercise)) {
-    return { className: 'hasDefault', label: 'Default ready' };
+    return { className: 'hasDefault pendingSync', label: 'Default in JSON but file missing' };
   }
   return { className: 'missingDefault', label: 'Missing default' };
 }
@@ -302,6 +307,8 @@ function App() {
   const [log, setLog] = useState('');
   const [paths, setPaths] = useState({});
   const [librarySlugs, setLibrarySlugs] = useState([]);
+  const [defaultSlugs, setDefaultSlugs] = useState(() => new Set());
+  const [sourceSlugs, setSourceSlugs] = useState(() => new Set());
   const [libraryRelation, setLibraryRelation] = useState(null);
   const [editorTab, setEditorTab] = useState('main');
   const [arkApiKey, setArkApiKey] = useState(() => localStorage.getItem('tsl26.arkApiKey') || '');
@@ -340,6 +347,27 @@ function App() {
 
   useEffect(() => {
     loadExercises();
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    function nextSetIfChanged(prev, list) {
+      if (prev.size === list.length && list.every((slug) => prev.has(slug))) return prev;
+      return new Set(list);
+    }
+    async function refreshInventory() {
+      try {
+        const res = await fetch('/api/library/inventory');
+        if (!res.ok) return;
+        const data = await res.json();
+        if (cancelled) return;
+        setDefaultSlugs((prev) => nextSetIfChanged(prev, data.defaultSlugs || []));
+        setSourceSlugs((prev) => nextSetIfChanged(prev, data.sourceSlugs || []));
+      } catch {}
+    }
+    refreshInventory();
+    const interval = setInterval(refreshInventory, 4000);
+    return () => { cancelled = true; clearInterval(interval); };
   }, []);
 
   const selected = exercises.find((exercise) => exercise.id === selectedId) || exercises[0];
@@ -729,7 +757,7 @@ function App() {
         </div>
         <div className="list">
           {filtered.map((exercise) => {
-            const defaultIndicator = defaultIndicatorFor(exercise);
+            const defaultIndicator = defaultIndicatorFor(exercise, defaultSlugs);
             return (
               <button
                 className={exercise.id === selected.id ? 'row active' : 'row'}

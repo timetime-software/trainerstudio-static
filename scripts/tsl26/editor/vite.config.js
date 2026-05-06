@@ -290,6 +290,21 @@ async function readLibrarySlugs() {
     .sort();
 }
 
+async function readLibraryInventory() {
+  const librarySlugs = await readLibrarySlugs();
+  const defaultSlugs = [];
+  const sourceSlugs = [];
+  await Promise.all(librarySlugs.map(async (slug) => {
+    const [hasDefault, hasSource] = await Promise.all([
+      pathExists(path.join(libraryRoot, slug, 'default', `${slug}.mp4`)),
+      pathExists(path.join(libraryRoot, slug, 'source', `${slug}.mp4`)),
+    ]);
+    if (hasDefault) defaultSlugs.push(slug);
+    if (hasSource) sourceSlugs.push(slug);
+  }));
+  return { librarySlugs, defaultSlugs: defaultSlugs.sort(), sourceSlugs: sourceSlugs.sort() };
+}
+
 function buildLibraryRelation(exercises, librarySlugs) {
   const exercisesBySlug = new Map();
   const duplicateSlugs = [];
@@ -349,6 +364,14 @@ function exerciseEditorPlugin() {
           }
 
           send(res, 405, { error: 'Method not allowed' });
+        } catch (error) {
+          send(res, 500, { error: error.message });
+        }
+      });
+
+      server.middlewares.use('/api/library/inventory', async (req, res) => {
+        try {
+          send(res, 200, await readLibraryInventory());
         } catch (error) {
           send(res, 500, { error: error.message });
         }
