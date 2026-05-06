@@ -1,19 +1,19 @@
 {
   "library": "tsl26",
-  "generatedAt": "2026-05-05T17:04:23.853Z",
+  "generatedAt": "2026-05-06T06:17:10.849Z",
   "total": 1,
   "records": [
     {
-      "id": "mypthub_3",
-      "name": "Alternating Deltoid Raise",
-      "cdnslug": "alternating_deltoid_raise",
-      "youtubeId": "pZVm-ZlyPoI",
-      "youtubeUrl": "https://www.youtube.com/embed/pZVm-ZlyPoI?autoplay=1",
-      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/mypthub_3_alternating-deltoid-raise_source.mp4",
-      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/alternating_deltoid_raise/source/alternating_deltoid_raise.mp4",
+      "id": "mypthub_284",
+      "name": "Barbell Floor Press",
+      "cdnslug": "barbell_floor_press",
+      "youtubeId": "6oYxYBhuJh8",
+      "youtubeUrl": "https://www.youtube.com/embed/6oYxYBhuJh8",
+      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/mypthub_284_barbell-floor-press_source.mp4",
+      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/barbell_floor_press/source/barbell_floor_press.mp4",
       "sourceDownloaded": true,
       "clipBuilt": true,
-      "lastProcessedAt": "2026-05-05T17:04:23.853Z",
+      "lastProcessedAt": "2026-05-06T06:17:10.849Z",
       "error": null
     }
   ]

@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { AlertTriangle, Check, ChevronLeft, ChevronRight, FileVideo, Play, Save, Search, Sparkles, Star } from 'lucide-react';
+import { AlertTriangle, Check, ChevronLeft, ChevronRight, Clock, EyeOff, FileVideo, Play, Save, Scissors, Search, Sparkles, Star } from 'lucide-react';
 import './styles.css';
 
 const emptyStatus = { sourceClip: false, defaultClip: false, downloadedOriginals: [], arkTask: null };
@@ -179,6 +179,112 @@ function updateExercise(exercise, patch) {
   };
 }
 
+function isYoutubeMedia(item) {
+  return item?.source === 'youtube' || /(?:youtube\.com|youtu\.be|img\.youtube\.com)/i.test(item?.url || item?.thumbnailUrl || '');
+}
+
+function extractYoutubeId(input) {
+  if (!input) return '';
+  const trimmed = String(input).trim();
+  if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) return trimmed;
+  const match = trimmed.match(/(?:youtube\.com\/(?:embed\/|watch\?v=|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/i);
+  return match?.[1] || '';
+}
+
+function extractYoutubeStart(input) {
+  if (!input) return null;
+  const match = String(input).match(/[?&](?:t|start)=([0-9]+(?:\.[0-9]+)?)(?:s|$|&)/i);
+  return match ? Number(match[1]) : null;
+}
+
+function youtubeIdFromExercise(exercise) {
+  const stored = exercise?.metadata?.sourceClip?.youtubeId;
+  if (stored) return stored;
+  const media = mediaFor(exercise).find((item) => isYoutubeMedia(item));
+  return extractYoutubeId(media?.url || media?.thumbnailUrl || '');
+}
+
+function YouTubeSourcePicker({ youtubeId, onCapture }) {
+  const containerRef = useRef(null);
+  const playerRef = useRef(null);
+  const [currentTime, setCurrentTime] = useState(0);
+
+  useEffect(() => {
+    if (!youtubeId || !containerRef.current) return undefined;
+
+    let cancelled = false;
+    let pollHandle = null;
+
+    function pollTime() {
+      const t = playerRef.current?.getCurrentTime?.();
+      if (typeof t === 'number') setCurrentTime(t);
+      pollHandle = window.setTimeout(pollTime, 250);
+    }
+
+    function createPlayer() {
+      if (cancelled || !containerRef.current) return;
+      containerRef.current.innerHTML = '';
+      const target = document.createElement('div');
+      target.style.width = '100%';
+      target.style.height = '100%';
+      containerRef.current.appendChild(target);
+      playerRef.current = new window.YT.Player(target, {
+        videoId: youtubeId,
+        width: '100%',
+        height: '100%',
+        playerVars: { rel: 0, modestbranding: 1, playsinline: 1 },
+        events: {
+          onReady: () => {
+            pollTime();
+          },
+        },
+      });
+    }
+
+    if (window.YT?.Player) {
+      createPlayer();
+    } else {
+      const previous = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => {
+        previous?.();
+        createPlayer();
+      };
+      if (!document.querySelector('script[data-yt-iframe-api]')) {
+        const script = document.createElement('script');
+        script.src = 'https://www.youtube.com/iframe_api';
+        script.dataset.ytIframeApi = '1';
+        document.head.appendChild(script);
+      }
+    }
+
+    return () => {
+      cancelled = true;
+      if (pollHandle) window.clearTimeout(pollHandle);
+      try { playerRef.current?.destroy?.(); } catch { /* noop */ }
+      playerRef.current = null;
+    };
+  }, [youtubeId]);
+
+  function capture() {
+    const value = playerRef.current?.getCurrentTime?.();
+    if (typeof value === 'number') onCapture(Number(value.toFixed(2)));
+  }
+
+  return (
+    <div className="ytPicker">
+      <div className="ytPlayer" ref={containerRef} />
+      <div className="ytPickerControls">
+        <span className="ytTime">
+          <Clock size={14} /> {currentTime.toFixed(2)}s
+        </span>
+        <button type="button" onClick={capture}>
+          Usar este instante como inicio
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function idFromUrl() {
   return new URLSearchParams(window.location.search).get('id') || '';
 }
@@ -199,21 +305,41 @@ function App() {
   const [libraryRelation, setLibraryRelation] = useState(null);
   const [editorTab, setEditorTab] = useState('main');
   const [arkApiKey, setArkApiKey] = useState(() => localStorage.getItem('tsl26.arkApiKey') || '');
+  const [ytInput, setYtInput] = useState('');
+  const [ytId, setYtId] = useState('');
+  const [ytTitle, setYtTitle] = useState('');
+  const [ytChannel, setYtChannel] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [searching, setSearching] = useState(false);
+  const [clipStart, setClipStart] = useState(0);
+  const [clipDuration, setClipDuration] = useState(4);
+  const [savingClip, setSavingClip] = useState(false);
+  const [mediaRefreshKey, setMediaRefreshKey] = useState(0);
+  const [sourceMode, setSourceMode] = useState('ai');
+  const [defaceMode, setDefaceMode] = useState(() => localStorage.getItem('tsl26.defaceMode') || 'solid');
+  const [defaceThresh, setDefaceThresh] = useState(() => Number(localStorage.getItem('tsl26.defaceThresh')) || 0.15);
+  const [defaceMaskScale, setDefaceMaskScale] = useState(() => Number(localStorage.getItem('tsl26.defaceMaskScale')) || 2);
+  const [defaceMosaicSize, setDefaceMosaicSize] = useState(() => Number(localStorage.getItem('tsl26.defaceMosaicSize')) || 20);
+  const [defacePasses, setDefacePasses] = useState(() => Number(localStorage.getItem('tsl26.defacePasses')) || 1);
+  const [defaceKeepOriginal, setDefaceKeepOriginal] = useState(() => localStorage.getItem('tsl26.defaceKeepOriginal') === 'true');
+
+  async function loadExercises(preferredId = idFromUrl()) {
+    const data = await fetch('/api/exercises')
+      .then((res) => res.json())
+    const slugs = data.librarySlugs || [];
+    const queryExercise = data.exercises.find((exercise) => exercise.id === preferredId);
+    const firstLibraryExercise = data.exercises.find((exercise) => slugs[0] && (exercise.cdnslug || exercise.cdnSlug) === slugs[0]);
+    setExercises(data.exercises);
+    setSelectedId(queryExercise?.id || firstLibraryExercise?.id || data.exercises[0]?.id || '');
+    setLibrarySlugs(slugs);
+    setLibraryRelation(data.libraryRelation || null);
+    setPaths({ jsonPath: data.jsonPath, ndjsonPath: data.ndjsonPath });
+    return data;
+  }
 
   useEffect(() => {
-    fetch('/api/exercises')
-      .then((res) => res.json())
-      .then((data) => {
-        const slugs = data.librarySlugs || [];
-        const queryId = idFromUrl();
-        const queryExercise = data.exercises.find((exercise) => exercise.id === queryId);
-        const firstLibraryExercise = data.exercises.find((exercise) => slugs[0] && (exercise.cdnslug || exercise.cdnSlug) === slugs[0]);
-        setExercises(data.exercises);
-        setSelectedId(queryExercise?.id || firstLibraryExercise?.id || data.exercises[0]?.id || '');
-        setLibrarySlugs(slugs);
-        setLibraryRelation(data.libraryRelation || null);
-        setPaths({ jsonPath: data.jsonPath, ndjsonPath: data.ndjsonPath });
-      });
+    loadExercises();
   }, []);
 
   const selected = exercises.find((exercise) => exercise.id === selectedId) || exercises[0];
@@ -257,6 +383,21 @@ function App() {
     if (!selected?.id) return;
     refreshStatus(selected.id);
   }, [selected?.id, running]);
+
+  useEffect(() => {
+    if (!selected?.id) return;
+    const stored = selected.metadata?.sourceClip;
+    const id = stored?.youtubeId || youtubeIdFromExercise(selected) || '';
+    setYtId(id);
+    setYtTitle(stored?.title || '');
+    setYtChannel(stored?.channel || '');
+    setYtInput(id ? `https://www.youtube.com/watch?v=${id}` : '');
+    setClipStart(Number.isFinite(stored?.start) ? stored.start : 0);
+    setClipDuration(Number.isFinite(stored?.duration) ? stored.duration : 4);
+    setSearchQuery('');
+    setSearchResults([]);
+    setSourceMode('ai');
+  }, [selected?.id]);
 
   const filtered = useMemo(() => {
     const term = query.trim().toLowerCase();
@@ -333,13 +474,7 @@ function App() {
     setSaving(true);
     setLog('');
     try {
-      const res = await fetch('/api/exercises', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ exercises }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Save failed');
+      const data = await persistExercises(exercises);
       setDirty(false);
       setLog(`Saved ${data.count} exercises\n${paths.jsonPath}\n${paths.ndjsonPath}`);
     } catch (error) {
@@ -349,19 +484,144 @@ function App() {
     }
   }
 
-  async function run(action, label) {
+  async function persistExercises(nextExercises) {
+    const res = await fetch('/api/exercises', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ exercises: nextExercises }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Save failed');
+    return data;
+  }
+
+  async function run(action, label, extras = {}) {
     setRunning(label);
     setLog('');
     try {
       const res = await fetch('/api/media/action', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action, id: selected.id, arkApiKey: arkApiKey.trim() || undefined }),
+        body: JSON.stringify({ action, id: selected.id, arkApiKey: arkApiKey.trim() || undefined, ...extras }),
       });
       const data = await res.json();
       setLog(data.output || data.error || JSON.stringify(data, null, 2));
     } finally {
       await refreshStatus();
+      setRunning('');
+    }
+  }
+
+  function applyDeface() {
+    localStorage.setItem('tsl26.defaceMode', defaceMode);
+    localStorage.setItem('tsl26.defaceThresh', String(defaceThresh));
+    localStorage.setItem('tsl26.defaceMaskScale', String(defaceMaskScale));
+    localStorage.setItem('tsl26.defaceMosaicSize', String(defaceMosaicSize));
+    localStorage.setItem('tsl26.defacePasses', String(defacePasses));
+    localStorage.setItem('tsl26.defaceKeepOriginal', String(defaceKeepOriginal));
+    return run('deface-source', 'Difuminando caras del source', {
+      defaceOptions: {
+        replaceWith: defaceMode,
+        thresh: defaceThresh,
+        maskScale: defaceMaskScale,
+        mosaicSize: defaceMosaicSize,
+        passes: defacePasses,
+        keepOriginal: defaceKeepOriginal,
+      },
+    });
+  }
+
+  function loadFromUrlInput() {
+    const id = extractYoutubeId(ytInput);
+    if (!id) {
+      setLog(`Could not parse YouTube id from: ${ytInput}`);
+      return;
+    }
+    const start = extractYoutubeStart(ytInput);
+    setYtId(id);
+    setYtTitle('');
+    setYtChannel('');
+    if (start != null) setClipStart(start);
+  }
+
+  function pickSearchResult(item) {
+    if (!item?.id) return;
+    setYtId(item.id);
+    setYtTitle(item.title || '');
+    setYtChannel(item.channel || '');
+    setYtInput(`https://www.youtube.com/watch?v=${item.id}`);
+  }
+
+  async function runYoutubeSearch() {
+    const term = (searchQuery.trim() || `${selected.name} exercise demonstration`).trim();
+    if (!term) return;
+    setSearching(true);
+    setLog('');
+    try {
+      const res = await fetch(`/api/youtube/search?q=${encodeURIComponent(term)}`);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Search failed');
+      setSearchResults(data.results || []);
+      if (!data.results?.length) setLog('No videos found.');
+      else if (!ytId) pickSearchResult(data.results[0]);
+    } catch (error) {
+      setLog(error.message);
+    } finally {
+      setSearching(false);
+    }
+  }
+
+  async function saveSourceClip() {
+    if (!ytId) {
+      setLog('Selecciona un video de YouTube primero.');
+      return;
+    }
+    const start = Number(clipStart);
+    const duration = Number(clipDuration);
+    if (!Number.isFinite(start) || start < 0) {
+      setLog('Inicio inválido.');
+      return;
+    }
+    if (!Number.isFinite(duration) || duration <= 0 || duration > 30) {
+      setLog('Duración inválida (0 < duración <= 30).');
+      return;
+    }
+
+    setSavingClip(true);
+    setRunning('Guardando recorte como source');
+    setLog('');
+    try {
+      const res = await fetch('/api/source-clip', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: selected.id,
+          youtubeId: ytId,
+          start,
+          duration,
+          title: ytTitle || null,
+          channel: ytChannel || null,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || data.output || 'Source clip failed');
+
+      setExercises((current) => current.map((exercise) => (
+        exercise.id === selected.id ? data.exercise : exercise
+      )));
+      setDirty(false);
+      await refreshStatus(selected.id);
+      setMediaRefreshKey(Date.now());
+      setMediaVariant('source');
+      setSourceMode('ai');
+      setLog([
+        data.output || '',
+        `Source clip guardado: ${ytId} @ ${start}s (${duration}s)`,
+      ].filter(Boolean).join('\n\n'));
+    } catch (error) {
+      setLog(error.message);
+    } finally {
+      setSavingClip(false);
       setRunning('');
     }
   }
@@ -412,11 +672,15 @@ function App() {
   const previousExercise = selectedIndex > 0 ? filtered[selectedIndex - 1] : null;
   const nextExercise = selectedIndex >= 0 && selectedIndex < filtered.length - 1 ? filtered[selectedIndex + 1] : null;
   const video = firstVideo(selected);
-  const selectedVideo =
-    mediaVariant === 'default'
-      ? (status.defaultClip ? { type: 'video', url: status.defaultUrl, source: 'uploaded' } : videoBySource(selected, 'uploaded'))
-      : (status.sourceClip ? { type: 'video', url: status.sourceUrl, source: 'source' } : videoBySource(selected, 'source'));
-  const previewVideo = selectedVideo || video;
+  const localDefault = status.defaultClip ? { type: 'video', url: status.defaultUrl, source: 'uploaded' } : null;
+  const localSource = status.sourceClip ? { type: 'video', url: status.sourceUrl, source: 'source' } : null;
+  const variantVideo = mediaVariant === 'default'
+    ? (localDefault || videoBySource(selected, 'uploaded') || localSource)
+    : (localSource || localDefault || videoBySource(selected, 'source'));
+  const previewVideo = variantVideo || video;
+  const previewVideoUrl = previewVideo?.url?.startsWith('/api/library/video')
+    ? `${previewVideo.url}${previewVideo.url.includes('?') ? '&' : '?'}r=${mediaRefreshKey}`
+    : previewVideo?.url;
   const image = firstImage(selected);
   const aiTaskStatus = status.arkTask?.error ? 'failed' : status.arkTask?.status || null;
   const taskStatusLabels = {
@@ -552,10 +816,10 @@ function App() {
         </div>
 
         <div className="mediaBox">
-          {previewVideo?.url?.endsWith('.mp4') || previewVideo?.url?.startsWith('/api/library/video') ? (
-            <video src={previewVideo.url} controls playsInline />
-          ) : previewVideo?.url ? (
-            <iframe src={previewVideo.url} allow="autoplay; encrypted-media; picture-in-picture" />
+          {previewVideoUrl?.endsWith('.mp4') || previewVideoUrl?.startsWith('/api/library/video') ? (
+            <video key={previewVideoUrl} src={previewVideoUrl} controls playsInline />
+          ) : previewVideoUrl ? (
+            <iframe key={previewVideoUrl} src={previewVideoUrl} allow="autoplay; encrypted-media; picture-in-picture" />
           ) : image?.url || image?.thumbnailUrl ? (
             <img src={image.thumbnailUrl || image.url} />
           ) : (
@@ -579,14 +843,219 @@ function App() {
           </div>
         </div>
 
-        <div className="actions">
-          <button title="Muestra el prompt y payload que se enviarian para crear el task" onClick={() => run('preview-source-task', 'Previewing task')} disabled={Boolean(running)}>
-            <Play size={16} /> Previsualizar task
+        <details className="defacePanel">
+          <summary><EyeOff size={14} /> Anonimizar source (caras)</summary>
+          <div className="defaceControls">
+            <label>
+              <span>Modo</span>
+              <select value={defaceMode} onChange={(event) => setDefaceMode(event.target.value)}>
+                <option value="blur">Blur (gaussiano)</option>
+                <option value="solid">Sólido (negro)</option>
+                <option value="mosaic">Mosaico</option>
+              </select>
+            </label>
+            <label title="Umbral de detección. Más bajo = detecta más caras (incluye falsos positivos)">
+              <span>Threshold</span>
+              <input
+                type="number"
+                step="0.05"
+                min="0.05"
+                max="1"
+                value={defaceThresh}
+                onChange={(event) => setDefaceThresh(Number(event.target.value))}
+              />
+            </label>
+            <label title="Escala de la máscara. Más alto = cubre más área alrededor de la cara">
+              <span>Mask scale</span>
+              <input
+                type="number"
+                step="0.1"
+                min="1"
+                max="3"
+                value={defaceMaskScale}
+                onChange={(event) => setDefaceMaskScale(Number(event.target.value))}
+              />
+            </label>
+            {defaceMode === 'mosaic' && (
+              <label>
+                <span>Mosaico (px)</span>
+                <input
+                  type="number"
+                  step="1"
+                  min="5"
+                  max="80"
+                  value={defaceMosaicSize}
+                  onChange={(event) => setDefaceMosaicSize(Number(event.target.value))}
+                />
+              </label>
+            )}
+            <label title="Número de pasadas. Más pasadas = el detector reanaliza el resultado y aplica blur extra a lo que aún quede">
+              <span>Pasadas</span>
+              <input
+                type="number"
+                step="1"
+                min="1"
+                max="4"
+                value={defacePasses}
+                onChange={(event) => setDefacePasses(Number(event.target.value))}
+              />
+            </label>
+            <label className="defaceCheckbox" title="Guarda una copia del source antes de sobrescribirlo">
+              <input
+                type="checkbox"
+                checked={defaceKeepOriginal}
+                onChange={(event) => setDefaceKeepOriginal(event.target.checked)}
+              />
+              <span>Backup .original.mp4</span>
+            </label>
+            <button
+              type="button"
+              className="primary"
+              onClick={applyDeface}
+              disabled={Boolean(running) || !status.sourceClip}
+            >
+              <EyeOff size={14} /> Aplicar
+            </button>
+          </div>
+          <p className="defaceHint">
+            Sobrescribe <code>libraries/tsl26/&lt;slug&gt;/source/&lt;slug&gt;.mp4</code>. Si el detector deja escapar caras, sube
+            <code>mask-scale</code>, baja <code>threshold</code>, prueba <strong>solid</strong> o usa varias pasadas.
+          </p>
+        </details>
+
+        <div className="sourceTabs" role="tablist">
+          <button
+            role="tab"
+            aria-selected={sourceMode === 'ai'}
+            className={sourceMode === 'ai' ? 'sourceTab active' : 'sourceTab'}
+            onClick={() => setSourceMode('ai')}
+          >
+            <Sparkles size={14} /> Generar con IA
           </button>
-          <button className="primary" title="Descarga source si hace falta, crea o reutiliza la tarea de IA, consulta el estado, descarga el resultado y sincroniza el default" onClick={generateAiVideo} disabled={Boolean(running)}>
-            <Sparkles size={16} /> Generar video con IA
+          <button
+            role="tab"
+            aria-selected={sourceMode === 'youtube'}
+            className={sourceMode === 'youtube' ? 'sourceTab active' : 'sourceTab'}
+            onClick={() => setSourceMode('youtube')}
+          >
+            <Search size={14} /> Buscar video fuente
           </button>
         </div>
+
+        {sourceMode === 'ai' && (
+          <div className="actions">
+            <button title="Muestra el prompt y payload que se enviarian para crear el task" onClick={() => run('preview-source-task', 'Previewing task')} disabled={Boolean(running)}>
+              <Play size={16} /> Previsualizar task
+            </button>
+            <button className="primary" title="Descarga source si hace falta, crea o reutiliza la tarea de IA, consulta el estado, descarga el resultado y sincroniza el default" onClick={generateAiVideo} disabled={Boolean(running)}>
+              <Sparkles size={16} /> Generar video con IA
+            </button>
+          </div>
+        )}
+
+        {sourceMode === 'youtube' && (
+        <div className="ytSourcePanel">
+          <div className="ytSourceHeader">
+            <div>
+              <strong>Recorte desde YouTube</strong>
+              <span>Pega una URL o busca un video, marca el inicio y guarda el recorte como source.</span>
+            </div>
+            {selected.metadata?.sourceClip?.youtubeId && (
+              <small className="ytSourceCurrent">
+                Actual: {selected.metadata.sourceClip.youtubeId} @ {selected.metadata.sourceClip.start ?? 0}s · {selected.metadata.sourceClip.duration ?? 4}s
+              </small>
+            )}
+          </div>
+
+          <div className="ytSourceInputs">
+            <div className="ytSourceRow">
+              <div className="search">
+                <input
+                  value={ytInput}
+                  onChange={(event) => setYtInput(event.target.value)}
+                  placeholder="https://www.youtube.com/watch?v=... o ID de 11 caracteres"
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter') loadFromUrlInput();
+                  }}
+                />
+              </div>
+              <button onClick={loadFromUrlInput} disabled={Boolean(running)}>
+                Cargar
+              </button>
+            </div>
+            <div className="ytSourceRow">
+              <div className="search">
+                <Search size={16} />
+                <input
+                  value={searchQuery}
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                  placeholder={`Buscar: ${selected.name} exercise demonstration`}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter') runYoutubeSearch();
+                  }}
+                />
+              </div>
+              <button onClick={runYoutubeSearch} disabled={searching || Boolean(running)}>
+                <Search size={16} /> {searching ? 'Buscando' : 'Buscar'}
+              </button>
+            </div>
+          </div>
+
+          {searchResults.length > 0 && (
+            <div className="ytSearchResults">
+              {searchResults.map((item) => (
+                <button
+                  key={item.id}
+                  className={ytId === item.id ? 'ytResult active' : 'ytResult'}
+                  onClick={() => pickSearchResult(item)}
+                >
+                  <img src={item.thumbnail} alt="" />
+                  <span>
+                    <strong>{item.title}</strong>
+                    <small>{item.channel || item.id}{item.duration ? ` · ${Math.round(item.duration / 60)} min` : ''}</small>
+                  </span>
+                </button>
+              ))}
+            </div>
+          )}
+
+          {ytId && (
+            <>
+              <YouTubeSourcePicker youtubeId={ytId} onCapture={(value) => setClipStart(value)} />
+              <div className="clipForm">
+                <label>
+                  Inicio (s)
+                  <input
+                    type="number"
+                    min="0"
+                    step="0.1"
+                    value={clipStart}
+                    onChange={(event) => setClipStart(Number(event.target.value))}
+                  />
+                </label>
+                <label>
+                  Duración (s)
+                  <input
+                    type="number"
+                    min="0.5"
+                    max="30"
+                    step="0.5"
+                    value={clipDuration}
+                    onChange={(event) => setClipDuration(Number(event.target.value))}
+                  />
+                </label>
+                <button
+                  className="primary"
+                  onClick={saveSourceClip}
+                  disabled={savingClip || Boolean(running)}
+                >
+                  <Scissors size={16} /> {savingClip ? 'Guardando' : 'Guardar como source'}
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+        )}
 
         {running && <div className="running"><FileVideo size={16} /> {running}...</div>}
         {log && <pre className="log">{log}</pre>}

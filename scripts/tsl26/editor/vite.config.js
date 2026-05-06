@@ -72,6 +72,31 @@ async function runCommand(command, args, extraEnv = {}) {
   });
 }
 
+async function runCommandJsonLines(command, args) {
+  const localEnv = await readLocalEnv();
+  return new Promise((resolve) => {
+    const child = spawn(command, args, {
+      cwd: toolDir,
+      env: { ...process.env, ...localEnv },
+    });
+    let stdout = '';
+    let stderr = '';
+
+    child.stdout.on('data', (chunk) => {
+      stdout += chunk.toString();
+    });
+    child.stderr.on('data', (chunk) => {
+      stderr += chunk.toString();
+    });
+    child.on('close', (code) => {
+      resolve({ ok: code === 0, code, stdout, stderr });
+    });
+    child.on('error', (error) => {
+      resolve({ ok: false, code: null, stdout, stderr: error.message });
+    });
+  });
+}
+
 async function runCommandSequence(steps, extraEnv = {}) {
   const results = [];
   for (const step of steps) {
@@ -132,6 +157,11 @@ async function pathExists(filePath) {
   }
 }
 
+async function fileVersion(filePath) {
+  const stat = await fs.stat(filePath).catch(() => null);
+  return stat ? String(Math.round(stat.mtimeMs)) : null;
+}
+
 async function readNdjson(filePath) {
   const raw = await fs.readFile(filePath, 'utf8').catch(() => '');
   return raw
@@ -149,6 +179,60 @@ async function readNdjson(filePath) {
 
 function taskIdFromRecord(record) {
   return record?.taskId ?? record?.task?.id ?? record?.task?.task_id ?? record?.task?.data?.id ?? record?.task?.data?.task_id ?? null;
+}
+
+function isYoutubeMedia(item) {
+  return item?.source === 'youtube'
+    || /(?:youtube\.com|youtu\.be|img\.youtube\.com)/i.test(item?.url || item?.thumbnailUrl || '');
+}
+
+function exerciseWithSourceClip(exercise, { youtubeId, title, channel, start, duration }) {
+  const thumbnail = `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`;
+  const media = Array.isArray(exercise.media) ? exercise.media : [];
+  return {
+    ...exercise,
+    media: [
+      ...media.filter((item) => !isYoutubeMedia(item)),
+      {
+        type: 'video',
+        source: 'youtube',
+        url: `https://www.youtube.com/embed/${youtubeId}?autoplay=1`,
+        thumbnailUrl: thumbnail,
+      },
+      { type: 'image', source: 'youtube', url: thumbnail },
+    ],
+    images: [thumbnail],
+    metadata: {
+      ...(exercise.metadata || {}),
+      sourceClip: {
+        youtubeId,
+        title: title || null,
+        channel: channel || null,
+        start,
+        duration,
+        updatedAt: new Date().toISOString(),
+      },
+    },
+  };
+}
+
+async function persistExercises(exercises) {
+  await fs.writeFile(jsonPath, `${JSON.stringify(exercises, null, 2)}\n`);
+  await fs.writeFile(ndjsonPath, `${exercises.map((exercise) => JSON.stringify(exercise)).join('\n')}\n`);
+}
+
+function normalizeYouTubeResult(item) {
+  const id = item?.id || item?.url;
+  if (!id || !/^[a-zA-Z0-9_-]{11}$/.test(id)) return null;
+  return {
+    id,
+    title: item.title || id,
+    channel: item.channel || item.uploader || '',
+    duration: Number(item.duration) || null,
+    thumbnail: item.thumbnail || item.thumbnails?.at(-1)?.url || `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
+    url: `https://www.youtube.com/watch?v=${id}`,
+    embedUrl: `https://www.youtube.com/embed/${id}`,
+  };
 }
 
 async function latestArkTask(exercise) {
@@ -182,12 +266,16 @@ async function mediaStatus(exercise) {
   const sourcePath = path.join(libraryRoot, cdnslug, 'source', `${cdnslug}.mp4`);
   const defaultPath = path.join(libraryRoot, cdnslug, 'default', `${cdnslug}.mp4`);
   const sourceOriginals = await fs.readdir(path.join(toolDir, 'source/videos')).catch(() => []);
+  const sourceVersion = await fileVersion(sourcePath);
+  const defaultVersion = await fileVersion(defaultPath);
+  const sourceQuery = `variant=source&slug=${encodeURIComponent(cdnslug)}${sourceVersion ? `&v=${sourceVersion}` : ''}`;
+  const defaultQuery = `variant=default&slug=${encodeURIComponent(cdnslug)}${defaultVersion ? `&v=${defaultVersion}` : ''}`;
 
   return {
     sourceClip: await pathExists(sourcePath),
     defaultClip: await pathExists(defaultPath),
-    sourceUrl: `/api/library/video?variant=source&slug=${encodeURIComponent(cdnslug)}`,
-    defaultUrl: `/api/library/video?variant=default&slug=${encodeURIComponent(cdnslug)}`,
+    sourceUrl: `/api/library/video?${sourceQuery}`,
+    defaultUrl: `/api/library/video?${defaultQuery}`,
     sourcePath: path.relative(repoRoot, sourcePath),
     defaultPath: path.relative(repoRoot, defaultPath),
     downloadedOriginals: sourceOriginals.filter((name) => name.startsWith(`${exercise.id}_`)),
@@ -255,8 +343,7 @@ function exerciseEditorPlugin() {
               return;
             }
 
-            await fs.writeFile(jsonPath, `${JSON.stringify(payload.exercises, null, 2)}\n`);
-            await fs.writeFile(ndjsonPath, `${payload.exercises.map((exercise) => JSON.stringify(exercise)).join('\n')}\n`);
+            await persistExercises(payload.exercises);
             send(res, 200, { ok: true, count: payload.exercises.length });
             return;
           }
@@ -274,6 +361,105 @@ function exerciseEditorPlugin() {
           const exercises = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
           const exercise = exercises.find((item) => item.id === id);
           send(res, 200, { status: await mediaStatus(exercise) });
+        } catch (error) {
+          send(res, 500, { error: error.message });
+        }
+      });
+
+      server.middlewares.use('/api/youtube/search', async (req, res) => {
+        try {
+          const url = new URL(req.url, 'http://localhost');
+          const query = url.searchParams.get('q')?.trim();
+          if (!query) {
+            send(res, 400, { error: 'Missing search query' });
+            return;
+          }
+
+          const result = await runCommandJsonLines('python3', [
+            '-m',
+            'yt_dlp',
+            '--dump-json',
+            '--flat-playlist',
+            `ytsearch12:${query}`,
+          ]);
+          if (!result.ok) {
+            send(res, 500, { error: result.stderr || 'YouTube search failed' });
+            return;
+          }
+
+          const results = result.stdout
+            .split('\n')
+            .filter(Boolean)
+            .map((line) => {
+              try {
+                return normalizeYouTubeResult(JSON.parse(line));
+              } catch {
+                return null;
+              }
+            })
+            .filter(Boolean);
+
+          send(res, 200, { results });
+        } catch (error) {
+          send(res, 500, { error: error.message });
+        }
+      });
+
+      server.middlewares.use('/api/source-clip', async (req, res) => {
+        try {
+          if (req.method !== 'POST') {
+            send(res, 405, { error: 'Method not allowed' });
+            return;
+          }
+
+          const { id, youtubeId, start, duration = 4, title, channel } = JSON.parse(await readBody(req));
+          if (!id) return send(res, 400, { error: 'Missing exercise id' });
+          if (!/^[a-zA-Z0-9_-]{11}$/.test(youtubeId || '')) {
+            return send(res, 400, { error: 'Expected valid youtubeId (11 chars)' });
+          }
+          const startSeconds = Number(start);
+          const durationSeconds = Number(duration);
+          if (!Number.isFinite(startSeconds) || startSeconds < 0) {
+            return send(res, 400, { error: 'Expected start >= 0' });
+          }
+          if (!Number.isFinite(durationSeconds) || durationSeconds <= 0 || durationSeconds > 30) {
+            return send(res, 400, { error: 'Expected 0 < duration <= 30' });
+          }
+
+          const exercises = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
+          const exercise = exercises.find((item) => item.id === id);
+          if (!exercise) return send(res, 404, { error: `Exercise not found: ${id}` });
+
+          const result = await runCommand('node', [
+            'download-youtube-clips.mjs',
+            `--ids=${id}`,
+            `--youtube-id=${youtubeId}`,
+            `--start=${startSeconds}`,
+            `--duration=${durationSeconds}`,
+            '--overwrite',
+          ]);
+
+          if (!result.ok) {
+            send(res, 500, { error: 'Source clip build failed', output: result.output });
+            return;
+          }
+
+          const updated = exerciseWithSourceClip(exercise, {
+            youtubeId,
+            title,
+            channel,
+            start: startSeconds,
+            duration: durationSeconds,
+          });
+          const nextExercises = exercises.map((item) => (item.id === id ? updated : item));
+          await persistExercises(nextExercises);
+
+          send(res, 200, {
+            ok: true,
+            output: result.output,
+            exercise: updated,
+            sourceClip: updated.metadata.sourceClip,
+          });
         } catch (error) {
           send(res, 500, { error: error.message });
         }
@@ -311,7 +497,7 @@ function exerciseEditorPlugin() {
             return;
           }
 
-          const { action, id, overwrite, arkApiKey } = JSON.parse(await readBody(req));
+          const { action, id, overwrite, arkApiKey, defaceOptions } = JSON.parse(await readBody(req));
           const extraEnv = arkApiKey ? { ARK_API_KEY: arkApiKey } : {};
           if (!id) {
             send(res, 400, { error: 'Missing exercise id' });
@@ -334,6 +520,17 @@ function exerciseEditorPlugin() {
             ], extraEnv);
           } else if (action === 'generate-ai-video') {
             result = await runAiVideoFlow(id, extraEnv);
+          } else if (action === 'deface-source') {
+            const args = ['deface-source-video.mjs', `--ids=${id}`];
+            if (defaceOptions) {
+              if (defaceOptions.replaceWith) args.push(`--replace=${defaceOptions.replaceWith}`);
+              if (Number.isFinite(defaceOptions.thresh)) args.push(`--thresh=${defaceOptions.thresh}`);
+              if (Number.isFinite(defaceOptions.maskScale)) args.push(`--mask-scale=${defaceOptions.maskScale}`);
+              if (Number.isFinite(defaceOptions.mosaicSize)) args.push(`--mosaic-size=${defaceOptions.mosaicSize}`);
+              if (Number.isFinite(defaceOptions.passes)) args.push(`--passes=${defaceOptions.passes}`);
+              if (defaceOptions.keepOriginal) args.push('--keep-original');
+            }
+            result = await runCommand('node', args);
           } else {
             send(res, 400, { error: `Unknown action: ${action}` });
             return;

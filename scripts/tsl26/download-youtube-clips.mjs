@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, unlinkSync, writeFileSync } from 'fs';
 import { dirname, join, resolve } from 'path';
+import { createHash } from 'crypto';
 import { spawnSync } from 'child_process';
 import { fileURLToPath } from 'url';
 
@@ -31,6 +32,7 @@ function parseArgs(argv) {
     overwrite: false,
     continueOnError: false,
     keepSource: true,
+    youtubeId: null,
   };
 
   for (const arg of argv) {
@@ -46,6 +48,7 @@ function parseArgs(argv) {
     else if (key === '--height') args.height = Number(value);
     else if (key === '--limit') args.limit = Number(value);
     else if (key === '--ids') args.ids = new Set(value.split(',').map((id) => id.trim()).filter(Boolean));
+    else if (key === '--youtube-id') args.youtubeId = value.trim();
     else if (key === '--shard') {
       const [rawIndex, rawTotal] = value.split('/').map(Number);
       if (!Number.isInteger(rawIndex) || !Number.isInteger(rawTotal) || rawIndex < 1 || rawTotal < 1 || rawIndex > rawTotal) {
@@ -124,24 +127,44 @@ function downloadSourceVideo(youtubeId, sourcePath, overwrite) {
   if (existsSync(sourcePath) && !overwrite) return;
 
   mkdirSync(dirname(sourcePath), { recursive: true });
+  const sourceDir = dirname(sourcePath);
+  const tempStem = sourcePath.replace(/\.mp4$/, `.download-${process.pid}`);
+  const tempOutput = `${tempStem}.%(ext)s`;
+  const tempMp4 = `${tempStem}.mp4`;
+
+  for (const file of readdirSync(sourceDir)) {
+    if (file.startsWith(`${tempStem.split('/').at(-1)}.`) || file.startsWith(`${tempStem.split('/').at(-1)}.f`)) {
+      rmSync(join(sourceDir, file), { force: true });
+    }
+  }
 
   run('python3', [
     '-m',
     'yt_dlp',
+    '--force-overwrites',
+    '--no-continue',
     '-f',
     'bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480][ext=mp4]/best[height<=480]',
     '--merge-output-format',
     'mp4',
     '-o',
-    sourcePath.replace(/\.mp4$/, '.%(ext)s'),
+    tempOutput,
     `https://www.youtube.com/watch?v=${youtubeId}`,
   ]);
+
+  if (!existsSync(tempMp4)) {
+    throw new Error(`Downloaded source was not created: ${tempMp4}`);
+  }
+  if (existsSync(sourcePath) && overwrite) unlinkSync(sourcePath);
+  renameSync(tempMp4, sourcePath);
 }
 
 function buildClip(sourcePath, clipPath, args) {
   if (existsSync(clipPath) && !args.overwrite) return;
 
   mkdirSync(dirname(clipPath), { recursive: true });
+  const tempClipPath = `${clipPath}.tmp-${process.pid}.mp4`;
+  if (existsSync(tempClipPath)) unlinkSync(tempClipPath);
 
   run('ffmpeg', [
     '-y',
@@ -162,8 +185,13 @@ function buildClip(sourcePath, clipPath, args) {
     '20',
     '-movflags',
     '+faststart',
-    clipPath,
+    tempClipPath,
   ]);
+
+  if (existsSync(clipPath) && args.overwrite) {
+    unlinkSync(clipPath);
+  }
+  renameSync(tempClipPath, clipPath);
 }
 
 function writeManifest(manifestPath, records) {
@@ -183,6 +211,24 @@ function writeManifest(manifestPath, records) {
   );
 }
 
+function probeClip(clipPath) {
+  if (!existsSync(clipPath)) return null;
+  const result = spawnSync('ffprobe', [
+    '-v',
+    'error',
+    '-show_entries',
+    'format=duration,size',
+    '-of',
+    'default=nw=1',
+    clipPath,
+  ], { encoding: 'utf8' });
+  const hash = createHash('sha256').update(readFileSync(clipPath)).digest('hex').slice(0, 12);
+  return {
+    hash,
+    probe: result.status === 0 ? result.stdout.trim().replace(/\n/g, ' ') : 'ffprobe failed',
+  };
+}
+
 function main() {
   const args = parseArgs(process.argv.slice(2));
 
@@ -190,12 +236,36 @@ function main() {
   ensureTool('ffmpeg', ['-version']);
 
   const exercises = loadExercises(args.input);
-  let candidates = exercises
-    .map((exercise) => ({ exercise, media: findYouTubeMedia(exercise) }))
-    .filter(({ media }) => media);
+  let candidates;
 
-  if (args.ids) {
-    candidates = candidates.filter(({ exercise }) => args.ids.has(exercise.id));
+  if (args.youtubeId) {
+    if (!/^[a-zA-Z0-9_-]{11}$/.test(args.youtubeId)) {
+      throw new Error(`Invalid YouTube id: ${args.youtubeId}`);
+    }
+    if (!args.ids || args.ids.size !== 1) {
+      throw new Error('--youtube-id requires exactly one --ids value.');
+    }
+    const targetId = [...args.ids][0];
+    const exercise = exercises.find((item) => item.id === targetId);
+    if (!exercise) {
+      throw new Error(`Exercise not found: ${targetId}`);
+    }
+    candidates = [{
+      exercise,
+      media: {
+        type: 'video',
+        source: 'youtube',
+        url: `https://www.youtube.com/embed/${args.youtubeId}`,
+      },
+    }];
+  } else {
+    candidates = exercises
+      .map((exercise) => ({ exercise, media: findYouTubeMedia(exercise) }))
+      .filter(({ media }) => media);
+
+    if (args.ids) {
+      candidates = candidates.filter(({ exercise }) => args.ids.has(exercise.id));
+    }
   }
 
   if (args.shardTotal) {
@@ -240,6 +310,8 @@ function main() {
     try {
       downloadSourceVideo(youtubeId, sourcePath, args.overwrite);
       buildClip(sourcePath, clipPath, args);
+      const clipInfo = probeClip(clipPath);
+      console.log(`Wrote clip: ${clipPath}${clipInfo ? ` (${clipInfo.probe} sha256=${clipInfo.hash})` : ''}`);
       record.error = null;
     } catch (error) {
       record.error = error instanceof Error ? error.message : String(error);
