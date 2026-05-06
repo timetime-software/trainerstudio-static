@@ -1,19 +1,19 @@
 {
   "library": "tsl26",
-  "generatedAt": "2026-05-06T07:11:29.370Z",
+  "generatedAt": "2026-05-06T07:14:48.904Z",
   "total": 1,
   "records": [
     {
-      "id": "mypthub_82",
-      "name": "Standing Dumbbell Front Raises",
-      "cdnslug": "standing_dumbbell_front_raises",
-      "youtubeId": "h-0BU7fQl68",
-      "youtubeUrl": "https://www.youtube.com/embed/h-0BU7fQl68",
-      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/mypthub_82_standing-dumbbell-front-raises_source.mp4",
-      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/standing_dumbbell_front_raises/source/standing_dumbbell_front_raises.mp4",
+      "id": "mypthub_1019",
+      "name": "Adductor Machine Internal",
+      "cdnslug": "adductor_machine_internal",
+      "youtubeId": "Xipizs7Cytc",
+      "youtubeUrl": "https://www.youtube.com/embed/Xipizs7Cytc",
+      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/mypthub_1019_adductor-machine-internal_source.mp4",
+      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/adductor_machine_internal/source/adductor_machine_internal.mp4",
       "sourceDownloaded": true,
       "clipBuilt": true,
-      "lastProcessedAt": "2026-05-06T07:11:29.370Z",
+      "lastProcessedAt": "2026-05-06T07:14:48.904Z",
       "error": null
     }
   ]
