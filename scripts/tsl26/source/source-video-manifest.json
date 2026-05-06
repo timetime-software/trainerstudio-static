@@ -1,19 +1,19 @@
 {
   "library": "tsl26",
-  "generatedAt": "2026-05-06T08:05:12.623Z",
+  "generatedAt": "2026-05-06T08:37:16.454Z",
   "total": 1,
   "records": [
     {
-      "id": "mypthub_402",
-      "name": "Sumo Deadlifts",
-      "cdnslug": "sumo_deadlifts",
-      "youtubeId": "pfSMst14EFk",
-      "youtubeUrl": "https://www.youtube.com/embed/pfSMst14EFk",
-      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/mypthub_402_sumo-deadlifts_source.mp4",
-      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/sumo_deadlifts/source/sumo_deadlifts.mp4",
+      "id": "mypthub_69",
+      "name": "Dumbbell Shrugs",
+      "cdnslug": "dumbbell_shrugs",
+      "youtubeId": "sWeYG_I5HA4",
+      "youtubeUrl": "https://www.youtube.com/embed/sWeYG_I5HA4",
+      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/mypthub_69_dumbbell-shrugs_source.mp4",
+      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/dumbbell_shrugs/source/dumbbell_shrugs.mp4",
       "sourceDownloaded": true,
       "clipBuilt": true,
-      "lastProcessedAt": "2026-05-06T08:05:12.623Z",
+      "lastProcessedAt": "2026-05-06T08:37:16.454Z",
       "error": null
     }
   ]
