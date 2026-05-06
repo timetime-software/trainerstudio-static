@@ -113,7 +113,7 @@ async function runCommandSequence(steps, extraEnv = {}) {
   };
 }
 
-async function runAiVideoFlow(id, extraEnv = {}) {
+async function runAiVideoFlow(id, extraEnv = {}, options = {}) {
   const results = [];
 
   const pushResult = async (command, args) => {
@@ -125,7 +125,9 @@ async function runAiVideoFlow(id, extraEnv = {}) {
   const downloadResult = await pushResult('node', ['download-youtube-clips.mjs', `--ids=${id}`]);
   if (!downloadResult.ok) return commandSequenceResult(results);
 
-  const createResult = await pushResult('node', ['create-ark-style-tasks.mjs', `--ids=${id}`]);
+  const createArgs = ['create-ark-style-tasks.mjs', `--ids=${id}`];
+  if (options.forceCreate) createArgs.push('--overwrite-output');
+  const createResult = await pushResult('node', createArgs);
   if (!createResult.ok || /failed=[1-9]\d*|Ark request failed/i.test(createResult.output)) {
     return commandSequenceResult(results, false);
   }
@@ -243,8 +245,13 @@ async function latestArkTask(exercise) {
   const matchesExercise = (record) => record?.id === id || record?.cdnslug === cdnslug;
   const created = (await readNdjson(arkTasksPath)).filter(matchesExercise).at(-1);
   const statuses = (await readNdjson(arkTaskStatusPath)).filter(matchesExercise);
-  const latestStatus = statuses.at(-1);
-  const taskId = taskIdFromRecord(latestStatus) || taskIdFromRecord(created);
+  const createdTaskId = taskIdFromRecord(created);
+  const latestStatus = (
+    createdTaskId
+      ? statuses.filter((record) => taskIdFromRecord(record) === createdTaskId)
+      : statuses
+  ).at(-1);
+  const taskId = createdTaskId || taskIdFromRecord(latestStatus);
 
   if (!created && !latestStatus && !taskId) return null;
 
@@ -552,7 +559,7 @@ function exerciseEditorPlugin() {
             return;
           }
 
-          const { action, id, overwrite, arkApiKey, defaceOptions } = JSON.parse(await readBody(req));
+          const { action, id, overwrite, forceCreate, arkApiKey, defaceOptions } = JSON.parse(await readBody(req));
           const extraEnv = arkApiKey ? { ARK_API_KEY: arkApiKey } : {};
           if (!id) {
             send(res, 400, { error: 'Missing exercise id' });
@@ -574,7 +581,7 @@ function exerciseEditorPlugin() {
               { command: 'node', args: ['--experimental-strip-types', 'sync-cdn-media.ts'] },
             ], extraEnv);
           } else if (action === 'generate-ai-video') {
-            result = await runAiVideoFlow(id, extraEnv);
+            result = await runAiVideoFlow(id, extraEnv, { forceCreate: forceCreate === true });
           } else if (action === 'delete-default') {
             result = await deleteDefaultVideoForExercise(id);
           } else if (action === 'deface-source') {

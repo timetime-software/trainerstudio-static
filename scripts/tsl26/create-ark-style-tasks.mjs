@@ -161,6 +161,7 @@ function listClips(args) {
     return {
       id: exercise?.id ?? cdnslug,
       cdnslug,
+      exercise,
       localPath,
       url: toPublicCdnUrl(localPath, args.cdnBaseUrl),
       sourceSha256: sha256OfFile(localPath),
@@ -178,13 +179,59 @@ function listClips(args) {
   return clips;
 }
 
-function buildPayload(args, referenceImageUrls, clipUrl) {
+function compactText(value) {
+  return String(value ?? '').replace(/\s+/g, ' ').trim();
+}
+
+function truncateText(value, maxLength) {
+  const text = compactText(value);
+  if (text.length <= maxLength) return text;
+  return `${text.slice(0, maxLength - 3).trimEnd()}...`;
+}
+
+function listText(values) {
+  if (!Array.isArray(values)) return '';
+  return values.map(compactText).filter(Boolean).join(', ');
+}
+
+function exerciseContextFor(exercise) {
+  if (!exercise) return '';
+
+  const name = compactText(exercise.name);
+  const equipment = compactText(exercise.equipment);
+  const primaryMuscles = listText(exercise.primaryMuscles);
+  const secondaryMuscles = listText(exercise.secondaryMuscles);
+  const instructions = Array.isArray(exercise.instructions)
+    ? truncateText(exercise.instructions.slice(0, 4).join(' '), 1200)
+    : '';
+
+  const details = [
+    name ? `Exercise name: ${name}.` : '',
+    equipment ? `Expected equipment: ${equipment}.` : '',
+    primaryMuscles ? `Primary muscles: ${primaryMuscles}.` : '',
+    secondaryMuscles ? `Secondary muscles: ${secondaryMuscles}.` : '',
+    instructions ? `Exercise instructions summary: ${instructions}` : '',
+  ].filter(Boolean);
+
+  if (!details.length) return '';
+
+  return [
+    'Exercise context for disambiguation only.',
+    ...details,
+    'Use this context only as a guide when [Video 1] is ambiguous. Do not invent or alter movement, equipment, props, range of motion, timing, camera angle, framing, or visible body positions from this text when it conflicts with [Video 1]. [Video 1] is the source of truth.',
+  ].join(' ');
+}
+
+function buildPayload(args, referenceImageUrls, clip) {
+  const exerciseContext = exerciseContextFor(clip.exercise);
+  const prompt = [args.prompt, exerciseContext].filter(Boolean).join(' ');
+
   return {
     model: args.model,
     content: [
       {
         type: 'text',
-        text: args.prompt,
+        text: prompt,
       },
       ...referenceImageUrls.map((url) => ({
         type: 'image_url',
@@ -193,7 +240,7 @@ function buildPayload(args, referenceImageUrls, clipUrl) {
       })),
       {
         type: 'video_url',
-        video_url: { url: clipUrl },
+        video_url: { url: clip.url },
         role: 'reference_video',
       },
     ],
@@ -272,14 +319,14 @@ async function main() {
       return;
     }
 
-    console.log(JSON.stringify(buildPayload(args, referenceImageUrls, sampleClip.url), null, 2));
+    console.log(JSON.stringify(buildPayload(args, referenceImageUrls, sampleClip), null, 2));
     return;
   }
 
   let processed = 0;
   let failed = 0;
   for (const clip of pendingClips) {
-    const payload = buildPayload(args, referenceImageUrls, clip.url);
+    const payload = buildPayload(args, referenceImageUrls, clip);
     console.log(`[${processed + 1}/${pendingClips.length}] ${clip.id} ${basename(clip.localPath)}`);
     try {
       const task = await createTask(args, payload);

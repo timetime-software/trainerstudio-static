@@ -1,6 +1,6 @@
 {
   "library": "tsl26",
-  "generatedAt": "2026-05-06T15:23:05.748Z",
+  "generatedAt": "2026-05-06T15:40:25.014Z",
   "total": 1,
   "records": [
     {
@@ -13,7 +13,7 @@
       "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/dumbbell_shrugs/source/dumbbell_shrugs.mp4",
       "sourceDownloaded": true,
       "clipBuilt": true,
-      "lastProcessedAt": "2026-05-06T15:23:05.748Z",
+      "lastProcessedAt": "2026-05-06T15:40:25.014Z",
       "error": null
     }
   ]

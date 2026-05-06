@@ -840,14 +840,21 @@ function App() {
     const maxAttempts = AI_VIDEO_MAX_ATTEMPTS;
     const intervalMs = AI_VIDEO_POLL_INTERVAL_MS;
     let outputLog = '';
+    let forceCreate = !status.defaultClip && !PENDING_AI_TASK_STATUSES.has(status.arkTask?.status);
 
     try {
       for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
         const res = await fetch('/api/media/action', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'generate-ai-video', id: selected.id, arkApiKey: arkApiKey.trim() || undefined }),
+          body: JSON.stringify({
+            action: 'generate-ai-video',
+            id: selected.id,
+            forceCreate,
+            arkApiKey: arkApiKey.trim() || undefined,
+          }),
         });
+        forceCreate = false;
         const data = await res.json();
         const chunk = data.output || data.error || JSON.stringify(data, null, 2);
         outputLog += `${attempt === 1 ? '' : '\n\n'}[intento ${attempt}/${maxAttempts}]\n${chunk}`;
