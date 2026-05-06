@@ -9,8 +9,13 @@
     "import": "node --experimental-strip-types import-public-exercises.ts",
     "editor": "npm --prefix editor run dev",
     "videos:sync-json": "node --experimental-strip-types sync-cdn-media.ts",
+    "videos:thumbnails": "node generate-thumbnails.mjs",
+    "build:public": "node --experimental-strip-types build-public-exercises.ts",
     "videos:clips": "node download-youtube-clips.mjs",
     "videos:style-tasks": "node create-ark-style-tasks.mjs",
     "videos:style-status": "node poll-ark-style-tasks.mjs"
+  },
+  "dependencies": {
+    "mongodb": "^7.2.0"
   }
 }
