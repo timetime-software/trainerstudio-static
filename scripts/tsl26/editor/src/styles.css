@@ -338,6 +338,83 @@ p {
   overflow: hidden;
 }
 
+.comparePanel {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.syncControls {
+  display: grid;
+  grid-template-columns: 36px 44px minmax(160px, 1fr) 44px;
+  align-items: center;
+  gap: 8px;
+}
+
+.syncControls button {
+  width: 36px;
+  height: 34px;
+  padding: 0;
+}
+
+.syncControls span {
+  font-size: 12px;
+  color: #5d6862;
+  text-align: center;
+}
+
+.syncControls input {
+  width: 100%;
+}
+
+.compareGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.compareItem {
+  min-width: 0;
+}
+
+.compareHeader,
+.compareHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.compareHeader {
+  justify-content: space-between;
+  min-height: 32px;
+}
+
+.compareHeader strong {
+  font-size: 13px;
+  color: #2a342f;
+}
+
+.mediaBox.compact {
+  margin-top: 0;
+}
+
+.iconDanger {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-color: #e4b7b1;
+  color: #a2362a;
+  background: #fff7f5;
+}
+
+.iconDanger:disabled {
+  color: #a8b1ac;
+  background: #f8faf9;
+  border-color: #d7ded9;
+}
+
 .mediaBox iframe,
 .mediaBox video,
 .mediaBox img {
@@ -349,6 +426,12 @@ p {
 
 .emptyMedia {
   color: #75827b;
+}
+
+@media (max-width: 920px) {
+  .compareGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .statusGrid {

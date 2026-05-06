@@ -1,19 +1,19 @@
 {
   "library": "tsl26",
-  "generatedAt": "2026-05-06T08:40:59.358Z",
+  "generatedAt": "2026-05-06T15:23:05.748Z",
   "total": 1,
   "records": [
     {
-      "id": "mypthub_586",
-      "name": "Air Bike",
-      "cdnslug": "air_bike",
-      "youtubeId": "CXEcOthC110",
-      "youtubeUrl": "https://www.youtube.com/embed/CXEcOthC110?autoplay=1",
-      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/mypthub_586_air-bike_source.mp4",
-      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/air_bike/source/air_bike.mp4",
+      "id": "mypthub_69",
+      "name": "Dumbbell Shrugs",
+      "cdnslug": "dumbbell_shrugs",
+      "youtubeId": "sWeYG_I5HA4",
+      "youtubeUrl": "https://www.youtube.com/embed/sWeYG_I5HA4?autoplay=1",
+      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/mypthub_69_dumbbell-shrugs_source.mp4",
+      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/dumbbell_shrugs/source/dumbbell_shrugs.mp4",
       "sourceDownloaded": true,
       "clipBuilt": true,
-      "lastProcessedAt": "2026-05-06T08:40:59.358Z",
+      "lastProcessedAt": "2026-05-06T15:23:05.748Z",
       "error": null
     }
   ]

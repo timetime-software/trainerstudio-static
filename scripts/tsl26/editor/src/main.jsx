@@ -1,9 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { AlertTriangle, Check, ChevronLeft, ChevronRight, Clock, EyeOff, FileVideo, Play, Save, Scissors, Search, Sparkles, Star } from 'lucide-react';
+import { AlertTriangle, Check, ChevronLeft, ChevronRight, Clock, EyeOff, FileVideo, Pause, Play, Save, Scissors, Search, Sparkles, Star, Trash2 } from 'lucide-react';
 import './styles.css';
 
 const emptyStatus = { sourceClip: false, defaultClip: false, downloadedOriginals: [], arkTask: null };
+const AI_VIDEO_MAX_ATTEMPTS = 90;
+const AI_VIDEO_POLL_INTERVAL_MS = 10000;
+const PENDING_AI_TASK_STATUSES = new Set(['created', 'queued', 'running']);
 
 function asLines(value) {
   return Array.isArray(value) ? value.join('\n') : '';
@@ -145,6 +148,22 @@ function firstImage(exercise) {
 
 function hasDefaultVideo(exercise) {
   return mediaFor(exercise).some((item) => item.type === 'video' && item.source === 'uploaded');
+}
+
+function isVideoUrl(url) {
+  return url?.endsWith('.mp4') || url?.startsWith('/api/library/video');
+}
+
+function refreshUrl(url, refreshKey) {
+  if (!url?.startsWith('/api/library/video')) return url;
+  return `${url}${url.includes('?') ? '&' : '?'}r=${refreshKey}`;
+}
+
+function formatTime(seconds) {
+  const value = Number.isFinite(seconds) ? Math.max(0, seconds) : 0;
+  const minutes = Math.floor(value / 60);
+  const rest = Math.floor(value % 60).toString().padStart(2, '0');
+  return `${minutes}:${rest}`;
 }
 
 function defaultIndicatorFor(exercise, defaultSlugSet) {
@@ -323,6 +342,9 @@ function App() {
   const [clipDuration, setClipDuration] = useState(4);
   const [savingClip, setSavingClip] = useState(false);
   const [mediaRefreshKey, setMediaRefreshKey] = useState(0);
+  const [syncPlaying, setSyncPlaying] = useState(false);
+  const [syncTime, setSyncTime] = useState(0);
+  const [syncDuration, setSyncDuration] = useState(0);
   const [sourceMode, setSourceMode] = useState('ai');
   const [defaceMode, setDefaceMode] = useState(() => localStorage.getItem('tsl26.defaceMode') || 'solid');
   const [defaceThresh, setDefaceThresh] = useState(() => Number(localStorage.getItem('tsl26.defaceThresh')) || 0.15);
@@ -330,6 +352,9 @@ function App() {
   const [defaceMosaicSize, setDefaceMosaicSize] = useState(() => Number(localStorage.getItem('tsl26.defaceMosaicSize')) || 20);
   const [defacePasses, setDefacePasses] = useState(() => Number(localStorage.getItem('tsl26.defacePasses')) || 1);
   const [defaceKeepOriginal, setDefaceKeepOriginal] = useState(() => localStorage.getItem('tsl26.defaceKeepOriginal') === 'true');
+  const sourceVideoRef = useRef(null);
+  const defaultVideoRef = useRef(null);
+  const suppressSyncRef = useRef(false);
 
   async function loadExercises(preferredId = idFromUrl()) {
     const data = await fetch('/api/exercises')
@@ -425,6 +450,9 @@ function App() {
     setSearchQuery('');
     setSearchResults([]);
     setSourceMode('ai');
+    setSyncPlaying(false);
+    setSyncTime(0);
+    setSyncDuration(0);
   }, [selected?.id]);
 
   const filtered = useMemo(() => {
@@ -433,6 +461,8 @@ function App() {
     const librarySlugSet = new Set(librarySlugs);
     return exercises.filter((exercise) => {
       const slug = exercise.cdnslug || exercise.cdnSlug;
+      const hasDefault = hasDefaultVideo(exercise) || (slug && defaultSlugs.has(slug));
+      const shouldRegenerate = exercise.metadata?.defaultVideoInvalid === true || /regener/i.test(String(exercise.metadata?.notes || ''));
       const haystack = [
         exercise.id,
         exercise.cdnslug,
@@ -448,11 +478,13 @@ function App() {
         filter === 'all' ||
         (filter === 'priority' && exercise.priority === true) ||
         (filter === 'invalidDefault' && exercise.metadata?.defaultVideoInvalid === true) ||
+        (filter === 'regenerate' && shouldRegenerate) ||
         (filter === 'library' && librarySlugSet.has(slug)) ||
         (filter === 'notInLibrary' && !librarySlugSet.has(slug)) ||
         (filter === 'missingFolder' && slug && !librarySlugSet.has(slug)) ||
         (filter === 'youtube' && firstVideo(exercise)?.url?.includes('youtube')) ||
-        (filter === 'missingDefault' && !exercise.media?.some((item) => item.source === 'uploaded')) ||
+        (filter === 'hasDefault' && hasDefault) ||
+        (filter === 'missingDefault' && !hasDefault) ||
         (filter === 'reviewed' && exercise.metadata?.reviewed === true) ||
         (filter === 'pendingReview' && exercise.metadata?.reviewed !== true) ||
         (filter === 'inactive' && exercise.isActive === false);
@@ -465,7 +497,7 @@ function App() {
       if (aOrder !== bOrder) return aOrder - bOrder;
       return (a.name || '').localeCompare(b.name || '');
     });
-  }, [exercises, filter, librarySlugs, query]);
+  }, [defaultSlugs, exercises, filter, librarySlugs, query]);
 
   const options = useMemo(() => ({
     categories: uniqueOptions(exercises, (exercise) => [exercise.category]),
@@ -536,6 +568,95 @@ function App() {
       setLog(data.output || data.error || JSON.stringify(data, null, 2));
     } finally {
       await refreshStatus();
+      setRunning('');
+    }
+  }
+
+  function updateSyncMetrics() {
+    const videos = [sourceVideoRef.current, defaultVideoRef.current].filter(Boolean);
+    const durations = videos.map((videoElement) => videoElement.duration).filter(Number.isFinite);
+    const currentTimes = videos.map((videoElement) => videoElement.currentTime).filter(Number.isFinite);
+    setSyncDuration(durations.length ? Math.max(...durations) : 0);
+    setSyncTime(currentTimes.length ? currentTimes[0] : 0);
+    setSyncPlaying(videos.some((videoElement) => !videoElement.paused));
+  }
+
+  function syncFromVideo(event) {
+    if (suppressSyncRef.current) return;
+    const origin = event.currentTarget;
+    const peers = [sourceVideoRef.current, defaultVideoRef.current].filter((videoElement) => videoElement && videoElement !== origin);
+    suppressSyncRef.current = true;
+    for (const peer of peers) {
+      if (Number.isFinite(origin.currentTime) && Math.abs(peer.currentTime - origin.currentTime) > 0.25) {
+        peer.currentTime = origin.currentTime;
+      }
+      if (Number.isFinite(origin.playbackRate) && peer.playbackRate !== origin.playbackRate) {
+        peer.playbackRate = origin.playbackRate;
+      }
+      if (origin.paused && !peer.paused) {
+        peer.pause();
+      } else if (!origin.paused && peer.paused) {
+        peer.play().catch(() => {});
+      }
+    }
+    window.setTimeout(() => {
+      suppressSyncRef.current = false;
+    }, 0);
+    updateSyncMetrics();
+  }
+
+  function setSynchronizedPlayback(shouldPlay) {
+    const videos = [sourceVideoRef.current, defaultVideoRef.current].filter(Boolean);
+    suppressSyncRef.current = true;
+    for (const videoElement of videos) {
+      if (shouldPlay) videoElement.play().catch(() => {});
+      else videoElement.pause();
+    }
+    window.setTimeout(() => {
+      suppressSyncRef.current = false;
+    }, 0);
+    setSyncPlaying(shouldPlay);
+  }
+
+  function seekSynchronizedVideos(value) {
+    const nextTime = Number(value);
+    if (!Number.isFinite(nextTime)) return;
+    suppressSyncRef.current = true;
+    for (const videoElement of [sourceVideoRef.current, defaultVideoRef.current].filter(Boolean)) {
+      videoElement.currentTime = nextTime;
+    }
+    window.setTimeout(() => {
+      suppressSyncRef.current = false;
+    }, 0);
+    setSyncTime(nextTime);
+  }
+
+  async function deleteDefaultVideo() {
+    setRunning('Borrando default');
+    setLog('');
+    try {
+      const res = await fetch('/api/media/action', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'delete-default', id: selected.id }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || data.output || 'Delete default failed');
+      if (data.exercise) {
+        setExercises((current) => current.map((exercise) => (exercise.id === selected.id ? data.exercise : exercise)));
+      }
+      setDirty(false);
+      setDefaultSlugs((current) => {
+        const next = new Set(current);
+        next.delete(selected.cdnslug || selected.cdnSlug);
+        return next;
+      });
+      setMediaRefreshKey(Date.now());
+      setLog(data.output || 'Default eliminado.');
+    } catch (error) {
+      setLog(error.message);
+    } finally {
+      await refreshStatus(selected.id);
       setRunning('');
     }
   }
@@ -662,12 +783,62 @@ function App() {
     return null;
   }
 
+  useEffect(() => {
+    const taskStatus = status.arkTask?.status;
+    if (!selected?.id || status.defaultClip || !PENDING_AI_TASK_STATUSES.has(taskStatus)) return undefined;
+    if (running && running !== 'Continuando polling de IA') return undefined;
+
+    let cancelled = false;
+    const maxAttempts = AI_VIDEO_MAX_ATTEMPTS;
+    const intervalMs = AI_VIDEO_POLL_INTERVAL_MS;
+
+    async function autoPollPendingTask() {
+      for (let attempt = 1; attempt <= maxAttempts && !cancelled; attempt += 1) {
+        setRunning('Continuando polling de IA');
+        try {
+          const res = await fetch('/api/media/action', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'generate-default', id: selected.id, arkApiKey: arkApiKey.trim() || undefined }),
+          });
+          const data = await res.json();
+          const chunk = data.output || data.error || JSON.stringify(data, null, 2);
+          if (cancelled) return;
+
+          setLog((current) => {
+            const entry = `[auto-poll ${attempt}/${maxAttempts}]\n${chunk}`;
+            const previousEntries = current ? current.split('\n\n').slice(-8) : [];
+            return [...previousEntries, entry].join('\n\n');
+          });
+
+          await refreshStatus(selected.id);
+          const terminal = terminalVideoState(chunk);
+          if (terminal === 'downloaded' || terminal === 'failed') return;
+        } catch (error) {
+          if (!cancelled) setLog(error.message);
+          return;
+        } finally {
+          if (!cancelled) setRunning('');
+        }
+
+        if (attempt < maxAttempts) {
+          await new Promise((resolve) => setTimeout(resolve, intervalMs));
+        }
+      }
+    }
+
+    autoPollPendingTask();
+    return () => {
+      cancelled = true;
+    };
+  }, [arkApiKey, selected?.id, status.arkTask?.status, status.defaultClip]);
+
   async function generateAiVideo() {
     setRunning('Generando video con IA');
     setLog('');
 
-    const maxAttempts = 24;
-    const intervalMs = 5000;
+    const maxAttempts = AI_VIDEO_MAX_ATTEMPTS;
+    const intervalMs = AI_VIDEO_POLL_INTERVAL_MS;
     let outputLog = '';
 
     try {
@@ -702,13 +873,16 @@ function App() {
   const video = firstVideo(selected);
   const localDefault = status.defaultClip ? { type: 'video', url: status.defaultUrl, source: 'uploaded' } : null;
   const localSource = status.sourceClip ? { type: 'video', url: status.sourceUrl, source: 'source' } : null;
+  const sourceVideo = localSource || videoBySource(selected, 'source');
+  const defaultVideo = localDefault || videoBySource(selected, 'uploaded');
+  const sourceVideoUrl = refreshUrl(sourceVideo?.url, mediaRefreshKey);
+  const defaultVideoUrl = refreshUrl(defaultVideo?.url, mediaRefreshKey);
+  const hasComparisonVideo = isVideoUrl(sourceVideoUrl) || isVideoUrl(defaultVideoUrl);
   const variantVideo = mediaVariant === 'default'
     ? (localDefault || videoBySource(selected, 'uploaded') || localSource)
     : (localSource || localDefault || videoBySource(selected, 'source'));
   const previewVideo = variantVideo || video;
-  const previewVideoUrl = previewVideo?.url?.startsWith('/api/library/video')
-    ? `${previewVideo.url}${previewVideo.url.includes('?') ? '&' : '?'}r=${mediaRefreshKey}`
-    : previewVideo?.url;
+  const previewVideoUrl = refreshUrl(previewVideo?.url, mediaRefreshKey);
   const image = firstImage(selected);
   const aiTaskStatus = status.arkTask?.error ? 'failed' : status.arkTask?.status || null;
   const taskStatusLabels = {
@@ -740,10 +914,12 @@ function App() {
               <option value="all">All</option>
               <option value="priority">Priority</option>
               <option value="invalidDefault">Default invalid</option>
+              <option value="regenerate">Regenerate</option>
               <option value="library">In library</option>
               <option value="notInLibrary">Not in library</option>
               <option value="missingFolder">Missing folder</option>
               <option value="youtube">YouTube</option>
+              <option value="hasDefault">Has default</option>
               <option value="missingDefault">Missing default</option>
               <option value="pendingReview">Pending review</option>
               <option value="reviewed">Reviewed</option>
@@ -826,34 +1002,102 @@ function App() {
           </div>
         </div>
 
-        <div className="mediaToolbar" aria-label="Video variant">
-          <button
-            className={mediaVariant === 'source' ? 'active' : ''}
-            onClick={() => setMediaVariant('source')}
-            disabled={!status.sourceClip && !videoBySource(selected, 'source')}
-          >
-            Original
-          </button>
-          <button
-            className={mediaVariant === 'default' ? 'active' : ''}
-            onClick={() => setMediaVariant('default')}
-            disabled={!status.defaultClip && !videoBySource(selected, 'uploaded')}
-          >
-            Default
-          </button>
-        </div>
+        {hasComparisonVideo ? (
+          <section className="comparePanel" aria-label="Source and default video comparison">
+            <div className="syncControls">
+              <button type="button" onClick={() => setSynchronizedPlayback(!syncPlaying)}>
+                {syncPlaying ? <Pause size={15} /> : <Play size={15} />}
+              </button>
+              <span>{formatTime(syncTime)}</span>
+              <input
+                type="range"
+                min="0"
+                max={syncDuration || 4}
+                step="0.05"
+                value={Math.min(syncTime, syncDuration || 4)}
+                onChange={(event) => seekSynchronizedVideos(event.target.value)}
+              />
+              <span>{formatTime(syncDuration || 4)}</span>
+            </div>
 
-        <div className="mediaBox">
-          {previewVideoUrl?.endsWith('.mp4') || previewVideoUrl?.startsWith('/api/library/video') ? (
-            <video key={previewVideoUrl} src={previewVideoUrl} controls playsInline />
-          ) : previewVideoUrl ? (
-            <iframe key={previewVideoUrl} src={previewVideoUrl} allow="autoplay; encrypted-media; picture-in-picture" />
-          ) : image?.url || image?.thumbnailUrl ? (
-            <img src={image.thumbnailUrl || image.url} />
-          ) : (
-            <div className="emptyMedia">No media</div>
-          )}
-        </div>
+            <div className="compareGrid">
+              <div className="compareItem">
+                <div className="compareHeader">
+                  <strong>Source</strong>
+                  <span className={status.sourceClip ? 'state ready' : 'state missing'}>{sourceState}</span>
+                </div>
+                <div className="mediaBox compact">
+                  {isVideoUrl(sourceVideoUrl) ? (
+                    <video
+                      key={sourceVideoUrl}
+                      ref={sourceVideoRef}
+                      src={sourceVideoUrl}
+                      controls
+                      playsInline
+                      onLoadedMetadata={updateSyncMetrics}
+                      onPlay={syncFromVideo}
+                      onPause={syncFromVideo}
+                      onSeeked={syncFromVideo}
+                      onRateChange={syncFromVideo}
+                      onTimeUpdate={syncFromVideo}
+                    />
+                  ) : (
+                    <div className="emptyMedia">No source</div>
+                  )}
+                </div>
+              </div>
+
+              <div className="compareItem">
+                <div className="compareHeader">
+                  <strong>Default</strong>
+                  <div className="compareHeaderActions">
+                    <span className={`state ${defaultStateClass}`}>{defaultState}</span>
+                    <button
+                      type="button"
+                      className="iconDanger"
+                      title="Borrar default local y quitarlo de la metadata"
+                      onClick={deleteDefaultVideo}
+                      disabled={Boolean(running) || (!status.defaultClip && !hasDefaultVideo(selected))}
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
+                </div>
+                <div className="mediaBox compact">
+                  {isVideoUrl(defaultVideoUrl) ? (
+                    <video
+                      key={defaultVideoUrl}
+                      ref={defaultVideoRef}
+                      src={defaultVideoUrl}
+                      controls
+                      playsInline
+                      onLoadedMetadata={updateSyncMetrics}
+                      onPlay={syncFromVideo}
+                      onPause={syncFromVideo}
+                      onSeeked={syncFromVideo}
+                      onRateChange={syncFromVideo}
+                      onTimeUpdate={syncFromVideo}
+                    />
+                  ) : (
+                    <div className="emptyMedia">No default</div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
+        ) : (
+          <div className="mediaBox">
+            {isVideoUrl(previewVideoUrl) ? (
+              <video key={previewVideoUrl} src={previewVideoUrl} controls playsInline />
+            ) : previewVideoUrl ? (
+              <iframe key={previewVideoUrl} src={previewVideoUrl} allow="autoplay; encrypted-media; picture-in-picture" />
+            ) : image?.url || image?.thumbnailUrl ? (
+              <img src={image.thumbnailUrl || image.url} />
+            ) : (
+              <div className="emptyMedia">No media</div>
+            )}
+          </div>
+        )}
 
         <div className="statusGrid" aria-label="Media status">
           <div>

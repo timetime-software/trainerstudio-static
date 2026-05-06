@@ -283,6 +283,38 @@ async function mediaStatus(exercise) {
   };
 }
 
+async function deleteDefaultVideoForExercise(id) {
+  const exercises = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
+  const exercise = exercises.find((item) => item.id === id);
+  const cdnslug = exercise?.cdnslug || exercise?.cdnSlug;
+  if (!exercise || !cdnslug) {
+    throw new Error(`Exercise not found or missing cdnslug: ${id}`);
+  }
+
+  const defaultPath = path.join(libraryRoot, cdnslug, 'default', `${cdnslug}.mp4`);
+  const existed = await pathExists(defaultPath);
+  await fs.rm(defaultPath, { force: true });
+  await fs.rmdir(path.dirname(defaultPath)).catch(() => {});
+
+  const defaultCdnPath = `/libraries/tsl26/${cdnslug}/default/${cdnslug}.mp4`;
+  const updatedExercise = {
+    ...exercise,
+    media: (Array.isArray(exercise.media) ? exercise.media : []).filter((item) => !(
+      item?.type === 'video' &&
+      item?.source === 'uploaded' &&
+      String(item?.url || '').includes(defaultCdnPath)
+    )),
+  };
+  const nextExercises = exercises.map((item) => (item.id === id ? updatedExercise : item));
+  await persistExercises(nextExercises);
+
+  return {
+    ok: true,
+    output: `${existed ? 'Deleted' : 'Default file not found'}: ${path.relative(repoRoot, defaultPath)}\nUpdated exercises JSON metadata.`,
+    exercise: updatedExercise,
+  };
+}
+
 async function readLibrarySlugs() {
   return (await fs.readdir(libraryRoot, { withFileTypes: true }).catch(() => []))
     .filter((entry) => entry.isDirectory() && entry.name !== 'references')
@@ -543,6 +575,8 @@ function exerciseEditorPlugin() {
             ], extraEnv);
           } else if (action === 'generate-ai-video') {
             result = await runAiVideoFlow(id, extraEnv);
+          } else if (action === 'delete-default') {
+            result = await deleteDefaultVideoForExercise(id);
           } else if (action === 'deface-source') {
             const args = ['deface-source-video.mjs', `--ids=${id}`];
             if (defaceOptions) {
