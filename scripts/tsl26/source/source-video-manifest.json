@@ -1,19 +1,19 @@
 {
   "library": "tsl26",
-  "generatedAt": "2026-05-06T07:23:52.785Z",
+  "generatedAt": "2026-05-06T08:05:12.623Z",
   "total": 1,
   "records": [
     {
-      "id": "tsl_kickflip",
-      "name": "Kickflip",
-      "cdnslug": "kickflip",
-      "youtubeId": "cC7VEqn-mUM",
-      "youtubeUrl": "https://www.youtube.com/embed/cC7VEqn-mUM",
-      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/tsl_kickflip_kickflip_source.mp4",
-      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/kickflip/source/kickflip.mp4",
+      "id": "mypthub_402",
+      "name": "Sumo Deadlifts",
+      "cdnslug": "sumo_deadlifts",
+      "youtubeId": "pfSMst14EFk",
+      "youtubeUrl": "https://www.youtube.com/embed/pfSMst14EFk",
+      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/mypthub_402_sumo-deadlifts_source.mp4",
+      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/sumo_deadlifts/source/sumo_deadlifts.mp4",
       "sourceDownloaded": true,
       "clipBuilt": true,
-      "lastProcessedAt": "2026-05-06T07:23:52.785Z",
+      "lastProcessedAt": "2026-05-06T08:05:12.623Z",
       "error": null
     }
   ]
