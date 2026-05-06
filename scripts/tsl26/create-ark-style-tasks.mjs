@@ -3,6 +3,15 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'fs';
 import { basename, dirname, join, relative, resolve } from 'path';
 import { fileURLToPath } from 'url';
+import { createHash } from 'crypto';
+
+function sha256OfFile(localPath) {
+  return createHash('sha256').update(readFileSync(localPath)).digest('hex');
+}
+
+function dedupeKey(clipUrl, sha256) {
+  return `${clipUrl}::${sha256 || ''}`;
+}
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, '../..');
@@ -136,7 +145,7 @@ function loadExistingOutput(output) {
       .filter(Boolean)
       .map((line) => JSON.parse(line))
       .filter((row) => row.status === 'created')
-      .map((row) => row.clipUrl)
+      .map((row) => dedupeKey(row.clipUrl, row.sourceSha256))
       .filter(Boolean),
   );
 }
@@ -154,6 +163,7 @@ function listClips(args) {
       cdnslug,
       localPath,
       url: toPublicCdnUrl(localPath, args.cdnBaseUrl),
+      sourceSha256: sha256OfFile(localPath),
     };
   });
 
@@ -249,8 +259,8 @@ async function main() {
 
   const referenceImageUrls = args.referenceImages.map((image) => toPublicCdnUrl(image, args.cdnBaseUrl));
   const clips = listClips(args);
-  const existingClipUrls = args.overwriteOutput ? new Set() : loadExistingOutput(args.output);
-  const pendingClips = clips.filter((clip) => !existingClipUrls.has(clip.url));
+  const existingTaskKeys = args.overwriteOutput ? new Set() : loadExistingOutput(args.output);
+  const pendingClips = clips.filter((clip) => !existingTaskKeys.has(dedupeKey(clip.url, clip.sourceSha256)));
 
   console.log(`Found ${clips.length} clip(s), ${pendingClips.length} pending`);
   console.log(`Reference images: ${referenceImageUrls.join(', ')}`);
@@ -280,6 +290,7 @@ async function main() {
         id: clip.id,
         cdnslug: clip.cdnslug,
         clipUrl: clip.url,
+        sourceSha256: clip.sourceSha256,
         referenceImageUrls,
         payload,
         taskId,
@@ -294,6 +305,7 @@ async function main() {
         id: clip.id,
         cdnslug: clip.cdnslug,
         clipUrl: clip.url,
+        sourceSha256: clip.sourceSha256,
         referenceImageUrls,
         payload,
         error: {

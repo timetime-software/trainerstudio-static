@@ -308,10 +308,12 @@ function main() {
 
     console.log(`[${processed + 1}/${candidates.length}] ${id} ${name}`);
     try {
+      const clipExisted = existsSync(clipPath);
       downloadSourceVideo(youtubeId, sourcePath, args.overwrite);
       buildClip(sourcePath, clipPath, args);
       const clipInfo = probeClip(clipPath);
-      console.log(`Wrote clip: ${clipPath}${clipInfo ? ` (${clipInfo.probe} sha256=${clipInfo.hash})` : ''}`);
+      const verb = clipExisted && !args.overwrite ? 'Reused clip' : 'Wrote clip';
+      console.log(`${verb}: ${clipPath}${clipInfo ? ` (${clipInfo.probe} sha256=${clipInfo.hash})` : ''}`);
       record.error = null;
     } catch (error) {
       record.error = error instanceof Error ? error.message : String(error);
