@@ -1,19 +1,19 @@
 {
   "library": "tsl26",
-  "generatedAt": "2026-05-06T15:55:42.500Z",
+  "generatedAt": "2026-05-06T16:20:20.961Z",
   "total": 1,
   "records": [
     {
-      "id": "mypthub_1062",
-      "name": "Bicep Curl Machine",
-      "cdnslug": "bicep_curl_machine",
-      "youtubeId": "47F9kADdPEs",
-      "youtubeUrl": "https://www.youtube.com/embed/47F9kADdPEs",
-      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/mypthub_1062_bicep-curl-machine_source.mp4",
-      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/bicep_curl_machine/source/bicep_curl_machine.mp4",
+      "id": "mypthub_346",
+      "name": "Rack Pulls",
+      "cdnslug": "rack_pulls",
+      "youtubeId": "jiF2sZx1PYk",
+      "youtubeUrl": "https://www.youtube.com/embed/jiF2sZx1PYk?autoplay=1",
+      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/mypthub_346_rack-pulls_source.mp4",
+      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/rack_pulls/source/rack_pulls.mp4",
       "sourceDownloaded": true,
       "clipBuilt": true,
-      "lastProcessedAt": "2026-05-06T15:55:42.500Z",
+      "lastProcessedAt": "2026-05-06T16:20:20.961Z",
       "error": null
     }
   ]
