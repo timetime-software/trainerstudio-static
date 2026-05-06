@@ -1,19 +1,19 @@
 {
   "library": "tsl26",
-  "generatedAt": "2026-05-06T07:14:48.904Z",
+  "generatedAt": "2026-05-06T07:23:52.785Z",
   "total": 1,
   "records": [
     {
-      "id": "mypthub_1019",
-      "name": "Adductor Machine Internal",
-      "cdnslug": "adductor_machine_internal",
-      "youtubeId": "Xipizs7Cytc",
-      "youtubeUrl": "https://www.youtube.com/embed/Xipizs7Cytc",
-      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/mypthub_1019_adductor-machine-internal_source.mp4",
-      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/adductor_machine_internal/source/adductor_machine_internal.mp4",
+      "id": "tsl_kickflip",
+      "name": "Kickflip",
+      "cdnslug": "kickflip",
+      "youtubeId": "cC7VEqn-mUM",
+      "youtubeUrl": "https://www.youtube.com/embed/cC7VEqn-mUM",
+      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/tsl_kickflip_kickflip_source.mp4",
+      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/kickflip/source/kickflip.mp4",
       "sourceDownloaded": true,
       "clipBuilt": true,
-      "lastProcessedAt": "2026-05-06T07:14:48.904Z",
+      "lastProcessedAt": "2026-05-06T07:23:52.785Z",
       "error": null
     }
   ]
