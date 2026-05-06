@@ -1,19 +1,19 @@
 {
   "library": "tsl26",
-  "generatedAt": "2026-05-06T15:40:25.014Z",
+  "generatedAt": "2026-05-06T15:55:42.500Z",
   "total": 1,
   "records": [
     {
-      "id": "mypthub_69",
-      "name": "Dumbbell Shrugs",
-      "cdnslug": "dumbbell_shrugs",
-      "youtubeId": "sWeYG_I5HA4",
-      "youtubeUrl": "https://www.youtube.com/embed/sWeYG_I5HA4?autoplay=1",
-      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/mypthub_69_dumbbell-shrugs_source.mp4",
-      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/dumbbell_shrugs/source/dumbbell_shrugs.mp4",
+      "id": "mypthub_1062",
+      "name": "Bicep Curl Machine",
+      "cdnslug": "bicep_curl_machine",
+      "youtubeId": "47F9kADdPEs",
+      "youtubeUrl": "https://www.youtube.com/embed/47F9kADdPEs",
+      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/mypthub_1062_bicep-curl-machine_source.mp4",
+      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/bicep_curl_machine/source/bicep_curl_machine.mp4",
       "sourceDownloaded": true,
       "clipBuilt": true,
-      "lastProcessedAt": "2026-05-06T15:40:25.014Z",
+      "lastProcessedAt": "2026-05-06T15:55:42.500Z",
       "error": null
     }
   ]
