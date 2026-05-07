@@ -69,7 +69,7 @@ const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_DIR = path.join(SCRIPT_DIR, '.workspace');
 
 const DEFAULT_INPUT_PATH = path.join(WORKSPACE_DIR, 'import/mypthub-exercises.csv');
-const DEFAULT_OUTPUT_PATH = path.join(SCRIPT_DIR, 'data/exercises.json');
+const DEFAULT_OUTPUT_PATH = path.join(SCRIPT_DIR, 'data/exercises.ndjson');
 
 const MUSCLE_MAP: Record<string, string[]> = {
   Abdominals: ['abs'],
@@ -423,6 +423,11 @@ async function writeJson(filePath: string, value: unknown): Promise<void> {
   await fs.writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
 
+async function writeNdjson(filePath: string, documents: PublicExerciseDocument[]): Promise<void> {
+  await fs.mkdir(path.dirname(filePath), { recursive: true });
+  await fs.writeFile(filePath, `${documents.map((document) => JSON.stringify(document)).join('\n')}\n`, 'utf8');
+}
+
 function ensureUniqueCdnSlugs(documents: PublicExerciseDocument[]): void {
   const seen = new Map<string, number>();
 
@@ -443,7 +448,6 @@ async function main(): Promise<void> {
   const inputPath = path.resolve(getOption('input', DEFAULT_INPUT_PATH));
   const outputPath = path.resolve(getOption('output', DEFAULT_OUTPUT_PATH));
   const reportPath = path.resolve(getOption('report', path.join(WORKSPACE_DIR, 'import/mypthub-public-exercises.report.json')));
-  const ndjsonPath = outputPath.replace(/\.json$/i, '.ndjson');
   const libraryId = getArgValue('library-id') ?? process.env.MYPTHUB_TRANSFORM_LIBRARY_ID;
 
   const content = await fs.readFile(inputPath, 'utf8');
@@ -470,13 +474,11 @@ async function main(): Promise<void> {
   ensureUniqueCdnSlugs(documents);
   report.transformed = documents.length;
 
-  await writeJson(outputPath, documents);
-  await fs.writeFile(ndjsonPath, `${documents.map((document) => JSON.stringify(document)).join('\n')}\n`, 'utf8');
+  await writeNdjson(outputPath, documents);
   await writeJson(reportPath, report);
 
   console.log(`Transformed ${documents.length}/${rows.length} My PT Hub exercises`);
-  console.log(`JSON: ${outputPath}`);
-  console.log(`NDJSON: ${ndjsonPath}`);
+  console.log(`NDJSON: ${outputPath}`);
   console.log(`Report: ${reportPath}`);
 
   if (Object.keys(report.unmappedMuscles).length > 0 || Object.keys(report.unmappedEquipment).length > 0) {

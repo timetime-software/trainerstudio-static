@@ -25,7 +25,7 @@ type SourceExerciseDocument = {
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(SCRIPT_DIR, '../..');
-const DEFAULT_INPUT_PATH = path.join(SCRIPT_DIR, 'data/exercises.json');
+const DEFAULT_INPUT_PATH = path.join(SCRIPT_DIR, 'data/exercises.ndjson');
 const DEFAULT_OUTPUT_PATH = path.join(SCRIPT_DIR, 'data/exercises-public.json');
 const DEFAULT_LIBRARY_ROOT = path.join(REPO_ROOT, 'libraries/tsl26');
 const DEFAULT_CDN_BASE_URL = 'https://cdn.trainerstudio.com';
@@ -45,6 +45,14 @@ async function pathExists(p: string): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+async function readExercises(filePath: string): Promise<SourceExerciseDocument[]> {
+  const raw = (await fs.readFile(filePath, 'utf8')).trim();
+  if (!raw) return [];
+  return raw.startsWith('[')
+    ? JSON.parse(raw) as SourceExerciseDocument[]
+    : raw.split('\n').filter(Boolean).map((line) => JSON.parse(line.replace(/,\s*$/, '')) as SourceExerciseDocument);
 }
 
 function cdnSlugFor(exercise: SourceExerciseDocument): string | undefined {
@@ -151,9 +159,9 @@ async function main(): Promise<void> {
   const libraryRoot = path.resolve(getArgValue('library-root') ?? DEFAULT_LIBRARY_ROOT);
   const cdnBase = getArgValue('cdn-base-url') ?? DEFAULT_CDN_BASE_URL;
 
-  const raw = JSON.parse(await fs.readFile(inputPath, 'utf8')) as SourceExerciseDocument[];
+  const raw = await readExercises(inputPath);
   if (!Array.isArray(raw)) {
-    throw new Error('Input JSON must be an array of public exercise documents');
+    throw new Error('Input must contain public exercise documents');
   }
 
   const report: BuildReport = {

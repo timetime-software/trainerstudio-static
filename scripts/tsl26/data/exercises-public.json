@@ -1294,130 +1294,6 @@
   },
   {
     "priority": false,
-    "id": "0c791c4454061dabc8c55d52",
-    "name": "Banded Barbell Hip Thrust",
-    "force": "pull",
-    "level": "intermediate",
-    "mechanic": "compound",
-    "equipment": "barbell",
-    "primaryMuscles": [
-      "glutes"
-    ],
-    "secondaryMuscles": [
-      "hamstrings",
-      "abductors"
-    ],
-    "instructions": [
-      "1) Grab a small band and place it around the thighs just above the knees.",
-      "2) Set up a bench or a step and barbell.",
-      "3) Take a seat on the floor with your legs underneath the bar, your back should be supported by a bench or an elevated step with your shoulder blades being the point of contact.",
-      "4) Roll the bar up and over your legs until it is directly above your hips, bend at your knees and walk your feet in towards your glutes.",
-      "5) Whilst exhaling, push your knees into the band, squeeze your glutes and drive your heels to lift your hips towards the ceiling. As you do so, keep your chin on your chest keep driving upward until your glutes are fully contracted and your body is parallel with the floor.",
-      "6) Inhale and gently relax your glutes to return the barbell back along the same path to the starting position.",
-      "7) Repeat for the recommended amount of repetitions."
-    ],
-    "category": "strength",
-    "images": [
-      "https://cdn.trainerstudio.com/libraries/tsl26/banded_barbell_hip_thrust/thumbnail.png"
-    ],
-    "isActive": true,
-    "i18n": {
-      "name": {
-        "en": "Banded Barbell Hip Thrust",
-        "es": "Hip thrust con barra y banda"
-      },
-      "instructions": {
-        "en": [
-          "1) Grab a small band and place it around the thighs just above the knees.",
-          "2) Set up a bench or a step and barbell.",
-          "3) Take a seat on the floor with your legs underneath the bar, your back should be supported by a bench or an elevated step with your shoulder blades being the point of contact.",
-          "4) Roll the bar up and over your legs until it is directly above your hips, bend at your knees and walk your feet in towards your glutes.",
-          "5) Whilst exhaling, push your knees into the band, squeeze your glutes and drive your heels to lift your hips towards the ceiling. As you do so, keep your chin on your chest keep driving upward until your glutes are fully contracted and your body is parallel with the floor.",
-          "6) Inhale and gently relax your glutes to return the barbell back along the same path to the starting position.",
-          "7) Repeat for the recommended amount of repetitions."
-        ],
-        "es": [
-          "1) Coge una pequeña banda y colócala alrededor de los muslos, justo por encima de las rodillas.",
-          "2) Instale un banco o un escalón y una barra.",
-          "3) Siéntate en el suelo con las piernas debajo de la barra, tu espalda debe estar apoyada en un banco o un escalón elevado con los omódiscos como punto de contacto.",
-          "4) Enrolle la barra hacia arriba y sobre tus piernas hasta que esté directamente encima de tus caderas, dobla las rodillas y camina con los pies hacia los glúteos.",
-          "5) Mientras exhalass, empuja las rodillas hacia la banda, aprieta los glúteos y empuja los talones para levantar las caderas hacia el techo. Mientras lo haces, mantén la barbilla sobre el pecho y sigue avanzando hacia arriba hasta que los glúteos estén completamente contraídos y el cuerpo quede paralelo al suelo.",
-          "6) Inhala y relaje suavemente los glúteos para devolver la barra por el mismo camino hasta la posición inicial.",
-          "7) Repite el número recomendado de repeticiones."
-        ]
-      },
-      "category": {
-        "en": "strength",
-        "es": "fuerza"
-      },
-      "equipment": {
-        "en": "Barbell",
-        "es": "Barra"
-      },
-      "primaryMuscles": {
-        "en": [
-          "Glutes"
-        ],
-        "es": [
-          "Gluteos"
-        ]
-      },
-      "secondaryMuscles": {
-        "en": [
-          "Hamstrings",
-          "Abductors"
-        ],
-        "es": [
-          "Isquiotibiales",
-          "Abductores"
-        ]
-      }
-    },
-    "classification": {
-      "primaryMuscles": [
-        "glutes"
-      ],
-      "secondaryMuscles": [
-        "hamstrings",
-        "abductors"
-      ],
-      "movementPattern": [
-        "hinge"
-      ],
-      "forceType": [
-        "pull"
-      ],
-      "mechanic": [
-        "compound"
-      ],
-      "laterality": [
-        "bilateral"
-      ],
-      "equipment": [
-        "barbell",
-        "resistance_band",
-        "bench"
-      ]
-    },
-    "media": [
-      {
-        "type": "video",
-        "url": "https://cdn.trainerstudio.com/libraries/tsl26/banded_barbell_hip_thrust/default/banded_barbell_hip_thrust.mp4",
-        "thumbnailUrl": "https://cdn.trainerstudio.com/libraries/tsl26/banded_barbell_hip_thrust/thumbnail.png",
-        "source": "uploaded"
-      },
-      {
-        "type": "image",
-        "url": "https://cdn.trainerstudio.com/libraries/tsl26/banded_barbell_hip_thrust/thumbnail.png",
-        "source": "uploaded"
-      }
-    ],
-    "aliases": [
-      "Banded Barbell Hip Thrust"
-    ]
-  },
-  {
-    "priority": false,
     "id": "b69359e99a559e47735e0ffc",
     "name": "Banded Abductors",
     "force": "push",
@@ -30416,6 +30292,137 @@
       "Dumbbell Step Ups",
       "Step Ups With Dumbbells",
       "Step-Ups"
+    ]
+  },
+  {
+    "priority": false,
+    "id": "1b4dcfce8ed03c1c72ea5aa3",
+    "name": "Dumbbell Squat To A Bench",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "quadriceps"
+    ],
+    "secondaryMuscles": [
+      "calves",
+      "glutes",
+      "hamstrings",
+      "lower_back"
+    ],
+    "instructions": [
+      "Position a bench behind you as if you were going to sit down. Now, grab two dumbbells and stand with a shoulder width stance, toes pointing slightly outward (palms facing the side of your legs), infront of the bench.",
+      "Throughout the movement you should keep your head up and maintain a stright back. This will be your starting position.",
+      "Descend slowly by bending your knees until your thighs are parallel with the floor and your glutes touch the bench. Keep a straight back so that your posture is not compromised. Tip: When at the bottom of the movement your knees should be behind your toes.",
+      "Once you have hit the bottom of the movement, pause for a second before pushing your torso back into the starting position through your heels. As you descend inhale and as you ascend, exhale. You should now be at the starting position, ready to go again.",
+      "Repeat for the recommended amount of repetitions.",
+      "Caution: Always be aware of your posture with this exercise as if performed incorrectly, could cause injury.",
+      "Variations: Barbell Squats or Smith Machine Squats."
+    ],
+    "category": "strength",
+    "images": [
+      "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_squat_to_a_bench/thumbnail.png"
+    ],
+    "isActive": true,
+    "i18n": {
+      "name": {
+        "en": "Dumbbell Squat To A Bench",
+        "es": "Sentadilla con mancuernas a banco"
+      },
+      "instructions": {
+        "en": [
+          "Position a bench behind you as if you were going to sit down. Now, grab two dumbbells and stand with a shoulder width stance, toes pointing slightly outward (palms facing the side of your legs), infront of the bench.",
+          "Throughout the movement you should keep your head up and maintain a stright back. This will be your starting position.",
+          "Descend slowly by bending your knees until your thighs are parallel with the floor and your glutes touch the bench. Keep a straight back so that your posture is not compromised. Tip: When at the bottom of the movement your knees should be behind your toes.",
+          "Once you have hit the bottom of the movement, pause for a second before pushing your torso back into the starting position through your heels. As you descend inhale and as you ascend, exhale. You should now be at the starting position, ready to go again.",
+          "Repeat for the recommended amount of repetitions.",
+          "Caution: Always be aware of your posture with this exercise as if performed incorrectly, could cause injury.",
+          "Variations: Barbell Squats or Smith Machine Squats."
+        ],
+        "es": [
+          "Coloca un banco detrás de ti como si fueras a sentarte. Ahora, agarre dos mancuernas y párese con una postura a la altura de los hombros, con los dedos de los pies apuntando ligeramente hacia afuera (con las palmas hacia el costado de las piernas), frente al banco.",
+          "Durante todo el movimiento debes mantener la cabeza erguida y la espalda erguida. Esta será tu posición inicial.",
+          "Desciende lentamente doblando las rodillas hasta que tus muslos queden paralelos al suelo y tus glúteos toquen el banco. Mantén la espalda recta para que su postura no se vea comprometida. Consejo: cuando estés en la parte inferior del movimiento, tus rodillas deben estar detrás de los dedos de los pies.",
+          "Una vez que hayas llegado al final del movimiento, haz una pausa por un segundo antes de empujar el torso hacia la posición inicial a través de los talones. Al descender, inhala y al ascender, exhala. Ahora deberías estar en la posición inicial, listo para comenzar de nuevo.",
+          "Repite hasta la cantidad recomendada de repeticiones.",
+          "Precaución: Esté siempre consciente de su postura al realizar este ejercicio, ya que, si se realiza incorrectamente, podría causar lesiones.",
+          "Variaciones: sentadillas con barra o sentadillas con máquina Smith."
+        ]
+      },
+      "category": {
+        "en": "strength",
+        "es": "fuerza"
+      },
+      "equipment": {
+        "en": "Dumbbell",
+        "es": "Mancuerna"
+      },
+      "primaryMuscles": {
+        "en": [
+          "Quadriceps"
+        ],
+        "es": [
+          "Cuadriceps"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Calves",
+          "Glutes",
+          "Hamstrings",
+          "Lower Back"
+        ],
+        "es": [
+          "Pantorrillas",
+          "Gluteos",
+          "Isquiotibiales",
+          "Lumbar"
+        ]
+      }
+    },
+    "classification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "calves",
+        "glutes",
+        "hamstrings",
+        "lower_back"
+      ],
+      "movementPattern": [
+        "squat"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "media": [
+      {
+        "type": "video",
+        "url": "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_squat_to_a_bench/default/dumbbell_squat_to_a_bench.mp4",
+        "thumbnailUrl": "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_squat_to_a_bench/thumbnail.png",
+        "source": "uploaded"
+      },
+      {
+        "type": "image",
+        "url": "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_squat_to_a_bench/thumbnail.png",
+        "source": "uploaded"
+      }
+    ],
+    "aliases": [
+      "Dumbbell Squat To A Bench",
+      "Dumbbell Bench Squats"
     ]
   },
   {

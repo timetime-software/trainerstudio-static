@@ -5,15 +5,12 @@
   "type": "module",
   "scripts": {
     "transform": "node --experimental-strip-types transform-mypthub-to-public-exercises.ts",
-    "i18n:apply": "node --experimental-strip-types apply-i18n-shards.ts",
     "library:ensure": "node --experimental-strip-types ensure-library.ts",
     "import": "node --experimental-strip-types import-public-exercises.ts",
     "editor": "npm --prefix editor run dev",
-    "videos:sync-json": "node --experimental-strip-types sync-cdn-media.ts",
+    "videos:sync-data": "node --experimental-strip-types sync-cdn-media.ts",
     "videos:thumbnails": "node generate-thumbnails.mjs",
     "build:public": "node --experimental-strip-types build-public-exercises.ts",
-    "classify:batches": "node --experimental-strip-types build-classification-batches.ts",
-    "classify:merge": "node --experimental-strip-types merge-classifications.ts",
     "videos:clips": "node download-youtube-clips.mjs",
     "videos:style-tasks": "node create-ark-style-tasks.mjs",
     "videos:style-status": "node poll-ark-style-tasks.mjs"

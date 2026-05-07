@@ -104,6 +104,11 @@ select {
   color: #5b6861;
 }
 
+.aiJobCount {
+  color: #93670f;
+  font-weight: 650;
+}
+
 .list {
   display: grid;
   gap: 6px;
@@ -189,6 +194,15 @@ select {
   gap: 5px;
   color: #27745f;
   flex-shrink: 0;
+}
+
+.rowSpinner,
+.buttonSpinner {
+  animation: spin 0.9s linear infinite;
+}
+
+.rowSpinner {
+  color: #93670f;
 }
 
 .priorityIcon {
@@ -411,6 +425,24 @@ p {
 
 .iconDanger:disabled {
   color: #a8b1ac;
+  background: #f8faf9;
+  border-color: #d7ded9;
+}
+
+.inlineIconAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 30px;
+  padding: 0 8px;
+  border-color: #c5d8d1;
+  color: #1f6a55;
+  background: #f3faf7;
+  font-size: 12px;
+}
+
+.inlineIconAction:disabled {
+  color: #8b9791;
   background: #f8faf9;
   border-color: #d7ded9;
 }
@@ -813,6 +845,33 @@ p {
   gap: 8px;
   margin-top: 14px;
   color: #27745f;
+}
+
+.running.aiJob {
+  padding: 8px 10px;
+  border: 1px solid #d7ded9;
+  border-radius: 7px;
+  background: #ffffff;
+}
+
+.running.aiJob.running {
+  color: #93670f;
+}
+
+.running.aiJob.failed {
+  color: #a13f2a;
+}
+
+.running.aiJob small {
+  margin-left: auto;
+  color: #66736d;
+  font-size: 11px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .log {

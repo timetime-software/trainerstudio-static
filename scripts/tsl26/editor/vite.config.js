@@ -11,12 +11,13 @@ const editorDir = path.dirname(fileURLToPath(import.meta.url));
 const toolDir = path.resolve(editorDir, '..');
 const repoRoot = path.resolve(toolDir, '../..');
 const workspaceRoot = path.join(toolDir, '.workspace');
-const jsonPath = path.join(toolDir, 'data/exercises.json');
 const ndjsonPath = path.join(toolDir, 'data/exercises.ndjson');
 const libraryRoot = path.join(repoRoot, 'libraries/tsl26');
 const envPath = path.join(editorDir, '.env');
 const arkTasksPath = path.join(workspaceRoot, 'ark/style-tasks.ndjson');
 const arkTaskStatusPath = path.join(workspaceRoot, 'ark/style-task-status.ndjson');
+const syncMediaArgs = ['--experimental-strip-types', 'sync-cdn-media.ts'];
+let syncMediaQueue = Promise.resolve();
 
 function readBody(req) {
   return new Promise((resolve, reject) => {
@@ -99,20 +100,22 @@ async function runCommandJsonLines(command, args) {
   });
 }
 
-async function runCommandSequence(steps, extraEnv = {}) {
-  const results = [];
-  for (const step of steps) {
-    const result = await runCommand(step.command, step.args, extraEnv);
-    results.push({ ...step, ...result });
-    if (!result.ok) break;
-  }
+async function runQueuedSyncMedia(extraEnv = {}) {
+  const run = () => runCommand('node', syncMediaArgs, extraEnv);
+  const result = syncMediaQueue.then(run, run);
+  syncMediaQueue = result.catch(() => {});
+  return result;
+}
 
-  return {
-    ok: results.every((result) => result.ok),
-    code: results.at(-1)?.code ?? 0,
-    elapsedMs: results.reduce((total, result) => total + result.elapsedMs, 0),
-    output: results.map((result) => `$ ${result.command} ${result.args.join(' ')}\n${result.output}`.trim()).join('\n\n'),
-  };
+async function runDefaultPollFlow(id, extraEnv = {}) {
+  const results = [];
+  const pollResult = await runCommand('node', ['poll-ark-style-tasks.mjs', `--ids=${id}`, '--once', '--download'], extraEnv);
+  results.push({ command: 'node', args: ['poll-ark-style-tasks.mjs', `--ids=${id}`, '--once', '--download'], ...pollResult });
+  if (pollResult.ok) {
+    const syncResult = await runQueuedSyncMedia(extraEnv);
+    results.push({ command: 'node', args: syncMediaArgs, ...syncResult });
+  }
+  return commandSequenceResult(results);
 }
 
 async function runAiVideoFlow(id, extraEnv = {}, options = {}) {
@@ -139,7 +142,8 @@ async function runAiVideoFlow(id, extraEnv = {}, options = {}) {
     return commandSequenceResult(results, false);
   }
 
-  await pushResult('node', ['--experimental-strip-types', 'sync-cdn-media.ts']);
+  const syncResult = await runQueuedSyncMedia(extraEnv);
+  results.push({ command: 'node', args: syncMediaArgs, ...syncResult });
   return commandSequenceResult(results);
 }
 
@@ -179,6 +183,10 @@ async function readNdjson(filePath) {
       }
     })
     .filter(Boolean);
+}
+
+async function readExercises() {
+  return readNdjson(ndjsonPath);
 }
 
 function taskIdFromRecord(record) {
@@ -221,7 +229,6 @@ function exerciseWithSourceClip(exercise, { youtubeId, title, channel, start, du
 }
 
 async function persistExercises(exercises) {
-  await fs.writeFile(jsonPath, `${JSON.stringify(exercises, null, 2)}\n`);
   await fs.writeFile(ndjsonPath, `${exercises.map((exercise) => JSON.stringify(exercise)).join('\n')}\n`);
 }
 
@@ -294,7 +301,7 @@ async function mediaStatus(exercise) {
 }
 
 async function deleteDefaultVideoForExercise(id) {
-  const exercises = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
+  const exercises = await readExercises();
   const exercise = findExerciseByIdentifier(exercises, id);
   const cdnslug = cdnSlugFor(exercise);
   if (!exercise || !cdnslug) {
@@ -320,9 +327,30 @@ async function deleteDefaultVideoForExercise(id) {
 
   return {
     ok: true,
-    output: `${existed ? 'Deleted' : 'Default file not found'}: ${path.relative(repoRoot, defaultPath)}\nUpdated exercises JSON metadata.`,
+    output: `${existed ? 'Deleted' : 'Default file not found'}: ${path.relative(repoRoot, defaultPath)}\nUpdated exercises NDJSON metadata.`,
     exercise: updatedExercise,
   };
+}
+
+async function generateThumbnailForExercise(id) {
+  const exercises = await readExercises();
+  const exercise = findExerciseByIdentifier(exercises, id);
+  const cdnslug = cdnSlugFor(exercise);
+  if (!exercise || !cdnslug) {
+    throw new Error(`Exercise not found or missing cdnslug: ${id}`);
+  }
+
+  const defaultPath = path.join(libraryRoot, cdnslug, 'default', `${cdnslug}.mp4`);
+  if (!(await pathExists(defaultPath))) {
+    throw new Error(`Default video not found: ${path.relative(repoRoot, defaultPath)}`);
+  }
+
+  return runCommand('node', [
+    'generate-thumbnails.mjs',
+    '--from=default',
+    `--slugs=${cdnslug}`,
+    '--overwrite',
+  ]);
 }
 
 async function readLibrarySlugs() {
@@ -381,13 +409,12 @@ function exerciseEditorPlugin() {
       server.middlewares.use('/api/exercises', async (req, res) => {
         try {
           if (req.method === 'GET') {
-            const exercises = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
+            const exercises = await readExercises();
             const librarySlugs = await readLibrarySlugs();
             send(res, 200, {
               exercises,
               librarySlugs,
               libraryRelation: buildLibraryRelation(exercises, librarySlugs),
-              jsonPath: path.relative(repoRoot, jsonPath),
               ndjsonPath: path.relative(repoRoot, ndjsonPath),
             });
             return;
@@ -423,7 +450,7 @@ function exerciseEditorPlugin() {
         try {
           const url = new URL(req.url, 'http://localhost');
           const id = url.searchParams.get('id');
-          const exercises = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
+          const exercises = await readExercises();
           const exercise = findExerciseByIdentifier(exercises, id);
           send(res, 200, { status: await mediaStatus(exercise) });
         } catch (error) {
@@ -491,7 +518,7 @@ function exerciseEditorPlugin() {
             return send(res, 400, { error: 'Expected 0 < duration <= 30' });
           }
 
-          const exercises = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
+          const exercises = await readExercises();
           const exercise = findExerciseByIdentifier(exercises, id);
           if (!exercise) return send(res, 404, { error: `Exercise not found: ${id}` });
 
@@ -577,16 +604,15 @@ function exerciseEditorPlugin() {
           } else if (action === 'preview-source-task') {
             result = await runCommand('node', ['create-ark-style-tasks.mjs', `--ids=${id}`, '--dry-run']);
           } else if (action === 'sync-default') {
-            result = await runCommand('node', ['--experimental-strip-types', 'sync-cdn-media.ts']);
+            result = await runQueuedSyncMedia(extraEnv);
           } else if (action === 'generate-default') {
-            result = await runCommandSequence([
-              { command: 'node', args: ['poll-ark-style-tasks.mjs', `--ids=${id}`, '--once', '--download'] },
-              { command: 'node', args: ['--experimental-strip-types', 'sync-cdn-media.ts'] },
-            ], extraEnv);
+            result = await runDefaultPollFlow(id, extraEnv);
           } else if (action === 'generate-ai-video') {
             result = await runAiVideoFlow(id, extraEnv, { forceCreate: forceCreate === true });
           } else if (action === 'delete-default') {
             result = await deleteDefaultVideoForExercise(id);
+          } else if (action === 'generate-thumbnail') {
+            result = await generateThumbnailForExercise(id);
           } else if (action === 'deface-source') {
             const args = ['deface-source-video.mjs', `--ids=${id}`];
             if (defaceOptions) {

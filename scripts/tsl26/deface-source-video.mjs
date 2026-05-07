@@ -10,7 +10,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, '../..');
 const LIBRARY_ROOT = join(REPO_ROOT, 'libraries/tsl26');
 const TOOL_ROOT = __dirname;
-const DEFAULT_INPUT = join(TOOL_ROOT, 'data/exercises.json');
+const DEFAULT_INPUT = join(TOOL_ROOT, 'data/exercises.ndjson');
 
 function parseArgs(argv) {
   const args = {

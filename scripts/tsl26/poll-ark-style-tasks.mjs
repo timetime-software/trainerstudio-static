@@ -13,7 +13,7 @@ const WORKSPACE_ROOT = join(__dirname, '.workspace');
 const DEFAULT_ENDPOINT = 'https://ark.ap-southeast.bytepluses.com/api/v3/contents/generations/tasks';
 const DEFAULT_INPUT = join(WORKSPACE_ROOT, 'ark/style-tasks.ndjson');
 const DEFAULT_OUTPUT = join(WORKSPACE_ROOT, 'ark/style-task-status.ndjson');
-const DEFAULT_EXERCISES_INPUT = join(__dirname, 'data/exercises.json');
+const DEFAULT_EXERCISES_INPUT = join(__dirname, 'data/exercises.ndjson');
 
 function parseArgs(argv) {
   const args = {
@@ -58,12 +58,22 @@ function readRecords(input) {
     .map((line) => JSON.parse(line));
 }
 
+function readExercises(input) {
+  if (!existsSync(input)) return [];
+
+  const raw = readFileSync(input, 'utf8').trim();
+  if (!raw) return [];
+  return raw.startsWith('[')
+    ? JSON.parse(raw)
+    : raw.split('\n').filter(Boolean).map((line) => JSON.parse(line.replace(/,\s*$/, '')));
+}
+
 function expandedIds(args) {
   if (!args.ids) return null;
   const ids = new Set(args.ids);
   if (!existsSync(args.exercisesInput)) return ids;
 
-  const exercises = JSON.parse(readFileSync(args.exercisesInput, 'utf8'));
+  const exercises = readExercises(args.exercisesInput);
   if (!Array.isArray(exercises)) return ids;
 
   for (const id of args.ids) {
@@ -210,7 +220,7 @@ async function main() {
     }
 
     if (downloaded > 0) {
-      console.log('Reminder: run `npm run videos:sync-json` so exercises.json points to the TrainerStudio CDN videos before importing.');
+      console.log('Reminder: run `npm run videos:sync-data` so exercises.ndjson points to the TrainerStudio CDN videos before importing.');
     }
 
     if (!shouldPoll || pending === 0) return;

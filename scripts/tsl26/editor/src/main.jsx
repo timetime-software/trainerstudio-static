@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { AlertTriangle, Check, ChevronLeft, ChevronRight, Clock, EyeOff, FileVideo, Pause, Play, Save, Scissors, Search, Sparkles, Star, Trash2 } from 'lucide-react';
+import { AlertTriangle, Check, ChevronLeft, ChevronRight, Clock, EyeOff, FileImage, FileVideo, LoaderCircle, Pause, Play, Save, Scissors, Search, Sparkles, Star, Trash2 } from 'lucide-react';
 import {
   CATEGORY_VALUES,
   DETAILED_MUSCLE_GROUP_VALUES,
@@ -346,6 +346,7 @@ function App() {
   const [dirty, setDirty] = useState(false);
   const [saving, setSaving] = useState(false);
   const [running, setRunning] = useState('');
+  const [aiJobs, setAiJobs] = useState({});
   const [log, setLog] = useState('');
   const [paths, setPaths] = useState({});
   const [librarySlugs, setLibrarySlugs] = useState([]);
@@ -378,6 +379,11 @@ function App() {
   const sourceVideoRef = useRef(null);
   const defaultVideoRef = useRef(null);
   const suppressSyncRef = useRef(false);
+  const selectedIdRef = useRef(selectedId);
+
+  useEffect(() => {
+    selectedIdRef.current = selectedId;
+  }, [selectedId]);
 
   async function loadExercises(preferredId = idFromUrl()) {
     const data = await fetch('/api/exercises')
@@ -389,7 +395,7 @@ function App() {
     setSelectedId(queryExercise?.id || firstLibraryExercise?.id || data.exercises[0]?.id || '');
     setLibrarySlugs(slugs);
     setLibraryRelation(data.libraryRelation || null);
-    setPaths({ jsonPath: data.jsonPath, ndjsonPath: data.ndjsonPath });
+    setPaths({ ndjsonPath: data.ndjsonPath });
     return data;
   }
 
@@ -453,7 +459,11 @@ function App() {
     if (!id) return;
     const res = await fetch(`/api/media/status?id=${encodeURIComponent(id)}`);
     const data = await res.json();
-    setStatus(data.status || emptyStatus);
+    const nextStatus = data.status || emptyStatus;
+    if (id === selectedIdRef.current) {
+      setStatus(nextStatus);
+    }
+    return nextStatus;
   }
 
   useEffect(() => {
@@ -551,7 +561,7 @@ function App() {
     try {
       const data = await persistExercises(exercises);
       setDirty(false);
-      setLog(`Saved ${data.count} exercises\n${paths.jsonPath}\n${paths.ndjsonPath}`);
+      setLog(`Saved ${data.count} exercises\n${paths.ndjsonPath}`);
     } catch (error) {
       setLog(error.message);
     } finally {
@@ -676,6 +686,27 @@ function App() {
     }
   }
 
+  async function generateThumbnail() {
+    setRunning('Generando thumbnail');
+    setLog('');
+    try {
+      const res = await fetch('/api/media/action', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'generate-thumbnail', id: selected.id }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || data.output || 'Thumbnail generation failed');
+      setMediaRefreshKey(Date.now());
+      setLog(data.output || 'Thumbnail generado desde el video default.');
+    } catch (error) {
+      setLog(error.message);
+    } finally {
+      await refreshStatus(selected.id);
+      setRunning('');
+    }
+  }
+
   function applyDeface() {
     localStorage.setItem('tsl26.defaceMode', defaceMode);
     localStorage.setItem('tsl26.defaceThresh', String(defaceThresh));
@@ -791,100 +822,115 @@ function App() {
   }
 
   function terminalVideoState(output) {
-    if (/downloaded=true|Reminder: run `npm run videos:sync-json`/i.test(output)) return 'downloaded';
+    if (/downloaded=true|Reminder: run `npm run videos:sync-data`/i.test(output)) return 'downloaded';
     if (/: succeeded/i.test(output)) return 'succeeded';
     if (/: failed|: cancelled|: expired|Ark request failed|No created tasks to poll/i.test(output)) return 'failed';
     if (/Missing ARK_API_KEY/i.test(output)) return 'failed';
     return null;
   }
 
-  useEffect(() => {
-    const taskStatus = status.arkTask?.status;
-    if (!selected?.id || status.defaultClip || !PENDING_AI_TASK_STATUSES.has(taskStatus)) return undefined;
-    if (running && running !== 'Continuando polling de IA') return undefined;
+  function setAiJob(id, patch) {
+    setAiJobs((current) => ({
+      ...current,
+      [id]: {
+        ...(current[id] || {}),
+        id,
+        ...patch,
+      },
+    }));
+  }
 
-    let cancelled = false;
-    const maxAttempts = AI_VIDEO_MAX_ATTEMPTS;
-    const intervalMs = AI_VIDEO_POLL_INTERVAL_MS;
+  function trimJobLog(value) {
+    return value.split('\n\n').slice(-8).join('\n\n');
+  }
 
-    async function autoPollPendingTask() {
-      for (let attempt = 1; attempt <= maxAttempts && !cancelled; attempt += 1) {
-        setRunning('Continuando polling de IA');
-        try {
-          const res = await fetch('/api/media/action', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'generate-default', id: selected.id, arkApiKey: arkApiKey.trim() || undefined }),
-          });
-          const data = await res.json();
-          const chunk = data.output || data.error || JSON.stringify(data, null, 2);
-          if (cancelled) return;
+  async function runAiVideoJob(id, options = {}) {
+    if (!id) return;
+    if (aiJobs[id]?.status === 'running') return;
 
-          setLog((current) => {
-            const entry = `[auto-poll ${attempt}/${maxAttempts}]\n${chunk}`;
-            const previousEntries = current ? current.split('\n\n').slice(-8) : [];
-            return [...previousEntries, entry].join('\n\n');
-          });
-
-          await refreshStatus(selected.id);
-          const terminal = terminalVideoState(chunk);
-          if (terminal === 'downloaded' || terminal === 'failed') return;
-        } catch (error) {
-          if (!cancelled) setLog(error.message);
-          return;
-        } finally {
-          if (!cancelled) setRunning('');
-        }
-
-        if (attempt < maxAttempts) {
-          await new Promise((resolve) => setTimeout(resolve, intervalMs));
-        }
-      }
-    }
-
-    autoPollPendingTask();
-    return () => {
-      cancelled = true;
-    };
-  }, [arkApiKey, selected?.id, status.arkTask?.status, status.defaultClip]);
-
-  async function generateAiVideo() {
-    setRunning('Generando video con IA');
-    setLog('');
-
+    const pollOnly = options.pollOnly === true;
     const maxAttempts = AI_VIDEO_MAX_ATTEMPTS;
     const intervalMs = AI_VIDEO_POLL_INTERVAL_MS;
     let outputLog = '';
-    let forceCreate = !status.defaultClip && !PENDING_AI_TASK_STATUSES.has(status.arkTask?.status);
+    let terminal = null;
+
+    setAiJob(id, {
+      status: 'running',
+      label: pollOnly ? 'Continuando polling de IA' : 'Generando video con IA',
+      attempt: 0,
+      maxAttempts,
+      log: '',
+      error: null,
+      startedAt: new Date().toISOString(),
+      finishedAt: null,
+    });
+    if (id === selectedIdRef.current) setLog('');
 
     try {
+      const initialStatus = await refreshStatus(id);
+      let forceCreate = !pollOnly && !initialStatus?.defaultClip && !PENDING_AI_TASK_STATUSES.has(initialStatus?.arkTask?.status);
+
       for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+        setAiJob(id, { attempt });
+
         const res = await fetch('/api/media/action', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            action: 'generate-ai-video',
-            id: selected.id,
+            action: pollOnly ? 'generate-default' : 'generate-ai-video',
+            id,
             forceCreate,
             arkApiKey: arkApiKey.trim() || undefined,
           }),
         });
         forceCreate = false;
+
         const data = await res.json();
         const chunk = data.output || data.error || JSON.stringify(data, null, 2);
-        outputLog += `${attempt === 1 ? '' : '\n\n'}[intento ${attempt}/${maxAttempts}]\n${chunk}`;
-        setLog(outputLog);
+        const entry = `[intento ${attempt}/${maxAttempts}]\n${chunk}`;
+        outputLog = trimJobLog(outputLog ? `${outputLog}\n\n${entry}` : entry);
+        setAiJob(id, { log: outputLog });
+        if (id === selectedIdRef.current) setLog(outputLog);
 
-        await refreshStatus(selected.id);
+        const latestStatus = await refreshStatus(id);
+        terminal = terminalVideoState(chunk);
+        if (terminal === 'downloaded' || terminal === 'failed' || latestStatus?.defaultClip) break;
 
-        const terminal = terminalVideoState(chunk);
-        if (terminal === 'downloaded' || terminal === 'failed') break;
-        if (attempt < maxAttempts) await new Promise((resolve) => setTimeout(resolve, intervalMs));
+        if (attempt < maxAttempts) {
+          await new Promise((resolve) => setTimeout(resolve, intervalMs));
+        }
       }
-    } finally {
-      await refreshStatus();
-      setRunning('');
+
+      const finalStatus = await refreshStatus(id);
+      const failed = terminal === 'failed' || (!finalStatus?.defaultClip && terminal !== 'downloaded');
+      setAiJob(id, {
+        status: failed ? 'failed' : 'done',
+        label: failed ? 'Falló la generación IA' : 'Default generado',
+        error: failed ? 'La generación no terminó correctamente. Revisa el log.' : null,
+        finishedAt: new Date().toISOString(),
+      });
+    } catch (error) {
+      const message = error.message || String(error);
+      setAiJob(id, {
+        status: 'failed',
+        label: 'Falló la generación IA',
+        error: message,
+        log: trimJobLog(outputLog ? `${outputLog}\n\n${message}` : message),
+        finishedAt: new Date().toISOString(),
+      });
+      if (id === selectedIdRef.current) setLog(message);
     }
+  }
+
+  useEffect(() => {
+    const taskStatus = status.arkTask?.status;
+    if (!selected?.id || status.defaultClip || !PENDING_AI_TASK_STATUSES.has(taskStatus)) return;
+    if (aiJobs[selected.id]?.status === 'running') return;
+    runAiVideoJob(selected.id, { pollOnly: true });
+  }, [arkApiKey, selected?.id, status.arkTask?.status, status.defaultClip]);
+
+  function generateAiVideo() {
+    return runAiVideoJob(selected.id);
   }
 
   if (!selected) return <main className="loading">Loading exercises...</main>;
@@ -907,6 +953,10 @@ function App() {
   const previewVideoUrl = refreshUrl(previewVideo?.url, mediaRefreshKey);
   const image = firstImage(selected);
   const aiTaskStatus = status.arkTask?.error ? 'failed' : status.arkTask?.status || null;
+  const selectedAiJob = aiJobs[selected.id] || null;
+  const selectedAiRunning = selectedAiJob?.status === 'running';
+  const selectedBusy = Boolean(running) || selectedAiRunning;
+  const activeAiJobCount = Object.values(aiJobs).filter((job) => job?.status === 'running').length;
   const taskStatusLabels = {
     created: 'Tarea creada',
     queued: 'En cola',
@@ -916,8 +966,8 @@ function App() {
     cancelled: 'Cancelado',
     expired: 'Expirado',
   };
-  const defaultState = status.defaultClip ? 'Listo' : running === 'Generando video con IA' ? 'Generando' : taskStatusLabels[aiTaskStatus] || 'Pendiente';
-  const defaultStateClass = status.defaultClip ? 'ready' : running === 'Generando video con IA' || ['created', 'queued', 'running'].includes(aiTaskStatus) ? 'working' : 'missing';
+  const defaultState = status.defaultClip ? 'Listo' : selectedAiRunning ? `Generando ${selectedAiJob.attempt || 0}/${selectedAiJob.maxAttempts || AI_VIDEO_MAX_ATTEMPTS}` : taskStatusLabels[aiTaskStatus] || 'Pendiente';
+  const defaultStateClass = status.defaultClip ? 'ready' : selectedAiRunning || ['created', 'queued', 'running'].includes(aiTaskStatus) ? 'working' : 'missing';
   const sourceState = status.sourceClip ? 'Listo' : 'Falta source';
   const selectedSlug = selected.cdnslug || selected.cdnSlug;
   const selectedHasFolder = selectedSlug ? librarySlugs.includes(selectedSlug) : false;
@@ -941,12 +991,14 @@ function App() {
           </div>
           <div className="count">
             {filtered.length} / {exercises.length} · {librarySlugs.length} folders
+            {activeAiJobCount > 0 && <span className="aiJobCount"> · {activeAiJobCount} generando</span>}
             {relationIssues > 0 && <span className="relationWarning"> · {relationIssues} relation issues</span>}
           </div>
         </div>
         <div className="list">
           {filtered.map((exercise) => {
             const defaultIndicator = defaultIndicatorFor(exercise, defaultSlugs);
+            const rowAiJob = aiJobs[exercise.id];
             return (
               <button
                 className={exercise.id === selected.id ? 'row active' : 'row'}
@@ -963,6 +1015,8 @@ function App() {
                     <strong>{exercise.name}</strong>
                   </span>
                   <span className="badges">
+                    {rowAiJob?.status === 'running' && <LoaderCircle size={13} className="rowSpinner" aria-label={rowAiJob.label || 'Generando'} />}
+                    {rowAiJob?.status === 'failed' && <AlertTriangle size={13} className="warningIcon" title={rowAiJob.error || rowAiJob.label || 'Falló la generación'} />}
                     {exercise.priority === true && <Star size={13} className="priorityIcon" />}
                     {exercise.metadata?.defaultVideoInvalid === true && <AlertTriangle size={13} className="warningIcon" />}
                     {librarySlugs.includes(exercise.cdnslug || exercise.cdnSlug) && <span title="In library">L</span>}
@@ -1067,10 +1121,20 @@ function App() {
                     <span className={`state ${defaultStateClass}`}>{defaultState}</span>
                     <button
                       type="button"
+                      className="inlineIconAction"
+                      title="Generar thumbnail desde el video default"
+                      onClick={generateThumbnail}
+                      disabled={selectedBusy || !status.defaultClip}
+                    >
+                      <FileImage size={14} />
+                      <span>Thumbnail</span>
+                    </button>
+                    <button
+                      type="button"
                       className="iconDanger"
                       title="Borrar default local y quitarlo de la metadata"
                       onClick={deleteDefaultVideo}
-                      disabled={Boolean(running) || (!status.defaultClip && !hasDefaultVideo(selected))}
+                      disabled={selectedBusy || (!status.defaultClip && !hasDefaultVideo(selected))}
                     >
                       <Trash2 size={14} />
                     </button>
@@ -1197,7 +1261,7 @@ function App() {
               type="button"
               className="primary"
               onClick={applyDeface}
-              disabled={Boolean(running) || !status.sourceClip}
+              disabled={selectedBusy || !status.sourceClip}
             >
               <EyeOff size={14} /> Aplicar
             </button>
@@ -1229,11 +1293,11 @@ function App() {
 
         {sourceMode === 'ai' && (
           <div className="actions">
-            <button title="Muestra el prompt y payload que se enviarian para crear el task" onClick={() => run('preview-source-task', 'Previewing task')} disabled={Boolean(running)}>
+            <button title="Muestra el prompt y payload que se enviarian para crear el task" onClick={() => run('preview-source-task', 'Previewing task')} disabled={selectedBusy}>
               <Play size={16} /> Previsualizar task
             </button>
-            <button className="primary" title="Descarga source si hace falta, crea o reutiliza la tarea de IA, consulta el estado, descarga el resultado y sincroniza el default" onClick={generateAiVideo} disabled={Boolean(running)}>
-              <Sparkles size={16} /> Generar video con IA
+            <button className="primary" title="Descarga source si hace falta, crea o reutiliza la tarea de IA, consulta el estado, descarga el resultado y sincroniza el default" onClick={generateAiVideo} disabled={selectedBusy}>
+              {selectedAiRunning ? <LoaderCircle size={16} className="buttonSpinner" /> : <Sparkles size={16} />} {selectedAiRunning ? 'Generando' : 'Generar video con IA'}
             </button>
           </div>
         )}
@@ -1332,7 +1396,7 @@ function App() {
                 <button
                   className="primary"
                   onClick={saveSourceClip}
-                  disabled={savingClip || Boolean(running)}
+                  disabled={savingClip || selectedBusy}
                 >
                   <Scissors size={16} /> {savingClip ? 'Guardando' : 'Guardar como source'}
                 </button>
@@ -1343,7 +1407,14 @@ function App() {
         )}
 
         {running && <div className="running"><FileVideo size={16} /> {running}...</div>}
-        {log && <pre className="log">{log}</pre>}
+        {selectedAiJob && (
+          <div className={`running aiJob ${selectedAiJob.status}`}>
+            {selectedAiRunning ? <LoaderCircle size={16} className="buttonSpinner" /> : <FileVideo size={16} />}
+            <span>{selectedAiJob.label}</span>
+            {selectedAiRunning && <small>{selectedAiJob.attempt || 0} / {selectedAiJob.maxAttempts || AI_VIDEO_MAX_ATTEMPTS}</small>}
+          </div>
+        )}
+        {(selectedAiJob?.log || log) && <pre className="log">{selectedAiJob?.log || log}</pre>}
       </section>
 
       <section className="editor">

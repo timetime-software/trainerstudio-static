@@ -23,7 +23,7 @@ const WORKSPACE_ROOT = join(TOOL_ROOT, '.workspace');
 const DEFAULT_ENDPOINT = 'https://ark.ap-southeast.bytepluses.com/api/v3/contents/generations/tasks';
 const DEFAULT_MODEL = 'dreamina-seedance-2-0-260128';
 const DEFAULT_CDN_BASE_URL = 'https://cdn.trainerstudio.com';
-const DEFAULT_INPUT = join(TOOL_ROOT, 'data/exercises.json');
+const DEFAULT_INPUT = join(TOOL_ROOT, 'data/exercises.ndjson');
 const DEFAULT_CLIPS_DIR = LIBRARY_ROOT;
 const DEFAULT_OUTPUT = join(WORKSPACE_ROOT, 'ark/style-tasks.ndjson');
 const DEFAULT_REFERENCE_IMAGES = [
@@ -35,9 +35,10 @@ const DEFAULT_PROMPT = [
   'Restyle [Video 1] into the TrainerStudio visual style shown in [Image 1] and [Image 2].',
   'The result must be exactly the same exercise demonstration as the original video: preserve the movement, repetitions, timing, body pose sequence, camera angle, framing, crop, scale, and 4-second duration from [Video 1].',
   'Only change the visual appearance. Replace the real athlete with the illustrated trainer character from the reference images, keeping a consistent coach identity, clean fitness illustration style, crisp outlines, simplified anatomy, and smooth vector-like shading.',
+  'Required exercise equipment from the exercise context must be clearly visible in the result, even if it is subtle, partially hidden, or missing in [Video 1]. If the context says a resistance band is required, draw a visible colored loop band in the correct anatomical position and keep it present for the full clip.',
   'Important: the athlete\'s face in [Video 1] is intentionally blurred or pixelated for privacy. Do NOT preserve the blur, mosaic, or any anonymization artifact in the output. The trainer in the result must have a clear, fully visible illustrated face that matches the coach identity from [Image 1] and [Image 2] — same hairstyle, beard, skin tone, and facial features as the reference character.',
   'Use a clean pure white background matching the references. Keep the trainer centered and fully visible.',
-  'Do not add text, labels, logos, captions, watermarks, extra people, extra props, gym backgrounds, decorative elements, or equipment that is not necessary for the original exercise movement.',
+  'Do not add text, labels, logos, captions, watermarks, extra people, extra props, gym backgrounds, decorative elements, or equipment that is not required by the exercise context.',
   'Remove or neutralize any visible brand marks from the source video or generated illustration, including sportswear logos, shoe logos, sock logos, equipment brands, and small trademark details such as Nike swooshes.',
   'The output must be silent, seamless, instructional, and suitable for a public exercise CDN.',
 ].join(' ');
@@ -128,7 +129,10 @@ function clipIdFromPath(filePath) {
 function loadExercisesBySlug(input) {
   if (!existsSync(input)) return new Map();
 
-  const exercises = JSON.parse(readFileSync(input, 'utf8'));
+  const raw = readFileSync(input, 'utf8').trim();
+  const exercises = raw.startsWith('[')
+    ? JSON.parse(raw)
+    : raw.split('\n').filter(Boolean).map((line) => JSON.parse(line.replace(/,\s*$/, '')));
   if (!Array.isArray(exercises)) return new Map();
 
   return new Map(
@@ -200,13 +204,34 @@ function listText(values) {
   return values.map(compactText).filter(Boolean).join(', ');
 }
 
+function equipmentDirectivesFor(exercise) {
+  const equipment = Array.isArray(exercise?.classification?.equipment)
+    ? exercise.classification.equipment
+    : [];
+  const directives = [];
+
+  if (equipment.includes('resistance_band')) {
+    directives.push('Mandatory equipment detail: show a clearly visible resistance band. For hip thrusts, squats, squat jumps, fire hydrants, and crab walks, place a colored loop band around both thighs just above the knees unless the instructions specify another position. The band must remain visible and taut during the entire movement.');
+  }
+  if (equipment.includes('barbell')) {
+    directives.push('Mandatory equipment detail: keep the barbell visible and correctly positioned for the movement.');
+  }
+  if (equipment.includes('bench')) {
+    directives.push('Mandatory equipment detail: keep the bench or step visible when it supports or defines the movement.');
+  }
+
+  return directives;
+}
+
 function exerciseContextFor(exercise) {
   if (!exercise) return '';
 
   const name = compactText(exercise.name);
-  const equipment = compactText(exercise.equipment);
+  const classificationEquipment = listText(exercise.classification?.equipment);
+  const equipment = classificationEquipment || compactText(exercise.equipment);
   const primaryMuscles = listText(exercise.primaryMuscles);
   const secondaryMuscles = listText(exercise.secondaryMuscles);
+  const regenerationNotes = compactText(exercise.metadata?.notes);
   const instructions = Array.isArray(exercise.instructions)
     ? truncateText(exercise.instructions.slice(0, 4).join(' '), 1200)
     : '';
@@ -216,6 +241,7 @@ function exerciseContextFor(exercise) {
     equipment ? `Expected equipment: ${equipment}.` : '',
     primaryMuscles ? `Primary muscles: ${primaryMuscles}.` : '',
     secondaryMuscles ? `Secondary muscles: ${secondaryMuscles}.` : '',
+    regenerationNotes ? `Regeneration review note: ${regenerationNotes}. Correct this issue while preserving the movement from [Video 1].` : '',
     instructions ? `Exercise instructions summary: ${instructions}` : '',
   ].filter(Boolean);
 
@@ -224,7 +250,8 @@ function exerciseContextFor(exercise) {
   return [
     'Exercise context for disambiguation only.',
     ...details,
-    'Use this context only as a guide when [Video 1] is ambiguous. Do not invent or alter movement, equipment, props, range of motion, timing, camera angle, framing, or visible body positions from this text when it conflicts with [Video 1]. [Video 1] is the source of truth.',
+    ...equipmentDirectivesFor(exercise),
+    'Use this context to preserve required equipment and clarify the exercise identity. [Video 1] remains the source of truth for movement timing, camera angle, framing, range of motion, and body positions, but required equipment listed above must not be omitted.',
   ].join(' ');
 }
 

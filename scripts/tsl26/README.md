@@ -25,16 +25,16 @@ estable para CDN:
 El tooling, la metadata y los intermedios de generacion viven fuera de
 `libraries`, en `scripts/tsl26`.
 
-La metadata vive en `scripts/tsl26/data/exercises.json` y
-`scripts/tsl26/data/exercises.ndjson`. Cada ejercicio incluye `cdnslug`, generado
-desde el nombre en ingles en lowercase y con underscores. Si dos ejercicios
-comparten el mismo nombre, el slug recibe un sufijo numerico (`_2`, `_3`, ...)
-para evitar colisiones en CDN.
+La metadata vive en `scripts/tsl26/data/exercises.ndjson`. Ese archivo es la
+fuente de la verdad para nombres, traducciones, clasificacion, media, notas y
+metadata de trabajo. Cada linea contiene un ejercicio completo e independiente.
+Cada ejercicio incluye `cdnslug`, generado desde el nombre en ingles en lowercase
+y con underscores. Si dos ejercicios comparten el mismo nombre, el slug recibe un
+sufijo numerico (`_2`, `_3`, ...) para evitar colisiones en CDN.
 
-`data/exercises.json` es el maestro de trabajo: puede contener ejercicios sin
-media, con video fuente, con video final, notas y metadata interna del editor.
-`data/exercises-public.json` es una salida derivada e importable: solo contiene
-ejercicios con `default/<cdnslug>.mp4`, con media CDN final y sin campos internos.
+`data/exercises-public.json` es una salida derivada e importable, generada desde
+`data/exercises.ndjson` con `npm run build:public`: solo contiene ejercicios con
+`default/<cdnslug>.mp4`, con media CDN final y sin campos internos.
 
 Cada ejercicio tiene dos identificadores distintos:
 
@@ -49,7 +49,7 @@ No usar ids publicos derivados de proveedores externos.
 
 ## Clips Fuente
 
-Generar todos los clips disponibles en `scripts/tsl26/data/exercises.json`:
+Generar todos los clips disponibles en `scripts/tsl26/data/exercises.ndjson`:
 
 ```bash
 cd /Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26
@@ -58,7 +58,7 @@ npm run videos:clips
 
 Por defecto el script:
 
-- lee `scripts/tsl26/data/exercises.json`
+- lee `scripts/tsl26/data/exercises.ndjson`
 - detecta el primer video YouTube de cada ejercicio
 - descarga el MP4 fuente en `scripts/tsl26/.workspace/videos`
 - recorta desde el segundo `1`
@@ -175,11 +175,11 @@ libraries/tsl26/<cdnslug>/default/<cdnslug>.mp4
 Despues de descargar videos finales, actualizar la metadata antes de importar:
 
 ```bash
-npm run videos:sync-json
+npm run videos:sync-data
 ```
 
-Este paso antepone en `scripts/tsl26/data/exercises.json` y
-`scripts/tsl26/data/exercises.ndjson` el video final servido desde:
+Este paso antepone en `scripts/tsl26/data/exercises.ndjson` el video final
+servido desde:
 
 ```text
 https://cdn.trainerstudio.com/libraries/tsl26/<cdnslug>/default/<cdnslug>.mp4
@@ -218,10 +218,10 @@ libraries/tsl26/barbell_squats/default/barbell_squats.mp4
 npm run videos:clips
 npm run videos:style-tasks
 npm run videos:style-status
-npm run videos:sync-json
+npm run videos:sync-data
 npm run transform
-npm run i18n:apply
 npm run library:ensure
+npm run build:public
 npm run import
 ```
 
@@ -233,10 +233,10 @@ un video de YouTube detectable en `media`.
 Regla operativa: la libreria oficial de MongoDB se carga solo desde
 `data/exercises-public.json`.
 
-No importar `data/exercises.json` directamente en la libreria oficial. Ese archivo
-es el dataset de trabajo completo: incluye ejercicios traducidos y etiquetados,
-pero tambien ejercicios que solo tienen video `source` y todavia no tienen video
-`default` publicable.
+No importar `data/exercises.ndjson` directamente en la libreria oficial. Ese
+archivo es el dataset de trabajo completo: incluye ejercicios traducidos y
+etiquetados, pero tambien ejercicios que solo tienen video `source` y todavia no
+tienen video `default` publicable.
 
 Generar la libreria final desde la fuente de trabajo:
 
@@ -245,7 +245,12 @@ cd /Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26
 npm run build:public
 ```
 
-Ese comando lee `data/exercises.json`, conserva los ids opacos y escribe
+El pipeline no tiene pasos auxiliares de shards de traduccion ni batches de
+clasificacion. Cualquier correccion de traduccion o clasificacion debe aplicarse
+directamente en `data/exercises.ndjson`; la salida publica se reconstruye con
+`build:public`.
+
+Ese comando lee `data/exercises.ndjson`, conserva los ids opacos y escribe
 `data/exercises-public.json` / `data/exercises-public.ndjson` solo con ejercicios
 que tienen video `default` en `libraries/tsl26`.
 
@@ -254,8 +259,12 @@ Antes de importar, comprobar los conteos esperados:
 ```bash
 node - <<'NODE'
 const fs = require('fs');
-for (const p of ['data/exercises-public.json', 'data/exercises.json']) {
-  const data = JSON.parse(fs.readFileSync(p, 'utf8'));
+function readData(p) {
+  const raw = fs.readFileSync(p, 'utf8').trim();
+  return raw.startsWith('[') ? JSON.parse(raw) : raw.split('\n').filter(Boolean).map(JSON.parse);
+}
+for (const p of ['data/exercises-public.json', 'data/exercises.ndjson']) {
+  const data = readData(p);
   console.log(p, {
     total: data.length,
     classified: data.filter((e) => e.classification).length,
@@ -286,6 +295,6 @@ npm run import -- --input=data/exercises-public.json --library-id=<libraryId> --
 npm run import -- --input=data/exercises-public.json --library-id=<libraryId> --mongodb-uri=mongodb://localhost:27017/trainerStudioDB --database=trainerStudioDB
 ```
 
-Si se importo `data/exercises.json` por error, limpiar primero los documentos de
+Si se importo `data/exercises.ndjson` por error, limpiar primero los documentos de
 esa libreria que no esten en `data/exercises-public.json` y despues reimportar
 `data/exercises-public.json`.
