@@ -412,6 +412,39 @@ p {
   margin-top: 0;
 }
 
+.mediaBox.withOverlay {
+  position: relative;
+}
+
+.defaceToggle {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 3;
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-color: rgba(35, 49, 42, 0.18);
+  background: rgba(255, 255, 255, 0.92);
+  color: #2c3631;
+  box-shadow: 0 4px 14px rgba(25, 35, 30, 0.16);
+  backdrop-filter: blur(6px);
+}
+
+.defaceToggle.active {
+  color: #ffffff;
+  border-color: #27745f;
+  background: #27745f;
+}
+
+.defaceToggle:disabled {
+  color: #8b9791;
+  background: rgba(248, 250, 249, 0.9);
+  border-color: rgba(215, 222, 217, 0.9);
+}
+
 .iconDanger {
   display: inline-grid;
   place-items: center;
@@ -542,26 +575,21 @@ p {
 }
 
 .defacePanel {
-  margin-top: 12px;
+  position: absolute;
+  top: 46px;
+  right: 8px;
+  z-index: 4;
+  width: min(360px, calc(100% - 16px));
+  max-height: calc(100% - 58px);
+  overflow: auto;
+  margin: 0;
   padding: 10px 12px;
   border: 1px solid #d7ded9;
   border-radius: 7px;
-  background: #fbfdfc;
+  background: rgba(251, 253, 252, 0.98);
+  box-shadow: 0 12px 30px rgba(25, 35, 30, 0.18);
   font-size: 12px;
-}
-
-.defacePanel summary {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: 600;
-  color: #2c3631;
-  cursor: pointer;
-  user-select: none;
-}
-
-.defacePanel[open] summary {
-  margin-bottom: 10px;
+  backdrop-filter: blur(8px);
 }
 
 .defaceControls {

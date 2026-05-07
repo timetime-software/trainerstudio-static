@@ -210,6 +210,46 @@ function updateExercise(exercise, patch) {
   };
 }
 
+function isPlainObject(value) {
+  return value && typeof value === 'object' && !Array.isArray(value);
+}
+
+function snapshotExercise(exercise) {
+  return JSON.parse(JSON.stringify(exercise || {}));
+}
+
+function diffExerciseFields(before, after, path = []) {
+  if (JSON.stringify(before) === JSON.stringify(after)) return [];
+  const key = path.join('.') || '(root)';
+
+  if (Array.isArray(before) || Array.isArray(after)) {
+    return [{ key, before, after }];
+  }
+
+  if (!isPlainObject(before) || !isPlainObject(after)) {
+    return [{ key, before, after }];
+  }
+
+  const keys = [...new Set([...Object.keys(before), ...Object.keys(after)])].sort();
+  return keys.flatMap((field) => diffExerciseFields(before[field], after[field], [...path, field]));
+}
+
+function formatDiffValue(value) {
+  if (value === undefined) return 'undefined';
+  const text = typeof value === 'string' ? value : JSON.stringify(value);
+  if (!text) return '""';
+  return text.length > 180 ? `${text.slice(0, 177)}...` : text;
+}
+
+function formatExerciseDiff(before, after) {
+  const changes = diffExerciseFields(before, after);
+  if (!changes.length) return 'Review diff\nNo JSON changes detected for this exercise.';
+  return [
+    `Review diff\n${changes.length} changed field${changes.length === 1 ? '' : 's'}:`,
+    ...changes.map((change) => `- ${change.key}: ${formatDiffValue(change.before)} -> ${formatDiffValue(change.after)}`),
+  ].join('\n');
+}
+
 function isYoutubeMedia(item) {
   return item?.source === 'youtube' || /(?:youtube\.com|youtu\.be|img\.youtube\.com)/i.test(item?.url || item?.thumbnailUrl || '');
 }
@@ -376,6 +416,7 @@ function App() {
   const [defaceMosaicSize, setDefaceMosaicSize] = useState(() => Number(localStorage.getItem('tsl26.defaceMosaicSize')) || 20);
   const [defacePasses, setDefacePasses] = useState(() => Number(localStorage.getItem('tsl26.defacePasses')) || 1);
   const [defaceKeepOriginal, setDefaceKeepOriginal] = useState(() => localStorage.getItem('tsl26.defaceKeepOriginal') === 'true');
+  const [defaceOpen, setDefaceOpen] = useState(false);
   const sourceVideoRef = useRef(null);
   const defaultVideoRef = useRef(null);
   const suppressSyncRef = useRef(false);
@@ -484,6 +525,7 @@ function App() {
     setSearchQuery('');
     setSearchResults([]);
     setSourceMode('ai');
+    setDefaceOpen(false);
     setSyncPlaying(false);
     setSyncTime(0);
     setSyncDuration(0);
@@ -511,6 +553,7 @@ function App() {
       const matchesFilter =
         filter === 'all' ||
         (filter === 'missingSource' && !hasSource) ||
+        (filter === 'hasDefault' && hasDefault) ||
         (filter === 'missingDefault' && !hasDefault) ||
         (filter === 'regenerate' && shouldRegenerate);
       return matchesTerm && matchesFilter;
@@ -593,6 +636,37 @@ function App() {
       setLog(data.output || data.error || JSON.stringify(data, null, 2));
     } finally {
       await refreshStatus();
+      setRunning('');
+    }
+  }
+
+  async function runExerciseReview(reviewAgent) {
+    if (dirty) {
+      setLog('Save pending changes before launching an exercise review agent.');
+      return;
+    }
+    const id = selected.id;
+    const beforeReview = snapshotExercise(selected);
+    setRunning(`Reviewing with ${reviewAgent}`);
+    setLog('');
+    try {
+      const res = await fetch('/api/media/action', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'review-exercise', id, reviewAgent }),
+      });
+      const data = await res.json();
+      const output = data.output || data.error || JSON.stringify(data, null, 2);
+      if (!res.ok) {
+        setLog(output);
+        return;
+      }
+      const loaded = await loadExercises(id);
+      const afterReview = snapshotExercise(findExerciseByIdentifier(loaded.exercises || [], id));
+      setLog(`${formatExerciseDiff(beforeReview, afterReview)}\n\n${output}`);
+      setDirty(false);
+    } finally {
+      await refreshStatus(id);
       setRunning('');
     }
   }
@@ -714,6 +788,7 @@ function App() {
     localStorage.setItem('tsl26.defaceMosaicSize', String(defaceMosaicSize));
     localStorage.setItem('tsl26.defacePasses', String(defacePasses));
     localStorage.setItem('tsl26.defaceKeepOriginal', String(defaceKeepOriginal));
+    setDefaceOpen(false);
     return run('deface-source', 'Difuminando caras del source', {
       defaceOptions: {
         replaceWith: defaceMode,
@@ -985,6 +1060,7 @@ function App() {
             <select value={filter} onChange={(event) => setFilter(event.target.value)}>
               <option value="all">All</option>
               <option value="missingSource">Missing source</option>
+              <option value="hasDefault">Default created</option>
               <option value="missingDefault">Missing default</option>
               <option value="regenerate">Regenerate</option>
             </select>
@@ -1093,21 +1169,113 @@ function App() {
                   <strong>Source</strong>
                   <span className={status.sourceClip ? 'state ready' : 'state missing'}>{sourceState}</span>
                 </div>
-                <div className="mediaBox compact">
+                <div className="mediaBox compact withOverlay">
                   {isVideoUrl(sourceVideoUrl) ? (
-                    <video
-                      key={sourceVideoUrl}
-                      ref={sourceVideoRef}
-                      src={sourceVideoUrl}
-                      controls
-                      playsInline
-                      onLoadedMetadata={updateSyncMetrics}
-                      onPlay={syncFromVideo}
-                      onPause={syncFromVideo}
-                      onSeeked={syncFromVideo}
-                      onRateChange={syncFromVideo}
-                      onTimeUpdate={syncFromVideo}
-                    />
+                    <>
+                      <video
+                        key={sourceVideoUrl}
+                        ref={sourceVideoRef}
+                        src={sourceVideoUrl}
+                        controls
+                        playsInline
+                        onLoadedMetadata={updateSyncMetrics}
+                        onPlay={syncFromVideo}
+                        onPause={syncFromVideo}
+                        onSeeked={syncFromVideo}
+                        onRateChange={syncFromVideo}
+                        onTimeUpdate={syncFromVideo}
+                      />
+                      <button
+                        type="button"
+                        className={defaceOpen ? 'defaceToggle active' : 'defaceToggle'}
+                        title="Anonimizar caras del source"
+                        aria-label="Anonimizar caras del source"
+                        aria-expanded={defaceOpen}
+                        onClick={() => setDefaceOpen((open) => !open)}
+                        disabled={selectedBusy || !status.sourceClip}
+                      >
+                        <EyeOff size={15} />
+                      </button>
+                      {defaceOpen && (
+                        <div className="defacePanel">
+                          <div className="defaceControls">
+                            <label>
+                              <span>Modo</span>
+                              <select value={defaceMode} onChange={(event) => setDefaceMode(event.target.value)}>
+                                <option value="blur">Blur</option>
+                                <option value="solid">Sólido</option>
+                                <option value="mosaic">Mosaico</option>
+                              </select>
+                            </label>
+                            <label title="Umbral de detección. Más bajo = detecta más caras">
+                              <span>Threshold</span>
+                              <input
+                                type="number"
+                                step="0.05"
+                                min="0.05"
+                                max="1"
+                                value={defaceThresh}
+                                onChange={(event) => setDefaceThresh(Number(event.target.value))}
+                              />
+                            </label>
+                            <label title="Escala de la máscara. Más alto = cubre más área alrededor de la cara">
+                              <span>Mask scale</span>
+                              <input
+                                type="number"
+                                step="0.1"
+                                min="1"
+                                max="3"
+                                value={defaceMaskScale}
+                                onChange={(event) => setDefaceMaskScale(Number(event.target.value))}
+                              />
+                            </label>
+                            {defaceMode === 'mosaic' && (
+                              <label>
+                                <span>Mosaico px</span>
+                                <input
+                                  type="number"
+                                  step="1"
+                                  min="5"
+                                  max="80"
+                                  value={defaceMosaicSize}
+                                  onChange={(event) => setDefaceMosaicSize(Number(event.target.value))}
+                                />
+                              </label>
+                            )}
+                            <label title="Número de pasadas. Más pasadas = reanaliza el resultado">
+                              <span>Pasadas</span>
+                              <input
+                                type="number"
+                                step="1"
+                                min="1"
+                                max="4"
+                                value={defacePasses}
+                                onChange={(event) => setDefacePasses(Number(event.target.value))}
+                              />
+                            </label>
+                            <label className="defaceCheckbox" title="Guarda una copia del source antes de sobrescribirlo">
+                              <input
+                                type="checkbox"
+                                checked={defaceKeepOriginal}
+                                onChange={(event) => setDefaceKeepOriginal(event.target.checked)}
+                              />
+                              <span>Backup</span>
+                            </label>
+                            <button
+                              type="button"
+                              className="primary"
+                              onClick={applyDeface}
+                              disabled={selectedBusy || !status.sourceClip}
+                            >
+                              <EyeOff size={14} /> Aplicar
+                            </button>
+                          </div>
+                          <p className="defaceHint">
+                            Sobrescribe el source local. Si quedan caras, sube <code>mask-scale</code>, baja <code>threshold</code> o usa más pasadas.
+                          </p>
+                        </div>
+                      )}
+                    </>
                   ) : (
                     <div className="emptyMedia">No source</div>
                   )}
@@ -1191,86 +1359,6 @@ function App() {
             <span>{status.downloadedOriginals?.length || 0} descargados</span>
           </div>
         </div>
-
-        <details className="defacePanel">
-          <summary><EyeOff size={14} /> Anonimizar source (caras)</summary>
-          <div className="defaceControls">
-            <label>
-              <span>Modo</span>
-              <select value={defaceMode} onChange={(event) => setDefaceMode(event.target.value)}>
-                <option value="blur">Blur (gaussiano)</option>
-                <option value="solid">Sólido (negro)</option>
-                <option value="mosaic">Mosaico</option>
-              </select>
-            </label>
-            <label title="Umbral de detección. Más bajo = detecta más caras (incluye falsos positivos)">
-              <span>Threshold</span>
-              <input
-                type="number"
-                step="0.05"
-                min="0.05"
-                max="1"
-                value={defaceThresh}
-                onChange={(event) => setDefaceThresh(Number(event.target.value))}
-              />
-            </label>
-            <label title="Escala de la máscara. Más alto = cubre más área alrededor de la cara">
-              <span>Mask scale</span>
-              <input
-                type="number"
-                step="0.1"
-                min="1"
-                max="3"
-                value={defaceMaskScale}
-                onChange={(event) => setDefaceMaskScale(Number(event.target.value))}
-              />
-            </label>
-            {defaceMode === 'mosaic' && (
-              <label>
-                <span>Mosaico (px)</span>
-                <input
-                  type="number"
-                  step="1"
-                  min="5"
-                  max="80"
-                  value={defaceMosaicSize}
-                  onChange={(event) => setDefaceMosaicSize(Number(event.target.value))}
-                />
-              </label>
-            )}
-            <label title="Número de pasadas. Más pasadas = el detector reanaliza el resultado y aplica blur extra a lo que aún quede">
-              <span>Pasadas</span>
-              <input
-                type="number"
-                step="1"
-                min="1"
-                max="4"
-                value={defacePasses}
-                onChange={(event) => setDefacePasses(Number(event.target.value))}
-              />
-            </label>
-            <label className="defaceCheckbox" title="Guarda una copia del source antes de sobrescribirlo">
-              <input
-                type="checkbox"
-                checked={defaceKeepOriginal}
-                onChange={(event) => setDefaceKeepOriginal(event.target.checked)}
-              />
-              <span>Backup .original.mp4</span>
-            </label>
-            <button
-              type="button"
-              className="primary"
-              onClick={applyDeface}
-              disabled={selectedBusy || !status.sourceClip}
-            >
-              <EyeOff size={14} /> Aplicar
-            </button>
-          </div>
-          <p className="defaceHint">
-            Sobrescribe <code>libraries/tsl26/&lt;slug&gt;/source/&lt;slug&gt;.mp4</code>. Si el detector deja escapar caras, sube
-            <code>mask-scale</code>, baja <code>threshold</code>, prueba <strong>solid</strong> o usa varias pasadas.
-          </p>
-        </details>
 
         <div className="sourceTabs" role="tablist">
           <button
@@ -1465,6 +1553,22 @@ function App() {
 
             <div className="editorSection">
               <h2>Review</h2>
+              <div className="actions">
+                <button
+                  title={dirty ? 'Save pending changes before launching Codex' : 'Review texts and classification labels for this exercise with Codex'}
+                  onClick={() => runExerciseReview('codex')}
+                  disabled={selectedBusy || dirty}
+                >
+                  <Sparkles size={16} /> Codex review
+                </button>
+                <button
+                  title={dirty ? 'Save pending changes before launching Claude' : 'Review texts and classification labels for this exercise with Claude'}
+                  onClick={() => runExerciseReview('claude')}
+                  disabled={selectedBusy || dirty}
+                >
+                  <Sparkles size={16} /> Claude review
+                </button>
+              </div>
               <label className="check">
                 <input type="checkbox" checked={selected.isActive !== false} onChange={(event) => patchSelected({ isActive: event.target.checked })} />
                 Active

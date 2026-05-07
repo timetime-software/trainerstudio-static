@@ -5,6 +5,16 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
+import {
+  CATEGORY_VALUES,
+  DETAILED_MUSCLE_GROUP_VALUES,
+  EQUIPMENT_VALUES,
+  FORCE_TYPE_VALUES,
+  LATERALITY_VALUES,
+  LEVEL_VALUES,
+  MECHANIC_VALUES,
+  MOVEMENT_PATTERN_VALUES,
+} from '../classification-reference.mjs';
 import { cdnSlugFor, findExerciseByIdentifier } from '../exercise-ids.mjs';
 
 const editorDir = path.dirname(fileURLToPath(import.meta.url));
@@ -50,15 +60,29 @@ async function readLocalEnv() {
   );
 }
 
-async function runCommand(command, args, extraEnv = {}) {
+async function runCommand(command, args, extraEnv = {}, options = {}) {
   const localEnv = await readLocalEnv();
   return new Promise((resolve) => {
     const startedAt = Date.now();
+    let settled = false;
     const child = spawn(command, args, {
       cwd: toolDir,
       env: { ...process.env, ...localEnv, ...extraEnv },
     });
     let output = '';
+    const timeout = options.timeoutMs
+      ? setTimeout(() => {
+        if (settled) return;
+        settled = true;
+        child.kill('SIGTERM');
+        resolve({
+          ok: false,
+          code: null,
+          output: `${output}\nTimed out after ${Math.round(options.timeoutMs / 1000)}s: ${command} ${args.slice(0, 4).join(' ')}`,
+          elapsedMs: Date.now() - startedAt,
+        });
+      }, options.timeoutMs)
+      : null;
 
     child.stdout.on('data', (chunk) => {
       output += chunk.toString();
@@ -66,10 +90,20 @@ async function runCommand(command, args, extraEnv = {}) {
     child.stderr.on('data', (chunk) => {
       output += chunk.toString();
     });
+    if (options.stdin) {
+      child.stdin.write(options.stdin);
+      child.stdin.end();
+    }
     child.on('close', (code) => {
+      if (settled) return;
+      settled = true;
+      if (timeout) clearTimeout(timeout);
       resolve({ ok: code === 0, code, output, elapsedMs: Date.now() - startedAt });
     });
     child.on('error', (error) => {
+      if (settled) return;
+      settled = true;
+      if (timeout) clearTimeout(timeout);
       resolve({ ok: false, code: null, output: error.message, elapsedMs: Date.now() - startedAt });
     });
   });
@@ -243,6 +277,87 @@ function normalizeYouTubeResult(item) {
     thumbnail: item.thumbnail || item.thumbnails?.at(-1)?.url || `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
     url: `https://www.youtube.com/watch?v=${id}`,
     embedUrl: `https://www.youtube.com/embed/${id}`,
+  };
+}
+
+function buildExerciseReviewPrompt(exercise, provider) {
+  const allowedValues = {
+    categories: CATEGORY_VALUES,
+    levels: LEVEL_VALUES,
+    forceTypes: FORCE_TYPE_VALUES,
+    mechanics: MECHANIC_VALUES,
+    equipment: EQUIPMENT_VALUES,
+    muscles: DETAILED_MUSCLE_GROUP_VALUES,
+    movementPatterns: MOVEMENT_PATTERN_VALUES,
+    laterality: LATERALITY_VALUES,
+  };
+
+  return [
+    'You are reviewing one exercise record in the TrainerStudio static exercise database.',
+    '',
+    'Task:',
+    '- Review and improve the exercise texts and labels for the single exercise below.',
+    '- Edit only scripts/tsl26/data/exercises.ndjson.',
+    `- Edit only the JSON line whose id is "${exercise.id}". Do not change any other exercise.`,
+    '- Keep id, cdnslug/cdnSlug, media, images, aliases, source clip metadata, default video metadata, and existing CDN references intact unless they are clearly malformed.',
+    '- Make the English name/instructions and Spanish i18n name/instructions natural, clear, and exercise-specific.',
+    '- Remove Spanglish or literal machine-translation artifacts from Spanish text.',
+    '- Ensure top-level category, level, force, mechanic, equipment, primaryMuscles, secondaryMuscles and classification.* are coherent with the exercise.',
+    '- Use only the allowed classification values listed below.',
+    '- Keep top-level force/mechanic/equipment aligned with classification.forceType/mechanic/equipment.',
+    '- Do not put a muscle in both primaryMuscles and secondaryMuscles.',
+    '- Preserve the JSONL/NDJSON format: one compact JSON object per line.',
+    '- When done, summarize the changed fields and any uncertainty.',
+    `- This was launched from the editor via ${provider}.`,
+    '',
+    'Allowed classification values:',
+    JSON.stringify(allowedValues, null, 2),
+    '',
+    'Exercise to review:',
+    JSON.stringify(exercise, null, 2),
+  ].join('\n');
+}
+
+async function runExerciseReviewAgent(provider, exercise) {
+  if (!['codex', 'claude'].includes(provider)) {
+    throw new Error(`Unknown review agent: ${provider}`);
+  }
+
+  const prompt = buildExerciseReviewPrompt(exercise, provider);
+  const result = provider === 'codex'
+    ? await runCommand('codex', [
+      'exec',
+      '--cd',
+      repoRoot,
+      '--dangerously-bypass-approvals-and-sandbox',
+      prompt,
+    ], {}, { timeoutMs: 180000 })
+    : await runCommand('claude', [
+      '-p',
+      prompt,
+      '--add-dir',
+      repoRoot,
+      '--permission-mode',
+      'acceptEdits',
+      '--output-format',
+      'text',
+    ], {}, { timeoutMs: 180000 });
+
+  if (result.ok) {
+    const exercises = await readExercises();
+    if (!findExerciseByIdentifier(exercises, exercise.id)) {
+      return {
+        ...result,
+        ok: false,
+        code: result.code ?? 1,
+        output: `${result.output}\n\nReview agent finished, but the exercise id is no longer present in exercises.ndjson.`,
+      };
+    }
+  }
+
+  return {
+    ...result,
+    output: `$ ${provider} exercise review ${exercise.id}\n${result.output}`.trim(),
   };
 }
 
@@ -589,7 +704,7 @@ function exerciseEditorPlugin() {
             return;
           }
 
-          const { action, id, overwrite, forceCreate, arkApiKey, defaceOptions } = JSON.parse(await readBody(req));
+          const { action, id, overwrite, forceCreate, arkApiKey, defaceOptions, reviewAgent } = JSON.parse(await readBody(req));
           const extraEnv = arkApiKey ? { ARK_API_KEY: arkApiKey } : {};
           if (!id) {
             send(res, 400, { error: 'Missing exercise id' });
@@ -613,6 +728,14 @@ function exerciseEditorPlugin() {
             result = await deleteDefaultVideoForExercise(id);
           } else if (action === 'generate-thumbnail') {
             result = await generateThumbnailForExercise(id);
+          } else if (action === 'review-exercise') {
+            const exercises = await readExercises();
+            const exercise = findExerciseByIdentifier(exercises, id);
+            if (!exercise) {
+              send(res, 404, { error: `Exercise not found: ${id}` });
+              return;
+            }
+            result = await runExerciseReviewAgent(reviewAgent || 'codex', exercise);
           } else if (action === 'deface-source') {
             const args = ['deface-source-video.mjs', `--ids=${id}`];
             if (defaceOptions) {
