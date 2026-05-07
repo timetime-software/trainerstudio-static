@@ -28,8 +28,24 @@ El tooling, la metadata y los intermedios de generacion viven fuera de
 La metadata vive en `scripts/tsl26/data/exercises.json` y
 `scripts/tsl26/data/exercises.ndjson`. Cada ejercicio incluye `cdnslug`, generado
 desde el nombre en ingles en lowercase y con underscores. Si dos ejercicios
-comparten el mismo nombre, el slug lleva el `sourceId` como sufijo para evitar
-colisiones en CDN.
+comparten el mismo nombre, el slug recibe un sufijo numerico (`_2`, `_3`, ...)
+para evitar colisiones en CDN.
+
+`data/exercises.json` es el maestro de trabajo: puede contener ejercicios sin
+media, con video fuente, con video final, notas y metadata interna del editor.
+`data/exercises-public.json` es una salida derivada e importable: solo contiene
+ejercicios con `default/<cdnslug>.mp4`, con media CDN final y sin campos internos.
+
+Cada ejercicio tiene dos identificadores distintos:
+
+- `id`: opaco, estilo Mongo ObjectId de 24 caracteres hexadecimales. Se deriva de
+  `metadata.identityKey` para que el mismo ejercicio reconstruido desde un dump
+  vuelva a tener el mismo id.
+- `cdnslug`: slug unico, user-friendly y estable para carpetas/CDN/editor, por
+  ejemplo `barbell_bench_press`.
+
+La identidad canonica interna es `metadata.identityKey = "trainerstudio:<cdnslug>"`.
+No usar ids publicos derivados de proveedores externos.
 
 ## Clips Fuente
 
@@ -55,7 +71,7 @@ Opciones utiles:
 
 ```bash
 npm run videos:clips -- --limit=10
-npm run videos:clips -- --ids=mypthub_196,mypthub_942
+npm run videos:clips -- --ids=barbell_bench_press,wide_grip_pull_ups
 npm run videos:clips -- --overwrite
 npm run videos:clips -- --start=1 --duration=4 --height=480
 ```
@@ -123,7 +139,7 @@ ARK_API_KEY='...' npm run videos:style-tasks -- --ids=barbell_squats,barbell_dea
 Opciones utiles:
 
 ```bash
-npm run videos:style-tasks -- --ids=mypthub_196,mypthub_942
+npm run videos:style-tasks -- --ids=barbell_bench_press,wide_grip_pull_ups
 npm run videos:style-tasks -- --reference-images=/abs/ref1.png,/abs/ref2.png
 npm run videos:style-tasks -- --prompt-file=/abs/prompt.txt
 npm run videos:style-tasks -- --cdn-base-url=https://cdn.trainerstudio.com
@@ -221,6 +237,17 @@ No importar `data/exercises.json` directamente en la libreria oficial. Ese archi
 es el dataset de trabajo completo: incluye ejercicios traducidos y etiquetados,
 pero tambien ejercicios que solo tienen video `source` y todavia no tienen video
 `default` publicable.
+
+Generar la libreria final desde la fuente de trabajo:
+
+```bash
+cd /Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26
+npm run build:public
+```
+
+Ese comando lee `data/exercises.json`, conserva los ids opacos y escribe
+`data/exercises-public.json` / `data/exercises-public.ndjson` solo con ejercicios
+que tienen video `default` en `libraries/tsl26`.
 
 Antes de importar, comprobar los conteos esperados:
 

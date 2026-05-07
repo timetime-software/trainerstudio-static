@@ -1,6 +1,7 @@
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { labelForValue, labelsForValues } from './classification-reference.mjs';
 
 type ExerciseMedia = {
   type?: string;
@@ -17,6 +18,8 @@ type SourceExerciseDocument = {
   name: string;
   media?: ExerciseMedia[];
   images?: string[];
+  metadata?: unknown;
+  source?: unknown;
   [key: string]: unknown;
 };
 
@@ -56,6 +59,40 @@ function thumbnailUrl(cdnBase: string, slug: string): string {
   return `${cdnBase.replace(/\/+$/, '')}/${LIBRARY_PREFIX}/${slug}/thumbnail.png`;
 }
 
+function enumI18nFor(exercise: SourceExerciseDocument): Record<string, unknown> {
+  const i18n: Record<string, unknown> = {};
+
+  if (typeof exercise.category === 'string' && exercise.category) {
+    i18n.category = {
+      en: labelForValue(exercise.category, 'en'),
+      es: labelForValue(exercise.category, 'es'),
+    };
+  }
+
+  if (typeof exercise.equipment === 'string' && exercise.equipment) {
+    i18n.equipment = {
+      en: labelForValue(exercise.equipment, 'en'),
+      es: labelForValue(exercise.equipment, 'es'),
+    };
+  }
+
+  if (Array.isArray(exercise.primaryMuscles)) {
+    i18n.primaryMuscles = {
+      en: labelsForValues(exercise.primaryMuscles, 'en'),
+      es: labelsForValues(exercise.primaryMuscles, 'es'),
+    };
+  }
+
+  if (Array.isArray(exercise.secondaryMuscles)) {
+    i18n.secondaryMuscles = {
+      en: labelsForValues(exercise.secondaryMuscles, 'en'),
+      es: labelsForValues(exercise.secondaryMuscles, 'es'),
+    };
+  }
+
+  return i18n;
+}
+
 function buildPublicExercise(
   exercise: SourceExerciseDocument,
   cdnBase: string,
@@ -77,10 +114,22 @@ function buildPublicExercise(
       : []),
   ];
 
-  const { cdnslug: _cdnslug, cdnSlug: _cdnSlug, ...rest } = exercise;
+  const {
+    cdnslug: _cdnslug,
+    cdnSlug: _cdnSlug,
+    metadata: _metadata,
+    source: _source,
+    ...rest
+  } = exercise;
+
+  const sourceI18n = rest.i18n && typeof rest.i18n === 'object' ? rest.i18n as Record<string, unknown> : {};
 
   return {
     ...rest,
+    i18n: {
+      ...sourceI18n,
+      ...enumI18nFor(exercise),
+    },
     images: thumbUrl ? [thumbUrl] : [],
     media,
   };

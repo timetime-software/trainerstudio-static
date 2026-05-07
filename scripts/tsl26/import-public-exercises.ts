@@ -13,7 +13,7 @@ type PublicExerciseDocument = {
 };
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
-const DEFAULT_INPUT_PATH = path.join(SCRIPT_DIR, 'data/exercises.json');
+const DEFAULT_INPUT_PATH = path.join(SCRIPT_DIR, 'data/exercises-public.json');
 const DEFAULT_MONGODB_URI = 'mongodb://localhost:27017/trainerStudioDB';
 const DEFAULT_DATABASE_NAME = 'trainerStudioDB';
 const DEFAULT_BATCH_SIZE = 500;
@@ -46,6 +46,16 @@ function getRequiredObjectId(value: string | undefined, label: string): ObjectId
   return new ObjectId(value);
 }
 
+function redactMongoUri(uri: string): string {
+  try {
+    const parsed = new URL(uri);
+    if (parsed.password) parsed.password = '***';
+    return parsed.toString();
+  } catch {
+    return uri.replace(/\/\/([^:]+):([^@]+)@/, '//$1:***@');
+  }
+}
+
 async function readExercises(inputPath: string): Promise<PublicExerciseDocument[]> {
   const content = await fs.readFile(inputPath, 'utf8');
   const parsed = JSON.parse(content);
@@ -75,11 +85,11 @@ function normalizeExercise(exercise: PublicExerciseDocument, libraryId: ObjectId
 }
 
 async function main(): Promise<void> {
-  const inputPath = path.resolve(getArgValue('input') ?? process.env.MYPTHUB_IMPORT_INPUT ?? DEFAULT_INPUT_PATH);
-  const libraryId = getRequiredObjectId(getArgValue('library-id') ?? process.env.MYPTHUB_IMPORT_LIBRARY_ID, 'libraryId');
+  const inputPath = path.resolve(getArgValue('input') ?? process.env.TSL26_IMPORT_INPUT ?? DEFAULT_INPUT_PATH);
+  const libraryId = getRequiredObjectId(getArgValue('library-id') ?? process.env.TSL26_IMPORT_LIBRARY_ID, 'libraryId');
   const mongodbUri = getArgValue('mongodb-uri') ?? process.env.MONGODB_URI ?? DEFAULT_MONGODB_URI;
   const databaseName = getArgValue('database') ?? process.env.MONGODB_DB_NAME ?? DEFAULT_DATABASE_NAME;
-  const batchSize = Number(getArgValue('batch-size') ?? process.env.MYPTHUB_IMPORT_BATCH_SIZE ?? DEFAULT_BATCH_SIZE);
+  const batchSize = Number(getArgValue('batch-size') ?? process.env.TSL26_IMPORT_BATCH_SIZE ?? DEFAULT_BATCH_SIZE);
   const dryRun = getBooleanOption('dry-run', 'DRY_RUN');
 
   const client = new MongoClient(mongodbUri);
@@ -106,7 +116,7 @@ async function main(): Promise<void> {
     }
 
     console.log(`Input: ${inputPath}`);
-    console.log(`MongoDB: ${mongodbUri}`);
+    console.log(`MongoDB: ${redactMongoUri(mongodbUri)}`);
     console.log(`Database: ${databaseName}`);
     console.log(`Library: ${library.name ?? libraryId.toHexString()} (${libraryId.toHexString()})`);
     console.log(`Exercises: ${exercises.length}`);

@@ -1,6 +1,7 @@
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { identityKeyForSlug, idForIdentityKey } from './exercise-ids.mjs';
 
 type MediaType = 'image' | 'video' | 'gif' | 'link';
 type MediaSource = 'youtube' | 'vimeo' | 'uploaded' | 'external';
@@ -39,17 +40,14 @@ type PublicExerciseDocument = {
   libraryId?: string;
   i18n: {
     name: { en: string };
-    category: { en: string };
-    equipment?: { en: string };
-    primaryMuscles: { en: string[] };
-    secondaryMuscles?: { en: string[] };
     instructions: { en: string[] };
   };
   classification: ExerciseClassification;
   media: ExerciseMedia[];
-  source: 'mypthub';
-  sourceId: string;
   aliases: string[];
+  metadata: {
+    identityKey: string;
+  };
 };
 
 type TransformReport = {
@@ -126,33 +124,6 @@ const EQUIPMENT_MAP: Record<string, string[]> = {
   Tyre: ['other'],
   Wall: ['other'],
   'Weight Plate': ['other'],
-};
-
-const LEGACY_MUSCLE_MAP: Record<string, string> = {
-  Abdominals: 'abdominals',
-  Abductors: 'abductors',
-  'Achilles Tendon': 'calves',
-  Adductors: 'adductors',
-  Biceps: 'biceps',
-  Calves: 'calves',
-  Chest: 'chest',
-  Fingers: 'forearms',
-  Forearms: 'forearms',
-  'Full Body': 'full body',
-  Glutes: 'glutes',
-  Groin: 'adductors',
-  Hamstrings: 'hamstrings',
-  'Hip Flexor': 'hip flexors',
-  Lats: 'lats',
-  'Lower Back': 'lower back',
-  'Middle Back': 'middle back',
-  Neck: 'neck',
-  Obliques: 'obliques',
-  Quadriceps: 'quadriceps',
-  'Rotator Cuff': 'shoulders',
-  Shoulders: 'shoulders',
-  Traps: 'traps',
-  Triceps: 'triceps',
 };
 
 const CATEGORY_MAP: Record<string, string> = {
@@ -267,10 +238,6 @@ function mapMuscles(values: string[], unmapped: Record<string, number>): string[
   );
 }
 
-function mapLegacyMuscles(values: string[]): string[] {
-  return unique(values.map((value) => LEGACY_MUSCLE_MAP[value]).filter(Boolean));
-}
-
 function mapEquipment(values: string[], unmapped: Record<string, number>): string[] {
   const mapped = unique(
     values.flatMap((value) => {
@@ -284,14 +251,6 @@ function mapEquipment(values: string[], unmapped: Record<string, number>): strin
   );
 
   return mapped.length > 0 ? mapped : ['other'];
-}
-
-function normalizeLegacyEquipment(values: string[]): string {
-  if (values.length === 0) {
-    return '';
-  }
-
-  return values[0].trim().toLowerCase();
 }
 
 function instructionsFromDescription(value: string): string[] {
@@ -382,7 +341,12 @@ function mediaFor(row: Record<string, string>): ExerciseMedia[] {
   return media;
 }
 
-function transformRow(row: Record<string, string>, report: TransformReport, rowNumber: number, libraryId?: string): PublicExerciseDocument | null {
+function transformRow(
+  row: Record<string, string>,
+  report: TransformReport,
+  rowNumber: number,
+  libraryId?: string,
+): PublicExerciseDocument | null {
   const id = row.id.trim();
   const name = row.name.trim();
   if (!id || !name) {
@@ -413,19 +377,20 @@ function transformRow(row: Record<string, string>, report: TransformReport, rowN
   if (media.some((item) => item.type === 'image' && item.source === 'youtube')) report.media.imagesFromYoutubeThumbnail += 1;
   if (media.length === 0) report.media.withoutMedia += 1;
 
-  const legacyPrimaryMuscles = mapLegacyMuscles(rawPrimaryMuscles);
-  const legacySecondaryMuscles = mapLegacyMuscles(rawSecondaryMuscles).filter((muscle) => !legacyPrimaryMuscles.includes(muscle));
+  const cdnslug = slugifyEnglishName(name);
+  const identityKey = identityKeyForSlug(cdnslug) as string;
+  const primaryEquipment = equipment.find((value) => value !== 'bodyweight') ?? equipment[0] ?? '';
 
   return {
-    id: `mypthub_${id}`,
-    cdnslug: slugifyEnglishName(name),
+    id: idForIdentityKey(identityKey),
+    cdnslug,
     name,
     force: forceType[0] ?? '',
     level: 'beginner',
     mechanic: mechanic[0] ?? '',
-    equipment: normalizeLegacyEquipment(rawEquipment),
-    primaryMuscles: legacyPrimaryMuscles,
-    secondaryMuscles: legacySecondaryMuscles,
+    equipment: primaryEquipment,
+    primaryMuscles,
+    secondaryMuscles,
     instructions,
     category,
     images: media.filter((item) => item.type === 'image' && item.url).map((item) => item.url as string),
@@ -433,10 +398,6 @@ function transformRow(row: Record<string, string>, report: TransformReport, rowN
     ...(libraryId ? { libraryId } : {}),
     i18n: {
       name: { en: name },
-      category: { en: category },
-      ...(rawEquipment[0] ? { equipment: { en: rawEquipment[0] } } : {}),
-      primaryMuscles: { en: legacyPrimaryMuscles },
-      ...(legacySecondaryMuscles.length > 0 ? { secondaryMuscles: { en: legacySecondaryMuscles } } : {}),
       instructions: { en: instructions },
     },
     classification: {
@@ -449,9 +410,10 @@ function transformRow(row: Record<string, string>, report: TransformReport, rowN
       equipment,
     },
     media,
-    source: 'mypthub',
-    sourceId: id,
     aliases: splitPipe(row.aliases),
+    metadata: {
+      identityKey,
+    },
   };
 }
 
@@ -461,16 +423,18 @@ async function writeJson(filePath: string, value: unknown): Promise<void> {
 }
 
 function ensureUniqueCdnSlugs(documents: PublicExerciseDocument[]): void {
-  const counts = new Map<string, number>();
+  const seen = new Map<string, number>();
 
   for (const document of documents) {
-    counts.set(document.cdnslug, (counts.get(document.cdnslug) ?? 0) + 1);
-  }
-
-  for (const document of documents) {
-    if ((counts.get(document.cdnslug) ?? 0) > 1) {
-      document.cdnslug = `${document.cdnslug}_${document.sourceId}`;
+    const baseSlug = document.cdnslug;
+    const count = (seen.get(baseSlug) ?? 0) + 1;
+    seen.set(baseSlug, count);
+    if (count > 1) {
+      document.cdnslug = `${baseSlug}_${count}`;
     }
+    const identityKey = identityKeyForSlug(document.cdnslug) as string;
+    document.id = idForIdentityKey(identityKey);
+    document.metadata = { ...(document.metadata ?? {}), identityKey };
   }
 }
 

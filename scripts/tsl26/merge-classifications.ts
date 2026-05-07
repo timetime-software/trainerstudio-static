@@ -1,6 +1,7 @@
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { findExerciseByIdentifier } from './exercise-ids.mjs';
 
 type ClassificationOutputItem = {
   id: string;
@@ -13,11 +14,6 @@ type ClassificationOutputItem = {
     mechanic: string[];
     laterality?: string[];
     equipment: string[];
-  };
-  i18n?: {
-    primaryMuscles?: { en?: string[]; es?: string[] };
-    secondaryMuscles?: { en?: string[]; es?: string[] };
-    equipment?: { en?: string; es?: string };
   };
   legacy?: {
     force?: string;
@@ -108,6 +104,9 @@ function validateItem(item: ClassificationOutputItem): string[] {
 }
 
 function applyToExercise(exercise: SourceExerciseDocument, item: ClassificationOutputItem): void {
+  const equipment = item.classification.equipment;
+  const primaryEquipment = equipment.find((value) => value !== 'bodyweight') ?? equipment[0] ?? '';
+
   exercise.classification = {
     primaryMuscles: item.classification.primaryMuscles,
     secondaryMuscles: item.classification.secondaryMuscles ?? [],
@@ -115,41 +114,16 @@ function applyToExercise(exercise: SourceExerciseDocument, item: ClassificationO
     forceType: item.classification.forceType,
     mechanic: item.classification.mechanic,
     laterality: item.classification.laterality ?? ['bilateral'],
-    equipment: item.classification.equipment,
+    equipment,
   };
 
   if (item.level) exercise.level = item.level;
 
-  if (item.legacy?.force) exercise.force = item.legacy.force;
-  if (item.legacy?.mechanic) exercise.mechanic = item.legacy.mechanic;
-  if (item.legacy?.equipment !== undefined) exercise.equipment = item.legacy.equipment;
-  if (item.legacy?.primaryMuscles) exercise.primaryMuscles = item.legacy.primaryMuscles;
-  if (item.legacy?.secondaryMuscles) exercise.secondaryMuscles = item.legacy.secondaryMuscles;
-
-  if (item.i18n) {
-    exercise.i18n = exercise.i18n ?? {};
-    if (item.i18n.primaryMuscles) {
-      exercise.i18n.primaryMuscles = {
-        ...(exercise.i18n.primaryMuscles ?? {}),
-        ...(item.i18n.primaryMuscles.en ? { en: item.i18n.primaryMuscles.en } : {}),
-        ...(item.i18n.primaryMuscles.es ? { es: item.i18n.primaryMuscles.es } : {}),
-      };
-    }
-    if (item.i18n.secondaryMuscles) {
-      exercise.i18n.secondaryMuscles = {
-        ...(exercise.i18n.secondaryMuscles ?? {}),
-        ...(item.i18n.secondaryMuscles.en ? { en: item.i18n.secondaryMuscles.en } : {}),
-        ...(item.i18n.secondaryMuscles.es ? { es: item.i18n.secondaryMuscles.es } : {}),
-      };
-    }
-    if (item.i18n.equipment) {
-      exercise.i18n.equipment = {
-        ...(exercise.i18n.equipment ?? {}),
-        ...(item.i18n.equipment.en ? { en: item.i18n.equipment.en } : {}),
-        ...(item.i18n.equipment.es ? { es: item.i18n.equipment.es } : {}),
-      };
-    }
-  }
+  exercise.force = item.classification.forceType[0] ?? '';
+  exercise.mechanic = item.classification.mechanic[0] ?? '';
+  exercise.equipment = primaryEquipment;
+  exercise.primaryMuscles = item.classification.primaryMuscles;
+  exercise.secondaryMuscles = item.classification.secondaryMuscles ?? [];
 }
 
 async function main(): Promise<void> {
@@ -190,8 +164,6 @@ async function main(): Promise<void> {
   }
 
   const data = JSON.parse(await fs.readFile(SOURCE_PATH, 'utf8')) as SourceExerciseDocument[];
-  const byId = new Map(data.map((exercise) => [exercise.id, exercise]));
-
   let applied = 0;
   const missing: string[] = [];
   const seen = new Set<string>();
@@ -201,7 +173,7 @@ async function main(): Promise<void> {
       console.warn(`Duplicate id ${item.id} across batches, keeping last`);
     }
     seen.add(item.id);
-    const exercise = byId.get(item.id);
+    const exercise = findExerciseByIdentifier(data, item.id);
     if (!exercise) {
       missing.push(item.id);
       continue;

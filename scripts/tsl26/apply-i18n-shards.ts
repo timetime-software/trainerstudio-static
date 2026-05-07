@@ -1,6 +1,7 @@
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { findExerciseByIdentifier } from './exercise-ids.mjs';
 
 type I18nShardEntry = {
   index: number;
@@ -23,10 +24,6 @@ type PublicExerciseDocument = {
   instructions?: string[];
   i18n?: {
     name?: Record<string, string>;
-    category?: Record<string, string>;
-    equipment?: Record<string, string>;
-    primaryMuscles?: Record<string, string[]>;
-    secondaryMuscles?: Record<string, string[]>;
     instructions?: Record<string, string[]>;
   };
   [key: string]: unknown;
@@ -69,6 +66,10 @@ function ensureString(value: unknown, label: string): string {
   return value;
 }
 
+function hasSpanishI18n(document: PublicExerciseDocument): boolean {
+  return typeof document.i18n?.name?.es === 'string' && document.i18n.name.es.length > 0;
+}
+
 async function main(): Promise<void> {
   const inputPath = path.resolve(getArgValue('input') ?? process.env.MYPTHUB_I18N_INPUT ?? DEFAULT_INPUT_PATH);
   const outputPath = path.resolve(getArgValue('output') ?? process.env.MYPTHUB_I18N_OUTPUT ?? inputPath);
@@ -84,7 +85,8 @@ async function main(): Promise<void> {
     throw new Error(`No shard-XX.es.json files found in ${shardsDir}`);
   }
 
-  const byId = new Map(documents.map((document) => [document.id, document]));
+  const appliedDocumentIds = new Set(documents.filter(hasSpanishI18n).map((document) => document.id));
+  let skippedMissing = 0;
   let applied = 0;
 
   for (const shardFile of shardFiles) {
@@ -96,13 +98,10 @@ async function main(): Promise<void> {
     }
 
     for (const entry of entries) {
-      const document = byId.get(entry.id);
+      const document = findExerciseByIdentifier(documents, entry.id);
       if (!document) {
-        throw new Error(`${shardPath} contains unknown exercise id ${entry.id}`);
-      }
-
-      if (documents[entry.index]?.id !== entry.id) {
-        throw new Error(`${shardPath} index/id mismatch at index ${entry.index}: ${entry.id}`);
+        skippedMissing += 1;
+        continue;
       }
 
       document.i18n = document.i18n ?? {};
@@ -111,34 +110,20 @@ async function main(): Promise<void> {
         ...(document.i18n.instructions ?? {}),
         es: ensureArray(entry.instructions_es, `${entry.id}.instructions_es`),
       };
-      document.i18n.category = { ...(document.i18n.category ?? {}), es: ensureString(entry.category_es, `${entry.id}.category_es`) };
-
-      if (entry.equipment_es !== undefined && entry.equipment_es !== '') {
-        document.i18n.equipment = { ...(document.i18n.equipment ?? {}), es: ensureString(entry.equipment_es, `${entry.id}.equipment_es`) };
-      }
-
-      document.i18n.primaryMuscles = {
-        ...(document.i18n.primaryMuscles ?? {}),
-        es: ensureArray(entry.primaryMuscles_es, `${entry.id}.primaryMuscles_es`),
-      };
-
-      if (entry.secondaryMuscles_es !== undefined) {
-        document.i18n.secondaryMuscles = {
-          ...(document.i18n.secondaryMuscles ?? {}),
-          es: ensureArray(entry.secondaryMuscles_es, `${entry.id}.secondaryMuscles_es`),
-        };
-      }
 
       applied += 1;
+      appliedDocumentIds.add(document.id);
     }
   }
 
-  if (applied !== documents.length) {
-    throw new Error(`Applied ${applied} translations, expected ${documents.length}`);
+  const missingDocumentIds = documents.filter((document) => !appliedDocumentIds.has(document.id)).map((document) => document.id);
+  if (missingDocumentIds.length > 0) {
+    throw new Error(`Missing translations for ${missingDocumentIds.length} input documents: ${missingDocumentIds.slice(0, 10).join(', ')}`);
   }
 
   await fs.writeFile(outputPath, `${JSON.stringify(documents, null, 2)}\n`, 'utf8');
   console.log(`Applied ${applied} Spanish i18n entries to ${outputPath}`);
+  if (skippedMissing > 0) console.log(`Skipped shard entries not present in input: ${skippedMissing}`);
 }
 
 main().catch((error) => {

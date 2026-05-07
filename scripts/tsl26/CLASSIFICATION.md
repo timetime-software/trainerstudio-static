@@ -31,7 +31,7 @@ Para cada ejercicio el agente debe devolver:
 
 ```jsonc
 {
-  "id": "mypthub_1067181",
+  "id": "e1d4c1fc5356e05d76b42e77",
   "level": "beginner|intermediate|expert",
   "classification": {
     "primaryMuscles": ["..."],     // 1-2 motores principales (DetailedMuscleGroup)

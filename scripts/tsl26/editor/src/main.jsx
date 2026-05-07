@@ -1,6 +1,17 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { AlertTriangle, Check, ChevronLeft, ChevronRight, Clock, EyeOff, FileVideo, Pause, Play, Save, Scissors, Search, Sparkles, Star, Trash2 } from 'lucide-react';
+import {
+  CATEGORY_VALUES,
+  DETAILED_MUSCLE_GROUP_VALUES,
+  EQUIPMENT_VALUES,
+  FORCE_TYPE_VALUES,
+  LATERALITY_VALUES,
+  LEVEL_VALUES,
+  MECHANIC_VALUES,
+  MOVEMENT_PATTERN_VALUES,
+  labelForValue,
+} from '../../classification-reference.mjs';
 import './styles.css';
 
 const emptyStatus = { sourceClip: false, defaultClip: false, downloadedOriginals: [], arkTask: null };
@@ -16,12 +27,8 @@ function fromLines(value) {
   return value.split('\n').map((line) => line.trim()).filter(Boolean);
 }
 
-function uniqueOptions(exercises, getter) {
-  return [...new Set(exercises.flatMap((exercise) => getter(exercise) || []).filter((value) => String(value || '').trim()))].sort();
-}
-
 function toOptionLabel(value) {
-  return String(value).replace(/_/g, ' ');
+  return labelForValue(value);
 }
 
 function SelectField({ label, value, options, onChange, allowBlank = true }) {
@@ -313,6 +320,22 @@ function idFromUrl() {
   return new URLSearchParams(window.location.search).get('id') || '';
 }
 
+function cdnSlugFor(exercise) {
+  return exercise?.cdnslug || exercise?.cdnSlug || '';
+}
+
+function exerciseMatchesIdentifier(exercise, identifier) {
+  if (!identifier) return false;
+  return [exercise?.id, exercise?.metadata?.identityKey, cdnSlugFor(exercise)]
+    .filter(Boolean)
+    .map(String)
+    .includes(String(identifier));
+}
+
+function findExerciseByIdentifier(exercises, identifier) {
+  return exercises.find((exercise) => exerciseMatchesIdentifier(exercise, identifier));
+}
+
 function App() {
   const [exercises, setExercises] = useState([]);
   const [selectedId, setSelectedId] = useState('');
@@ -360,7 +383,7 @@ function App() {
     const data = await fetch('/api/exercises')
       .then((res) => res.json())
     const slugs = data.librarySlugs || [];
-    const queryExercise = data.exercises.find((exercise) => exercise.id === preferredId);
+    const queryExercise = findExerciseByIdentifier(data.exercises, preferredId);
     const firstLibraryExercise = data.exercises.find((exercise) => slugs[0] && (exercise.cdnslug || exercise.cdnSlug) === slugs[0]);
     setExercises(data.exercises);
     setSelectedId(queryExercise?.id || firstLibraryExercise?.id || data.exercises[0]?.id || '');
@@ -416,8 +439,9 @@ function App() {
   useEffect(() => {
     function handlePopState() {
       const id = idFromUrl();
-      if (id && exercises.some((exercise) => exercise.id === id)) {
-        setSelectedId(id);
+      const exercise = findExerciseByIdentifier(exercises, id);
+      if (exercise) {
+        setSelectedId(exercise.id);
       }
     }
 
@@ -458,10 +482,10 @@ function App() {
   const filtered = useMemo(() => {
     const term = query.trim().toLowerCase();
     const libraryOrder = new Map(librarySlugs.map((slug, index) => [slug, index]));
-    const librarySlugSet = new Set(librarySlugs);
     return exercises.filter((exercise) => {
       const slug = exercise.cdnslug || exercise.cdnSlug;
-      const hasDefault = hasDefaultVideo(exercise) || (slug && defaultSlugs.has(slug));
+      const hasSource = (slug && sourceSlugs.has(slug)) || Boolean(videoBySource(exercise, 'source'));
+      const hasDefault = (slug && defaultSlugs.has(slug)) || hasDefaultVideo(exercise);
       const shouldRegenerate = exercise.metadata?.defaultVideoInvalid === true || /regener/i.test(String(exercise.metadata?.notes || ''));
       const haystack = [
         exercise.id,
@@ -476,18 +500,9 @@ function App() {
       const matchesTerm = !term || haystack.includes(term);
       const matchesFilter =
         filter === 'all' ||
-        (filter === 'priority' && exercise.priority === true) ||
-        (filter === 'invalidDefault' && exercise.metadata?.defaultVideoInvalid === true) ||
-        (filter === 'regenerate' && shouldRegenerate) ||
-        (filter === 'library' && librarySlugSet.has(slug)) ||
-        (filter === 'notInLibrary' && !librarySlugSet.has(slug)) ||
-        (filter === 'missingFolder' && slug && !librarySlugSet.has(slug)) ||
-        (filter === 'youtube' && firstVideo(exercise)?.url?.includes('youtube')) ||
-        (filter === 'hasDefault' && hasDefault) ||
+        (filter === 'missingSource' && !hasSource) ||
         (filter === 'missingDefault' && !hasDefault) ||
-        (filter === 'reviewed' && exercise.metadata?.reviewed === true) ||
-        (filter === 'pendingReview' && exercise.metadata?.reviewed !== true) ||
-        (filter === 'inactive' && exercise.isActive === false);
+        (filter === 'regenerate' && shouldRegenerate);
       return matchesTerm && matchesFilter;
     }).sort((a, b) => {
       const aSlug = a.cdnslug || a.cdnSlug;
@@ -497,19 +512,19 @@ function App() {
       if (aOrder !== bOrder) return aOrder - bOrder;
       return (a.name || '').localeCompare(b.name || '');
     });
-  }, [defaultSlugs, exercises, filter, librarySlugs, query]);
+  }, [defaultSlugs, exercises, filter, librarySlugs, query, sourceSlugs]);
 
   const options = useMemo(() => ({
-    categories: uniqueOptions(exercises, (exercise) => [exercise.category]),
-    levels: uniqueOptions(exercises, (exercise) => [exercise.level]),
-    forces: uniqueOptions(exercises, (exercise) => [exercise.force]),
-    mechanics: uniqueOptions(exercises, (exercise) => [exercise.mechanic]),
-    equipment: uniqueOptions(exercises, (exercise) => [exercise.equipment]),
-    muscles: uniqueOptions(exercises, (exercise) => [...(exercise.primaryMuscles || []), ...(exercise.secondaryMuscles || [])]),
-    movementPatterns: uniqueOptions(exercises, (exercise) => exercise.classification?.movementPattern),
-    laterality: uniqueOptions(exercises, (exercise) => exercise.classification?.laterality),
-    classificationEquipment: uniqueOptions(exercises, (exercise) => exercise.classification?.equipment),
-  }), [exercises]);
+    categories: CATEGORY_VALUES,
+    levels: LEVEL_VALUES,
+    forces: FORCE_TYPE_VALUES,
+    mechanics: MECHANIC_VALUES,
+    equipment: EQUIPMENT_VALUES,
+    muscles: DETAILED_MUSCLE_GROUP_VALUES,
+    movementPatterns: MOVEMENT_PATTERN_VALUES,
+    laterality: LATERALITY_VALUES,
+    classificationEquipment: EQUIPMENT_VALUES,
+  }), []);
 
   function patchSelected(patch) {
     setExercises((current) => current.map((exercise) => (exercise.id === selected.id ? updateExercise(exercise, patch) : exercise)));
@@ -919,18 +934,9 @@ function App() {
             </div>
             <select value={filter} onChange={(event) => setFilter(event.target.value)}>
               <option value="all">All</option>
-              <option value="priority">Priority</option>
-              <option value="invalidDefault">Default invalid</option>
-              <option value="regenerate">Regenerate</option>
-              <option value="library">In library</option>
-              <option value="notInLibrary">Not in library</option>
-              <option value="missingFolder">Missing folder</option>
-              <option value="youtube">YouTube</option>
-              <option value="hasDefault">Has default</option>
+              <option value="missingSource">Missing source</option>
               <option value="missingDefault">Missing default</option>
-              <option value="pendingReview">Pending review</option>
-              <option value="reviewed">Reviewed</option>
-              <option value="inactive">Inactive</option>
+              <option value="regenerate">Regenerate</option>
             </select>
           </div>
           <div className="count">
@@ -1368,19 +1374,22 @@ function App() {
                 <input value={selected.cdnslug || ''} onChange={(event) => patchSelected({ cdnslug: event.target.value })} />
               </label>
               <div className="split">
-                <SelectField label="Category" value={selected.category} options={options.categories} onChange={(category) => patchSelected({ category, i18n: { category: { ...selected.i18n?.category, en: category } } })} />
+                <SelectField label="Category" value={selected.category} options={options.categories} onChange={(category) => patchSelected({ category })} />
                 <SelectField label="Level" value={selected.level} options={options.levels} onChange={(level) => patchSelected({ level })} />
               </div>
               <div className="split">
                 <SelectField label="Force" value={selected.force} options={options.forces} onChange={(force) => patchSelected({ force, classification: { forceType: force ? [force] : [] } })} />
                 <SelectField label="Mechanic" value={selected.mechanic} options={options.mechanics} onChange={(mechanic) => patchSelected({ mechanic, classification: { mechanic: mechanic ? [mechanic] : [] } })} />
               </div>
-              <SelectField label="Equipment" value={selected.equipment} options={options.equipment} onChange={(equipment) => patchSelected({ equipment, i18n: { equipment: { ...selected.i18n?.equipment, en: equipment } } })} />
+              <SelectField label="Equipment" value={selected.equipment} options={options.equipment} onChange={(equipment) => patchSelected({ equipment, classification: { equipment: equipment ? [equipment] : [] } })} />
               <MultiSelectField label="Primary muscles" value={selected.primaryMuscles} options={options.muscles} onChange={(primaryMuscles) => patchSelected({ primaryMuscles, classification: { primaryMuscles } })} />
               <MultiSelectField label="Secondary muscles" value={selected.secondaryMuscles} options={options.muscles} onChange={(secondaryMuscles) => patchSelected({ secondaryMuscles, classification: { secondaryMuscles } })} />
               <MultiSelectField label="Movement pattern" value={selected.classification?.movementPattern} options={options.movementPatterns} onChange={(movementPattern) => patchSelected({ classification: { movementPattern } })} />
               <MultiSelectField label="Laterality" value={selected.classification?.laterality} options={options.laterality} onChange={(laterality) => patchSelected({ classification: { laterality } })} />
-              <MultiSelectField label="Classification equipment" value={selected.classification?.equipment} options={options.classificationEquipment} onChange={(equipment) => patchSelected({ classification: { equipment } })} />
+              <MultiSelectField label="Classification equipment" value={selected.classification?.equipment} options={options.classificationEquipment} onChange={(equipment) => {
+                const primaryEquipment = equipment.find((item) => item !== 'bodyweight') || equipment[0] || '';
+                patchSelected({ equipment: primaryEquipment, classification: { equipment } });
+              }} />
             </div>
 
             <div className="editorSection">
@@ -1432,14 +1441,6 @@ function App() {
             <label>
               Name
               <input value={selected.i18n?.name?.es || ''} onChange={(event) => patchSelected({ i18n: { name: { ...selected.i18n?.name, es: event.target.value } } })} />
-            </label>
-            <label>
-              Category
-              <input value={selected.i18n?.category?.es || ''} onChange={(event) => patchSelected({ i18n: { category: { ...selected.i18n?.category, es: event.target.value } } })} />
-            </label>
-            <label>
-              Equipment
-              <input value={selected.i18n?.equipment?.es || ''} onChange={(event) => patchSelected({ i18n: { equipment: { ...selected.i18n?.equipment, es: event.target.value } } })} />
             </label>
             <label>
               Instructions

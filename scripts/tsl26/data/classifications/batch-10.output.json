@@ -1,632 +1,1679 @@
 [
   {
-    "id": "mypthub_76277",
+    "id": "d8dea1381fdf641288bd042a",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["abs"],
-      "secondaryMuscles": ["obliques", "shoulders", "triceps"],
-      "movementPattern": ["anti_rotation"],
-      "forceType": ["isometric"],
-      "mechanic": ["isolation"],
-      "laterality": ["bilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "obliques",
+        "shoulders",
+        "triceps"
+      ],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "isometric"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Abs"], "es": ["Abdominales"] },
-      "secondaryMuscles": { "en": ["Obliques", "Shoulders", "Triceps"], "es": ["Oblicuos", "Hombros", "Tríceps"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Abs"
+        ],
+        "es": [
+          "Abdominales"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Obliques",
+          "Shoulders",
+          "Triceps"
+        ],
+        "es": [
+          "Oblicuos",
+          "Hombros",
+          "Tríceps"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "isometric",
       "mechanic": "isolation",
       "equipment": "bosu",
-      "primaryMuscles": ["Abs"],
-      "secondaryMuscles": ["Obliques", "Shoulders", "Triceps"]
+      "primaryMuscles": [
+        "Abs"
+      ],
+      "secondaryMuscles": [
+        "Obliques",
+        "Shoulders",
+        "Triceps"
+      ]
     }
   },
   {
-    "id": "mypthub_76292",
+    "id": "3308227316f0d31976092ffb",
     "level": "beginner",
     "classification": {
-      "primaryMuscles": ["abs"],
-      "secondaryMuscles": ["obliques", "shoulders"],
-      "movementPattern": ["anti_rotation"],
-      "forceType": ["isometric"],
-      "mechanic": ["isolation"],
-      "laterality": ["bilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "obliques",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "isometric"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Abs"], "es": ["Abdominales"] },
-      "secondaryMuscles": { "en": ["Obliques", "Shoulders"], "es": ["Oblicuos", "Hombros"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Abs"
+        ],
+        "es": [
+          "Abdominales"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Obliques",
+          "Shoulders"
+        ],
+        "es": [
+          "Oblicuos",
+          "Hombros"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "isometric",
       "mechanic": "isolation",
       "equipment": "bosu",
-      "primaryMuscles": ["Abs"],
-      "secondaryMuscles": ["Obliques", "Shoulders"]
+      "primaryMuscles": [
+        "Abs"
+      ],
+      "secondaryMuscles": [
+        "Obliques",
+        "Shoulders"
+      ]
     }
   },
   {
-    "id": "mypthub_76294",
+    "id": "09e4835ac94b07dd96039c6a",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["abs"],
-      "secondaryMuscles": ["obliques", "shoulders", "triceps"],
-      "movementPattern": ["anti_rotation"],
-      "forceType": ["isometric"],
-      "mechanic": ["isolation"],
-      "laterality": ["bilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "obliques",
+        "shoulders",
+        "triceps"
+      ],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "isometric"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Abs"], "es": ["Abdominales"] },
-      "secondaryMuscles": { "en": ["Obliques", "Shoulders", "Triceps"], "es": ["Oblicuos", "Hombros", "Tríceps"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Abs"
+        ],
+        "es": [
+          "Abdominales"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Obliques",
+          "Shoulders",
+          "Triceps"
+        ],
+        "es": [
+          "Oblicuos",
+          "Hombros",
+          "Tríceps"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "isometric",
       "mechanic": "isolation",
       "equipment": "bosu",
-      "primaryMuscles": ["Abs"],
-      "secondaryMuscles": ["Obliques", "Shoulders", "Triceps"]
+      "primaryMuscles": [
+        "Abs"
+      ],
+      "secondaryMuscles": [
+        "Obliques",
+        "Shoulders",
+        "Triceps"
+      ]
     }
   },
   {
-    "id": "mypthub_76303",
+    "id": "2a2a19609a9fb91b4f155a4a",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["chest"],
-      "secondaryMuscles": ["triceps", "front_delts", "abs"],
-      "movementPattern": ["horizontal_push"],
-      "forceType": ["push"],
-      "mechanic": ["compound"],
-      "laterality": ["bilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "triceps",
+        "front_delts",
+        "abs"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Chest"], "es": ["Pecho"] },
-      "secondaryMuscles": { "en": ["Triceps", "Front Delts", "Abs"], "es": ["Tríceps", "Deltoides anterior", "Abdominales"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Chest"
+        ],
+        "es": [
+          "Pecho"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Triceps",
+          "Front Delts",
+          "Abs"
+        ],
+        "es": [
+          "Tríceps",
+          "Deltoides anterior",
+          "Abdominales"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "push",
       "mechanic": "compound",
       "equipment": "bosu",
-      "primaryMuscles": ["Chest"],
-      "secondaryMuscles": ["Triceps", "Front Delts", "Abs"]
+      "primaryMuscles": [
+        "Chest"
+      ],
+      "secondaryMuscles": [
+        "Triceps",
+        "Front Delts",
+        "Abs"
+      ]
     }
   },
   {
-    "id": "mypthub_76304",
+    "id": "a0b75c860f5bdbe72a0cb0dd",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["chest"],
-      "secondaryMuscles": ["front_delts", "triceps", "abs"],
-      "movementPattern": ["horizontal_push"],
-      "forceType": ["push"],
-      "mechanic": ["compound"],
-      "laterality": ["bilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "front_delts",
+        "triceps",
+        "abs"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Chest"], "es": ["Pecho"] },
-      "secondaryMuscles": { "en": ["Front Delts", "Triceps", "Abs"], "es": ["Deltoides anterior", "Tríceps", "Abdominales"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Chest"
+        ],
+        "es": [
+          "Pecho"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Front Delts",
+          "Triceps",
+          "Abs"
+        ],
+        "es": [
+          "Deltoides anterior",
+          "Tríceps",
+          "Abdominales"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "push",
       "mechanic": "compound",
       "equipment": "bosu",
-      "primaryMuscles": ["Chest"],
-      "secondaryMuscles": ["Front Delts", "Triceps", "Abs"]
+      "primaryMuscles": [
+        "Chest"
+      ],
+      "secondaryMuscles": [
+        "Front Delts",
+        "Triceps",
+        "Abs"
+      ]
     }
   },
   {
-    "id": "mypthub_76306",
+    "id": "2591684e587adece280656e9",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["chest"],
-      "secondaryMuscles": ["front_delts", "triceps", "abs"],
-      "movementPattern": ["horizontal_push"],
-      "forceType": ["push"],
-      "mechanic": ["compound"],
-      "laterality": ["bilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "front_delts",
+        "triceps",
+        "abs"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Chest"], "es": ["Pecho"] },
-      "secondaryMuscles": { "en": ["Front Delts", "Triceps", "Abs"], "es": ["Deltoides anterior", "Tríceps", "Abdominales"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Chest"
+        ],
+        "es": [
+          "Pecho"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Front Delts",
+          "Triceps",
+          "Abs"
+        ],
+        "es": [
+          "Deltoides anterior",
+          "Tríceps",
+          "Abdominales"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "push",
       "mechanic": "compound",
       "equipment": "bosu",
-      "primaryMuscles": ["Chest"],
-      "secondaryMuscles": ["Front Delts", "Triceps", "Abs"]
+      "primaryMuscles": [
+        "Chest"
+      ],
+      "secondaryMuscles": [
+        "Front Delts",
+        "Triceps",
+        "Abs"
+      ]
     }
   },
   {
-    "id": "mypthub_76309",
+    "id": "90a41d606a6d9ee02d0bb917",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["chest"],
-      "secondaryMuscles": ["front_delts", "triceps", "abs"],
-      "movementPattern": ["horizontal_push"],
-      "forceType": ["push"],
-      "mechanic": ["compound"],
-      "laterality": ["bilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "front_delts",
+        "triceps",
+        "abs"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Chest"], "es": ["Pecho"] },
-      "secondaryMuscles": { "en": ["Front Delts", "Triceps", "Abs"], "es": ["Deltoides anterior", "Tríceps", "Abdominales"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Chest"
+        ],
+        "es": [
+          "Pecho"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Front Delts",
+          "Triceps",
+          "Abs"
+        ],
+        "es": [
+          "Deltoides anterior",
+          "Tríceps",
+          "Abdominales"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "push",
       "mechanic": "compound",
       "equipment": "bosu",
-      "primaryMuscles": ["Chest"],
-      "secondaryMuscles": ["Front Delts", "Triceps", "Abs"]
+      "primaryMuscles": [
+        "Chest"
+      ],
+      "secondaryMuscles": [
+        "Front Delts",
+        "Triceps",
+        "Abs"
+      ]
     }
   },
   {
-    "id": "mypthub_76310",
+    "id": "5ae51dec226ea3d5b46b6ca1",
     "level": "expert",
     "classification": {
-      "primaryMuscles": ["chest"],
-      "secondaryMuscles": ["front_delts", "triceps", "abs"],
-      "movementPattern": ["horizontal_push"],
-      "forceType": ["push"],
-      "mechanic": ["compound"],
-      "laterality": ["bilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "front_delts",
+        "triceps",
+        "abs"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Chest"], "es": ["Pecho"] },
-      "secondaryMuscles": { "en": ["Front Delts", "Triceps", "Abs"], "es": ["Deltoides anterior", "Tríceps", "Abdominales"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Chest"
+        ],
+        "es": [
+          "Pecho"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Front Delts",
+          "Triceps",
+          "Abs"
+        ],
+        "es": [
+          "Deltoides anterior",
+          "Tríceps",
+          "Abdominales"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "push",
       "mechanic": "compound",
       "equipment": "bosu",
-      "primaryMuscles": ["Chest"],
-      "secondaryMuscles": ["Front Delts", "Triceps", "Abs"]
+      "primaryMuscles": [
+        "Chest"
+      ],
+      "secondaryMuscles": [
+        "Front Delts",
+        "Triceps",
+        "Abs"
+      ]
     },
     "_notes": "Plyometric power push-up that lifts the BOSU off the ground; requires explosive strength and coordination."
   },
   {
-    "id": "mypthub_76312",
+    "id": "c5e4574e653d8a968b2531d6",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["chest"],
-      "secondaryMuscles": ["front_delts", "triceps", "abs"],
-      "movementPattern": ["horizontal_push"],
-      "forceType": ["push"],
-      "mechanic": ["compound"],
-      "laterality": ["alternating"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "front_delts",
+        "triceps",
+        "abs"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Chest"], "es": ["Pecho"] },
-      "secondaryMuscles": { "en": ["Front Delts", "Triceps", "Abs"], "es": ["Deltoides anterior", "Tríceps", "Abdominales"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Chest"
+        ],
+        "es": [
+          "Pecho"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Front Delts",
+          "Triceps",
+          "Abs"
+        ],
+        "es": [
+          "Deltoides anterior",
+          "Tríceps",
+          "Abdominales"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "push",
       "mechanic": "compound",
       "equipment": "bosu",
-      "primaryMuscles": ["Chest"],
-      "secondaryMuscles": ["Front Delts", "Triceps", "Abs"]
+      "primaryMuscles": [
+        "Chest"
+      ],
+      "secondaryMuscles": [
+        "Front Delts",
+        "Triceps",
+        "Abs"
+      ]
     },
     "_notes": "Hands alternate between BOSU and floor each rep -> alternating laterality."
   },
   {
-    "id": "mypthub_76313",
+    "id": "74302e31ae03bd90e5abe19d",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["quadriceps"],
-      "secondaryMuscles": ["glutes", "hamstrings", "calves"],
-      "movementPattern": ["squat"],
-      "forceType": ["push"],
-      "mechanic": ["compound"],
-      "laterality": ["bilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "calves"
+      ],
+      "movementPattern": [
+        "squat"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Quadriceps"], "es": ["Cuádriceps"] },
-      "secondaryMuscles": { "en": ["Glutes", "Hamstrings", "Calves"], "es": ["Glúteos", "Isquiotibiales", "Pantorrillas"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Quadriceps"
+        ],
+        "es": [
+          "Cuádriceps"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Glutes",
+          "Hamstrings",
+          "Calves"
+        ],
+        "es": [
+          "Glúteos",
+          "Isquiotibiales",
+          "Pantorrillas"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "push",
       "mechanic": "compound",
       "equipment": "bosu",
-      "primaryMuscles": ["Quadriceps"],
-      "secondaryMuscles": ["Glutes", "Hamstrings", "Calves"]
+      "primaryMuscles": [
+        "Quadriceps"
+      ],
+      "secondaryMuscles": [
+        "Glutes",
+        "Hamstrings",
+        "Calves"
+      ]
     }
   },
   {
-    "id": "mypthub_76317",
+    "id": "2538b678c863a764b63ba604",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["quadriceps"],
-      "secondaryMuscles": ["glutes", "hamstrings", "calves"],
-      "movementPattern": ["squat"],
-      "forceType": ["push"],
-      "mechanic": ["compound"],
-      "laterality": ["bilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "calves"
+      ],
+      "movementPattern": [
+        "squat"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Quadriceps"], "es": ["Cuádriceps"] },
-      "secondaryMuscles": { "en": ["Glutes", "Hamstrings", "Calves"], "es": ["Glúteos", "Isquiotibiales", "Pantorrillas"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Quadriceps"
+        ],
+        "es": [
+          "Cuádriceps"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Glutes",
+          "Hamstrings",
+          "Calves"
+        ],
+        "es": [
+          "Glúteos",
+          "Isquiotibiales",
+          "Pantorrillas"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "push",
       "mechanic": "compound",
       "equipment": "bosu",
-      "primaryMuscles": ["Quadriceps"],
-      "secondaryMuscles": ["Glutes", "Hamstrings", "Calves"]
+      "primaryMuscles": [
+        "Quadriceps"
+      ],
+      "secondaryMuscles": [
+        "Glutes",
+        "Hamstrings",
+        "Calves"
+      ]
     }
   },
   {
-    "id": "mypthub_76356",
+    "id": "06fb1de681620589e2b3d252",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["quadriceps"],
-      "secondaryMuscles": ["glutes", "hamstrings", "calves"],
-      "movementPattern": ["lunge"],
-      "forceType": ["push"],
-      "mechanic": ["compound"],
-      "laterality": ["unilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "calves"
+      ],
+      "movementPattern": [
+        "lunge"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "unilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Quadriceps"], "es": ["Cuádriceps"] },
-      "secondaryMuscles": { "en": ["Glutes", "Hamstrings", "Calves"], "es": ["Glúteos", "Isquiotibiales", "Pantorrillas"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Quadriceps"
+        ],
+        "es": [
+          "Cuádriceps"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Glutes",
+          "Hamstrings",
+          "Calves"
+        ],
+        "es": [
+          "Glúteos",
+          "Isquiotibiales",
+          "Pantorrillas"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "push",
       "mechanic": "compound",
       "equipment": "bosu",
-      "primaryMuscles": ["Quadriceps"],
-      "secondaryMuscles": ["Glutes", "Hamstrings", "Calves"]
+      "primaryMuscles": [
+        "Quadriceps"
+      ],
+      "secondaryMuscles": [
+        "Glutes",
+        "Hamstrings",
+        "Calves"
+      ]
     }
   },
   {
-    "id": "mypthub_76358",
+    "id": "dd4f19c01d17ee815a6009ec",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["quadriceps"],
-      "secondaryMuscles": ["glutes", "hamstrings", "calves"],
-      "movementPattern": ["lunge"],
-      "forceType": ["push"],
-      "mechanic": ["compound"],
-      "laterality": ["unilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "calves"
+      ],
+      "movementPattern": [
+        "lunge"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "unilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Quadriceps"], "es": ["Cuádriceps"] },
-      "secondaryMuscles": { "en": ["Glutes", "Hamstrings", "Calves"], "es": ["Glúteos", "Isquiotibiales", "Pantorrillas"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Quadriceps"
+        ],
+        "es": [
+          "Cuádriceps"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Glutes",
+          "Hamstrings",
+          "Calves"
+        ],
+        "es": [
+          "Glúteos",
+          "Isquiotibiales",
+          "Pantorrillas"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "push",
       "mechanic": "compound",
       "equipment": "bosu",
-      "primaryMuscles": ["Quadriceps"],
-      "secondaryMuscles": ["Glutes", "Hamstrings", "Calves"]
+      "primaryMuscles": [
+        "Quadriceps"
+      ],
+      "secondaryMuscles": [
+        "Glutes",
+        "Hamstrings",
+        "Calves"
+      ]
     }
   },
   {
-    "id": "mypthub_76360",
+    "id": "767db8b2aa40af6f31933432",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["quadriceps"],
-      "secondaryMuscles": ["glutes", "hamstrings", "calves"],
-      "movementPattern": ["lunge"],
-      "forceType": ["push"],
-      "mechanic": ["compound"],
-      "laterality": ["unilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "calves"
+      ],
+      "movementPattern": [
+        "lunge"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "unilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Quadriceps"], "es": ["Cuádriceps"] },
-      "secondaryMuscles": { "en": ["Glutes", "Hamstrings", "Calves"], "es": ["Glúteos", "Isquiotibiales", "Pantorrillas"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Quadriceps"
+        ],
+        "es": [
+          "Cuádriceps"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Glutes",
+          "Hamstrings",
+          "Calves"
+        ],
+        "es": [
+          "Glúteos",
+          "Isquiotibiales",
+          "Pantorrillas"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "push",
       "mechanic": "compound",
       "equipment": "bosu",
-      "primaryMuscles": ["Quadriceps"],
-      "secondaryMuscles": ["Glutes", "Hamstrings", "Calves"]
+      "primaryMuscles": [
+        "Quadriceps"
+      ],
+      "secondaryMuscles": [
+        "Glutes",
+        "Hamstrings",
+        "Calves"
+      ]
     }
   },
   {
-    "id": "mypthub_76361",
+    "id": "053ccb6c064d5b18d9371d60",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["quadriceps"],
-      "secondaryMuscles": ["glutes", "hamstrings", "calves"],
-      "movementPattern": ["lunge"],
-      "forceType": ["push"],
-      "mechanic": ["compound"],
-      "laterality": ["unilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "calves"
+      ],
+      "movementPattern": [
+        "lunge"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "unilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Quadriceps"], "es": ["Cuádriceps"] },
-      "secondaryMuscles": { "en": ["Glutes", "Hamstrings", "Calves"], "es": ["Glúteos", "Isquiotibiales", "Pantorrillas"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Quadriceps"
+        ],
+        "es": [
+          "Cuádriceps"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Glutes",
+          "Hamstrings",
+          "Calves"
+        ],
+        "es": [
+          "Glúteos",
+          "Isquiotibiales",
+          "Pantorrillas"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "push",
       "mechanic": "compound",
       "equipment": "bosu",
-      "primaryMuscles": ["Quadriceps"],
-      "secondaryMuscles": ["Glutes", "Hamstrings", "Calves"]
+      "primaryMuscles": [
+        "Quadriceps"
+      ],
+      "secondaryMuscles": [
+        "Glutes",
+        "Hamstrings",
+        "Calves"
+      ]
     }
   },
   {
-    "id": "mypthub_76362",
+    "id": "279cd354b8971dcf61f3b15a",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["quadriceps"],
-      "secondaryMuscles": ["glutes", "hamstrings", "calves"],
-      "movementPattern": ["lunge"],
-      "forceType": ["push"],
-      "mechanic": ["compound"],
-      "laterality": ["unilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "calves"
+      ],
+      "movementPattern": [
+        "lunge"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "unilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Quadriceps"], "es": ["Cuádriceps"] },
-      "secondaryMuscles": { "en": ["Glutes", "Hamstrings", "Calves"], "es": ["Glúteos", "Isquiotibiales", "Pantorrillas"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Quadriceps"
+        ],
+        "es": [
+          "Cuádriceps"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Glutes",
+          "Hamstrings",
+          "Calves"
+        ],
+        "es": [
+          "Glúteos",
+          "Isquiotibiales",
+          "Pantorrillas"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "push",
       "mechanic": "compound",
       "equipment": "bosu",
-      "primaryMuscles": ["Quadriceps"],
-      "secondaryMuscles": ["Glutes", "Hamstrings", "Calves"]
+      "primaryMuscles": [
+        "Quadriceps"
+      ],
+      "secondaryMuscles": [
+        "Glutes",
+        "Hamstrings",
+        "Calves"
+      ]
     }
   },
   {
-    "id": "mypthub_76366",
+    "id": "e98bd0e3019526dd9c7d9668",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["quadriceps"],
-      "secondaryMuscles": ["glutes", "hamstrings", "calves"],
-      "movementPattern": ["lunge"],
-      "forceType": ["push"],
-      "mechanic": ["compound"],
-      "laterality": ["unilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "calves"
+      ],
+      "movementPattern": [
+        "lunge"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "unilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Quadriceps"], "es": ["Cuádriceps"] },
-      "secondaryMuscles": { "en": ["Glutes", "Hamstrings", "Calves"], "es": ["Glúteos", "Isquiotibiales", "Pantorrillas"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Quadriceps"
+        ],
+        "es": [
+          "Cuádriceps"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Glutes",
+          "Hamstrings",
+          "Calves"
+        ],
+        "es": [
+          "Glúteos",
+          "Isquiotibiales",
+          "Pantorrillas"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "push",
       "mechanic": "compound",
       "equipment": "bosu",
-      "primaryMuscles": ["Quadriceps"],
-      "secondaryMuscles": ["Glutes", "Hamstrings", "Calves"]
+      "primaryMuscles": [
+        "Quadriceps"
+      ],
+      "secondaryMuscles": [
+        "Glutes",
+        "Hamstrings",
+        "Calves"
+      ]
     }
   },
   {
-    "id": "mypthub_76367",
+    "id": "6e1f5427de396b230df7ea83",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["obliques"],
-      "secondaryMuscles": ["abs", "hip_flexors", "shoulders"],
-      "movementPattern": ["anti_rotation"],
-      "forceType": ["mixed"],
-      "mechanic": ["compound"],
-      "laterality": ["alternating"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "obliques"
+      ],
+      "secondaryMuscles": [
+        "abs",
+        "hip_flexors",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Obliques"], "es": ["Oblicuos"] },
-      "secondaryMuscles": { "en": ["Abs", "Hip Flexors", "Shoulders"], "es": ["Abdominales", "Flexores de cadera", "Hombros"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Obliques"
+        ],
+        "es": [
+          "Oblicuos"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Abs",
+          "Hip Flexors",
+          "Shoulders"
+        ],
+        "es": [
+          "Abdominales",
+          "Flexores de cadera",
+          "Hombros"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "mixed",
       "mechanic": "compound",
       "equipment": "bosu",
-      "primaryMuscles": ["Obliques"],
-      "secondaryMuscles": ["Abs", "Hip Flexors", "Shoulders"]
+      "primaryMuscles": [
+        "Obliques"
+      ],
+      "secondaryMuscles": [
+        "Abs",
+        "Hip Flexors",
+        "Shoulders"
+      ]
     }
   },
   {
-    "id": "mypthub_76369",
+    "id": "c89670ea62fa257ba6177b1c",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["obliques"],
-      "secondaryMuscles": ["abs", "shoulders", "hip_flexors"],
-      "movementPattern": ["anti_rotation"],
-      "forceType": ["mixed"],
-      "mechanic": ["compound"],
-      "laterality": ["alternating"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "obliques"
+      ],
+      "secondaryMuscles": [
+        "abs",
+        "shoulders",
+        "hip_flexors"
+      ],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Obliques"], "es": ["Oblicuos"] },
-      "secondaryMuscles": { "en": ["Abs", "Shoulders", "Hip Flexors"], "es": ["Abdominales", "Hombros", "Flexores de cadera"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Obliques"
+        ],
+        "es": [
+          "Oblicuos"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Abs",
+          "Shoulders",
+          "Hip Flexors"
+        ],
+        "es": [
+          "Abdominales",
+          "Hombros",
+          "Flexores de cadera"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "mixed",
       "mechanic": "compound",
       "equipment": "bosu",
-      "primaryMuscles": ["Obliques"],
-      "secondaryMuscles": ["Abs", "Shoulders", "Hip Flexors"]
+      "primaryMuscles": [
+        "Obliques"
+      ],
+      "secondaryMuscles": [
+        "Abs",
+        "Shoulders",
+        "Hip Flexors"
+      ]
     },
     "_notes": "Crossover climbers emphasize obliques due to torso rotation."
   },
   {
-    "id": "mypthub_76373",
+    "id": "866134e185565d82329dc3f0",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["abs"],
-      "secondaryMuscles": ["hip_flexors", "shoulders", "obliques"],
-      "movementPattern": ["anti_rotation"],
-      "forceType": ["mixed"],
-      "mechanic": ["compound"],
-      "laterality": ["alternating"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "hip_flexors",
+        "shoulders",
+        "obliques"
+      ],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Abs"], "es": ["Abdominales"] },
-      "secondaryMuscles": { "en": ["Hip Flexors", "Shoulders", "Obliques"], "es": ["Flexores de cadera", "Hombros", "Oblicuos"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Abs"
+        ],
+        "es": [
+          "Abdominales"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Hip Flexors",
+          "Shoulders",
+          "Obliques"
+        ],
+        "es": [
+          "Flexores de cadera",
+          "Hombros",
+          "Oblicuos"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "mixed",
       "mechanic": "compound",
       "equipment": "bosu",
-      "primaryMuscles": ["Abs"],
-      "secondaryMuscles": ["Hip Flexors", "Shoulders", "Obliques"]
+      "primaryMuscles": [
+        "Abs"
+      ],
+      "secondaryMuscles": [
+        "Hip Flexors",
+        "Shoulders",
+        "Obliques"
+      ]
     }
   },
   {
-    "id": "mypthub_76478",
+    "id": "9ec54769dbad3e12c31c56f7",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["obliques"],
-      "secondaryMuscles": ["abs", "shoulders"],
-      "movementPattern": ["rotation"],
-      "forceType": ["mixed"],
-      "mechanic": ["isolation"],
-      "laterality": ["unilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "obliques"
+      ],
+      "secondaryMuscles": [
+        "abs",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "unilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Obliques"], "es": ["Oblicuos"] },
-      "secondaryMuscles": { "en": ["Abs", "Shoulders"], "es": ["Abdominales", "Hombros"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Obliques"
+        ],
+        "es": [
+          "Oblicuos"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Abs",
+          "Shoulders"
+        ],
+        "es": [
+          "Abdominales",
+          "Hombros"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "mixed",
       "mechanic": "isolation",
       "equipment": "bosu",
-      "primaryMuscles": ["Obliques"],
-      "secondaryMuscles": ["Abs", "Shoulders"]
+      "primaryMuscles": [
+        "Obliques"
+      ],
+      "secondaryMuscles": [
+        "Abs",
+        "Shoulders"
+      ]
     },
     "_notes": "Side plank with active thoracic rotation -> rotation pattern, performed one side at a time (unilateral)."
   },
   {
-    "id": "mypthub_76480",
+    "id": "acb91e065a22517771055a3a",
     "level": "expert",
     "classification": {
-      "primaryMuscles": ["obliques"],
-      "secondaryMuscles": ["abs", "shoulders"],
-      "movementPattern": ["rotation"],
-      "forceType": ["mixed"],
-      "mechanic": ["isolation"],
-      "laterality": ["unilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "obliques"
+      ],
+      "secondaryMuscles": [
+        "abs",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "unilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Obliques"], "es": ["Oblicuos"] },
-      "secondaryMuscles": { "en": ["Abs", "Shoulders"], "es": ["Abdominales", "Hombros"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Obliques"
+        ],
+        "es": [
+          "Oblicuos"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Abs",
+          "Shoulders"
+        ],
+        "es": [
+          "Abdominales",
+          "Hombros"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "mixed",
       "mechanic": "isolation",
       "equipment": "bosu",
-      "primaryMuscles": ["Obliques"],
-      "secondaryMuscles": ["Abs", "Shoulders"]
+      "primaryMuscles": [
+        "Obliques"
+      ],
+      "secondaryMuscles": [
+        "Abs",
+        "Shoulders"
+      ]
     },
     "_notes": "Feet on the unstable BOSU dome makes the side plank with rotation considerably harder -> expert."
   },
   {
-    "id": "mypthub_76481",
+    "id": "8f36155e9c58548c44e57fba",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["abs"],
-      "secondaryMuscles": ["hip_flexors", "obliques"],
-      "movementPattern": ["isolation"],
-      "forceType": ["pull"],
-      "mechanic": ["isolation"],
-      "laterality": ["bilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "hip_flexors",
+        "obliques"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "pull"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Abs"], "es": ["Abdominales"] },
-      "secondaryMuscles": { "en": ["Hip Flexors", "Obliques"], "es": ["Flexores de cadera", "Oblicuos"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Abs"
+        ],
+        "es": [
+          "Abdominales"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Hip Flexors",
+          "Obliques"
+        ],
+        "es": [
+          "Flexores de cadera",
+          "Oblicuos"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "pull",
       "mechanic": "isolation",
       "equipment": "bosu",
-      "primaryMuscles": ["Abs"],
-      "secondaryMuscles": ["Hip Flexors", "Obliques"]
+      "primaryMuscles": [
+        "Abs"
+      ],
+      "secondaryMuscles": [
+        "Hip Flexors",
+        "Obliques"
+      ]
     }
   },
   {
-    "id": "mypthub_76483",
+    "id": "f240c44240d577fd4f523488",
     "level": "beginner",
     "classification": {
-      "primaryMuscles": ["abs"],
-      "secondaryMuscles": ["upper_abs"],
-      "movementPattern": ["isolation"],
-      "forceType": ["pull"],
-      "mechanic": ["isolation"],
-      "laterality": ["bilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "upper_abs"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "pull"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Abs"], "es": ["Abdominales"] },
-      "secondaryMuscles": { "en": ["Upper Abs"], "es": ["Abs superiores"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Abs"
+        ],
+        "es": [
+          "Abdominales"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Upper Abs"
+        ],
+        "es": [
+          "Abs superiores"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "pull",
       "mechanic": "isolation",
       "equipment": "bosu",
-      "primaryMuscles": ["Abs"],
-      "secondaryMuscles": ["Upper Abs"]
+      "primaryMuscles": [
+        "Abs"
+      ],
+      "secondaryMuscles": [
+        "Upper Abs"
+      ]
     }
   },
   {
-    "id": "mypthub_76486",
+    "id": "1bfc3a8befabf21723ead625",
     "level": "intermediate",
     "classification": {
-      "primaryMuscles": ["glutes"],
-      "secondaryMuscles": ["hamstrings", "lower_back"],
-      "movementPattern": ["hinge"],
-      "forceType": ["pull"],
-      "mechanic": ["isolation"],
-      "laterality": ["unilateral"],
-      "equipment": ["bosu"]
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "lower_back"
+      ],
+      "movementPattern": [
+        "hinge"
+      ],
+      "forceType": [
+        "pull"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "unilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
     },
     "i18n": {
-      "primaryMuscles": { "en": ["Glutes"], "es": ["Glúteos"] },
-      "secondaryMuscles": { "en": ["Hamstrings", "Lower Back"], "es": ["Isquiotibiales", "Lumbar"] },
-      "equipment": { "en": "BOSU", "es": "BOSU" }
+      "primaryMuscles": {
+        "en": [
+          "Glutes"
+        ],
+        "es": [
+          "Glúteos"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Hamstrings",
+          "Lower Back"
+        ],
+        "es": [
+          "Isquiotibiales",
+          "Lumbar"
+        ]
+      },
+      "equipment": {
+        "en": "BOSU",
+        "es": "BOSU"
+      }
     },
     "legacy": {
       "force": "pull",
       "mechanic": "isolation",
       "equipment": "bosu",
-      "primaryMuscles": ["Glutes"],
-      "secondaryMuscles": ["Hamstrings", "Lower Back"]
+      "primaryMuscles": [
+        "Glutes"
+      ],
+      "secondaryMuscles": [
+        "Hamstrings",
+        "Lower Back"
+      ]
     }
   }
 ]

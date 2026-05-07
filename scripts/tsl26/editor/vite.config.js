@@ -5,6 +5,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
+import { cdnSlugFor, findExerciseByIdentifier } from '../exercise-ids.mjs';
 
 const editorDir = path.dirname(fileURLToPath(import.meta.url));
 const toolDir = path.resolve(editorDir, '..');
@@ -238,11 +239,11 @@ function normalizeYouTubeResult(item) {
 }
 
 async function latestArkTask(exercise) {
-  const cdnslug = exercise?.cdnslug || exercise?.cdnSlug;
+  const cdnslug = cdnSlugFor(exercise);
   const id = exercise?.id;
   if (!cdnslug && !id) return null;
 
-  const matchesExercise = (record) => record?.id === id || record?.cdnslug === cdnslug;
+  const matchesExercise = (record) => [id, exercise?.metadata?.identityKey, cdnslug].filter(Boolean).includes(record?.id) || record?.cdnslug === cdnslug;
   const created = (await readNdjson(arkTasksPath)).filter(matchesExercise).at(-1);
   const statuses = (await readNdjson(arkTaskStatusPath)).filter(matchesExercise);
   const createdTaskId = taskIdFromRecord(created);
@@ -267,12 +268,13 @@ async function latestArkTask(exercise) {
 }
 
 async function mediaStatus(exercise) {
-  const cdnslug = exercise?.cdnslug || exercise?.cdnSlug;
+  const cdnslug = cdnSlugFor(exercise);
   if (!cdnslug) return {};
 
   const sourcePath = path.join(libraryRoot, cdnslug, 'source', `${cdnslug}.mp4`);
   const defaultPath = path.join(libraryRoot, cdnslug, 'default', `${cdnslug}.mp4`);
   const sourceOriginals = await fs.readdir(path.join(toolDir, 'source/videos')).catch(() => []);
+  const originalPrefixes = [exercise.id, exercise.metadata?.identityKey, cdnslug].filter(Boolean);
   const sourceVersion = await fileVersion(sourcePath);
   const defaultVersion = await fileVersion(defaultPath);
   const sourceQuery = `variant=source&slug=${encodeURIComponent(cdnslug)}${sourceVersion ? `&v=${sourceVersion}` : ''}`;
@@ -285,15 +287,15 @@ async function mediaStatus(exercise) {
     defaultUrl: `/api/library/video?${defaultQuery}`,
     sourcePath: path.relative(repoRoot, sourcePath),
     defaultPath: path.relative(repoRoot, defaultPath),
-    downloadedOriginals: sourceOriginals.filter((name) => name.startsWith(`${exercise.id}_`)),
+    downloadedOriginals: sourceOriginals.filter((name) => originalPrefixes.some((prefix) => name.startsWith(`${prefix}_`))),
     arkTask: await latestArkTask(exercise),
   };
 }
 
 async function deleteDefaultVideoForExercise(id) {
   const exercises = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
-  const exercise = exercises.find((item) => item.id === id);
-  const cdnslug = exercise?.cdnslug || exercise?.cdnSlug;
+  const exercise = findExerciseByIdentifier(exercises, id);
+  const cdnslug = cdnSlugFor(exercise);
   if (!exercise || !cdnslug) {
     throw new Error(`Exercise not found or missing cdnslug: ${id}`);
   }
@@ -312,7 +314,7 @@ async function deleteDefaultVideoForExercise(id) {
       String(item?.url || '').includes(defaultCdnPath)
     )),
   };
-  const nextExercises = exercises.map((item) => (item.id === id ? updatedExercise : item));
+  const nextExercises = exercises.map((item) => (item.id === exercise.id ? updatedExercise : item));
   await persistExercises(nextExercises);
 
   return {
@@ -349,7 +351,7 @@ function buildLibraryRelation(exercises, librarySlugs) {
   const duplicateSlugs = [];
 
   for (const exercise of exercises) {
-    const slug = exercise.cdnslug || exercise.cdnSlug;
+    const slug = cdnSlugFor(exercise);
     if (!slug) continue;
     const matches = exercisesBySlug.get(slug) || [];
     matches.push({ id: exercise.id, name: exercise.name });
@@ -421,7 +423,7 @@ function exerciseEditorPlugin() {
           const url = new URL(req.url, 'http://localhost');
           const id = url.searchParams.get('id');
           const exercises = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
-          const exercise = exercises.find((item) => item.id === id);
+          const exercise = findExerciseByIdentifier(exercises, id);
           send(res, 200, { status: await mediaStatus(exercise) });
         } catch (error) {
           send(res, 500, { error: error.message });
@@ -489,12 +491,12 @@ function exerciseEditorPlugin() {
           }
 
           const exercises = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
-          const exercise = exercises.find((item) => item.id === id);
+          const exercise = findExerciseByIdentifier(exercises, id);
           if (!exercise) return send(res, 404, { error: `Exercise not found: ${id}` });
 
           const result = await runCommand('node', [
             'download-youtube-clips.mjs',
-            `--ids=${id}`,
+            `--ids=${exercise.id}`,
             `--youtube-id=${youtubeId}`,
             `--start=${startSeconds}`,
             `--duration=${durationSeconds}`,
@@ -513,7 +515,7 @@ function exerciseEditorPlugin() {
             start: startSeconds,
             duration: durationSeconds,
           });
-          const nextExercises = exercises.map((item) => (item.id === id ? updated : item));
+          const nextExercises = exercises.map((item) => (item.id === exercise.id ? updated : item));
           await persistExercises(nextExercises);
 
           send(res, 200, {

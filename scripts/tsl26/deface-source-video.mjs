@@ -4,6 +4,7 @@ import { existsSync, mkdirSync, readFileSync, renameSync, copyFileSync, unlinkSy
 import { dirname, join, resolve } from 'path';
 import { spawnSync } from 'child_process';
 import { fileURLToPath } from 'url';
+import { cdnSlugFor, matchesExerciseIdentifier } from './exercise-ids.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, '../..');
@@ -61,10 +62,6 @@ function loadExercises(input) {
   const raw = readFileSync(input, 'utf8').trim();
   if (raw.startsWith('[')) return JSON.parse(raw);
   return raw.split('\n').filter(Boolean).map((line) => JSON.parse(line.replace(/,\s*$/, '')));
-}
-
-function cdnSlugFor(exercise) {
-  return exercise.cdnslug || exercise.cdnSlug || null;
 }
 
 function resolveDefaceCommand() {
@@ -170,7 +167,7 @@ function main() {
     for (const exercise of exercises) {
       const slug = cdnSlugFor(exercise);
       if (!slug) continue;
-      if (options.ids?.has(exercise.id)) targetSlugs.add(slug);
+      if (options.ids && [...options.ids].some((id) => matchesExerciseIdentifier(exercise, id))) targetSlugs.add(slug);
       if (options.slugs?.has(slug)) targetSlugs.add(slug);
     }
     if (options.slugs) {

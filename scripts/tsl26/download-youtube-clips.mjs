@@ -5,6 +5,7 @@ import { dirname, join, resolve } from 'path';
 import { createHash } from 'crypto';
 import { spawnSync } from 'child_process';
 import { fileURLToPath } from 'url';
+import { cdnSlugFor as explicitCdnSlugFor, findExerciseByIdentifier, matchesExerciseIdentifier } from './exercise-ids.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, '../..');
@@ -102,7 +103,7 @@ function safeName(name) {
 }
 
 function cdnSlugFor(exercise) {
-  return exercise.cdnslug || exercise.cdnSlug || safeName(exercise.i18n?.name?.en || exercise.name || exercise.id);
+  return explicitCdnSlugFor(exercise) || safeName(exercise.i18n?.name?.en || exercise.name || exercise.id);
 }
 
 function findYouTubeMedia(exercise) {
@@ -246,7 +247,7 @@ function main() {
       throw new Error('--youtube-id requires exactly one --ids value.');
     }
     const targetId = [...args.ids][0];
-    const exercise = exercises.find((item) => item.id === targetId);
+    const exercise = findExerciseByIdentifier(exercises, targetId);
     if (!exercise) {
       throw new Error(`Exercise not found: ${targetId}`);
     }
@@ -264,7 +265,7 @@ function main() {
       .filter(({ media }) => media);
 
     if (args.ids) {
-      candidates = candidates.filter(({ exercise }) => args.ids.has(exercise.id));
+      candidates = candidates.filter(({ exercise }) => [...args.ids].some((id) => matchesExerciseIdentifier(exercise, id)));
     }
   }
 

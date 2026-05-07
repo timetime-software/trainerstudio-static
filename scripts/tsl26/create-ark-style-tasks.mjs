@@ -4,6 +4,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { basename, dirname, join, relative, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { createHash } from 'crypto';
+import { cdnSlugFor, matchesExerciseIdentifier } from './exercise-ids.mjs';
 
 function sha256OfFile(localPath) {
   return createHash('sha256').update(readFileSync(localPath)).digest('hex');
@@ -131,8 +132,8 @@ function loadExercisesBySlug(input) {
 
   return new Map(
     exercises
-      .filter((exercise) => exercise?.cdnslug || exercise?.cdnSlug)
-      .map((exercise) => [exercise.cdnslug || exercise.cdnSlug, exercise]),
+      .filter((exercise) => cdnSlugFor(exercise))
+      .map((exercise) => [cdnSlugFor(exercise), exercise]),
   );
 }
 
@@ -169,7 +170,11 @@ function listClips(args) {
   });
 
   if (args.ids) {
-    clips = clips.filter((clip) => args.ids.has(clip.id) || args.ids.has(clip.cdnslug));
+    clips = clips.filter((clip) => (
+      args.ids.has(clip.id) ||
+      args.ids.has(clip.cdnslug) ||
+      [...args.ids].some((id) => matchesExerciseIdentifier(clip.exercise, id))
+    ));
   }
 
   if (args.limit) {

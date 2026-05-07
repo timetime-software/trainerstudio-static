@@ -1,24 +1,55 @@
 [
   {
-    "id": "tsl_kickflip",
+    "id": "5697e7d223f3a28f4b604357",
     "level": "expert",
     "classification": {
-      "primaryMuscles": ["calves", "quadriceps"],
-      "secondaryMuscles": ["hamstrings", "abs", "hip_flexors"],
-      "movementPattern": ["squat"],
-      "forceType": ["push"],
-      "mechanic": ["compound"],
-      "laterality": ["bilateral"],
-      "equipment": ["other"]
+      "primaryMuscles": [
+        "calves",
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "abs",
+        "hip_flexors"
+      ],
+      "movementPattern": [
+        "squat"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
     },
     "i18n": {
       "primaryMuscles": {
-        "en": ["Calves", "Quadriceps"],
-        "es": ["Pantorrillas", "Cuádriceps"]
+        "en": [
+          "Calves",
+          "Quadriceps"
+        ],
+        "es": [
+          "Pantorrillas",
+          "Cuádriceps"
+        ]
       },
       "secondaryMuscles": {
-        "en": ["Hamstrings", "Abs", "Hip Flexors"],
-        "es": ["Isquiotibiales", "Abdominales", "Flexores de cadera"]
+        "en": [
+          "Hamstrings",
+          "Abs",
+          "Hip Flexors"
+        ],
+        "es": [
+          "Isquiotibiales",
+          "Abdominales",
+          "Flexores de cadera"
+        ]
       },
       "equipment": {
         "en": "Skateboard",
@@ -29,8 +60,15 @@
       "force": "push",
       "mechanic": "compound",
       "equipment": "other",
-      "primaryMuscles": ["Calves", "Quadriceps"],
-      "secondaryMuscles": ["Hamstrings", "Abs", "Hip Flexors"]
+      "primaryMuscles": [
+        "Calves",
+        "Quadriceps"
+      ],
+      "secondaryMuscles": [
+        "Hamstrings",
+        "Abs",
+        "Hip Flexors"
+      ]
     },
     "_notes": "Skateboarding trick. No 'skateboard' in Equipment enum -> 'other'. No 'jump' in MovementPattern enum; using 'squat' as the closest explosive lower-body load/extension pattern. Expert level due to skill required."
   }

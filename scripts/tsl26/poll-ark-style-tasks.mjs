@@ -4,6 +4,7 @@ import { createWriteStream, existsSync, mkdirSync, readFileSync, writeFileSync }
 import { dirname, join, resolve } from 'path';
 import { pipeline } from 'stream/promises';
 import { fileURLToPath } from 'url';
+import { cdnSlugFor, exerciseIdentifierKeys, findExerciseByIdentifier } from './exercise-ids.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, '../..');
@@ -11,6 +12,7 @@ const LIBRARY_ROOT = join(REPO_ROOT, 'libraries/tsl26');
 const DEFAULT_ENDPOINT = 'https://ark.ap-southeast.bytepluses.com/api/v3/contents/generations/tasks';
 const DEFAULT_INPUT = join(__dirname, 'source/ark-style-tasks.ndjson');
 const DEFAULT_OUTPUT = join(__dirname, 'source/ark-style-task-status.ndjson');
+const DEFAULT_EXERCISES_INPUT = join(__dirname, 'data/exercises.json');
 
 function parseArgs(argv) {
   const args = {
@@ -23,6 +25,7 @@ function parseArgs(argv) {
     poll: false,
     intervalMs: 10000,
     maxPolls: 180,
+    exercisesInput: DEFAULT_EXERCISES_INPUT,
   };
 
   for (const arg of argv) {
@@ -31,6 +34,7 @@ function parseArgs(argv) {
 
     if (key === '--input') args.input = resolve(value);
     else if (key === '--output') args.output = resolve(value);
+    else if (key === '--exercises-input') args.exercisesInput = resolve(value);
     else if (key === '--endpoint') args.endpoint = value.replace(/\/+$/, '');
     else if (key === '--ids') args.ids = new Set(value.split(',').map((id) => id.trim()).filter(Boolean));
     else if (key === '--download') args.download = true;
@@ -51,6 +55,25 @@ function readRecords(input) {
     .split('\n')
     .filter(Boolean)
     .map((line) => JSON.parse(line));
+}
+
+function expandedIds(args) {
+  if (!args.ids) return null;
+  const ids = new Set(args.ids);
+  if (!existsSync(args.exercisesInput)) return ids;
+
+  const exercises = JSON.parse(readFileSync(args.exercisesInput, 'utf8'));
+  if (!Array.isArray(exercises)) return ids;
+
+  for (const id of args.ids) {
+    const exercise = findExerciseByIdentifier(exercises, id);
+    if (!exercise) continue;
+    for (const key of exerciseIdentifierKeys(exercise)) ids.add(key);
+    const slug = cdnSlugFor(exercise);
+    if (slug) ids.add(slug);
+  }
+
+  return ids;
 }
 
 function latestRecordKey(record) {
@@ -162,9 +185,10 @@ async function handleRecord(args, record) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+  const ids = expandedIds(args);
   const records = latestCreatedRecords(readRecords(args.input).filter((record) => record.status === 'created')).filter((record) => {
-    if (!args.ids) return true;
-    return args.ids.has(record.id) || args.ids.has(record.cdnslug) || args.ids.has(taskIdFromRecord(record));
+    if (!ids) return true;
+    return ids.has(record.id) || ids.has(record.cdnslug) || ids.has(taskIdFromRecord(record));
   });
 
   if (records.length === 0) {

@@ -1,19 +1,19 @@
 {
   "library": "tsl26",
-  "generatedAt": "2026-05-07T10:21:56.647Z",
+  "generatedAt": "2026-05-07T11:38:55.181Z",
   "total": 1,
   "records": [
     {
-      "id": "tsl_kickflip",
-      "name": "Kickflip",
-      "cdnslug": "kickflip",
-      "youtubeId": "tnpLkUQZODc",
-      "youtubeUrl": "https://www.youtube.com/embed/tnpLkUQZODc?autoplay=1",
-      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/tsl_kickflip_kickflip_source.mp4",
-      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/kickflip/source/kickflip.mp4",
+      "id": "b6acb6d03d7ca5164f5d59d8",
+      "name": "Ab Crunch Machine",
+      "cdnslug": "ab_crunch_machine",
+      "youtubeId": "fuPFq2EYswE",
+      "youtubeUrl": "https://www.youtube.com/embed/fuPFq2EYswE",
+      "sourcePath": "/Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26/source/videos/b6acb6d03d7ca5164f5d59d8_ab-crunch-machine_source.mp4",
+      "clipPath": "/Users/iagolast/Workspace/trainerstudio-static/libraries/tsl26/ab_crunch_machine/source/ab_crunch_machine.mp4",
       "sourceDownloaded": true,
       "clipBuilt": true,
-      "lastProcessedAt": "2026-05-07T10:21:56.647Z",
+      "lastProcessedAt": "2026-05-07T11:38:55.181Z",
       "error": null
     }
   ]
