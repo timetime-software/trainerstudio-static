@@ -661,9 +661,32 @@ function App() {
         setLog(output);
         return;
       }
+      if (!data.jobId) {
+        setLog(output);
+        return;
+      }
+
+      let finalJob = null;
+      for (;;) {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const statusRes = await fetch(`/api/review/status?jobId=${encodeURIComponent(data.jobId)}`);
+        const statusData = await statusRes.json();
+        if (!statusRes.ok) {
+          setLog(statusData.error || JSON.stringify(statusData, null, 2));
+          return;
+        }
+        finalJob = statusData;
+        setLog(statusData.output || output);
+        if (statusData.status !== 'running') break;
+      }
+
+      if (!finalJob?.ok) {
+        setLog(finalJob?.output || output);
+        return;
+      }
       const loaded = await loadExercises(id);
       const afterReview = snapshotExercise(findExerciseByIdentifier(loaded.exercises || [], id));
-      setLog(`${formatExerciseDiff(beforeReview, afterReview)}\n\n${output}`);
+      setLog(`${formatExerciseDiff(beforeReview, afterReview)}\n\n${finalJob.output || output}`);
       setDirty(false);
     } finally {
       await refreshStatus(id);

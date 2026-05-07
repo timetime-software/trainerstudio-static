@@ -28,6 +28,7 @@ const arkTasksPath = path.join(workspaceRoot, 'ark/style-tasks.ndjson');
 const arkTaskStatusPath = path.join(workspaceRoot, 'ark/style-task-status.ndjson');
 const syncMediaArgs = ['--experimental-strip-types', 'sync-cdn-media.ts'];
 let syncMediaQueue = Promise.resolve();
+const reviewJobs = new Map();
 
 function readBody(req) {
   return new Promise((resolve, reject) => {
@@ -107,6 +108,75 @@ async function runCommand(command, args, extraEnv = {}, options = {}) {
       resolve({ ok: false, code: null, output: error.message, elapsedMs: Date.now() - startedAt });
     });
   });
+}
+
+async function startCommandJob(command, args, extraEnv = {}, options = {}) {
+  const localEnv = await readLocalEnv();
+  const jobId = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+  const startedAt = Date.now();
+  const job = {
+    id: jobId,
+    command,
+    args,
+    context: options.context || null,
+    ok: null,
+    code: null,
+    status: 'running',
+    output: `$ ${command} ${args.filter((arg) => arg !== '-').join(' ')}\n`,
+    startedAt,
+    elapsedMs: 0,
+  };
+  reviewJobs.set(jobId, job);
+
+  const child = spawn(command, args, {
+    cwd: toolDir,
+    env: { ...process.env, ...localEnv, ...extraEnv },
+  });
+  job.pid = child.pid;
+
+  const finish = async (patch) => {
+    if (job.status !== 'running') return;
+    const nextPatch = options.onFinish ? await options.onFinish({ ...job, ...patch }) : patch;
+    Object.assign(job, patch, {
+      ...nextPatch,
+      status: 'done',
+      elapsedMs: Date.now() - startedAt,
+    });
+  };
+
+  const timeout = options.timeoutMs
+    ? setTimeout(() => {
+      if (job.status !== 'running') return;
+      child.kill('SIGTERM');
+      void finish({
+        ok: false,
+        code: null,
+        output: `${job.output}\nTimed out after ${Math.round(options.timeoutMs / 1000)}s.`,
+      });
+    }, options.timeoutMs)
+    : null;
+
+  child.stdout.on('data', (chunk) => {
+    job.output += chunk.toString();
+  });
+  child.stderr.on('data', (chunk) => {
+    job.output += chunk.toString();
+  });
+  if (options.stdin) {
+    child.stdin.write(options.stdin);
+    child.stdin.end();
+  }
+  child.on('close', (code) => {
+    if (timeout) clearTimeout(timeout);
+    void finish({ ok: code === 0, code });
+  });
+  child.on('error', (error) => {
+    if (timeout) clearTimeout(timeout);
+    void finish({ ok: false, code: null, output: `${job.output}\n${error.message}` });
+  });
+
+  setTimeout(() => reviewJobs.delete(jobId), 30 * 60 * 1000);
+  return job;
 }
 
 async function runCommandJsonLines(command, args) {
@@ -266,6 +336,33 @@ async function persistExercises(exercises) {
   await fs.writeFile(ndjsonPath, `${exercises.map((exercise) => JSON.stringify(exercise)).join('\n')}\n`);
 }
 
+function extractJsonObject(output) {
+  const text = String(output || '').trim();
+  if (!text) throw new Error('Review agent returned empty output');
+
+  const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  const candidate = fenced?.[1]?.trim() || text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1);
+  if (!candidate || !candidate.startsWith('{')) {
+    throw new Error('Review agent did not return a JSON object');
+  }
+  return JSON.parse(candidate);
+}
+
+async function applyReviewedExercise(id, rawOutput) {
+  const reviewed = extractJsonObject(rawOutput);
+  if (reviewed.id !== id) {
+    throw new Error(`Review agent returned id ${reviewed.id || '(missing)'} instead of ${id}`);
+  }
+
+  const exercises = await readExercises();
+  const index = exercises.findIndex((exercise) => findExerciseByIdentifier([exercise], id));
+  if (index < 0) throw new Error(`Exercise not found after review: ${id}`);
+
+  exercises[index] = reviewed;
+  await persistExercises(exercises);
+  return reviewed;
+}
+
 function normalizeYouTubeResult(item) {
   const id = item?.id || item?.url;
   if (!id || !/^[a-zA-Z0-9_-]{11}$/.test(id)) return null;
@@ -293,12 +390,12 @@ function buildExerciseReviewPrompt(exercise, provider) {
   };
 
   return [
-    'You are reviewing one exercise record in the TrainerStudio static exercise database.',
+    'You are reviewing one exercise JSON record in the TrainerStudio static exercise database.',
     '',
     'Task:',
-    '- Review and improve the exercise texts and labels for the single exercise below.',
-    '- Edit only scripts/tsl26/data/exercises.ndjson.',
-    `- Edit only the JSON line whose id is "${exercise.id}". Do not change any other exercise.`,
+    '- Return exactly one JSON object: the fully revised exercise record.',
+    '- Do not edit files. Do not call tools. Do not include Markdown, comments, explanations, code fences, or a summary.',
+    `- Preserve the same id: "${exercise.id}".`,
     '- Keep id, cdnslug/cdnSlug, media, images, aliases, source clip metadata, default video metadata, and existing CDN references intact unless they are clearly malformed.',
     '- Make the English name/instructions and Spanish i18n name/instructions natural, clear, and exercise-specific.',
     '- Remove Spanglish or literal machine-translation artifacts from Spanish text.',
@@ -306,8 +403,7 @@ function buildExerciseReviewPrompt(exercise, provider) {
     '- Use only the allowed classification values listed below.',
     '- Keep top-level force/mechanic/equipment aligned with classification.forceType/mechanic/equipment.',
     '- Do not put a muscle in both primaryMuscles and secondaryMuscles.',
-    '- Preserve the JSONL/NDJSON format: one compact JSON object per line.',
-    '- When done, summarize the changed fields and any uncertainty.',
+    '- Keep the same object shape unless a field needs correction.',
     `- This was launched from the editor via ${provider}.`,
     '',
     'Allowed classification values:',
@@ -324,40 +420,47 @@ async function runExerciseReviewAgent(provider, exercise) {
   }
 
   const prompt = buildExerciseReviewPrompt(exercise, provider);
-  const result = provider === 'codex'
-    ? await runCommand('codex', [
+  const finalizeReview = async (job) => {
+    if (!job.ok) return job;
+    try {
+      const rawOutput = String(job.output || '').replace(/^\$ .*\n/, '');
+      const reviewed = await applyReviewedExercise(exercise.id, rawOutput);
+      return {
+        ...job,
+        reviewed,
+        output: `Applied reviewed JSON for ${exercise.id}.\n\n${rawOutput}`.trim(),
+      };
+    } catch (error) {
+      return {
+        ...job,
+        ok: false,
+        code: job.code ?? 1,
+        output: `${job.output}\n\nFailed to apply reviewed JSON: ${error.message}`,
+      };
+    }
+  };
+  const job = provider === 'codex'
+    ? await startCommandJob('codex', [
       'exec',
       '--cd',
       repoRoot,
-      '--dangerously-bypass-approvals-and-sandbox',
-      prompt,
-    ], {}, { timeoutMs: 180000 })
-    : await runCommand('claude', [
-      '-p',
-      prompt,
-      '--add-dir',
-      repoRoot,
-      '--permission-mode',
-      'acceptEdits',
+      '--sandbox',
+      'read-only',
+      '-',
+    ], {}, { stdin: prompt, timeoutMs: 180000, context: { exerciseId: exercise.id }, onFinish: finalizeReview })
+    : await startCommandJob('claude', [
+      '--print',
+      '--tools',
+      '',
       '--output-format',
       'text',
-    ], {}, { timeoutMs: 180000 });
-
-  if (result.ok) {
-    const exercises = await readExercises();
-    if (!findExerciseByIdentifier(exercises, exercise.id)) {
-      return {
-        ...result,
-        ok: false,
-        code: result.code ?? 1,
-        output: `${result.output}\n\nReview agent finished, but the exercise id is no longer present in exercises.ndjson.`,
-      };
-    }
-  }
+      prompt,
+    ], {}, { timeoutMs: 180000, context: { exerciseId: exercise.id }, onFinish: finalizeReview });
 
   return {
-    ...result,
-    output: `$ ${provider} exercise review ${exercise.id}\n${result.output}`.trim(),
+    ok: true,
+    jobId: job.id,
+    output: `${provider} exercise review started for ${exercise.id}\nJob: ${job.id}`,
   };
 }
 
@@ -568,6 +671,29 @@ function exerciseEditorPlugin() {
           const exercises = await readExercises();
           const exercise = findExerciseByIdentifier(exercises, id);
           send(res, 200, { status: await mediaStatus(exercise) });
+        } catch (error) {
+          send(res, 500, { error: error.message });
+        }
+      });
+
+      server.middlewares.use('/api/review/status', async (req, res) => {
+        try {
+          const url = new URL(req.url, 'http://localhost');
+          const jobId = url.searchParams.get('jobId');
+          const job = reviewJobs.get(jobId);
+          if (!job) {
+            send(res, 404, { error: `Review job not found: ${jobId}` });
+            return;
+          }
+          send(res, 200, {
+            id: job.id,
+            status: job.status,
+            ok: job.ok,
+            code: job.code,
+            output: job.output,
+            elapsedMs: job.status === 'running' ? Date.now() - job.startedAt : job.elapsedMs,
+            pid: job.pid,
+          });
         } catch (error) {
           send(res, 500, { error: error.message });
         }
