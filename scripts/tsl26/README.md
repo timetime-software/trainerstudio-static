@@ -1,4 +1,104 @@
-# TSL26 CDN / Ark POC
+# TrainerStudio Exercise Library Pipeline
+
+Este proyecto construye la libreria oficial de ejercicios de TrainerStudio.
+La idea operativa es:
+
+1. Mantener un JSON de trabajo con todos los datos necesarios de cada ejercicio.
+2. Usar IA para revisar textos, traducciones y clasificacion.
+3. Usar IA de video para generar clips finales a partir de videos o imagenes de
+   referencia.
+4. Generar desde esa fuente un JSON publico, bien formado e importable en
+   MongoDB.
+
+La fuente de la verdad es `scripts/tsl26/data/exercises.ndjson`. Cada linea es
+un ejercicio completo e independiente. Ese archivo debe contener nombres,
+traducciones, instrucciones, clasificacion, media, slugs CDN, estado de revision
+y metadata de trabajo.
+
+`scripts/tsl26/data/exercises-public.json` y
+`scripts/tsl26/data/exercises-public.ndjson` son salidas derivadas. No se editan
+a mano: se reconstruyen con `npm run build:public` y son los unicos archivos que
+deben importarse en MongoDB.
+
+`scripts/tsl26/classification-reference.mjs` contiene los valores permitidos
+para los modelos y para el editor. Cualquier agente de IA que revise ejercicios
+debe usar esos enums como contrato:
+
+- `LEVEL_VALUES`
+- `CATEGORY_VALUES`
+- `DETAILED_MUSCLE_GROUP_VALUES`
+- `MOVEMENT_PATTERN_VALUES`
+- `FORCE_TYPE_VALUES`
+- `MECHANIC_VALUES`
+- `LATERALITY_VALUES`
+- `EQUIPMENT_VALUES`
+
+Si falta un valor, se actualiza primero `classification-reference.mjs` y despues
+se revisan los scripts/editor que consumen esos valores. No conviene introducir
+etiquetas libres directamente en `exercises.ndjson`.
+
+## Flujo Canonico
+
+```text
+fuentes externas / editor
+  -> data/exercises.ndjson
+  -> revision IA de textos + clasificacion usando classification-reference.mjs
+  -> videos source en libraries/tsl26/<cdnslug>/source/
+  -> videos IA default en libraries/tsl26/<cdnslug>/default/
+  -> npm run videos:sync-data
+  -> npm run build:public
+  -> data/exercises-public.json
+  -> npm run import
+  -> MongoDB publicExercises
+```
+
+Reglas importantes:
+
+- `data/exercises.ndjson` puede contener ejercicios incompletos, videos source,
+  referencias YouTube, notas internas y metadata de revision.
+- `data/exercises-public.json` solo debe contener ejercicios publicables, con
+  video `default` final en CDN/local library.
+- MongoDB se carga solo desde `data/exercises-public.json`.
+- `classification-reference.mjs` es la referencia de valores validos para IA,
+  editor, prompts y build publico.
+
+## Contrato del Ejercicio
+
+Cada ejercicio de `data/exercises.ndjson` debe mantener, como minimo:
+
+- `id`: identificador opaco estilo Mongo ObjectId, estable.
+- `cdnslug`: slug estable para carpeta/CDN/editor.
+- `name`, `instructions`, `i18n.name`, `i18n.instructions`.
+- `category`, `level`, `force`, `mechanic`, `equipment`.
+- `primaryMuscles`, `secondaryMuscles`.
+- `classification.primaryMuscles`, `classification.secondaryMuscles`,
+  `classification.movementPattern`, `classification.forceType`,
+  `classification.mechanic`, `classification.laterality`,
+  `classification.equipment`.
+- `media`: referencias YouTube/source/default/imagenes disponibles.
+- `metadata.identityKey = "trainerstudio:<cdnslug>"`.
+
+Los campos top-level (`force`, `mechanic`, `equipment`, `primaryMuscles`,
+`secondaryMuscles`) deben estar alineados con `classification.*`. El build
+publico conserva el documento publico, recalcula media final y anade labels i18n
+derivadas de `classification-reference.mjs`.
+
+## Editor y Revision con IA
+
+El editor local vive en `scripts/tsl26/editor` y se arranca con:
+
+```bash
+cd /Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26
+npm run editor
+```
+
+Desde el editor se pueden revisar ejercicios, ajustar clasificacion y lanzar
+revision con agentes IA. Los prompts del editor incluyen los valores permitidos
+de `classification-reference.mjs` para evitar etiquetas fuera de contrato.
+
+Cuando un agente revise un ejercicio, debe devolver exactamente el JSON completo
+del ejercicio, preservando `id`, `cdnslug`, media y metadata salvo que esten
+claramente malformados.
 
 La salida servible vive en `libraries/tsl26`:
 

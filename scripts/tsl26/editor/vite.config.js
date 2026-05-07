@@ -26,9 +26,14 @@ const libraryRoot = path.join(repoRoot, 'libraries/tsl26');
 const envPath = path.join(editorDir, '.env');
 const arkTasksPath = path.join(workspaceRoot, 'ark/style-tasks.ndjson');
 const arkTaskStatusPath = path.join(workspaceRoot, 'ark/style-task-status.ndjson');
+const reviewJobsDir = path.join(workspaceRoot, 'editor-review-jobs');
 const syncMediaArgs = ['--experimental-strip-types', 'sync-cdn-media.ts'];
 let syncMediaQueue = Promise.resolve();
+let exerciseWriteQueue = Promise.resolve();
 const reviewJobs = new Map();
+const reviewQueue = [];
+let activeReviewJobs = 0;
+const reviewConcurrency = Number(process.env.EDITOR_REVIEW_CONCURRENCY) || 2;
 
 function readBody(req) {
   return new Promise((resolve, reject) => {
@@ -110,23 +115,86 @@ async function runCommand(command, args, extraEnv = {}, options = {}) {
   });
 }
 
+async function saveReviewJob(job) {
+  await fs.mkdir(reviewJobsDir, { recursive: true });
+  const snapshot = {
+    id: job.id,
+    provider: job.provider,
+    exerciseId: job.exerciseId,
+    exerciseName: job.exerciseName,
+    status: job.status,
+    ok: job.ok,
+    code: job.code,
+    output: job.output,
+    error: job.error || null,
+    pid: job.pid || null,
+    startedAt: job.startedAt || null,
+    finishedAt: job.finishedAt || null,
+    elapsedMs: job.elapsedMs || 0,
+    context: job.context || null,
+  };
+  await fs.writeFile(path.join(reviewJobsDir, `${job.id}.json`), JSON.stringify(snapshot, null, 2));
+}
+
+async function readReviewJobs() {
+  await fs.mkdir(reviewJobsDir, { recursive: true });
+  const names = await fs.readdir(reviewJobsDir).catch(() => []);
+  const persisted = await Promise.all(names.filter((name) => name.endsWith('.json')).map(async (name) => {
+    try {
+      return JSON.parse(await fs.readFile(path.join(reviewJobsDir, name), 'utf8'));
+    } catch {
+      return null;
+    }
+  }));
+  return persisted
+    .filter(Boolean)
+    .map((job) => {
+      const live = reviewJobs.get(job.id);
+      return live || (job.status === 'running' ? { ...job, status: 'failed', ok: false, error: 'Server restarted while job was running' } : job);
+    })
+    .sort((a, b) => String(b.startedAt || b.id).localeCompare(String(a.startedAt || a.id)));
+}
+
+async function restoreReviewQueue() {
+  const jobs = await readReviewJobs();
+  for (const job of jobs) {
+    if (job.status === 'running') {
+      job.status = 'failed';
+      job.ok = false;
+      job.error = 'Server restarted while job was running';
+      await saveReviewJob(job);
+    } else if (job.status === 'queued' && job.context?.exercise) {
+      reviewJobs.set(job.id, job);
+      if (!reviewQueue.includes(job.id)) reviewQueue.push(job.id);
+    }
+  }
+  void processReviewQueue();
+}
+
 async function startCommandJob(command, args, extraEnv = {}, options = {}) {
   const localEnv = await readLocalEnv();
-  const jobId = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+  const jobId = options.job?.id || `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
   const startedAt = Date.now();
-  const job = {
+  const job = options.job || {
     id: jobId,
-    command,
-    args,
-    context: options.context || null,
+    provider: options.provider || command,
+    exerciseId: options.exerciseId || null,
+    exerciseName: options.exerciseName || '',
     ok: null,
     code: null,
-    status: 'running',
-    output: `$ ${command} ${args.filter((arg) => arg !== '-').join(' ')}\n`,
-    startedAt,
+    output: '',
     elapsedMs: 0,
   };
+  Object.assign(job, {
+    command,
+    args,
+    context: options.context || job.context || null,
+    status: 'running',
+    output: `${job.output || ''}${options.displayCommand || `$ ${command} ${args.filter((arg) => arg !== '-').join(' ')}`}\n`,
+    startedAt,
+  });
   reviewJobs.set(jobId, job);
+  await saveReviewJob(job);
 
   const child = spawn(command, args, {
     cwd: toolDir,
@@ -140,8 +208,13 @@ async function startCommandJob(command, args, extraEnv = {}, options = {}) {
     Object.assign(job, patch, {
       ...nextPatch,
       status: 'done',
+      finishedAt: new Date().toISOString(),
       elapsedMs: Date.now() - startedAt,
     });
+    if (job.ok) job.status = 'applied';
+    if (!job.ok) job.status = 'failed';
+    await saveReviewJob(job);
+    options.onSettled?.(job);
   };
 
   const timeout = options.timeoutMs
@@ -158,9 +231,11 @@ async function startCommandJob(command, args, extraEnv = {}, options = {}) {
 
   child.stdout.on('data', (chunk) => {
     job.output += chunk.toString();
+    void saveReviewJob(job);
   });
   child.stderr.on('data', (chunk) => {
     job.output += chunk.toString();
+    void saveReviewJob(job);
   });
   if (options.stdin) {
     child.stdin.write(options.stdin);
@@ -175,7 +250,6 @@ async function startCommandJob(command, args, extraEnv = {}, options = {}) {
     void finish({ ok: false, code: null, output: `${job.output}\n${error.message}` });
   });
 
-  setTimeout(() => reviewJobs.delete(jobId), 30 * 60 * 1000);
   return job;
 }
 
@@ -332,8 +406,14 @@ function exerciseWithSourceClip(exercise, { youtubeId, title, channel, start, du
   };
 }
 
+async function withExerciseWrite(fn) {
+  const result = exerciseWriteQueue.then(fn, fn);
+  exerciseWriteQueue = result.catch(() => {});
+  return result;
+}
+
 async function persistExercises(exercises) {
-  await fs.writeFile(ndjsonPath, `${exercises.map((exercise) => JSON.stringify(exercise)).join('\n')}\n`);
+  return withExerciseWrite(() => fs.writeFile(ndjsonPath, `${exercises.map((exercise) => JSON.stringify(exercise)).join('\n')}\n`));
 }
 
 function extractJsonObject(output) {
@@ -354,13 +434,15 @@ async function applyReviewedExercise(id, rawOutput) {
     throw new Error(`Review agent returned id ${reviewed.id || '(missing)'} instead of ${id}`);
   }
 
-  const exercises = await readExercises();
-  const index = exercises.findIndex((exercise) => findExerciseByIdentifier([exercise], id));
-  if (index < 0) throw new Error(`Exercise not found after review: ${id}`);
+  return withExerciseWrite(async () => {
+    const exercises = await readExercises();
+    const index = exercises.findIndex((exercise) => findExerciseByIdentifier([exercise], id));
+    if (index < 0) throw new Error(`Exercise not found after review: ${id}`);
 
-  exercises[index] = reviewed;
-  await persistExercises(exercises);
-  return reviewed;
+    exercises[index] = reviewed;
+    await fs.writeFile(ndjsonPath, `${exercises.map((exercise) => JSON.stringify(exercise)).join('\n')}\n`);
+    return reviewed;
+  });
 }
 
 function normalizeYouTubeResult(item) {
@@ -414,54 +496,113 @@ function buildExerciseReviewPrompt(exercise, provider) {
   ].join('\n');
 }
 
-async function runExerciseReviewAgent(provider, exercise) {
-  if (!['codex', 'claude'].includes(provider)) {
-    throw new Error(`Unknown review agent: ${provider}`);
-  }
-
+function startQueuedReviewJob(job) {
+  const exercise = job.context.exercise;
+  const provider = job.provider;
   const prompt = buildExerciseReviewPrompt(exercise, provider);
-  const finalizeReview = async (job) => {
-    if (!job.ok) return job;
+  const finalizeReview = async (finishedJob) => {
+    if (!finishedJob.ok) return finishedJob;
     try {
-      const rawOutput = String(job.output || '').replace(/^\$ .*\n/, '');
+      const rawOutput = String(finishedJob.output || '').replace(/^\$ .*\n/, '');
       const reviewed = await applyReviewedExercise(exercise.id, rawOutput);
       return {
-        ...job,
+        ...finishedJob,
         reviewed,
         output: `Applied reviewed JSON for ${exercise.id}.\n\n${rawOutput}`.trim(),
       };
     } catch (error) {
       return {
-        ...job,
+        ...finishedJob,
         ok: false,
-        code: job.code ?? 1,
-        output: `${job.output}\n\nFailed to apply reviewed JSON: ${error.message}`,
+        code: finishedJob.code ?? 1,
+        error: error.message,
+        output: `${finishedJob.output}\n\nFailed to apply reviewed JSON: ${error.message}`,
       };
     }
   };
-  const job = provider === 'codex'
-    ? await startCommandJob('codex', [
+  const onSettled = () => {
+    activeReviewJobs = Math.max(0, activeReviewJobs - 1);
+    void processReviewQueue();
+  };
+
+  activeReviewJobs += 1;
+  if (provider === 'codex') {
+    void startCommandJob('codex', [
       'exec',
       '--cd',
       repoRoot,
       '--sandbox',
       'read-only',
       '-',
-    ], {}, { stdin: prompt, timeoutMs: 180000, context: { exerciseId: exercise.id }, onFinish: finalizeReview })
-    : await startCommandJob('claude', [
+    ], {}, {
+      job,
+      stdin: prompt,
+      timeoutMs: 180000,
+      context: job.context,
+      onFinish: finalizeReview,
+      onSettled,
+      displayCommand: `$ codex exercise review ${exercise.id}`,
+    });
+  } else {
+    void startCommandJob('claude', [
       '--print',
       '--tools',
       '',
       '--output-format',
       'text',
       prompt,
-    ], {}, { timeoutMs: 180000, context: { exerciseId: exercise.id }, onFinish: finalizeReview });
+    ], {}, {
+      job,
+      timeoutMs: 180000,
+      context: job.context,
+      onFinish: finalizeReview,
+      onSettled,
+      displayCommand: `$ claude exercise review ${exercise.id}`,
+    });
+  }
+}
 
-  return {
-    ok: true,
-    jobId: job.id,
-    output: `${provider} exercise review started for ${exercise.id}\nJob: ${job.id}`,
+async function processReviewQueue() {
+  while (activeReviewJobs < reviewConcurrency && reviewQueue.length) {
+    const jobId = reviewQueue.shift();
+    const job = reviewJobs.get(jobId);
+    if (!job || job.status !== 'queued') continue;
+    startQueuedReviewJob(job);
+  }
+}
+
+async function enqueueExerciseReview(provider, exercise) {
+  if (!['codex', 'claude'].includes(provider)) {
+    throw new Error(`Unknown review agent: ${provider}`);
+  }
+
+  const job = {
+    id: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
+    provider,
+    exerciseId: exercise.id,
+    exerciseName: exercise.name || exercise.id,
+    status: 'queued',
+    ok: null,
+    code: null,
+    output: `${provider} exercise review queued for ${exercise.name || exercise.id}\n`,
+    startedAt: new Date().toISOString(),
+    finishedAt: null,
+    elapsedMs: 0,
+    context: { exerciseId: exercise.id, exercise },
   };
+  reviewJobs.set(job.id, job);
+  reviewQueue.push(job.id);
+  await saveReviewJob(job);
+  void processReviewQueue();
+  return job;
+}
+
+async function enqueueExerciseReviews(provider, exercises) {
+  const jobs = [];
+  for (const exercise of exercises) {
+    jobs.push(await enqueueExerciseReview(provider, exercise));
+  }
+  return jobs;
 }
 
 async function latestArkTask(exercise) {
@@ -624,6 +765,7 @@ function exerciseEditorPlugin() {
   return {
     name: 'exercise-file-editor',
     configureServer(server) {
+      void restoreReviewQueue();
       server.middlewares.use('/api/exercises', async (req, res) => {
         try {
           if (req.method === 'GET') {
@@ -680,7 +822,7 @@ function exerciseEditorPlugin() {
         try {
           const url = new URL(req.url, 'http://localhost');
           const jobId = url.searchParams.get('jobId');
-          const job = reviewJobs.get(jobId);
+          const job = reviewJobs.get(jobId) || (await readReviewJobs()).find((item) => item.id === jobId);
           if (!job) {
             send(res, 404, { error: `Review job not found: ${jobId}` });
             return;
@@ -694,6 +836,34 @@ function exerciseEditorPlugin() {
             elapsedMs: job.status === 'running' ? Date.now() - job.startedAt : job.elapsedMs,
             pid: job.pid,
           });
+        } catch (error) {
+          send(res, 500, { error: error.message });
+        }
+      });
+
+      server.middlewares.use('/api/review/jobs', async (req, res) => {
+        try {
+          if (req.method === 'GET') {
+            send(res, 200, { jobs: await readReviewJobs(), active: activeReviewJobs, queued: reviewQueue.length, concurrency: reviewConcurrency });
+            return;
+          }
+
+          if (req.method === 'POST') {
+            const { ids, reviewAgent = 'codex' } = JSON.parse(await readBody(req));
+            const requestedIds = Array.isArray(ids) ? ids : [];
+            if (!requestedIds.length) {
+              send(res, 400, { error: 'Expected { ids: [...] }' });
+              return;
+            }
+
+            const exercises = await readExercises();
+            const selectedExercises = requestedIds.map((id) => findExerciseByIdentifier(exercises, id)).filter(Boolean);
+            const jobs = await enqueueExerciseReviews(reviewAgent, selectedExercises);
+            send(res, 200, { ok: true, jobs, count: jobs.length });
+            return;
+          }
+
+          send(res, 405, { error: 'Method not allowed' });
         } catch (error) {
           send(res, 500, { error: error.message });
         }
@@ -861,7 +1031,12 @@ function exerciseEditorPlugin() {
               send(res, 404, { error: `Exercise not found: ${id}` });
               return;
             }
-            result = await runExerciseReviewAgent(reviewAgent || 'codex', exercise);
+            const job = await enqueueExerciseReview(reviewAgent || 'codex', exercise);
+            result = {
+              ok: true,
+              jobId: job.id,
+              output: `${job.provider} exercise review queued for ${exercise.name || exercise.id}\nJob: ${job.id}`,
+            };
           } else if (action === 'deface-source') {
             const args = ['deface-source-video.mjs', `--ids=${id}`];
             if (defaceOptions) {

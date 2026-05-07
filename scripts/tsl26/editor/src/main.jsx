@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { AlertTriangle, Check, ChevronLeft, ChevronRight, Clock, EyeOff, FileImage, FileVideo, LoaderCircle, Pause, Play, Save, Scissors, Search, Sparkles, Star, Trash2 } from 'lucide-react';
+import { AlertTriangle, Check, ChevronLeft, ChevronRight, EyeOff, FileImage, FileVideo, LoaderCircle, Pause, Play, Save, Scissors, Search, Sparkles, Star, Trash2 } from 'lucide-react';
 import {
   CATEGORY_VALUES,
   DETAILED_MUSCLE_GROUP_VALUES,
@@ -10,8 +10,23 @@ import {
   LEVEL_VALUES,
   MECHANIC_VALUES,
   MOVEMENT_PATTERN_VALUES,
-  labelForValue,
 } from '../../classification-reference.mjs';
+import { MultiSelectField, SelectField } from './components/ComboFields.jsx';
+import { YouTubeSourcePicker } from './components/YouTubeSourcePicker.jsx';
+import { cdnSlugFor, defaultIndicatorFor, findExerciseByIdentifier, updateExercise } from './lib/exercise.js';
+import {
+  extractYoutubeId,
+  extractYoutubeStart,
+  firstImage,
+  firstVideo,
+  formatTime,
+  hasDefaultVideo,
+  isVideoUrl,
+  refreshUrl,
+  videoBySource,
+  youtubeIdFromExercise,
+} from './lib/media.js';
+import { asLines, fromLines } from './lib/text.js';
 import './styles.css';
 
 const emptyStatus = { sourceClip: false, defaultClip: false, downloadedOriginals: [], arkTask: null };
@@ -19,361 +34,8 @@ const AI_VIDEO_MAX_ATTEMPTS = 90;
 const AI_VIDEO_POLL_INTERVAL_MS = 10000;
 const PENDING_AI_TASK_STATUSES = new Set(['created', 'queued', 'running']);
 
-function asLines(value) {
-  return Array.isArray(value) ? value.join('\n') : '';
-}
-
-function fromLines(value) {
-  return value.split('\n').map((line) => line.trim()).filter(Boolean);
-}
-
-function toOptionLabel(value) {
-  return labelForValue(value);
-}
-
-function SelectField({ label, value, options, onChange, allowBlank = true }) {
-  const [open, setOpen] = useState(false);
-  const [query, setQuery] = useState('');
-  const filtered = options.filter((option) => toOptionLabel(option).toLowerCase().includes(query.trim().toLowerCase()));
-
-  function choose(option) {
-    onChange(option);
-    setOpen(false);
-    setQuery('');
-  }
-
-  return (
-    <div className="comboField">
-      <span>{label}</span>
-      <button type="button" className="comboButton" onClick={() => setOpen((current) => !current)}>
-        {value ? toOptionLabel(value) : 'Select value'}
-      </button>
-      {open && (
-        <div className="comboMenu">
-          <input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search"
-            autoFocus
-          />
-          <div className="comboOptions">
-            {allowBlank && (
-              <button
-                type="button"
-                className={!value ? 'comboOption selected' : 'comboOption'}
-                onClick={() => choose('')}
-              >
-                <span>none</span>
-                {!value && <Check size={14} />}
-              </button>
-            )}
-            {filtered.map((option) => (
-              <button
-                type="button"
-                key={option}
-                className={value === option ? 'comboOption selected' : 'comboOption'}
-                onClick={() => choose(option)}
-              >
-                <span>{toOptionLabel(option)}</span>
-                {value === option && <Check size={14} />}
-              </button>
-            ))}
-            {!filtered.length && <div className="emptyOptions">No matches</div>}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function MultiSelectField({ label, value, options, onChange }) {
-  const [open, setOpen] = useState(false);
-  const [query, setQuery] = useState('');
-  const selected = Array.isArray(value) ? value : [];
-  const selectedSet = new Set(selected);
-  const filtered = options.filter((option) => toOptionLabel(option).toLowerCase().includes(query.trim().toLowerCase()));
-
-  function toggle(option) {
-    if (selectedSet.has(option)) {
-      onChange(selected.filter((item) => item !== option));
-    } else {
-      onChange([...selected, option]);
-    }
-  }
-
-  return (
-    <div className="comboField">
-      <span>{label}</span>
-      <button type="button" className="comboButton" onClick={() => setOpen((current) => !current)}>
-        {selected.length ? selected.map(toOptionLabel).join(', ') : 'Select values'}
-      </button>
-      {open && (
-        <div className="comboMenu">
-          <input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search"
-            autoFocus
-          />
-          <div className="comboOptions">
-            {filtered.map((option) => (
-              <button
-                type="button"
-                key={option}
-                className={selectedSet.has(option) ? 'comboOption selected' : 'comboOption'}
-                onClick={() => toggle(option)}
-              >
-                <span>{toOptionLabel(option)}</span>
-                {selectedSet.has(option) && <Check size={14} />}
-              </button>
-            ))}
-            {!filtered.length && <div className="emptyOptions">No matches</div>}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function mediaFor(exercise) {
-  const media = Array.isArray(exercise?.media) ? exercise.media : [];
-  const images = Array.isArray(exercise?.images) ? exercise.images.map((url) => ({ type: 'image', url })) : [];
-  return [...media, ...images].filter((item) => item?.url);
-}
-
-function firstVideo(exercise) {
-  return mediaFor(exercise).find((item) => item.type === 'video' || item.url.includes('youtube.com/embed') || item.url.endsWith('.mp4'));
-}
-
-function videoBySource(exercise, source) {
-  return mediaFor(exercise).find((item) => item.type === 'video' && item.source === source);
-}
-
-function firstImage(exercise) {
-  return mediaFor(exercise).find((item) => item.type === 'image' || item.thumbnailUrl || /\.(png|jpe?g|webp)$/i.test(item.url));
-}
-
-function hasDefaultVideo(exercise) {
-  return mediaFor(exercise).some((item) => item.type === 'video' && item.source === 'uploaded');
-}
-
-function isVideoUrl(url) {
-  return url?.endsWith('.mp4') || url?.startsWith('/api/library/video');
-}
-
-function refreshUrl(url, refreshKey) {
-  if (!url?.startsWith('/api/library/video')) return url;
-  return `${url}${url.includes('?') ? '&' : '?'}r=${refreshKey}`;
-}
-
-function formatTime(seconds) {
-  const value = Number.isFinite(seconds) ? Math.max(0, seconds) : 0;
-  const minutes = Math.floor(value / 60);
-  const rest = Math.floor(value % 60).toString().padStart(2, '0');
-  return `${minutes}:${rest}`;
-}
-
-function defaultIndicatorFor(exercise, defaultSlugSet) {
-  if (exercise?.metadata?.defaultVideoInvalid) {
-    return { className: 'invalidDefault', label: 'Default invalid' };
-  }
-  if (exercise?.metadata?.reviewed) {
-    return { className: 'validated', label: 'Validated' };
-  }
-  const slug = exercise?.cdnslug || exercise?.cdnSlug;
-  const fileExists = slug && defaultSlugSet?.has(slug);
-  if (fileExists) {
-    return { className: 'hasDefault', label: 'Default ready (file on disk)' };
-  }
-  if (hasDefaultVideo(exercise)) {
-    return { className: 'hasDefault pendingSync', label: 'Default in JSON but file missing' };
-  }
-  return { className: 'missingDefault', label: 'Missing default' };
-}
-
-function updateExercise(exercise, patch) {
-  return {
-    ...exercise,
-    ...patch,
-    i18n: {
-      ...exercise.i18n,
-      ...(patch.i18n || {}),
-    },
-    classification: {
-      ...exercise.classification,
-      ...(patch.classification || {}),
-    },
-    metadata: {
-      ...exercise.metadata,
-      ...(patch.metadata || {}),
-    },
-  };
-}
-
-function isPlainObject(value) {
-  return value && typeof value === 'object' && !Array.isArray(value);
-}
-
-function snapshotExercise(exercise) {
-  return JSON.parse(JSON.stringify(exercise || {}));
-}
-
-function diffExerciseFields(before, after, path = []) {
-  if (JSON.stringify(before) === JSON.stringify(after)) return [];
-  const key = path.join('.') || '(root)';
-
-  if (Array.isArray(before) || Array.isArray(after)) {
-    return [{ key, before, after }];
-  }
-
-  if (!isPlainObject(before) || !isPlainObject(after)) {
-    return [{ key, before, after }];
-  }
-
-  const keys = [...new Set([...Object.keys(before), ...Object.keys(after)])].sort();
-  return keys.flatMap((field) => diffExerciseFields(before[field], after[field], [...path, field]));
-}
-
-function formatDiffValue(value) {
-  if (value === undefined) return 'undefined';
-  const text = typeof value === 'string' ? value : JSON.stringify(value);
-  if (!text) return '""';
-  return text.length > 180 ? `${text.slice(0, 177)}...` : text;
-}
-
-function formatExerciseDiff(before, after) {
-  const changes = diffExerciseFields(before, after);
-  if (!changes.length) return 'Review diff\nNo JSON changes detected for this exercise.';
-  return [
-    `Review diff\n${changes.length} changed field${changes.length === 1 ? '' : 's'}:`,
-    ...changes.map((change) => `- ${change.key}: ${formatDiffValue(change.before)} -> ${formatDiffValue(change.after)}`),
-  ].join('\n');
-}
-
-function isYoutubeMedia(item) {
-  return item?.source === 'youtube' || /(?:youtube\.com|youtu\.be|img\.youtube\.com)/i.test(item?.url || item?.thumbnailUrl || '');
-}
-
-function extractYoutubeId(input) {
-  if (!input) return '';
-  const trimmed = String(input).trim();
-  if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) return trimmed;
-  const match = trimmed.match(/(?:youtube\.com\/(?:embed\/|watch\?v=|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/i);
-  return match?.[1] || '';
-}
-
-function extractYoutubeStart(input) {
-  if (!input) return null;
-  const match = String(input).match(/[?&](?:t|start)=([0-9]+(?:\.[0-9]+)?)(?:s|$|&)/i);
-  return match ? Number(match[1]) : null;
-}
-
-function youtubeIdFromExercise(exercise) {
-  const stored = exercise?.metadata?.sourceClip?.youtubeId;
-  if (stored) return stored;
-  const media = mediaFor(exercise).find((item) => isYoutubeMedia(item));
-  return extractYoutubeId(media?.url || media?.thumbnailUrl || '');
-}
-
-function YouTubeSourcePicker({ youtubeId, onCapture }) {
-  const containerRef = useRef(null);
-  const playerRef = useRef(null);
-  const [currentTime, setCurrentTime] = useState(0);
-
-  useEffect(() => {
-    if (!youtubeId || !containerRef.current) return undefined;
-
-    let cancelled = false;
-    let pollHandle = null;
-
-    function pollTime() {
-      const t = playerRef.current?.getCurrentTime?.();
-      if (typeof t === 'number') setCurrentTime(t);
-      pollHandle = window.setTimeout(pollTime, 250);
-    }
-
-    function createPlayer() {
-      if (cancelled || !containerRef.current) return;
-      containerRef.current.innerHTML = '';
-      const target = document.createElement('div');
-      target.style.width = '100%';
-      target.style.height = '100%';
-      containerRef.current.appendChild(target);
-      playerRef.current = new window.YT.Player(target, {
-        videoId: youtubeId,
-        width: '100%',
-        height: '100%',
-        playerVars: { rel: 0, modestbranding: 1, playsinline: 1 },
-        events: {
-          onReady: () => {
-            pollTime();
-          },
-        },
-      });
-    }
-
-    if (window.YT?.Player) {
-      createPlayer();
-    } else {
-      const previous = window.onYouTubeIframeAPIReady;
-      window.onYouTubeIframeAPIReady = () => {
-        previous?.();
-        createPlayer();
-      };
-      if (!document.querySelector('script[data-yt-iframe-api]')) {
-        const script = document.createElement('script');
-        script.src = 'https://www.youtube.com/iframe_api';
-        script.dataset.ytIframeApi = '1';
-        document.head.appendChild(script);
-      }
-    }
-
-    return () => {
-      cancelled = true;
-      if (pollHandle) window.clearTimeout(pollHandle);
-      try { playerRef.current?.destroy?.(); } catch { /* noop */ }
-      playerRef.current = null;
-    };
-  }, [youtubeId]);
-
-  function capture() {
-    const value = playerRef.current?.getCurrentTime?.();
-    if (typeof value === 'number') onCapture(Number(value.toFixed(2)));
-  }
-
-  return (
-    <div className="ytPicker">
-      <div className="ytPlayer" ref={containerRef} />
-      <div className="ytPickerControls">
-        <span className="ytTime">
-          <Clock size={14} /> {currentTime.toFixed(2)}s
-        </span>
-        <button type="button" onClick={capture}>
-          Usar este instante como inicio
-        </button>
-      </div>
-    </div>
-  );
-}
-
 function idFromUrl() {
   return new URLSearchParams(window.location.search).get('id') || '';
-}
-
-function cdnSlugFor(exercise) {
-  return exercise?.cdnslug || exercise?.cdnSlug || '';
-}
-
-function exerciseMatchesIdentifier(exercise, identifier) {
-  if (!identifier) return false;
-  return [exercise?.id, exercise?.metadata?.identityKey, cdnSlugFor(exercise)]
-    .filter(Boolean)
-    .map(String)
-    .includes(String(identifier));
-}
-
-function findExerciseByIdentifier(exercises, identifier) {
-  return exercises.find((exercise) => exerciseMatchesIdentifier(exercise, identifier));
 }
 
 function App() {
@@ -417,6 +79,8 @@ function App() {
   const [defacePasses, setDefacePasses] = useState(() => Number(localStorage.getItem('tsl26.defacePasses')) || 1);
   const [defaceKeepOriginal, setDefaceKeepOriginal] = useState(() => localStorage.getItem('tsl26.defaceKeepOriginal') === 'true');
   const [defaceOpen, setDefaceOpen] = useState(false);
+  const [reviewJobs, setReviewJobs] = useState([]);
+  const [reviewQueueMeta, setReviewQueueMeta] = useState({ active: 0, queued: 0, concurrency: 2 });
   const sourceVideoRef = useRef(null);
   const defaultVideoRef = useRef(null);
   const suppressSyncRef = useRef(false);
@@ -442,6 +106,25 @@ function App() {
 
   useEffect(() => {
     loadExercises();
+  }, []);
+
+  async function refreshReviewJobs() {
+    const res = await fetch('/api/review/jobs');
+    if (!res.ok) return;
+    const data = await res.json();
+    setReviewJobs(data.jobs || []);
+    setReviewQueueMeta({ active: data.active || 0, queued: data.queued || 0, concurrency: data.concurrency || 2 });
+  }
+
+  useEffect(() => {
+    let cancelled = false;
+    async function pollReviewJobs() {
+      if (cancelled) return;
+      await refreshReviewJobs();
+    }
+    pollReviewJobs();
+    const interval = setInterval(pollReviewJobs, 2000);
+    return () => { cancelled = true; clearInterval(interval); };
   }, []);
 
   useEffect(() => {
@@ -645,15 +328,21 @@ function App() {
       setLog('Save pending changes before launching an exercise review agent.');
       return;
     }
-    const id = selected.id;
-    const beforeReview = snapshotExercise(selected);
-    setRunning(`Reviewing with ${reviewAgent}`);
+    await enqueueReviewIds([selected.id], reviewAgent);
+  }
+
+  async function enqueueReviewIds(ids, reviewAgent) {
+    if (dirty) {
+      setLog('Save pending changes before launching review jobs.');
+      return;
+    }
+    setRunning(`Queueing ${ids.length} ${reviewAgent} review${ids.length === 1 ? '' : 's'}`);
     setLog('');
     try {
-      const res = await fetch('/api/media/action', {
+      const res = await fetch('/api/review/jobs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'review-exercise', id, reviewAgent }),
+        body: JSON.stringify({ ids, reviewAgent }),
       });
       const data = await res.json();
       const output = data.output || data.error || JSON.stringify(data, null, 2);
@@ -661,35 +350,11 @@ function App() {
         setLog(output);
         return;
       }
-      if (!data.jobId) {
-        setLog(output);
-        return;
-      }
-
-      let finalJob = null;
-      for (;;) {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        const statusRes = await fetch(`/api/review/status?jobId=${encodeURIComponent(data.jobId)}`);
-        const statusData = await statusRes.json();
-        if (!statusRes.ok) {
-          setLog(statusData.error || JSON.stringify(statusData, null, 2));
-          return;
-        }
-        finalJob = statusData;
-        setLog(statusData.output || output);
-        if (statusData.status !== 'running') break;
-      }
-
-      if (!finalJob?.ok) {
-        setLog(finalJob?.output || output);
-        return;
-      }
-      const loaded = await loadExercises(id);
-      const afterReview = snapshotExercise(findExerciseByIdentifier(loaded.exercises || [], id));
-      setLog(`${formatExerciseDiff(beforeReview, afterReview)}\n\n${finalJob.output || output}`);
+      setLog(`Queued ${data.count || 0} review job${data.count === 1 ? '' : 's'}.`);
+      await refreshReviewJobs();
       setDirty(false);
     } finally {
-      await refreshStatus(id);
+      await refreshStatus();
       setRunning('');
     }
   }
@@ -1070,6 +735,11 @@ function App() {
   const selectedSlug = selected.cdnslug || selected.cdnSlug;
   const selectedHasFolder = selectedSlug ? librarySlugs.includes(selectedSlug) : false;
   const relationIssues = (libraryRelation?.orphanFolders?.length || 0) + (libraryRelation?.missingFolders?.length || 0) + (libraryRelation?.duplicateSlugs?.length || 0);
+  const reviewJobCounts = reviewJobs.reduce((counts, job) => {
+    counts[job.status] = (counts[job.status] || 0) + 1;
+    return counts;
+  }, {});
+  const visibleReviewJobs = reviewJobs.slice(0, 8);
 
   return (
     <main className="app">
@@ -1526,6 +1196,39 @@ function App() {
           </div>
         )}
         {(selectedAiJob?.log || log) && <pre className="log">{selectedAiJob?.log || log}</pre>}
+        <div className="reviewQueue">
+          <div className="reviewQueueHeader">
+            <strong>Review jobs</strong>
+            <span>
+              {reviewQueueMeta.active} running · {reviewQueueMeta.queued} queued · {reviewJobCounts.applied || 0} applied · {reviewJobCounts.failed || 0} failed
+            </span>
+          </div>
+          <div className="reviewQueueActions">
+            <button type="button" onClick={() => enqueueReviewIds(filtered.map((exercise) => exercise.id), 'codex')} disabled={selectedBusy || dirty || !filtered.length}>
+              <Sparkles size={14} /> Review filtered Codex
+            </button>
+            <button type="button" onClick={() => enqueueReviewIds(filtered.map((exercise) => exercise.id), 'claude')} disabled={selectedBusy || dirty || !filtered.length}>
+              <Sparkles size={14} /> Review filtered Claude
+            </button>
+            <button type="button" onClick={refreshReviewJobs}>
+              Refresh
+            </button>
+          </div>
+          {visibleReviewJobs.length > 0 && (
+            <div className="reviewJobList">
+              {visibleReviewJobs.map((job) => (
+                <div key={job.id} className={`reviewJob ${job.status}`}>
+                  <span className="reviewJobStatus">{job.status}</span>
+                  <button type="button" onClick={() => selectExercise(job.exerciseId)}>
+                    {job.exerciseName || job.exerciseId}
+                  </button>
+                  <small>{job.provider}</small>
+                  <button type="button" onClick={() => setLog(job.output || job.error || '')}>Log</button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </section>
 
       <section className="editor">
