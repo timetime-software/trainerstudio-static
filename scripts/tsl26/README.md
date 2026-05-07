@@ -205,8 +205,60 @@ npm run videos:style-status
 npm run videos:sync-json
 npm run transform
 npm run i18n:apply
+npm run library:ensure
 npm run import
 ```
 
 El dataset contiene 1203 ejercicios. En la ultima comprobacion local, 833 tenian
 un video de YouTube detectable en `media`.
+
+## Importar en MongoDB
+
+Regla operativa: la libreria oficial de MongoDB se carga solo desde
+`data/exercises-public.json`.
+
+No importar `data/exercises.json` directamente en la libreria oficial. Ese archivo
+es el dataset de trabajo completo: incluye ejercicios traducidos y etiquetados,
+pero tambien ejercicios que solo tienen video `source` y todavia no tienen video
+`default` publicable.
+
+Antes de importar, comprobar los conteos esperados:
+
+```bash
+node - <<'NODE'
+const fs = require('fs');
+for (const p of ['data/exercises-public.json', 'data/exercises.json']) {
+  const data = JSON.parse(fs.readFileSync(p, 'utf8'));
+  console.log(p, {
+    total: data.length,
+    classified: data.filter((e) => e.classification).length,
+    es: data.filter((e) => e.i18n?.name?.es).length,
+    default: data.filter((e) => JSON.stringify(e).includes('/default/')).length,
+    source: data.filter((e) => JSON.stringify(e).includes('/source/')).length,
+  });
+}
+NODE
+```
+
+El input correcto debe tener el mismo numero en `total`, `classified`, `es` y
+`default`, y `source: 0`. Si `source` es mayor que cero, se esta mirando el
+archivo equivocado para importar a MongoDB.
+
+Crear o recuperar una libreria por nombre:
+
+```bash
+cd /Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26
+npm run library:ensure -- --name="TrainerStudio official" --mongodb-uri=mongodb://localhost:27017/trainerStudioDB --database=trainerStudioDB
+```
+
+El comando imprime el `_id` de la libreria. Usar ese valor para validar o importar
+los ejercicios:
+
+```bash
+npm run import -- --input=data/exercises-public.json --library-id=<libraryId> --mongodb-uri=mongodb://localhost:27017/trainerStudioDB --database=trainerStudioDB --dry-run
+npm run import -- --input=data/exercises-public.json --library-id=<libraryId> --mongodb-uri=mongodb://localhost:27017/trainerStudioDB --database=trainerStudioDB
+```
+
+Si se importo `data/exercises.json` por error, limpiar primero los documentos de
+esa libreria que no esten en `data/exercises-public.json` y despues reimportar
+`data/exercises-public.json`.

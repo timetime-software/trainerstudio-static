@@ -6,6 +6,7 @@
   "scripts": {
     "transform": "node --experimental-strip-types transform-mypthub-to-public-exercises.ts",
     "i18n:apply": "node --experimental-strip-types apply-i18n-shards.ts",
+    "library:ensure": "node --experimental-strip-types ensure-library.ts",
     "import": "node --experimental-strip-types import-public-exercises.ts",
     "editor": "npm --prefix editor run dev",
     "videos:sync-json": "node --experimental-strip-types sync-cdn-media.ts",

@@ -31,9 +31,11 @@ function getArgValue(name: string): string | undefined {
 }
 
 function getBooleanOption(name: string, envName: string): boolean {
-  const argValue = getArgValue(name);
+  const exactIndex = process.argv.indexOf(`--${name}`);
+  const nextArg = exactIndex !== -1 ? process.argv[exactIndex + 1] : undefined;
+  const argValue = exactIndex !== -1 && nextArg && !nextArg.startsWith('--') ? nextArg : getArgValue(name);
   const value = argValue ?? process.env[envName];
-  return value === 'true' || value === '1';
+  return exactIndex !== -1 && (!nextArg || nextArg.startsWith('--')) ? true : value === 'true' || value === '1';
 }
 
 function getRequiredObjectId(value: string | undefined, label: string): ObjectId {
