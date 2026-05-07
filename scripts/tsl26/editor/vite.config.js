@@ -16,6 +16,7 @@ import {
   MOVEMENT_PATTERN_VALUES,
 } from '../classification-reference.mjs';
 import { cdnSlugFor, findExerciseByIdentifier } from '../exercise-ids.mjs';
+import { proposeExerciseChanges } from './lib-server/reviewer.mjs';
 
 const editorDir = path.dirname(fileURLToPath(import.meta.url));
 const toolDir = path.resolve(editorDir, '..');
@@ -836,6 +837,40 @@ function exerciseEditorPlugin() {
             elapsedMs: job.status === 'running' ? Date.now() - job.startedAt : job.elapsedMs,
             pid: job.pid,
           });
+        } catch (error) {
+          send(res, 500, { error: error.message });
+        }
+      });
+
+      server.middlewares.use('/api/review/propose', async (req, res) => {
+        try {
+          if (req.method !== 'POST') {
+            send(res, 405, { error: 'Method not allowed' });
+            return;
+          }
+          const body = JSON.parse(await readBody(req));
+          const { id, instructions = '', provider = 'claude' } = body || {};
+          if (!id) {
+            send(res, 400, { error: 'Missing exercise id' });
+            return;
+          }
+          const exercises = await readExercises();
+          const exercise = findExerciseByIdentifier(exercises, id);
+          if (!exercise) {
+            send(res, 404, { error: `Exercise not found: ${id}` });
+            return;
+          }
+          const localEnv = await readLocalEnv();
+          const apiKeys = {
+            anthropic: req.headers['x-anthropic-api-key'] || localEnv.ANTHROPIC_API_KEY || process.env.ANTHROPIC_API_KEY || '',
+            openai: req.headers['x-openai-api-key'] || localEnv.OPENAI_API_KEY || process.env.OPENAI_API_KEY || '',
+          };
+          const models = {
+            anthropic: req.headers['x-anthropic-model'] || localEnv.REVIEW_ANTHROPIC_MODEL || '',
+            openai: req.headers['x-openai-model'] || localEnv.REVIEW_OPENAI_MODEL || '',
+          };
+          const result = await proposeExerciseChanges({ exercise, instructions, provider, apiKeys, models });
+          send(res, 200, { ok: true, exerciseId: exercise.id, ...result });
         } catch (error) {
           send(res, 500, { error: error.message });
         }

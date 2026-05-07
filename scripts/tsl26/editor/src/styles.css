@@ -876,10 +876,19 @@ p {
 }
 
 .running.aiJob {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   padding: 8px 10px;
   border: 1px solid #d7ded9;
   border-radius: 7px;
   background: #ffffff;
+}
+
+.running.aiJob .aiJobHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .running.aiJob.running {
@@ -894,6 +903,22 @@ p {
   margin-left: auto;
   color: #66736d;
   font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.aiJobProgress {
+  height: 4px;
+  width: 100%;
+  border-radius: 999px;
+  background: #ecefed;
+  overflow: hidden;
+}
+
+.aiJobProgressBar {
+  height: 100%;
+  background: linear-gradient(90deg, #f0b03a, #27745f);
+  border-radius: 999px;
+  transition: width 0.4s ease;
 }
 
 .reviewQueue {
@@ -1204,6 +1229,200 @@ label textarea.tall {
 
   .ytSourceRow,
   .clipForm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 25, 22, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 24px;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  width: 100%;
+}
+
+.reviewModal {
+  max-width: 960px;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid #e3e8e6;
+}
+
+.modalHeader strong {
+  font-size: 14px;
+}
+
+.modalHeader .hint {
+  flex: 1;
+}
+
+.modalHeader button.ghost {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #53615a;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 12px 18px;
+  border-top: 1px solid #e3e8e6;
+}
+
+.modalFooter .ghost {
+  background: transparent;
+  border: 1px solid #d1d8d4;
+  color: #2f3a35;
+}
+
+.reviewDiffList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 14px 18px;
+  overflow-y: auto;
+}
+
+.reviewDiffRow {
+  border: 1px solid #e3e8e6;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reviewDiffHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #2f3a35;
+  cursor: pointer;
+}
+
+.reviewDiffHeader code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: #f0f5f3;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.reviewDiffRationale {
+  margin: 0;
+  font-size: 12px;
+  color: #6f7b75;
+  font-style: italic;
+}
+
+.reviewDiffPanels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.reviewDiffPanel {
+  border-radius: 6px;
+  border: 1px solid #e3e8e6;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.reviewDiffPanel.current {
+  background: #fbf5f3;
+}
+
+.reviewDiffPanel.proposed {
+  background: #f1f9f4;
+}
+
+.reviewDiffPanelLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.05);
+  color: #53615a;
+}
+
+.reviewDiffPanel pre {
+  margin: 0;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.reviewError {
+  color: #b03a3a;
+  margin-top: 4px;
+}
+
+.reviewStatus {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+.reviewStatus.loading {
+  background: #f0f5f3;
+  color: #2f5a4a;
+  border: 1px solid #cfe1d8;
+}
+
+.reviewStatus.error {
+  background: #fbeaea;
+  color: #8a2a2a;
+  border: 1px solid #efc7c7;
+}
+
+.reviewStatus.error strong {
+  flex-shrink: 0;
+}
+
+.reviewStatus.ready {
+  background: #f3f9ec;
+  color: #3d6824;
+  border: 1px solid #d6e8c2;
+}
+
+.spin {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 720px) {
+  .reviewDiffPanels {
     grid-template-columns: 1fr;
   }
 }

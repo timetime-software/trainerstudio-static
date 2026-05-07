@@ -12,7 +12,11 @@ import {
   MOVEMENT_PATTERN_VALUES,
 } from '../../classification-reference.mjs';
 import { MultiSelectField, SelectField } from './components/ComboFields.jsx';
+import { ReviewProposalModal } from './components/ReviewProposalModal.jsx';
+import { ReviewSection } from './components/ReviewSection.jsx';
 import { YouTubeSourcePicker } from './components/YouTubeSourcePicker.jsx';
+import { buildPatchFromProposal } from './lib/reviewPatch.js';
+import { useReviewProposal } from './lib/useReviewProposal.js';
 import { cdnSlugFor, defaultIndicatorFor, findExerciseByIdentifier, updateExercise } from './lib/exercise.js';
 import {
   extractYoutubeId,
@@ -32,6 +36,15 @@ import './styles.css';
 const emptyStatus = { sourceClip: false, defaultClip: false, downloadedOriginals: [], arkTask: null };
 const AI_VIDEO_MAX_ATTEMPTS = 90;
 const AI_VIDEO_POLL_INTERVAL_MS = 10000;
+const AI_VIDEO_TYPICAL_ATTEMPT = 19;
+
+function estimateAiVideoPercent(attempt) {
+  if (!attempt || attempt < 1) return 0;
+  if (attempt >= AI_VIDEO_TYPICAL_ATTEMPT) {
+    return Math.min(99, Math.round(95 + (attempt - AI_VIDEO_TYPICAL_ATTEMPT) * 0.5));
+  }
+  return Math.round((attempt / AI_VIDEO_TYPICAL_ATTEMPT) * 95);
+}
 const PENDING_AI_TASK_STATUSES = new Set(['created', 'queued', 'running']);
 
 function idFromUrl() {
@@ -57,6 +70,10 @@ function App() {
   const [libraryRelation, setLibraryRelation] = useState(null);
   const [editorTab, setEditorTab] = useState('main');
   const [arkApiKey, setArkApiKey] = useState(() => localStorage.getItem('tsl26.arkApiKey') || '');
+  const [anthropicApiKey, setAnthropicApiKey] = useState(() => localStorage.getItem('tsl26.anthropicApiKey') || '');
+  const [openaiApiKey, setOpenaiApiKey] = useState(() => localStorage.getItem('tsl26.openaiApiKey') || '');
+  const [reviewInstructions, setReviewInstructions] = useState(() => localStorage.getItem('tsl26.reviewInstructions') || '');
+  const review = useReviewProposal({ apiKeys: { anthropic: anthropicApiKey, openai: openaiApiKey } });
   const [ytInput, setYtInput] = useState('');
   const [ytId, setYtId] = useState('');
   const [ytTitle, setYtTitle] = useState('');
@@ -325,10 +342,22 @@ function App() {
 
   async function runExerciseReview(reviewAgent) {
     if (dirty) {
-      setLog('Save pending changes before launching an exercise review agent.');
+      setLog('Guarda los cambios pendientes antes de pedir un review.');
       return;
     }
-    await enqueueReviewIds([selected.id], reviewAgent);
+    if (!selected?.id) return;
+    await review.requestProposal({
+      exerciseId: selected.id,
+      instructions: reviewInstructions,
+      provider: reviewAgent,
+    });
+  }
+
+  function applyReviewProposal() {
+    if (!review.proposal) return;
+    const patch = buildPatchFromProposal(selected, review.proposal, review.selectedFields);
+    if (patch) patchSelected(patch);
+    review.dismissProposal();
   }
 
   async function enqueueReviewIds(ids, reviewAgent) {
@@ -729,7 +758,8 @@ function App() {
     cancelled: 'Cancelado',
     expired: 'Expirado',
   };
-  const defaultState = status.defaultClip ? 'Listo' : selectedAiRunning ? `Generando ${selectedAiJob.attempt || 0}/${selectedAiJob.maxAttempts || AI_VIDEO_MAX_ATTEMPTS}` : taskStatusLabels[aiTaskStatus] || 'Pendiente';
+  const aiEstimatedPercent = selectedAiRunning ? estimateAiVideoPercent(selectedAiJob?.attempt) : 0;
+  const defaultState = status.defaultClip ? 'Listo' : selectedAiRunning ? `Generando ${aiEstimatedPercent}%` : taskStatusLabels[aiTaskStatus] || 'Pendiente';
   const defaultStateClass = status.defaultClip ? 'ready' : selectedAiRunning || ['created', 'queued', 'running'].includes(aiTaskStatus) ? 'working' : 'missing';
   const sourceState = status.sourceClip ? 'Listo' : 'Falta source';
   const selectedSlug = selected.cdnslug || selected.cdnSlug;
@@ -1190,9 +1220,20 @@ function App() {
         {running && <div className="running"><FileVideo size={16} /> {running}...</div>}
         {selectedAiJob && (
           <div className={`running aiJob ${selectedAiJob.status}`}>
-            {selectedAiRunning ? <LoaderCircle size={16} className="buttonSpinner" /> : <FileVideo size={16} />}
-            <span>{selectedAiJob.label}</span>
-            {selectedAiRunning && <small>{selectedAiJob.attempt || 0} / {selectedAiJob.maxAttempts || AI_VIDEO_MAX_ATTEMPTS}</small>}
+            <div className="aiJobHeader">
+              {selectedAiRunning ? <LoaderCircle size={16} className="buttonSpinner" /> : <FileVideo size={16} />}
+              <span>{selectedAiJob.label}</span>
+              {selectedAiRunning && (
+                <small>
+                  {aiEstimatedPercent}% · {selectedAiJob.attempt || 0}/{selectedAiJob.maxAttempts || AI_VIDEO_MAX_ATTEMPTS}
+                </small>
+              )}
+            </div>
+            {selectedAiRunning && (
+              <div className="aiJobProgress" role="progressbar" aria-valuenow={aiEstimatedPercent} aria-valuemin={0} aria-valuemax={100}>
+                <div className="aiJobProgressBar" style={{ width: `${aiEstimatedPercent}%` }} />
+              </div>
+            )}
           </div>
         )}
         {(selectedAiJob?.log || log) && <pre className="log">{selectedAiJob?.log || log}</pre>}
@@ -1277,24 +1318,19 @@ function App() {
               }} />
             </div>
 
+            <ReviewSection
+              instructions={reviewInstructions}
+              onInstructionsChange={(value) => {
+                setReviewInstructions(value);
+                localStorage.setItem('tsl26.reviewInstructions', value);
+              }}
+              onReview={runExerciseReview}
+              status={review.status}
+              disabled={selectedBusy || dirty}
+              apiKeys={{ anthropic: anthropicApiKey, openai: openaiApiKey }}
+            />
             <div className="editorSection">
-              <h2>Review</h2>
-              <div className="actions">
-                <button
-                  title={dirty ? 'Save pending changes before launching Codex' : 'Review texts and classification labels for this exercise with Codex'}
-                  onClick={() => runExerciseReview('codex')}
-                  disabled={selectedBusy || dirty}
-                >
-                  <Sparkles size={16} /> Codex review
-                </button>
-                <button
-                  title={dirty ? 'Save pending changes before launching Claude' : 'Review texts and classification labels for this exercise with Claude'}
-                  onClick={() => runExerciseReview('claude')}
-                  disabled={selectedBusy || dirty}
-                >
-                  <Sparkles size={16} /> Claude review
-                </button>
-              </div>
+              <h2>Status flags</h2>
               <label className="check">
                 <input type="checkbox" checked={selected.isActive !== false} onChange={(event) => patchSelected({ isActive: event.target.checked })} />
                 Active
@@ -1365,10 +1401,44 @@ function App() {
                 placeholder="Stored in this browser only"
               />
             </label>
-            <p className="hint">You can also set it in scripts/tsl26/editor/.env as ARK_API_KEY=...</p>
+            <label>
+              Anthropic API key (Claude review)
+              <input
+                type="password"
+                value={anthropicApiKey}
+                onChange={(event) => {
+                  setAnthropicApiKey(event.target.value);
+                  localStorage.setItem('tsl26.anthropicApiKey', event.target.value);
+                }}
+                placeholder="sk-ant-..."
+              />
+            </label>
+            <label>
+              OpenAI API key (Codex review)
+              <input
+                type="password"
+                value={openaiApiKey}
+                onChange={(event) => {
+                  setOpenaiApiKey(event.target.value);
+                  localStorage.setItem('tsl26.openaiApiKey', event.target.value);
+                }}
+                placeholder="sk-..."
+              />
+            </label>
+            <p className="hint">Stored only in this browser. Server fallback: scripts/tsl26/editor/.env (ARK_API_KEY, ANTHROPIC_API_KEY, OPENAI_API_KEY).</p>
           </div>
         )}
       </section>
+      {review.proposal && (
+        <ReviewProposalModal
+          proposal={review.proposal}
+          currentExercise={selected}
+          selectedFields={review.selectedFields}
+          onToggleField={review.toggleField}
+          onCancel={review.dismissProposal}
+          onApply={applyReviewProposal}
+        />
+      )}
     </main>
   );
 }
