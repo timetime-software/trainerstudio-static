@@ -66,8 +66,9 @@ type TransformReport = {
 };
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
+const WORKSPACE_DIR = path.join(SCRIPT_DIR, '.workspace');
 
-const DEFAULT_INPUT_PATH = path.join(SCRIPT_DIR, 'source/mypthub-exercises.csv');
+const DEFAULT_INPUT_PATH = path.join(WORKSPACE_DIR, 'import/mypthub-exercises.csv');
 const DEFAULT_OUTPUT_PATH = path.join(SCRIPT_DIR, 'data/exercises.json');
 
 const MUSCLE_MAP: Record<string, string[]> = {
@@ -441,7 +442,7 @@ function ensureUniqueCdnSlugs(documents: PublicExerciseDocument[]): void {
 async function main(): Promise<void> {
   const inputPath = path.resolve(getOption('input', DEFAULT_INPUT_PATH));
   const outputPath = path.resolve(getOption('output', DEFAULT_OUTPUT_PATH));
-  const reportPath = path.resolve(getOption('report', path.join(SCRIPT_DIR, 'source/mypthub-public-exercises.report.json')));
+  const reportPath = path.resolve(getOption('report', path.join(WORKSPACE_DIR, 'import/mypthub-public-exercises.report.json')));
   const ndjsonPath = outputPath.replace(/\.json$/i, '.ndjson');
   const libraryId = getArgValue('library-id') ?? process.env.MYPTHUB_TRANSFORM_LIBRARY_ID;
 

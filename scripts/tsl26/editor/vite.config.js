@@ -10,12 +10,13 @@ import { cdnSlugFor, findExerciseByIdentifier } from '../exercise-ids.mjs';
 const editorDir = path.dirname(fileURLToPath(import.meta.url));
 const toolDir = path.resolve(editorDir, '..');
 const repoRoot = path.resolve(toolDir, '../..');
+const workspaceRoot = path.join(toolDir, '.workspace');
 const jsonPath = path.join(toolDir, 'data/exercises.json');
 const ndjsonPath = path.join(toolDir, 'data/exercises.ndjson');
 const libraryRoot = path.join(repoRoot, 'libraries/tsl26');
 const envPath = path.join(editorDir, '.env');
-const arkTasksPath = path.join(toolDir, 'source/ark-style-tasks.ndjson');
-const arkTaskStatusPath = path.join(toolDir, 'source/ark-style-task-status.ndjson');
+const arkTasksPath = path.join(workspaceRoot, 'ark/style-tasks.ndjson');
+const arkTaskStatusPath = path.join(workspaceRoot, 'ark/style-task-status.ndjson');
 
 function readBody(req) {
   return new Promise((resolve, reject) => {
@@ -273,7 +274,7 @@ async function mediaStatus(exercise) {
 
   const sourcePath = path.join(libraryRoot, cdnslug, 'source', `${cdnslug}.mp4`);
   const defaultPath = path.join(libraryRoot, cdnslug, 'default', `${cdnslug}.mp4`);
-  const sourceOriginals = await fs.readdir(path.join(toolDir, 'source/videos')).catch(() => []);
+  const sourceOriginals = await fs.readdir(path.join(workspaceRoot, 'videos')).catch(() => []);
   const originalPrefixes = [exercise.id, exercise.metadata?.identityKey, cdnslug].filter(Boolean);
   const sourceVersion = await fileVersion(sourcePath);
   const defaultVersion = await fileVersion(defaultPath);

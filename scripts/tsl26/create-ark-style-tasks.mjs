@@ -18,13 +18,14 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, '../..');
 const LIBRARY_ROOT = join(REPO_ROOT, 'libraries/tsl26');
 const TOOL_ROOT = __dirname;
+const WORKSPACE_ROOT = join(TOOL_ROOT, '.workspace');
 
 const DEFAULT_ENDPOINT = 'https://ark.ap-southeast.bytepluses.com/api/v3/contents/generations/tasks';
 const DEFAULT_MODEL = 'dreamina-seedance-2-0-260128';
 const DEFAULT_CDN_BASE_URL = 'https://cdn.trainerstudio.com';
 const DEFAULT_INPUT = join(TOOL_ROOT, 'data/exercises.json');
 const DEFAULT_CLIPS_DIR = LIBRARY_ROOT;
-const DEFAULT_OUTPUT = join(TOOL_ROOT, 'source/ark-style-tasks.ndjson');
+const DEFAULT_OUTPUT = join(WORKSPACE_ROOT, 'ark/style-tasks.ndjson');
 const DEFAULT_REFERENCE_IMAGES = [
   join(LIBRARY_ROOT, 'references/man.png'),
   join(LIBRARY_ROOT, 'references/man2.png'),

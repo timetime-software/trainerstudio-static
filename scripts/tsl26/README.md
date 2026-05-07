@@ -60,7 +60,7 @@ Por defecto el script:
 
 - lee `scripts/tsl26/data/exercises.json`
 - detecta el primer video YouTube de cada ejercicio
-- descarga el MP4 fuente en `scripts/tsl26/source/videos`
+- descarga el MP4 fuente en `scripts/tsl26/.workspace/videos`
 - recorta desde el segundo `1`
 - genera `4` segundos
 - elimina el audio
@@ -149,7 +149,7 @@ npm run videos:style-tasks -- --overwrite-output
 El script escribe las respuestas en:
 
 ```text
-scripts/tsl26/source/ark-style-tasks.ndjson
+scripts/tsl26/.workspace/ark/style-tasks.ndjson
 ```
 
 Cada linea guarda el `clipUrl`, las imagenes de referencia, el payload enviado y
@@ -205,8 +205,8 @@ libraries/tsl26/barbell_squats/default/barbell_squats.mp4
   `InputVideoSensitiveContentDetected.PrivacyInformation`. El mensaje dice que
   el video de entrada puede contener una persona real. El script ahora registra
   ese fallo y continua con el batch.
-- Los logs `scripts/tsl26/source/ark-style-*.ndjson` son salida operativa local y
-  estan ignorados por Git.
+- Los logs `scripts/tsl26/.workspace/ark/*.ndjson` son salida operativa local y
+  estan ignorados por Git junto con el resto de `scripts/tsl26/.workspace`.
 - Para repetir pruebas, usar `--overwrite-output`; si no, el script considera ya
   procesado cualquier `clipUrl` presente en `ark-style-tasks.ndjson`.
 - Las URLs firmadas de resultado de Ark expiran; descargar cuanto antes con

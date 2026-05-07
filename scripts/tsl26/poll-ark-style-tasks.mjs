@@ -9,9 +9,10 @@ import { cdnSlugFor, exerciseIdentifierKeys, findExerciseByIdentifier } from './
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, '../..');
 const LIBRARY_ROOT = join(REPO_ROOT, 'libraries/tsl26');
+const WORKSPACE_ROOT = join(__dirname, '.workspace');
 const DEFAULT_ENDPOINT = 'https://ark.ap-southeast.bytepluses.com/api/v3/contents/generations/tasks';
-const DEFAULT_INPUT = join(__dirname, 'source/ark-style-tasks.ndjson');
-const DEFAULT_OUTPUT = join(__dirname, 'source/ark-style-task-status.ndjson');
+const DEFAULT_INPUT = join(WORKSPACE_ROOT, 'ark/style-tasks.ndjson');
+const DEFAULT_OUTPUT = join(WORKSPACE_ROOT, 'ark/style-task-status.ndjson');
 const DEFAULT_EXERCISES_INPUT = join(__dirname, 'data/exercises.json');
 
 function parseArgs(argv) {

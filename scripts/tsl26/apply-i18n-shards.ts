@@ -32,7 +32,7 @@ type PublicExerciseDocument = {
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 
 const DEFAULT_INPUT_PATH = path.join(SCRIPT_DIR, 'data/exercises.json');
-const DEFAULT_SHARDS_DIR = path.join(SCRIPT_DIR, 'source/i18n-shards');
+const DEFAULT_SHARDS_DIR = path.join(SCRIPT_DIR, '.workspace/i18n-shards');
 
 function getArgValue(name: string): string | undefined {
   const prefix = `--${name}=`;
@@ -71,9 +71,9 @@ function hasSpanishI18n(document: PublicExerciseDocument): boolean {
 }
 
 async function main(): Promise<void> {
-  const inputPath = path.resolve(getArgValue('input') ?? process.env.MYPTHUB_I18N_INPUT ?? DEFAULT_INPUT_PATH);
-  const outputPath = path.resolve(getArgValue('output') ?? process.env.MYPTHUB_I18N_OUTPUT ?? inputPath);
-  const shardsDir = path.resolve(getArgValue('shards-dir') ?? process.env.MYPTHUB_I18N_SHARDS_DIR ?? DEFAULT_SHARDS_DIR);
+  const inputPath = path.resolve(getArgValue('input') ?? process.env.TSL26_I18N_INPUT ?? process.env.MYPTHUB_I18N_INPUT ?? DEFAULT_INPUT_PATH);
+  const outputPath = path.resolve(getArgValue('output') ?? process.env.TSL26_I18N_OUTPUT ?? process.env.MYPTHUB_I18N_OUTPUT ?? inputPath);
+  const shardsDir = path.resolve(getArgValue('shards-dir') ?? process.env.TSL26_I18N_SHARDS_DIR ?? process.env.MYPTHUB_I18N_SHARDS_DIR ?? DEFAULT_SHARDS_DIR);
 
   const documents = await readJson<PublicExerciseDocument[]>(inputPath);
   if (!Array.isArray(documents)) {

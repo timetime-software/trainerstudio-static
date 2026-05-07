@@ -3,6 +3,7 @@ dist/
 .env
 .env.local
 .DS_Store
-scripts/tsl26/source/ark-style-*.ndjson
+scripts/tsl26/.workspace/
+scripts/tsl26/source/
 scripts/tsl26/editor/.env
 scripts/tsl26/editor/.env.local

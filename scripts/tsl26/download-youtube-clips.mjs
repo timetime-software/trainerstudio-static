@@ -11,11 +11,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, '../..');
 const LIBRARY_ROOT = join(REPO_ROOT, 'libraries/tsl26');
 const TOOL_ROOT = __dirname;
+const WORKSPACE_ROOT = join(TOOL_ROOT, '.workspace');
 
 const DEFAULT_INPUT = join(TOOL_ROOT, 'data/exercises.json');
-const DEFAULT_SOURCE_DIR = join(TOOL_ROOT, 'source/videos');
+const DEFAULT_SOURCE_DIR = join(WORKSPACE_ROOT, 'videos');
 const DEFAULT_CLIPS_DIR = LIBRARY_ROOT;
-const DEFAULT_MANIFEST = join(TOOL_ROOT, 'source/source-video-manifest.json');
+const DEFAULT_MANIFEST = join(WORKSPACE_ROOT, 'manifests/source-video-manifest.json');
 
 function parseArgs(argv) {
   const args = {
