@@ -242,122 +242,6 @@
   },
   {
     "priority": false,
-    "id": "329397456d1e6839b162a867",
-    "name": "Banded Squats",
-    "force": "push",
-    "level": "beginner",
-    "mechanic": "compound",
-    "equipment": "resistance_band",
-    "primaryMuscles": [
-      "quadriceps"
-    ],
-    "secondaryMuscles": [
-      "glutes",
-      "hamstrings"
-    ],
-    "instructions": [
-      "1) Place a small band around the thighs just above the knee.",
-      "2) Adopt a shoulder width stance with your toes slightly pointing outward. Maintain a straight back throughout the movement and keep your head up.",
-      "3) Inhale and begin to descend by bending at your knees and hips. Your weight should be put predominantly through your heels as you sit back into the movement until your thighs are either parallel or just past to the floor.",
-      "4) After a brief pause, exhale and return to the starting position along the same path, push through your heels with the force being driven through your quads to do so. Stand to attention with your legs fully extended, back straight and shoulders relaxed.",
-      "5) Repeat for the recommended amount of repetitions."
-    ],
-    "category": "strength",
-    "images": [
-      "https://cdn.trainerstudio.com/libraries/tsl26/banded_squats/thumbnail.png"
-    ],
-    "isActive": true,
-    "i18n": {
-      "name": {
-        "en": "Banded Squats",
-        "es": "Sentadillas con bandas"
-      },
-      "instructions": {
-        "en": [
-          "1) Place a small band around the thighs just above the knee.",
-          "2) Adopt a shoulder width stance with your toes slightly pointing outward. Maintain a straight back throughout the movement and keep your head up.",
-          "3) Inhale and begin to descend by bending at your knees and hips. Your weight should be put predominantly through your heels as you sit back into the movement until your thighs are either parallel or just past to the floor.",
-          "4) After a brief pause, exhale and return to the starting position along the same path, push through your heels with the force being driven through your quads to do so. Stand to attention with your legs fully extended, back straight and shoulders relaxed.",
-          "5) Repeat for the recommended amount of repetitions."
-        ],
-        "es": [
-          "1) Coloca una pequeña banda alrededor de los muslos, justo por encima de la rodilla.",
-          "2) Adopta una postura a la anchura de los hombros con las puntas de los pies ligeramente apuntando hacia afuera. Mantén la espalda recta durante todo el movimiento y mantén la cabeza erguida.",
-          "3) Inhala y empieza a descender doblando las rodillas y las caderas. Su peso debe colocarse predominantemente a través de los talones mientras se lleva la cadera atrás en el movimiento hasta que tus muslos estén paralelos o apenas pasados ​​​​del suelo.",
-          "4) Después de una breve pausa, exhala y regresa a la posición inicial siguiendo el mismo camino, empujando los talones con la fuerza impulsada a través de los cuádriceps para hacerlo. Colócate de pie firme con las piernas completamente extendidas, la espalda recta y los hombros relajados.",
-          "5) Repite el número recomendado de repeticiones."
-        ]
-      },
-      "category": {
-        "en": "strength",
-        "es": "fuerza"
-      },
-      "equipment": {
-        "en": "Resistance Band",
-        "es": "Banda de resistencia"
-      },
-      "primaryMuscles": {
-        "en": [
-          "Quadriceps"
-        ],
-        "es": [
-          "Cuadriceps"
-        ]
-      },
-      "secondaryMuscles": {
-        "en": [
-          "Glutes",
-          "Hamstrings"
-        ],
-        "es": [
-          "Gluteos",
-          "Isquiotibiales"
-        ]
-      }
-    },
-    "classification": {
-      "primaryMuscles": [
-        "quadriceps"
-      ],
-      "secondaryMuscles": [
-        "glutes",
-        "hamstrings"
-      ],
-      "movementPattern": [
-        "squat"
-      ],
-      "forceType": [
-        "push"
-      ],
-      "mechanic": [
-        "compound"
-      ],
-      "laterality": [
-        "bilateral"
-      ],
-      "equipment": [
-        "resistance_band"
-      ]
-    },
-    "media": [
-      {
-        "type": "video",
-        "url": "https://cdn.trainerstudio.com/libraries/tsl26/banded_squats/default/banded_squats.mp4",
-        "thumbnailUrl": "https://cdn.trainerstudio.com/libraries/tsl26/banded_squats/thumbnail.png",
-        "source": "uploaded"
-      },
-      {
-        "type": "image",
-        "url": "https://cdn.trainerstudio.com/libraries/tsl26/banded_squats/thumbnail.png",
-        "source": "uploaded"
-      }
-    ],
-    "aliases": [
-      "Banded Squats"
-    ]
-  },
-  {
-    "priority": false,
     "id": "6eb52449bdbf74a98fab1b2c",
     "name": "Banded Squat Jump",
     "force": "push",
@@ -1290,6 +1174,130 @@
     ],
     "aliases": [
       "Banded Crab Walks"
+    ]
+  },
+  {
+    "priority": false,
+    "id": "0c791c4454061dabc8c55d52",
+    "name": "Banded Barbell Hip Thrust",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "hamstrings",
+      "abductors"
+    ],
+    "instructions": [
+      "1) Grab a small band and place it around the thighs just above the knees.",
+      "2) Set up a bench or a step and barbell.",
+      "3) Take a seat on the floor with your legs underneath the bar, your back should be supported by a bench or an elevated step with your shoulder blades being the point of contact.",
+      "4) Roll the bar up and over your legs until it is directly above your hips, bend at your knees and walk your feet in towards your glutes.",
+      "5) Whilst exhaling, push your knees into the band, squeeze your glutes and drive your heels to lift your hips towards the ceiling. As you do so, keep your chin on your chest keep driving upward until your glutes are fully contracted and your body is parallel with the floor.",
+      "6) Inhale and gently relax your glutes to return the barbell back along the same path to the starting position.",
+      "7) Repeat for the recommended amount of repetitions."
+    ],
+    "category": "strength",
+    "images": [
+      "https://cdn.trainerstudio.com/libraries/tsl26/banded_barbell_hip_thrust/thumbnail.png"
+    ],
+    "isActive": true,
+    "i18n": {
+      "name": {
+        "en": "Banded Barbell Hip Thrust",
+        "es": "Hip thrust con barra y banda"
+      },
+      "instructions": {
+        "en": [
+          "1) Grab a small band and place it around the thighs just above the knees.",
+          "2) Set up a bench or a step and barbell.",
+          "3) Take a seat on the floor with your legs underneath the bar, your back should be supported by a bench or an elevated step with your shoulder blades being the point of contact.",
+          "4) Roll the bar up and over your legs until it is directly above your hips, bend at your knees and walk your feet in towards your glutes.",
+          "5) Whilst exhaling, push your knees into the band, squeeze your glutes and drive your heels to lift your hips towards the ceiling. As you do so, keep your chin on your chest keep driving upward until your glutes are fully contracted and your body is parallel with the floor.",
+          "6) Inhale and gently relax your glutes to return the barbell back along the same path to the starting position.",
+          "7) Repeat for the recommended amount of repetitions."
+        ],
+        "es": [
+          "1) Coge una pequeña banda y colócala alrededor de los muslos, justo por encima de las rodillas.",
+          "2) Instale un banco o un escalón y una barra.",
+          "3) Siéntate en el suelo con las piernas debajo de la barra, tu espalda debe estar apoyada en un banco o un escalón elevado con los omódiscos como punto de contacto.",
+          "4) Enrolle la barra hacia arriba y sobre tus piernas hasta que esté directamente encima de tus caderas, dobla las rodillas y camina con los pies hacia los glúteos.",
+          "5) Mientras exhalass, empuja las rodillas hacia la banda, aprieta los glúteos y empuja los talones para levantar las caderas hacia el techo. Mientras lo haces, mantén la barbilla sobre el pecho y sigue avanzando hacia arriba hasta que los glúteos estén completamente contraídos y el cuerpo quede paralelo al suelo.",
+          "6) Inhala y relaje suavemente los glúteos para devolver la barra por el mismo camino hasta la posición inicial.",
+          "7) Repite el número recomendado de repeticiones."
+        ]
+      },
+      "category": {
+        "en": "strength",
+        "es": "fuerza"
+      },
+      "equipment": {
+        "en": "Barbell",
+        "es": "Barra"
+      },
+      "primaryMuscles": {
+        "en": [
+          "Glutes"
+        ],
+        "es": [
+          "Gluteos"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Hamstrings",
+          "Abductors"
+        ],
+        "es": [
+          "Isquiotibiales",
+          "Abductores"
+        ]
+      }
+    },
+    "classification": {
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "abductors"
+      ],
+      "movementPattern": [
+        "hinge"
+      ],
+      "forceType": [
+        "pull"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell",
+        "resistance_band",
+        "bench"
+      ]
+    },
+    "media": [
+      {
+        "type": "video",
+        "url": "https://cdn.trainerstudio.com/libraries/tsl26/banded_barbell_hip_thrust/default/banded_barbell_hip_thrust.mp4",
+        "thumbnailUrl": "https://cdn.trainerstudio.com/libraries/tsl26/banded_barbell_hip_thrust/thumbnail.png",
+        "source": "uploaded"
+      },
+      {
+        "type": "image",
+        "url": "https://cdn.trainerstudio.com/libraries/tsl26/banded_barbell_hip_thrust/thumbnail.png",
+        "source": "uploaded"
+      }
+    ],
+    "aliases": [
+      "Banded Barbell Hip Thrust"
     ]
   },
   {
@@ -21403,6 +21411,121 @@
   },
   {
     "priority": false,
+    "id": "a03932290c2cf63182e17f9e",
+    "name": "Bicycle Crunch",
+    "force": "mixed",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "bodyweight",
+    "primaryMuscles": [
+      "abs",
+      "obliques"
+    ],
+    "secondaryMuscles": [
+      "hip_flexors"
+    ],
+    "instructions": [
+      "Lie face up on a mat with your hands lightly touching the sides of your head. Lift your feet off the floor and bend your hips and knees to about 90 degrees. Brace your abs and raise your shoulders slightly off the mat.",
+      "Rotate your torso as you bring your right knee toward your chest and move your left shoulder toward that knee. At the same time, extend your left leg without letting it touch the floor.",
+      "Return through the center under control, then repeat on the other side by bringing your left knee in and rotating your right shoulder toward it as your right leg extends.",
+      "Continue alternating sides for the prescribed number of repetitions, keeping your lower back controlled and avoiding pulling on your neck."
+    ],
+    "category": "strength",
+    "images": [
+      "https://cdn.trainerstudio.com/libraries/tsl26/air_bike/thumbnail.png"
+    ],
+    "isActive": true,
+    "i18n": {
+      "name": {
+        "en": "Bicycle Crunch",
+        "es": "Crunch bicicleta"
+      },
+      "instructions": {
+        "en": [
+          "Lie face up on a mat with your hands lightly touching the sides of your head. Lift your feet off the floor and bend your hips and knees to about 90 degrees. Brace your abs and raise your shoulders slightly off the mat.",
+          "Rotate your torso as you bring your right knee toward your chest and move your left shoulder toward that knee. At the same time, extend your left leg without letting it touch the floor.",
+          "Return through the center under control, then repeat on the other side by bringing your left knee in and rotating your right shoulder toward it as your right leg extends.",
+          "Continue alternating sides for the prescribed number of repetitions, keeping your lower back controlled and avoiding pulling on your neck."
+        ],
+        "es": [
+          "Túmbate boca arriba sobre una colchoneta y apoya las manos suavemente a los lados de la cabeza. Eleva los pies del suelo y flexiona caderas y rodillas hasta formar unos 90 grados. Activa el abdomen y separa ligeramente los hombros de la colchoneta.",
+          "Gira el torso mientras acercas la rodilla derecha al pecho y llevas el hombro izquierdo hacia esa rodilla. Al mismo tiempo, extiende la pierna izquierda sin apoyarla en el suelo.",
+          "Vuelve al centro de forma controlada y repite hacia el otro lado: acerca la rodilla izquierda y gira el hombro derecho hacia ella mientras extiendes la pierna derecha.",
+          "Continúa alternando lados durante el número indicado de repeticiones, manteniendo la zona lumbar controlada y sin tirar del cuello."
+        ]
+      },
+      "category": {
+        "en": "strength",
+        "es": "fuerza"
+      },
+      "equipment": {
+        "en": "Bodyweight",
+        "es": "Peso corporal"
+      },
+      "primaryMuscles": {
+        "en": [
+          "Abs",
+          "Obliques"
+        ],
+        "es": [
+          "Abdominales",
+          "Oblicuos"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Hip Flexors"
+        ],
+        "es": [
+          "Flexores de cadera"
+        ]
+      }
+    },
+    "classification": {
+      "primaryMuscles": [
+        "abs",
+        "obliques"
+      ],
+      "secondaryMuscles": [
+        "hip_flexors"
+      ],
+      "movementPattern": [
+        "rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "media": [
+      {
+        "type": "video",
+        "url": "https://cdn.trainerstudio.com/libraries/tsl26/air_bike/default/air_bike.mp4",
+        "thumbnailUrl": "https://cdn.trainerstudio.com/libraries/tsl26/air_bike/thumbnail.png",
+        "source": "uploaded"
+      },
+      {
+        "type": "image",
+        "url": "https://cdn.trainerstudio.com/libraries/tsl26/air_bike/thumbnail.png",
+        "source": "uploaded"
+      }
+    ],
+    "aliases": [
+      "Bicycle Crunches",
+      "Air Bike",
+      "Ab Bike"
+    ]
+  },
+  {
+    "priority": false,
     "id": "a96e989c8a59da3006b560d5",
     "name": "Ab Wheels Rollout",
     "force": "isometric",
@@ -28588,128 +28711,6 @@
   },
   {
     "priority": false,
-    "id": "b369ac9ef138f8bfa0b26cae",
-    "name": "Seated Dumbbell Lat Raises",
-    "force": "push",
-    "level": "beginner",
-    "mechanic": "isolation",
-    "equipment": "dumbbell",
-    "primaryMuscles": [
-      "side_delts"
-    ],
-    "secondaryMuscles": [
-      "front_delts",
-      "rear_delts"
-    ],
-    "instructions": [
-      "Grab a couple of dumbbells and take a seat on a bench. Have your arms by your side at full extension, palms facing each other. This will be your starting position.",
-      "Whilst maintaining a stationary torso, elbows slightly bent and exhaling throughout, lift the dumbbells out to your sides (on a wide arc) until they are parallel with the floor.",
-      "After a brief pause at the top, return the dumbbells to the starting position along the same path.",
-      "Repeat for the recommended amount of repetitions.",
-      "Variation: Standing Dumbbell Lat Raises or Cable Lateral Raises."
-    ],
-    "category": "strength",
-    "images": [
-      "https://cdn.trainerstudio.com/libraries/tsl26/seated_dumbbell_lat_raises/thumbnail.png"
-    ],
-    "isActive": true,
-    "i18n": {
-      "name": {
-        "en": "Seated Dumbbell Lat Raises",
-        "es": "Elevaciones laterales con mancuernas sentado"
-      },
-      "instructions": {
-        "en": [
-          "Grab a couple of dumbbells and take a seat on a bench. Have your arms by your side at full extension, palms facing each other. This will be your starting position.",
-          "Whilst maintaining a stationary torso, elbows slightly bent and exhaling throughout, lift the dumbbells out to your sides (on a wide arc) until they are parallel with the floor.",
-          "After a brief pause at the top, return the dumbbells to the starting position along the same path.",
-          "Repeat for the recommended amount of repetitions.",
-          "Variation: Standing Dumbbell Lat Raises or Cable Lateral Raises."
-        ],
-        "es": [
-          "Coge un par de mancuernas y siéntate en un banco. Mantén los brazos a los lados en extensión completa, con las palmas una frente a la otra. Esta será tu posición inicial.",
-          "Mientras mantiene el torso inmóvil, con los codos ligeramente flexionados y exhala, levante las mancuernas hacia los lados (en un arco amplio) hasta que queden paralelas al suelo.",
-          "Después de una breve pausa en la cima, regresa las mancuernas a la posición inicial por el mismo camino.",
-          "Repite hasta la cantidad recomendada de repeticiones.",
-          "Variación: Elevaciones laterales con mancuernas de pie o Elevaciones laterales con cable."
-        ]
-      },
-      "category": {
-        "en": "strength",
-        "es": "fuerza"
-      },
-      "equipment": {
-        "en": "Dumbbell",
-        "es": "Mancuerna"
-      },
-      "primaryMuscles": {
-        "en": [
-          "Side Delts"
-        ],
-        "es": [
-          "Deltoides lateral"
-        ]
-      },
-      "secondaryMuscles": {
-        "en": [
-          "Front Delts",
-          "Rear Delts"
-        ],
-        "es": [
-          "Deltoides anterior",
-          "Deltoides posterior"
-        ]
-      }
-    },
-    "classification": {
-      "primaryMuscles": [
-        "side_delts"
-      ],
-      "secondaryMuscles": [
-        "front_delts",
-        "rear_delts"
-      ],
-      "movementPattern": [
-        "isolation"
-      ],
-      "forceType": [
-        "push"
-      ],
-      "mechanic": [
-        "isolation"
-      ],
-      "laterality": [
-        "bilateral"
-      ],
-      "equipment": [
-        "dumbbell",
-        "bench"
-      ]
-    },
-    "media": [
-      {
-        "type": "video",
-        "url": "https://cdn.trainerstudio.com/libraries/tsl26/seated_dumbbell_lat_raises/default/seated_dumbbell_lat_raises.mp4",
-        "thumbnailUrl": "https://cdn.trainerstudio.com/libraries/tsl26/seated_dumbbell_lat_raises/thumbnail.png",
-        "source": "uploaded"
-      },
-      {
-        "type": "image",
-        "url": "https://cdn.trainerstudio.com/libraries/tsl26/seated_dumbbell_lat_raises/thumbnail.png",
-        "source": "uploaded"
-      }
-    ],
-    "aliases": [
-      "Seated Side Lateral Raise",
-      "Seated Lateral Raises",
-      "Lateral Raises (Seated)",
-      "Seated Lat Raises",
-      "Lat Raises (Seated)",
-      "Seated Dumbbell Lat Raises"
-    ]
-  },
-  {
-    "priority": false,
     "id": "2b305d2a5a51fee54aa18ee1",
     "name": "Standing Shoulder Press (Dumbbell)",
     "force": "push",
@@ -31270,124 +31271,6 @@
     ]
   },
   {
-    "priority": false,
-    "id": "9ae3543af8366e50b67e32dd",
-    "name": "Dumbbell Rear Delt Raise",
-    "force": "pull",
-    "level": "beginner",
-    "mechanic": "isolation",
-    "equipment": "dumbbell",
-    "primaryMuscles": [
-      "rear_delts"
-    ],
-    "secondaryMuscles": [
-      "rhomboids",
-      "mid_traps"
-    ],
-    "instructions": [
-      "Grab a dumbbell in your left hand and lay face down on an incline bench (around 30-45 degrees) and allow your left arm to hang perpendicular to the floor. Have your head off the end of the bench so that only your torso is supported with your right arm, placed behind your back. This will be your starting position.",
-      "Inhale and pull the back of your left hand towards the ceiling.",
-      "Once the dumbbell is horizontal to the floor, pause for a brief second, exhale and slowly return the dumbbell along the same path, back into its starting position.",
-      "Repeat until you have completed the prescribed amount of repetitions and swap sides.",
-      "Variations: Rear Delt Machine Flyes or Cable Rear Delt Fly."
-    ],
-    "category": "strength",
-    "images": [
-      "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_rear_delt_raise/thumbnail.png"
-    ],
-    "isActive": true,
-    "i18n": {
-      "name": {
-        "en": "Dumbbell Rear Delt Raise",
-        "es": "Elevación de deltoide posterior con mancuernas"
-      },
-      "instructions": {
-        "en": [
-          "Grab a dumbbell in your left hand and lay face down on an incline bench (around 30-45 degrees) and allow your left arm to hang perpendicular to the floor. Have your head off the end of the bench so that only your torso is supported with your right arm, placed behind your back. This will be your starting position.",
-          "Inhale and pull the back of your left hand towards the ceiling.",
-          "Once the dumbbell is horizontal to the floor, pause for a brief second, exhale and slowly return the dumbbell along the same path, back into its starting position.",
-          "Repeat until you have completed the prescribed amount of repetitions and swap sides.",
-          "Variations: Rear Delt Machine Flyes or Cable Rear Delt Fly."
-        ],
-        "es": [
-          "Coge una mancuerna en su mano izquierda y recuéstese boca abajo en un banco inclinado (alrededor de 30 a 45 grados) y permita que tu brazo izquierdo cuelgue perpendicular al suelo. Mantén la cabeza alejada del extremo del banco de modo que solo el torso quede apoyado con el brazo derecho, colocado detrás de la espalda. Esta será tu posición inicial.",
-          "Inhala y tira el dorso de tu mano izquierda hacia el techo.",
-          "Una vez que la mancuerna esté horizontal con respecto al suelo, haga una pausa por un breve segundo, exhale y lentamente regrese la mancuerna por el mismo camino, nuevamente a su posición inicial.",
-          "Repite hasta que haya completado la cantidad prescrita de repeticiones y cambie de lado.",
-          "Variaciones: Flyes con máquina de deltoides traseros o Flyes de deltoides traseros con cable."
-        ]
-      },
-      "category": {
-        "en": "strength",
-        "es": "fuerza"
-      },
-      "equipment": {
-        "en": "Dumbbell",
-        "es": "Mancuerna"
-      },
-      "primaryMuscles": {
-        "en": [
-          "Rear Delts"
-        ],
-        "es": [
-          "Deltoides posterior"
-        ]
-      },
-      "secondaryMuscles": {
-        "en": [
-          "Rhomboids",
-          "Mid Traps"
-        ],
-        "es": [
-          "Romboides",
-          "Trapecio medio"
-        ]
-      }
-    },
-    "classification": {
-      "primaryMuscles": [
-        "rear_delts"
-      ],
-      "secondaryMuscles": [
-        "rhomboids",
-        "mid_traps"
-      ],
-      "movementPattern": [
-        "isolation"
-      ],
-      "forceType": [
-        "pull"
-      ],
-      "mechanic": [
-        "isolation"
-      ],
-      "laterality": [
-        "unilateral"
-      ],
-      "equipment": [
-        "dumbbell",
-        "bench"
-      ]
-    },
-    "media": [
-      {
-        "type": "video",
-        "url": "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_rear_delt_raise/default/dumbbell_rear_delt_raise.mp4",
-        "thumbnailUrl": "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_rear_delt_raise/thumbnail.png",
-        "source": "uploaded"
-      },
-      {
-        "type": "image",
-        "url": "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_rear_delt_raise/thumbnail.png",
-        "source": "uploaded"
-      }
-    ],
-    "aliases": [
-      "Dumbbell Reverse Fly",
-      "Dumbbell Rear Delt Raise"
-    ]
-  },
-  {
     "priority": true,
     "id": "5641a355a2a45ef90a1271fc",
     "name": "Alternating Dumbbell Lunges",
@@ -33826,6 +33709,115 @@
     "aliases": [
       "Kickflip",
       "Skateboard Kickflip"
+    ]
+  },
+  {
+    "priority": false,
+    "id": "b6acb6d03d7ca5164f5d59d8",
+    "name": "Ab Crunch Machine",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "abs"
+    ],
+    "secondaryMuscles": [
+      "hip_flexors"
+    ],
+    "instructions": [
+      "Sit on the ab crunch machine and place your feet under the pads. Grab the top handles and bend your arms at about 90 degrees, resting your triceps on the pads. This is your starting position.",
+      "Simultaneously lift your legs and crunch your upper torso toward your knees. Exhale during the movement. Use a slow, controlled motion and focus on contracting your abs to move the weight.",
+      "Pause briefly at the top, then slowly return to the starting position as you inhale.",
+      "Repeat for the prescribed number of repetitions. Always use a manageable weight — excessive load on this machine can easily lead to injury."
+    ],
+    "category": "strength",
+    "images": [
+      "https://cdn.trainerstudio.com/libraries/tsl26/ab_crunch_machine/thumbnail.png"
+    ],
+    "isActive": true,
+    "i18n": {
+      "name": {
+        "en": "Ab Crunch Machine",
+        "es": "Crunch en máquina"
+      },
+      "instructions": {
+        "en": [
+          "Sit on the ab crunch machine and place your feet under the pads. Grab the top handles and bend your arms at about 90 degrees, resting your triceps on the pads. This is your starting position.",
+          "Simultaneously lift your legs and crunch your upper torso toward your knees. Exhale during the movement. Use a slow, controlled motion and focus on contracting your abs to move the weight.",
+          "Pause briefly at the top, then slowly return to the starting position as you inhale.",
+          "Repeat for the prescribed number of repetitions. Always use a manageable weight — excessive load on this machine can easily lead to injury."
+        ],
+        "es": [
+          "Siéntate en la máquina de abdominales y coloca los pies debajo de las almohadillas. Agarra las asas superiores y flexiona los brazos unos 90 grados, apoyando los tríceps en los soportes. Esta es tu posición inicial.",
+          "Levanta las piernas y encoge el torso hacia las rodillas al mismo tiempo. Exhala durante el movimiento. Realiza el movimiento de forma lenta y controlada, concentrándote en contraer los abdominales para mover el peso.",
+          "Haz una breve pausa arriba y vuelve lentamente a la posición inicial mientras inhalas.",
+          "Repite durante el número indicado de repeticiones. Usa siempre un peso que puedas controlar con facilidad: una carga excesiva en esta máquina puede provocar lesiones."
+        ]
+      },
+      "category": {
+        "en": "strength",
+        "es": "fuerza"
+      },
+      "equipment": {
+        "en": "Machine",
+        "es": "Maquina"
+      },
+      "primaryMuscles": {
+        "en": [
+          "Abs"
+        ],
+        "es": [
+          "Abdominales"
+        ]
+      },
+      "secondaryMuscles": {
+        "en": [
+          "Hip Flexors"
+        ],
+        "es": [
+          "Flexores de cadera"
+        ]
+      }
+    },
+    "classification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "hip_flexors"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "pull"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "machine"
+      ]
+    },
+    "media": [
+      {
+        "type": "video",
+        "url": "https://cdn.trainerstudio.com/libraries/tsl26/ab_crunch_machine/default/ab_crunch_machine.mp4",
+        "thumbnailUrl": "https://cdn.trainerstudio.com/libraries/tsl26/ab_crunch_machine/thumbnail.png",
+        "source": "uploaded"
+      },
+      {
+        "type": "image",
+        "url": "https://cdn.trainerstudio.com/libraries/tsl26/ab_crunch_machine/thumbnail.png",
+        "source": "uploaded"
+      }
+    ],
+    "aliases": [
+      "Ab Crunch Machine"
     ]
   }
 ]
