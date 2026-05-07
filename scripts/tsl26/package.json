@@ -6,7 +6,7 @@
   "scripts": {
     "transform": "node --experimental-strip-types transform-mypthub-to-public-exercises.ts",
     "library:ensure": "node --experimental-strip-types ensure-library.ts",
-    "import": "node --experimental-strip-types import-public-exercises.ts",
+    "import": "npm run build:public && node --experimental-strip-types import-public-exercises.ts",
     "editor": "npm --prefix editor run dev",
     "videos:sync-data": "node --experimental-strip-types sync-cdn-media.ts",
     "videos:thumbnails": "node generate-thumbnails.mjs",

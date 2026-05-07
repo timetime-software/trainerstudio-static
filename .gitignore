@@ -5,5 +5,7 @@ dist/
 .DS_Store
 scripts/tsl26/.workspace/
 scripts/tsl26/source/
+scripts/tsl26/data/exercises-public.json
+scripts/tsl26/data/exercises-public.ndjson
 scripts/tsl26/editor/.env
 scripts/tsl26/editor/.env.local
