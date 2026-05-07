@@ -1,0 +1,787 @@
+[
+  {
+    "id": "mypthub_1067181",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["rhomboids", "mid_traps"],
+      "secondaryMuscles": ["rear_delts", "biceps", "glutes"],
+      "movementPattern": ["horizontal_pull"],
+      "forceType": ["pull"],
+      "mechanic": ["compound"],
+      "laterality": ["unilateral"],
+      "equipment": ["resistance_band"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Rhomboids", "Mid Traps"],
+        "es": ["Romboides", "Trapecio medio"]
+      },
+      "secondaryMuscles": {
+        "en": ["Rear Delts", "Biceps", "Glutes"],
+        "es": ["Deltoides posterior", "Bíceps", "Glúteos"]
+      },
+      "equipment": { "en": "Resistance Band", "es": "Banda de resistencia" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "compound",
+      "equipment": "resistance_band",
+      "primaryMuscles": ["Rhomboids", "Mid Traps"],
+      "secondaryMuscles": ["Rear Delts", "Biceps", "Glutes"]
+    },
+    "_notes": "Combo movement: lateral squat plus cross-body row. Classified primarily as a unilateral horizontal pull (the row dominates the loaded portion); squat is a lower-body assistance pattern."
+  },
+  {
+    "id": "mypthub_1067184",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["glutes"],
+      "secondaryMuscles": ["hamstrings", "lower_back"],
+      "movementPattern": ["hinge"],
+      "forceType": ["pull"],
+      "mechanic": ["compound"],
+      "laterality": ["unilateral"],
+      "equipment": ["bench", "bodyweight"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Glutes"],
+        "es": ["Glúteos"]
+      },
+      "secondaryMuscles": {
+        "en": ["Hamstrings", "Lower Back"],
+        "es": ["Isquiotibiales", "Lumbar"]
+      },
+      "equipment": { "en": "Bench", "es": "Banco" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "compound",
+      "equipment": "bench",
+      "primaryMuscles": ["Glutes"],
+      "secondaryMuscles": ["Hamstrings", "Lower Back"]
+    }
+  },
+  {
+    "id": "mypthub_106767",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["quadriceps"],
+      "secondaryMuscles": ["glutes", "hamstrings", "shoulders"],
+      "movementPattern": ["lunge"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["alternating"],
+      "equipment": ["other"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Quadriceps"],
+        "es": ["Cuádriceps"]
+      },
+      "secondaryMuscles": {
+        "en": ["Glutes", "Hamstrings", "Shoulders"],
+        "es": ["Glúteos", "Isquiotibiales", "Hombros"]
+      },
+      "equipment": { "en": "Sandbag", "es": "Saco de arena" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "other",
+      "primaryMuscles": ["Quadriceps"],
+      "secondaryMuscles": ["Glutes", "Hamstrings", "Shoulders"]
+    },
+    "_notes": "Sandbag is not in Equipment enum -> mapped to 'other'."
+  },
+  {
+    "id": "mypthub_106769",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["quadriceps", "glutes"],
+      "secondaryMuscles": ["hamstrings", "shoulders"],
+      "movementPattern": ["lunge"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["alternating"],
+      "equipment": ["other"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Quadriceps", "Glutes"],
+        "es": ["Cuádriceps", "Glúteos"]
+      },
+      "secondaryMuscles": {
+        "en": ["Hamstrings", "Shoulders"],
+        "es": ["Isquiotibiales", "Hombros"]
+      },
+      "equipment": { "en": "Sandbag", "es": "Saco de arena" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "other",
+      "primaryMuscles": ["Quadriceps", "Glutes"],
+      "secondaryMuscles": ["Hamstrings", "Shoulders"]
+    },
+    "_notes": "Sandbag is not in Equipment enum -> mapped to 'other'."
+  },
+  {
+    "id": "mypthub_106775",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["quadriceps", "glutes"],
+      "secondaryMuscles": ["adductors", "hamstrings", "shoulders"],
+      "movementPattern": ["lunge"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["alternating"],
+      "equipment": ["other"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Quadriceps", "Glutes"],
+        "es": ["Cuádriceps", "Glúteos"]
+      },
+      "secondaryMuscles": {
+        "en": ["Adductors", "Hamstrings", "Shoulders"],
+        "es": ["Aductores", "Isquiotibiales", "Hombros"]
+      },
+      "equipment": { "en": "Sandbag", "es": "Saco de arena" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "other",
+      "primaryMuscles": ["Quadriceps", "Glutes"],
+      "secondaryMuscles": ["Adductors", "Hamstrings", "Shoulders"]
+    },
+    "_notes": "Side lunge pattern -> classified as lunge. Sandbag -> 'other'."
+  },
+  {
+    "id": "mypthub_106783",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["glutes", "quadriceps"],
+      "secondaryMuscles": ["hamstrings", "adductors"],
+      "movementPattern": ["lunge"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["alternating"],
+      "equipment": ["other"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Glutes", "Quadriceps"],
+        "es": ["Glúteos", "Cuádriceps"]
+      },
+      "secondaryMuscles": {
+        "en": ["Hamstrings", "Adductors"],
+        "es": ["Isquiotibiales", "Aductores"]
+      },
+      "equipment": { "en": "Sandbag", "es": "Saco de arena" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "other",
+      "primaryMuscles": ["Glutes", "Quadriceps"],
+      "secondaryMuscles": ["Hamstrings", "Adductors"]
+    },
+    "_notes": "Curtsy squat is unilateral leg pattern, classified as lunge. Sandbag -> 'other'."
+  },
+  {
+    "id": "mypthub_106784",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["glutes", "quadriceps"],
+      "secondaryMuscles": ["hamstrings", "adductors"],
+      "movementPattern": ["lunge"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["alternating"],
+      "equipment": ["other"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Glutes", "Quadriceps"],
+        "es": ["Glúteos", "Cuádriceps"]
+      },
+      "secondaryMuscles": {
+        "en": ["Hamstrings", "Adductors"],
+        "es": ["Isquiotibiales", "Aductores"]
+      },
+      "equipment": { "en": "Sandbag", "es": "Saco de arena" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "other",
+      "primaryMuscles": ["Glutes", "Quadriceps"],
+      "secondaryMuscles": ["Hamstrings", "Adductors"]
+    },
+    "_notes": "Curtsy squat with sandbag held front-rack. Sandbag -> 'other'."
+  },
+  {
+    "id": "mypthub_106785",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["quadriceps", "glutes"],
+      "secondaryMuscles": ["shoulders", "hamstrings"],
+      "movementPattern": ["lunge"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["alternating"],
+      "equipment": ["other"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Quadriceps", "Glutes"],
+        "es": ["Cuádriceps", "Glúteos"]
+      },
+      "secondaryMuscles": {
+        "en": ["Shoulders", "Hamstrings"],
+        "es": ["Hombros", "Isquiotibiales"]
+      },
+      "equipment": { "en": "Sandbag", "es": "Saco de arena" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "other",
+      "primaryMuscles": ["Quadriceps", "Glutes"],
+      "secondaryMuscles": ["Shoulders", "Hamstrings"]
+    },
+    "_notes": "Overhead curtsy squat with sandbag. Sandbag -> 'other'."
+  },
+  {
+    "id": "mypthub_1068",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["quadriceps"],
+      "secondaryMuscles": ["glutes", "hamstrings", "calves"],
+      "movementPattern": ["squat"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["machine"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Quadriceps"],
+        "es": ["Cuádriceps"]
+      },
+      "secondaryMuscles": {
+        "en": ["Glutes", "Hamstrings", "Calves"],
+        "es": ["Glúteos", "Isquiotibiales", "Pantorrillas"]
+      },
+      "equipment": { "en": "Machine", "es": "Máquina" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "machine",
+      "primaryMuscles": ["Quadriceps"],
+      "secondaryMuscles": ["Glutes", "Hamstrings", "Calves"]
+    }
+  },
+  {
+    "id": "mypthub_1069",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["quadriceps"],
+      "secondaryMuscles": ["glutes", "hamstrings", "calves"],
+      "movementPattern": ["squat"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["machine"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Quadriceps"],
+        "es": ["Cuádriceps"]
+      },
+      "secondaryMuscles": {
+        "en": ["Glutes", "Hamstrings", "Calves"],
+        "es": ["Glúteos", "Isquiotibiales", "Pantorrillas"]
+      },
+      "equipment": { "en": "Machine", "es": "Máquina" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "machine",
+      "primaryMuscles": ["Quadriceps"],
+      "secondaryMuscles": ["Glutes", "Hamstrings", "Calves"]
+    }
+  },
+  {
+    "id": "mypthub_106921",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["rhomboids", "mid_traps"],
+      "secondaryMuscles": ["lats", "biceps", "lower_back"],
+      "movementPattern": ["horizontal_pull"],
+      "forceType": ["pull"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["other"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Rhomboids", "Mid Traps"],
+        "es": ["Romboides", "Trapecio medio"]
+      },
+      "secondaryMuscles": {
+        "en": ["Lats", "Biceps", "Lower Back"],
+        "es": ["Dorsales", "Bíceps", "Lumbar"]
+      },
+      "equipment": { "en": "Sandbag", "es": "Saco de arena" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "compound",
+      "equipment": "other",
+      "primaryMuscles": ["Rhomboids", "Mid Traps"],
+      "secondaryMuscles": ["Lats", "Biceps", "Lower Back"]
+    },
+    "_notes": "Bent-over row -> horizontal_pull, compound. Sandbag -> 'other'."
+  },
+  {
+    "id": "mypthub_106952",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["quadriceps", "glutes"],
+      "secondaryMuscles": ["adductors", "hamstrings", "shoulders"],
+      "movementPattern": ["lunge"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["alternating"],
+      "equipment": ["other"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Quadriceps", "Glutes"],
+        "es": ["Cuádriceps", "Glúteos"]
+      },
+      "secondaryMuscles": {
+        "en": ["Adductors", "Hamstrings", "Shoulders"],
+        "es": ["Aductores", "Isquiotibiales", "Hombros"]
+      },
+      "equipment": { "en": "Sandbag", "es": "Saco de arena" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "other",
+      "primaryMuscles": ["Quadriceps", "Glutes"],
+      "secondaryMuscles": ["Adductors", "Hamstrings", "Shoulders"]
+    },
+    "_notes": "Side lunge with overhead hold. Sandbag -> 'other'."
+  },
+  {
+    "id": "mypthub_107",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["biceps", "brachialis"],
+      "secondaryMuscles": ["forearm_flexors"],
+      "movementPattern": ["isolation"],
+      "forceType": ["pull"],
+      "mechanic": ["isolation"],
+      "laterality": ["alternating"],
+      "equipment": ["dumbbell"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Biceps", "Brachialis"],
+        "es": ["Bíceps", "Braquial"]
+      },
+      "secondaryMuscles": {
+        "en": ["Forearm Flexors"],
+        "es": ["Flexores del antebrazo"]
+      },
+      "equipment": { "en": "Dumbbell", "es": "Mancuerna" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "isolation",
+      "equipment": "dumbbell",
+      "primaryMuscles": ["Biceps", "Brachialis"],
+      "secondaryMuscles": ["Forearm Flexors"]
+    }
+  },
+  {
+    "id": "mypthub_1071",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["lats"],
+      "secondaryMuscles": ["biceps", "rhomboids", "teres"],
+      "movementPattern": ["vertical_pull"],
+      "forceType": ["pull"],
+      "mechanic": ["compound"],
+      "laterality": ["unilateral"],
+      "equipment": ["cable"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Lats"],
+        "es": ["Dorsales"]
+      },
+      "secondaryMuscles": {
+        "en": ["Biceps", "Rhomboids", "Teres"],
+        "es": ["Bíceps", "Romboides", "Redondo"]
+      },
+      "equipment": { "en": "Cable", "es": "Polea" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "compound",
+      "equipment": "cable",
+      "primaryMuscles": ["Lats"],
+      "secondaryMuscles": ["Biceps", "Rhomboids", "Teres"]
+    }
+  },
+  {
+    "id": "mypthub_1073",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["abductors"],
+      "secondaryMuscles": ["glutes", "glute_med"],
+      "movementPattern": ["isolation"],
+      "forceType": ["push"],
+      "mechanic": ["isolation"],
+      "laterality": ["bilateral"],
+      "equipment": ["machine"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Abductors"],
+        "es": ["Abductores"]
+      },
+      "secondaryMuscles": {
+        "en": ["Glutes", "Glute Med"],
+        "es": ["Glúteos", "Glúteo medio"]
+      },
+      "equipment": { "en": "Machine", "es": "Máquina" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "isolation",
+      "equipment": "machine",
+      "primaryMuscles": ["Abductors"],
+      "secondaryMuscles": ["Glutes", "Glute Med"]
+    }
+  },
+  {
+    "id": "mypthub_1075",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["chest"],
+      "secondaryMuscles": ["front_delts"],
+      "movementPattern": ["isolation"],
+      "forceType": ["push"],
+      "mechanic": ["isolation"],
+      "laterality": ["bilateral"],
+      "equipment": ["machine"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Chest"],
+        "es": ["Pecho"]
+      },
+      "secondaryMuscles": {
+        "en": ["Front Delts"],
+        "es": ["Deltoides anterior"]
+      },
+      "equipment": { "en": "Machine", "es": "Máquina" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "isolation",
+      "equipment": "machine",
+      "primaryMuscles": ["Chest"],
+      "secondaryMuscles": ["Front Delts"]
+    }
+  },
+  {
+    "id": "mypthub_1078",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["soleus"],
+      "secondaryMuscles": ["gastrocnemius"],
+      "movementPattern": ["isolation"],
+      "forceType": ["push"],
+      "mechanic": ["isolation"],
+      "laterality": ["bilateral"],
+      "equipment": ["machine"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Soleus"],
+        "es": ["Sóleo"]
+      },
+      "secondaryMuscles": {
+        "en": ["Gastrocnemius"],
+        "es": ["Gastrocnemio"]
+      },
+      "equipment": { "en": "Machine", "es": "Máquina" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "isolation",
+      "equipment": "machine",
+      "primaryMuscles": ["Soleus"],
+      "secondaryMuscles": ["Gastrocnemius"]
+    },
+    "_notes": "Seated calf raise emphasises soleus due to bent-knee position; gastrocnemius is secondary."
+  },
+  {
+    "id": "mypthub_1079",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["hamstrings"],
+      "secondaryMuscles": ["biceps_femoris"],
+      "movementPattern": ["isolation"],
+      "forceType": ["pull"],
+      "mechanic": ["isolation"],
+      "laterality": ["bilateral"],
+      "equipment": ["machine"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Hamstrings"],
+        "es": ["Isquiotibiales"]
+      },
+      "secondaryMuscles": {
+        "en": ["Biceps Femoris"],
+        "es": ["Bíceps femoral"]
+      },
+      "equipment": { "en": "Machine", "es": "Máquina" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "isolation",
+      "equipment": "machine",
+      "primaryMuscles": ["Hamstrings"],
+      "secondaryMuscles": ["Biceps Femoris"]
+    }
+  },
+  {
+    "id": "mypthub_1084",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["hamstrings"],
+      "secondaryMuscles": ["biceps_femoris", "glutes"],
+      "movementPattern": ["isolation"],
+      "forceType": ["pull"],
+      "mechanic": ["isolation"],
+      "laterality": ["unilateral"],
+      "equipment": ["machine"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Hamstrings"],
+        "es": ["Isquiotibiales"]
+      },
+      "secondaryMuscles": {
+        "en": ["Biceps Femoris", "Glutes"],
+        "es": ["Bíceps femoral", "Glúteos"]
+      },
+      "equipment": { "en": "Machine", "es": "Máquina" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "isolation",
+      "equipment": "machine",
+      "primaryMuscles": ["Hamstrings"],
+      "secondaryMuscles": ["Biceps Femoris", "Glutes"]
+    }
+  },
+  {
+    "id": "mypthub_1089",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["chest"],
+      "secondaryMuscles": ["front_delts", "triceps"],
+      "movementPattern": ["horizontal_push"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["smith_machine", "bench"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Chest"],
+        "es": ["Pecho"]
+      },
+      "secondaryMuscles": {
+        "en": ["Front Delts", "Triceps"],
+        "es": ["Deltoides anterior", "Tríceps"]
+      },
+      "equipment": { "en": "Smith Machine", "es": "Máquina Smith" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "smith_machine",
+      "primaryMuscles": ["Chest"],
+      "secondaryMuscles": ["Front Delts", "Triceps"]
+    }
+  },
+  {
+    "id": "mypthub_1090",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["mid_traps", "rhomboids"],
+      "secondaryMuscles": ["lats", "rear_delts", "biceps"],
+      "movementPattern": ["horizontal_pull"],
+      "forceType": ["pull"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["smith_machine"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Mid Traps", "Rhomboids"],
+        "es": ["Trapecio medio", "Romboides"]
+      },
+      "secondaryMuscles": {
+        "en": ["Lats", "Rear Delts", "Biceps"],
+        "es": ["Dorsales", "Deltoides posterior", "Bíceps"]
+      },
+      "equipment": { "en": "Smith Machine", "es": "Máquina Smith" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "compound",
+      "equipment": "smith_machine",
+      "primaryMuscles": ["Mid Traps", "Rhomboids"],
+      "secondaryMuscles": ["Lats", "Rear Delts", "Biceps"]
+    }
+  },
+  {
+    "id": "mypthub_1096",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["upper_chest"],
+      "secondaryMuscles": ["front_delts", "triceps"],
+      "movementPattern": ["horizontal_push"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["smith_machine", "bench"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Upper Chest"],
+        "es": ["Pecho superior"]
+      },
+      "secondaryMuscles": {
+        "en": ["Front Delts", "Triceps"],
+        "es": ["Deltoides anterior", "Tríceps"]
+      },
+      "equipment": { "en": "Smith Machine", "es": "Máquina Smith" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "smith_machine",
+      "primaryMuscles": ["Upper Chest"],
+      "secondaryMuscles": ["Front Delts", "Triceps"]
+    }
+  },
+  {
+    "id": "mypthub_1099",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["front_delts", "side_delts"],
+      "secondaryMuscles": ["triceps", "upper_traps"],
+      "movementPattern": ["vertical_push"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["smith_machine", "bench"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Front Delts", "Side Delts"],
+        "es": ["Deltoides anterior", "Deltoides lateral"]
+      },
+      "secondaryMuscles": {
+        "en": ["Triceps", "Upper Traps"],
+        "es": ["Tríceps", "Trapecio superior"]
+      },
+      "equipment": { "en": "Smith Machine", "es": "Máquina Smith" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "smith_machine",
+      "primaryMuscles": ["Front Delts", "Side Delts"],
+      "secondaryMuscles": ["Triceps", "Upper Traps"]
+    }
+  },
+  {
+    "id": "mypthub_1103",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["quadriceps", "glutes"],
+      "secondaryMuscles": ["hamstrings", "lower_back", "calves"],
+      "movementPattern": ["squat"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["smith_machine"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Quadriceps", "Glutes"],
+        "es": ["Cuádriceps", "Glúteos"]
+      },
+      "secondaryMuscles": {
+        "en": ["Hamstrings", "Lower Back", "Calves"],
+        "es": ["Isquiotibiales", "Lumbar", "Pantorrillas"]
+      },
+      "equipment": { "en": "Smith Machine", "es": "Máquina Smith" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "smith_machine",
+      "primaryMuscles": ["Quadriceps", "Glutes"],
+      "secondaryMuscles": ["Hamstrings", "Lower Back", "Calves"]
+    }
+  },
+  {
+    "id": "mypthub_1104",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["hamstrings", "glutes"],
+      "secondaryMuscles": ["lower_back"],
+      "movementPattern": ["hinge"],
+      "forceType": ["pull"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["smith_machine"]
+    },
+    "i18n": {
+      "primaryMuscles": {
+        "en": ["Hamstrings", "Glutes"],
+        "es": ["Isquiotibiales", "Glúteos"]
+      },
+      "secondaryMuscles": {
+        "en": ["Lower Back"],
+        "es": ["Lumbar"]
+      },
+      "equipment": { "en": "Smith Machine", "es": "Máquina Smith" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "compound",
+      "equipment": "smith_machine",
+      "primaryMuscles": ["Hamstrings", "Glutes"],
+      "secondaryMuscles": ["Lower Back"]
+    }
+  }
+]

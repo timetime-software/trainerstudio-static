@@ -11,6 +11,8 @@
     "videos:sync-json": "node --experimental-strip-types sync-cdn-media.ts",
     "videos:thumbnails": "node generate-thumbnails.mjs",
     "build:public": "node --experimental-strip-types build-public-exercises.ts",
+    "classify:batches": "node --experimental-strip-types build-classification-batches.ts",
+    "classify:merge": "node --experimental-strip-types merge-classifications.ts",
     "videos:clips": "node download-youtube-clips.mjs",
     "videos:style-tasks": "node create-ark-style-tasks.mjs",
     "videos:style-status": "node poll-ark-style-tasks.mjs"

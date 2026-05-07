@@ -1,0 +1,1220 @@
+[
+  {
+    "id": "mypthub_76277",
+    "name": "BOSU - Press Up Plank (Hands On)",
+    "instructions": [
+      "To start this exercise kneel down on the floor, and lean forward so that you are now bearing weight on your arms. Have your hands placed where your chest would be on dome side. Now you should come up onto your feet so that your body is suspended above the floor, the only points of contact (with the floor) should be your feet and your hands on the BOSU. Your body should be in one straight line from head to toe and your arms perpendicular to the floor under your chest. This will be your starting position.",
+      "Keep your abdominal muscles tight throughout this exercise and keep your pelvis in line with the rest of your body to minimise risk of injury to your lower back (you can elevate your pelvis slightly to reduce lower back pain).",
+      "Hold this position for as long as you can or for the recommended amount of time.",
+      "Variations: Plank."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [
+      "triceps",
+      "chest",
+      "obliques"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "triceps",
+        "chest",
+        "obliques"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "isometric"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_press_up_plank_hands_on/default/bosu_press_up_plank_hands_on.mp4"
+  },
+  {
+    "id": "mypthub_76292",
+    "name": "BOSU - Plank (Forearms On)",
+    "instructions": [
+      "Firstly, adopt an 'all-fours' position above on the floor. From here you will need to bend your elbows to a 90 degree angle and place your upper body weight onto your forearms on top of the BOSU (dome side). After you have done that, take a step backwards with your feet and place your remaining bodyweight through your toes. At this point your body should be suspended (in a straight line) above the floor with just your forearms and toes as points of contact. This will be your starting position.",
+      "Keep your abdominal muscles tight throughout this exercise and keep your pelvis in line with the rest of your body to minimise risk of injury to your lower back (you can elevate your pelvis slightly to reduce lower back pain).",
+      "Hold this position for as long as you can or for the recommended amount of time.",
+      "Variations: Plank."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "chest",
+      "obliques"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "chest",
+        "obliques"
+      ],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "isometric"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_plank_forearms_on/default/bosu_plank_forearms_on.mp4"
+  },
+  {
+    "id": "mypthub_76294",
+    "name": "BOSU - Press Up Plank (Feet On)",
+    "instructions": [
+      "To start this exercise kneel down on the floor, and lean forward so that you are now bearing weight on your arms. Have your hands placed just outside of where your chest would be. Now lift both feet up onto the BOSU (dome side) so that your body is suspended above the floor, the only points of contact (with the floor) should be your hands and your feet on the BOSU (dome side). Your body should be in one straight line from head to toe and your arms perpendicular to the floor under your chest. This will be your starting position.",
+      "Keep your abdominal muscles tight throughout this exercise and keep your pelvis in line with the rest of your body to minimise risk of injury to your lower back (you can elevate your pelvis slightly to reduce lower back pain).",
+      "Hold this position for as long as you can or for the recommended amount of time.",
+      "Variations: Plank."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [
+      "triceps",
+      "shoulders",
+      "chest",
+      "obliques"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "triceps",
+        "shoulders",
+        "chest",
+        "obliques"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "isometric"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_press_up_plank_feet_on/default/bosu_press_up_plank_feet_on.mp4"
+  },
+  {
+    "id": "mypthub_76303",
+    "name": "BOSU - Press Ups (Hands On Dome)",
+    "instructions": [
+      "To start this exercise kneel down on the floor, and lean forward so that you are now bearing weight on your arms. Have your hands placed where your chest would be on dome side. Now you should come up onto your feet so that your body is suspended above the floor, the only points of contact (with the floor) should be your feet and your hands on the BOSU. Your body should be in one straight line from head to toe and your arms perpendicular to the floor under your chest. This will be your starting position.",
+      "Whilst inhaling, slowly lower your chest towards the BOSU whilst keeping your elbows by your side.",
+      "Pause for a brief movement, exhale and press through your palms to return your body along the same path to the starting position. Tip: Squeeze your pectoral muscles and triceps as you do so and when you get to the top of the movement, do not lock your elbows out.",
+      "Repeat the movement for the recommended amount of repetitions.",
+      "Variations: Bench Press or Press Ups."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [
+      "triceps",
+      "shoulders",
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "triceps",
+        "shoulders",
+        "abs"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_press_ups_hands_on_dome/default/bosu_press_ups_hands_on_dome.mp4"
+  },
+  {
+    "id": "mypthub_76304",
+    "name": "BOSU - Press Ups (Hands On Flat Side)",
+    "instructions": [
+      "To start this exercise kneel down on the floor, and lean forward so that you are now bearing weight on your arms. Have your hands placed on each side of the BOSU (flat side). Now you should come up onto your feet so that your body is suspended above the floor, the only points of contact (with the floor) should be your feet and your hands on the BOSU. Your body should be in one straight line from head to toe and your arms perpendicular to the floor under your chest. This will be your starting position.",
+      "Whilst inhaling, slowly lower your chest towards the BOSU whilst keeping your elbows by your side.",
+      "Pause for a brief movement, exhale and press through your palms to return your body along the same path to the starting position. Tip: Squeeze your pectoral muscles and triceps as you do so and when you get to the top of the movement, do not lock your elbows out.",
+      "Repeat the movement for the recommended amount of repetitions.",
+      "Variations: Bench Press or Press Ups."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "triceps",
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps",
+        "abs"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_press_ups_hands_on_flat_side/default/bosu_press_ups_hands_on_flat_side.mp4"
+  },
+  {
+    "id": "mypthub_76306",
+    "name": "BOSU - Press Ups (Feet On Dome)",
+    "instructions": [
+      "To start this exercise kneel down on the floor, and lean forward so that you are now bearing weight on your arms. Have your hands placed just outside of where your chest would be. Now lift both feet up onto the BOSU (dome side) so that your body is suspended above the floor, the only points of contact (with the floor) should be your hands and your feet on the BOSU (dome side). Your body should be in one straight line from head to toe and your arms perpendicular to the floor under your chest. This will be your starting position.",
+      "Whilst inhaling, slowly lower your chest towards the ground whilst keeping your elbows by your side.",
+      "Pause for a brief movement, exhale and press through your palms to return your body along the same path to the starting position. Tip: Squeeze your pectoral muscles and triceps as you do so and when you get to the top of the movement, do not lock your elbows out.",
+      "Repeat the movement for the recommended amount of repetitions.",
+      "Variations: Plank."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "triceps",
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps",
+        "abs"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_press_ups_feet_on_dome/default/bosu_press_ups_feet_on_dome.mp4"
+  },
+  {
+    "id": "mypthub_76309",
+    "name": "BOSU - Press Ups (Feet On Flat Side)",
+    "instructions": [
+      "To start this exercise kneel down on the floor, and lean forward so that you are now bearing weight on your arms. Have your hands placed just outside of where your chest would be. Now lift both feet up onto the BOSU (flat side) so that your body is suspended above the floor, the only points of contact (with the floor) should be your hands and your feet on the BOSU (flat side). Your body should be in one straight line from head to toe and your arms perpendicular to the floor under your chest. This will be your starting position.",
+      "Whilst inhaling, slowly lower your chest towards the ground whilst keeping your elbows by your side.",
+      "Pause for a brief moment, exhale and press through your palms to return your body along the same path to the starting position. Tip: Squeeze your pectoral muscles and triceps as you do so and when you get to the top of the movement, do not lock your elbows out.",
+      "Repeat the movement for the recommended amount of repetitions.",
+      "Variations: Bench Press or Dumbbell Chest Press."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "triceps",
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps",
+        "abs"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_press_ups_feet_on_flat_side/default/bosu_press_ups_feet_on_flat_side.mp4"
+  },
+  {
+    "id": "mypthub_76310",
+    "name": "BOSU - Power Press Ups",
+    "instructions": [
+      "To start this exercise kneel down on the floor, and lean forward so that you are now bearing weight on your arms. Have your hands placed on each side of the BOSU (flat side). Now you should come up onto your feet so that your body is suspended above the floor, the only points of contact (with the floor) should be your feet and your hands on the BOSU. Your body should be in one straight line from head to toe and your arms perpendicular to the floor under your chest. This will be your starting position.",
+      "Whilst inhaling, slowly lower your chest towards the ground whilst keeping your elbows by your side.",
+      "Exhale and explosively press hard enough through your palms to return your body not only along the same path but to enable you to lift the BOSU off the floor.",
+      "When your body weight is on its descent, land into the next repetition.",
+      "Repeat the movement for the recommended amount of repetitions.",
+      "Variations: Bench Press or Press Ups."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "triceps",
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps",
+        "abs"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_power_press_ups/default/bosu_power_press_ups.mp4"
+  },
+  {
+    "id": "mypthub_76312",
+    "name": "BOSU - Side To Side Press Ups",
+    "instructions": [
+      "To start this exercise kneel down on the floor, and lean forward so that you are now bearing weight on your arms. Have your hands placed where your chest would be on dome side. Now you should come up onto your feet so that your body is suspended above the floor, the only points of contact (with the floor) should be your feet and your hands on the BOSU. Your body should be in one straight line from head to toe and your arms perpendicular to the floor under your chest. This will be your starting position.",
+      "Place your right hand out to the right of the BOSU.",
+      "Pause for a brief moment, exhale and press through your palms to return your body along the same path to the starting position. Bring your right hand to the centre of the BOSU to meet the left and then place your left hand out to the left of the BOSU. Tip: Squeeze your pectoral muscles and triceps as you do so and when you get to the top of the movement, do not lock your elbows out.",
+      "Repeat the movement for the recommended amount of repetitions.",
+      "Variations: Bench Press or Press Ups."
+    ],
+    "legacyEquipmentRaw": "",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "abdominals",
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "abs",
+        "triceps"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_side_to_side_press_ups/default/bosu_side_to_side_press_ups.mp4"
+  },
+  {
+    "id": "mypthub_76313",
+    "name": "BOSU - Squats (On Dome)",
+    "instructions": [
+      "1) Stand on the dome side of the BOSU ball with feet shoulder-width apart.",
+      "2) Engage your core and lower into a squat, keeping your knees aligned with your toes.",
+      "3) Pause briefly at the bottom, then push through your heels to return to the starting position.",
+      "4) Focus on stability and balance throughout the movement.",
+      "5) Repeat for desired repetitions."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "calves",
+      "adductors",
+      "abductors"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "calves",
+        "adductors",
+        "abductors"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_squats_on_dome/default/bosu_squats_on_dome.mp4"
+  },
+  {
+    "id": "mypthub_76317",
+    "name": "BOSU - Squats (Flat Side Up)",
+    "instructions": [
+      "1) Stand on the flat side of the BOSU with your feet shoulder-width apart.",
+      "2) Engage your core and maintain balance as you lower into a squat, keeping your knees aligned with your toes.",
+      "3) Pause briefly at the bottom, then push through your heels to return to standing.",
+      "4) Repeat for desired reps, focusing on stability and control.",
+      "This exercise targets your legs and core."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "abductors",
+      "adductors",
+      "calves"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "abductors",
+        "adductors",
+        "calves"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_squats_flat_side_up/default/bosu_squats_flat_side_up.mp4"
+  },
+  {
+    "id": "mypthub_76356",
+    "name": "BOSU - Static Lunges (On Dome)",
+    "instructions": [
+      "1) Stand on the dome of a BOSU ball with one foot, keeping the other foot extended behind you.",
+      "2) Lower your body into a lunge position, bending your front knee and lowering your back knee towards the ground.",
+      "3) Hold this position for a few seconds, then return to the starting position.",
+      "4) Repeat the movement for required repetitions.",
+      "5) Repeat on the other side.",
+      "6)Focus on stability and balance throughout the exercise."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "calves",
+      "abductors",
+      "adductors"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "calves",
+        "abductors",
+        "adductors"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_static_lunges_on_dome/default/bosu_static_lunges_on_dome.mp4"
+  },
+  {
+    "id": "mypthub_76358",
+    "name": "BOSU - Static Lunges (Flat Side Up)",
+    "instructions": [
+      "1) Stand on the flat side of a BOSU ball with one foot positioned in the center and the other foot extended behind you.",
+      "2) Lower your body into a lunge position, bending both knees until your front thigh is parallel to the ground.",
+      "3) Keep your back straight and core engaged throughout the movement.",
+      "4) Drive through the front heel to return to start position.",
+      "5) Repeat for required repetitions.",
+      "6) Repeat on the other side.",
+      "7) Focus on stability and balance while engaging your leg muscles."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "calves",
+      "abductors",
+      "adductors",
+      "glutes"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "calves",
+        "abductors",
+        "adductors",
+        "glutes"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_static_lunges_flat_side_up/default/bosu_static_lunges_flat_side_up.mp4"
+  },
+  {
+    "id": "mypthub_76360",
+    "name": "BOSU - Lunges (On Dome)",
+    "instructions": [
+      "1) Stand with the dome side of the BOSU facing up in front of you.",
+      "2) Step forward onto the BOSU with one foot.",
+      "3) Lower your body by bending both knees until your front thigh is parallel to the ground.",
+      "4) Push through your front heel to return to the starting position.",
+      "5) Repeat for required repetitions on the same leg.",
+      "6) Complete on the other leg.",
+      "7) Focus on stability and balance.",
+      "This exercise targets your legs and core."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "glutes",
+      "calves",
+      "abductors",
+      "adductors"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "glutes",
+        "calves",
+        "abductors",
+        "adductors"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_lunges_on_dome/default/bosu_lunges_on_dome.mp4"
+  },
+  {
+    "id": "mypthub_76361",
+    "name": "BOSU - Lunges (Flat Side Up)",
+    "instructions": [
+      "1) Stand with the flat side of the BOSU facing up in front of you.",
+      "2) Step forward onto the BOSU with one foot.",
+      "3) Lower your body by bending both knees until your front thigh is parallel to the ground.",
+      "4) Push through your front heel to return to the starting position.",
+      "5) Repeat for required repetitions on the same leg.",
+      "6) Complete on the other leg.",
+      "7) Focus on stability and balance.",
+      "This exercise targets your legs and core."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "glutes",
+      "calves",
+      "abductors",
+      "adductors"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "glutes",
+        "calves",
+        "abductors",
+        "adductors"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_lunges_flat_side_up/default/bosu_lunges_flat_side_up.mp4"
+  },
+  {
+    "id": "mypthub_76362",
+    "name": "BOSU - Split Squats (On Dome)",
+    "instructions": [
+      "1) Place a BOSU ball with the dome side facing up.",
+      "2) Place the ball of one foot on the center of the dome behind you.",
+      "3) Step forward with your other foot, maintaining balance and stability.",
+      "4) Lower your body into a split squat position by bending your front knee, keeping your back knee slightly bent.",
+      "5) Pause briefly at the bottom, then push through your front heel to return to the starting position.",
+      "6) Repeat for the desired number of repetitions on one leg before switching to the other.",
+      "7) Focus on stability and control throughout the movement.",
+      "This exercise targets your legs and glutes while also challenging your balance."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "calves",
+      "adductors",
+      "abductors"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "calves",
+        "adductors",
+        "abductors"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_split_squats_on_dome/default/bosu_split_squats_on_dome.mp4"
+  },
+  {
+    "id": "mypthub_76366",
+    "name": "BOSU - Split Squats (Flat Side Up)",
+    "instructions": [
+      "1) Stand with one foot on the center of a BOSU ball, flat side up and the other foot in front of you on the ground.",
+      "2) Lower your body by bending your knees until your back knee is just above the ground.",
+      "3) Keep your front knee aligned with your ankle and your torso upright.",
+      "4) Push through your front heel to return to the starting position.",
+      "5) Repeat for the desired number of repetitions, then switch legs.",
+      "6) Focus on stability and balance throughout the movement."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "glutes",
+      "calves",
+      "abductors",
+      "adductors"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "glutes",
+        "calves",
+        "abductors",
+        "adductors"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_split_squats_flat_side_up/default/bosu_split_squats_flat_side_up.mp4"
+  },
+  {
+    "id": "mypthub_76367",
+    "name": "BOSU - Mountain Climbers (Knee Outside)",
+    "instructions": [
+      "1) Place a BOSU ball on the ground with the flat side facing up.",
+      "2) Get into a plank position with your hands on the BOSU ball and your body in a straight line from head to heels.",
+      "3) Drive one knee towards the outside of the same elbow, then return to plank position.",
+      "4) Alternate legs, moving in a smooth, controlled motion.",
+      "5) Focus on engaging your core and maintaining stability throughout the exercise.",
+      "This variation of mountain climbers targets your core, shoulders, and hip flexors."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "obliques"
+    ],
+    "legacySecondaryMuscles": [
+      "abdominals",
+      "triceps",
+      "shoulders",
+      "chest"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "obliques"
+      ],
+      "secondaryMuscles": [
+        "abs",
+        "triceps",
+        "shoulders",
+        "chest"
+      ],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_mountain_climbers_knee_outside/default/bosu_mountain_climbers_knee_outside.mp4"
+  },
+  {
+    "id": "mypthub_76369",
+    "name": "BOSU - Crossover Climbers",
+    "instructions": [
+      "1) Start in a high plank position with your hands on the BOSU ball and your body forming a straight line from head to heels.",
+      "2) Drive one knee towards the opposite elbow, crossing your body under your torso.",
+      "3) Keep abs braced and hips as stable as possible.",
+      "4) Return to the starting position and repeat on the other side.",
+      "5) Continue alternating sides in a smooth, controlled motion.",
+      "6) Focus on engaging your core and maintaining stability on the BOSU ball throughout the exercise."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [
+      "obliques",
+      "shoulders",
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "obliques",
+        "shoulders",
+        "triceps"
+      ],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_crossover_climbers/default/bosu_crossover_climbers.mp4"
+  },
+  {
+    "id": "mypthub_76373",
+    "name": "BOSU - Mountain Climbers",
+    "instructions": [
+      "1) Start in a plank position with your hands on the flat side of a BOSU ball.",
+      "2) Engage your core and keep your body in a straight line from head to heels.",
+      "3) Drive one knee towards your chest, then quickly switch legs, as if running in place.",
+      "4) Continue alternating legs at a moderate pace.",
+      "5) Focus on maintaining stability on the BOSU ball and keeping your core engaged throughout."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "triceps",
+      "chest"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps",
+        "chest"
+      ],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_mountain_climbers/default/bosu_mountain_climbers.mp4"
+  },
+  {
+    "id": "mypthub_76478",
+    "name": "BOSU - Side Plank With Rotation (Forearm On Dome)",
+    "instructions": [
+      "1) Begin in a side plank position with your forearm on the dome of the BOSU ball and feet stacked.",
+      "2) Raise your top arm towards the ceiling, opening up your chest and rotating your torso then rotate and reach the arm under the body.",
+      "3) Repeat for the required repetitions.",
+      "4) Switch sides and repeat.",
+      "5) Focus on stability and controlled movements.",
+      "This exercise targets your obliques and improves core strength."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [
+      "obliques",
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "obliques",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "isometric"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_side_plank_with_rotation_forearm_on_dome/default/bosu_side_plank_with_rotation_forearm_on_dome.mp4"
+  },
+  {
+    "id": "mypthub_76480",
+    "name": "BOSU - Side Plank With Rotation (Feet On Dome)",
+    "instructions": [
+      "1) Begin in a side plank position with your feet on the dome of a BOSU ball.",
+      "2) Keep hips stacked on top of each other and elbow directly under the shoulder.",
+      "3) Engage your core and lift your hips, forming a straight line from head to heels.",
+      "4) Rotate your torso, reaching your top arm underneath your body and towards the floor.",
+      "5) Return to the starting position and repeat the required repetitions on the same side.",
+      "6) Then repeat on the other side.",
+      "7) Focus on stability and controlled movements.",
+      "This exercise targets your obliques and improves core strength."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [
+      "obliques",
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "obliques",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "isometric"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_side_plank_with_rotation_feet_on_dome/default/bosu_side_plank_with_rotation_feet_on_dome.mp4"
+  },
+  {
+    "id": "mypthub_76481",
+    "name": "BOSU - V-Sit Ups (Assisted)",
+    "instructions": [
+      "1) Sit on the rounded side of a BOSU ball with your hands planted on the ground behind you for support.",
+      "2) Lean back slightly, engaging your core, and lift your legs off the ground, forming a V shape with your body.",
+      "3) Slowly lower your upper body towards the ground while simultaneously extending your legs out in front of you.",
+      "4) Pause briefly at the bottom of the movement, then return to the starting position by sitting up and bringing your knees towards your chest.",
+      "5) Repeat for the desired number of repetitions, focusing on controlled movements and maintaining balance on the BOSU ball."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [
+      "quadriceps",
+      "shoulders",
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "quadriceps",
+        "shoulders",
+        "triceps"
+      ],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_v_sit_ups_assisted/default/bosu_v_sit_ups_assisted.mp4"
+  },
+  {
+    "id": "mypthub_76483",
+    "name": "BOSU - Crunches",
+    "instructions": [
+      "1) Place a BOSU ball flat-side down on the floor. Lie on your back with your lower back centred on the dome.",
+      "2) Bend your knees and place your feet flat on the floor, hip-width apart. Cross your arms over your chest or place your hands lightly behind your head.",
+      "3) Engage your core muscles and lift your shoulder blades off the BOSU, curling your upper body towards your knees.",
+      "4) Think about closing the gab between your ribcage and hips.",
+      "5) Pause briefly at the top, then lower back down with control.",
+      "6) Repeat for the desired number of repetitions, focusing on controlled movements and maintaining tension in your core throughout."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_crunches/default/bosu_crunches.mp4"
+  },
+  {
+    "id": "mypthub_76486",
+    "name": "BOSU - Single Leg Glute Bridges (Foot On Dome)",
+    "instructions": [
+      "1) Position a BOSU ball with the dome side up.",
+      "2) Lie on your back and place one foot on the dome, keeping the other leg extended.",
+      "3) Press through your heel on the BOSU to lift your hips, forming a straight line from shoulders to knees.",
+      "4) Pause briefly at the top, then lower your hips back down.",
+      "5) Repeat for the required repetitions.",
+      "6) Switch legs and repeat.",
+      "7) Focus on stability and engage your glutes throughout.",
+      "This exercise targets your glutes and hamstrings."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "glutes"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "abs"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "unilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_single_leg_glute_bridges_foot_on_dome/default/bosu_single_leg_glute_bridges_foot_on_dome.mp4"
+  }
+]

@@ -1,0 +1,1136 @@
+[
+  {
+    "id": "mypthub_1067181",
+    "name": "Lateral Squat to Cross Body Row",
+    "instructions": [
+      "1) Grab a resistance band.",
+      "2) Have a wide leg stance.",
+      "3) Place one end of the band under one foot.",
+      "4) With the other hand grab the other end of the band.",
+      "5) Transfer weight over towards the foot with the band under and reach the arm towards the foot then come back up to standing and pull the band into a high row position with elbow leading the move.",
+      "6) Repeat as many repetitions as prescribed."
+    ],
+    "legacyEquipmentRaw": "bands",
+    "legacyPrimaryMuscles": [
+      "middle back"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "rhomboids",
+        "mid_traps"
+      ],
+      "secondaryMuscles": [
+        "shoulders"
+      ],
+      "movementPattern": [
+        "squat"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "resistance_band"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/lateral_squat_to_cross_body_row/default/lateral_squat_to_cross_body_row.mp4"
+  },
+  {
+    "id": "mypthub_1067184",
+    "name": "Single Leg Hip Thrust",
+    "instructions": [
+      "1) Grab a bench or step and lay down on your back (face up). Have your torso flat on the bench with your arms by your sides. One of your feet should be planted on the floor with your knees bent at an acute angle (less than 90 degrees), the other should be extended towards the ceiling as vertical as possible. This is your starting position.",
+      "2) To initiate the movement, exhale and drive through your heel to lift your hips toward the ceiling by squeezing your glutes. As you do so, lean back onto your shoulders and keep driving upward until your glutes are fully contracted.",
+      "3) After a brief pause, inhale and gently relax your glutes to drop your pelvis towards the floor (the resistance should be placed through your heel). Continue to drop your pelvis until your glutes touch the floor.",
+      "4) Repeat for the recommended amount of repetitions and swap sides."
+    ],
+    "legacyEquipmentRaw": "step",
+    "legacyPrimaryMuscles": [
+      "glutes"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings"
+      ],
+      "movementPattern": [
+        "hinge"
+      ],
+      "forceType": [
+        "pull"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "unilateral"
+      ],
+      "equipment": [
+        "box"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/single_leg_hip_thrust/default/single_leg_hip_thrust.mp4"
+  },
+  {
+    "id": "mypthub_106767",
+    "name": "Sandbag - Alternating Overhead Lunges",
+    "instructions": [
+      "Whilst in a standing position, grab the sandbag and hold above your head. This will be your starting position.",
+      "Take a step forward (slightly larger than a normal step) and as you land, drop your body down so that you create two right angles at your knees. Inhale as you do so whilst maintaining a straight torso.",
+      "Make sure that you keep your front knee over your heel and not over your toes. Your front shin should now be perpendicular to the floor.",
+      "As you exhale, use mainly the heel of your front foot and push off the floor towards the starting position again.",
+      "Alternate legs as you go and repeat for the recommended amount of repetitions.",
+      "Variations: Dumbbell Walking Lunges or Alternating Barbell Lunges."
+    ],
+    "legacyEquipmentRaw": "sandbag",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/sandbag_alternating_overhead_lunges/default/sandbag_alternating_overhead_lunges.mp4"
+  },
+  {
+    "id": "mypthub_106769",
+    "name": "Sandbag - Alternating Reverse Overhead Lunges",
+    "instructions": [
+      "Whilst in a standing position, grab the sandbag and hold above your head. This will be your starting position.",
+      "Take a step back (slightly larger than a normal step) and as you land, drop your body down so that you create two right angles at your knees. Inhale as you do so whilst maintaining a straight torso.",
+      "Make sure that you keep your front knee over your heel and not over your toes. Your front shin should now be perpendicular to the floor.",
+      "As you exhale, use mainly the heel of your front foot and push off the floor towards the starting position again.",
+      "Alternate legs as you go and repeat for the recommended amount of repetitions.",
+      "Variations: Dumbbell Lunges or Barbell Lunges."
+    ],
+    "legacyEquipmentRaw": "sandbag",
+    "legacyPrimaryMuscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps",
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/sandbag_alternating_reverse_overhead_lunges/default/sandbag_alternating_reverse_overhead_lunges.mp4"
+  },
+  {
+    "id": "mypthub_106775",
+    "name": "Sandbag - Alternating Overhead Side Lunges",
+    "instructions": [
+      "Stand up straight with the sandbag held above your head. This will be your starting position.",
+      "Take an exaggerated step out to one side and plant your foot with your toes slightly pointing outwards. Maintain a straight back throughout this movement so that you minimise the risk of injury. Inhale, push your hips backward and bend the knee of the foot you have stepped out with in order to lower your weight over that thigh. Once your thigh is parallel with the floor, pause for a brief moment, exhale and push through the heel and thigh from that planted foot.",
+      "Throughout this process the leg that remained in the starting position should be straight.",
+      "Alternate legs as you go and repeat for the recommended amount of repetitions.",
+      "Variation: Leg Press (Wide Stance)."
+    ],
+    "legacyEquipmentRaw": "sandbag",
+    "legacyPrimaryMuscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps",
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/sandbag_alternating_overhead_side_lunges/default/sandbag_alternating_overhead_side_lunges.mp4"
+  },
+  {
+    "id": "mypthub_106783",
+    "name": "Sandbag - Alternating Curtsy Squats (Back)",
+    "instructions": [
+      "Stand Up straight with the sandbag placed across your back. This will be your starting position.",
+      "Inhale and begin to descend by bending at your knees and hips. Pick one foot up off the floor and cross it behind your other leg. Your weight should be put predominantly through your heel as you sit back into the movement until your thigh is either parallel or just past to the floor.",
+      "Drive up through your standing leg.",
+      "Alternate legs as you go and repeat for the recommended amount of repetitions.",
+      "Variation: Reverse Lunges or Sitting Squats."
+    ],
+    "legacyEquipmentRaw": "sandbag",
+    "legacyPrimaryMuscles": [
+      "glutes",
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "glutes",
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "hamstrings"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/sandbag_alternating_curtsy_squats_back/default/sandbag_alternating_curtsy_squats_back.mp4"
+  },
+  {
+    "id": "mypthub_106784",
+    "name": "Sandbag - Alternating Curtsy Squats (Front)",
+    "instructions": [
+      "Stand Up straight with the sandbag placed across your chest. This will be your starting position.",
+      "Inhale and begin to descend by bending at your knees and hips. Pick one foot up off the floor and cross it behind your other leg. Your weight should be put predominantly through your heel as you sit back into the movement until your thigh is either parallel or just past to the floor.",
+      "Drive up through your standing leg.",
+      "Alternate legs as you go and repeat for the recommended amount of repetitions.",
+      "Variation: Reverse Lunges or Sitting Squats."
+    ],
+    "legacyEquipmentRaw": "sandbag",
+    "legacyPrimaryMuscles": [
+      "glutes",
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "glutes",
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "hamstrings"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/sandbag_alternating_curtsy_squats_front/default/sandbag_alternating_curtsy_squats_front.mp4"
+  },
+  {
+    "id": "mypthub_106785",
+    "name": "Sandbag - Alternating Overhead Curtsy Squats",
+    "instructions": [
+      "Stand Up straight with the sandbag held above your head. This will be your starting position.",
+      "Inhale and begin to descend by bending at your knees and hips. Pick one foot up off the floor and cross it behind your other leg. Your weight should be put predominantly through your heel as you sit back into the movement until your thigh is either parallel or just past to the floor.",
+      "Drive up through your standing leg.",
+      "Alternate legs as you go and repeat for the recommended amount of repetitions.",
+      "Variation: Reverse Lunges or Sitting Squats."
+    ],
+    "legacyEquipmentRaw": "sandbag",
+    "legacyPrimaryMuscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "hamstrings"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps",
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "hamstrings"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/sandbag_alternating_overhead_curtsy_squats/default/sandbag_alternating_overhead_curtsy_squats.mp4"
+  },
+  {
+    "id": "mypthub_1068",
+    "name": "Hack Squat Narrow Stance",
+    "instructions": [
+      "Place the back of your torso against the back pad of the machine and hook your shoulders under the shoulder pads provided.",
+      "Position your legs in the platform using a less than shoulder width narrow stance with the toes slightly pointed out.  Your feet should be around 3 inches or less apart. Tip: Keep your head up at all times and also maintain the back on the pad at all times.",
+      "Place your arms on the side handles of the machine and disengage the safety bars (which on most designs is done by moving the side handles from a facing front position to a diagonal position).",
+      "Now straighten your legs without locking the knees.  This will be your starting position.",
+      "Begin to slowly lower the unit by bending the knees as you maintain a straight posture with the head up (back on the pad at all times).  Continue down until the angle between the upper leg and the calves becomes slightly less than 90-degrees (which is the point in which the upper legs are below parallel to the floor).  Inhale as you perform this portion of the movement.",
+      "Begin to raise the unit as you exhale by pushing the floor with mainly with the heels of your feet as you straighten the legs again and go back to the starting position.",
+      "Repeat for the recommended amount of repetitions."
+    ],
+    "legacyEquipmentRaw": "machine",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "calves",
+      "glutes",
+      "hamstrings"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "calves",
+        "glutes",
+        "hamstrings"
+      ],
+      "movementPattern": [
+        "squat"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "machine"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/hack_squat_narrow_stance/default/hack_squat_narrow_stance.mp4"
+  },
+  {
+    "id": "mypthub_1069",
+    "name": "Narrow Stance Leg Press",
+    "instructions": [
+      "Set the machine to the desired weight and set the position of the seat (you will want your knees to be at a 90 degree angle when you get into position). Next take a seat and lift your feet up onto the foot plate in front of you. Have your feet and knees together, your knees at a 90 degree angle and your lower back supported. This is your starting position.",
+      "To initiate the movement, exhale and press the foot plate away by putting pressure though your heels and shoes laces. Contract your thigh and glute muscles whilst simultaneously pulling your hips into the seat. Continue to press the foot plate away until your legs are fully extended (slight bend at your knees).",
+      "After a brief pause, inhale and return your legs back along the same path into their starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Barbell Squats or Dumbbell Squats."
+    ],
+    "legacyEquipmentRaw": "machine",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "calves",
+      "glutes",
+      "hamstrings"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "calves",
+        "glutes",
+        "hamstrings"
+      ],
+      "movementPattern": [
+        "squat"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "machine"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/narrow_stance_leg_press/default/narrow_stance_leg_press.mp4"
+  },
+  {
+    "id": "mypthub_106921",
+    "name": "Sandbag - Bent Over Rows",
+    "instructions": [
+      "Grab the sandbag (palms facing each other), bend your knees slightly and bring your torso forward by bending at your hips; as you bend make sure to keep your back straight until it is almost parallel to the floor. Tip: Make sure that you keep your spine in a neutral position. The sandbag should hang directly in front of you as your arms are perpendicular to the floor and your torso. This is your starting position.",
+      "While keeping the torso stationary, lift the sandbag to your abdomen (as you exhale), elevating elbows towards the ceiling (do not exert any force with the forearm other than holding the sandbag). At the top contracted position, squeeze the back muscles and hold for a second.",
+      "Slowly lower the bag to the starting position as you inhale.",
+      "Repeat for the recommended amount of repetitions.",
+      "Caution:",
+      "This exercise is not recommended for people with back issues. A Low Cable Row is a better choice for people with back pain.",
+      "Ensure perfect form and never round the back as this can cause injury.",
+      "Be cautious with the weights you are using. If you are in doubt, use a lesser weight.",
+      "Variations: Low Cable Row or a Bent Over Barbell Row"
+    ],
+    "legacyEquipmentRaw": "sandbag",
+    "legacyPrimaryMuscles": [
+      "middle back"
+    ],
+    "legacySecondaryMuscles": [
+      "biceps",
+      "lats",
+      "lower back",
+      "abdominals",
+      "quadriceps",
+      "glutes"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "rhomboids",
+        "mid_traps"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "lats",
+        "lower_back",
+        "abs",
+        "quadriceps",
+        "glutes"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/sandbag_bent_over_rows/default/sandbag_bent_over_rows.mp4"
+  },
+  {
+    "id": "mypthub_106952",
+    "name": "Sandbag - Alternating Static Overhead Side Lunges",
+    "instructions": [
+      "Stand up straight with the sandbag held above your head. This will be your starting position.",
+      "Take an exaggerated step out to one side and plant your foot with your toes slightly pointing outwards. Maintain a straight back throughout this movement so that you minimise the risk of injury. Inhale, push your hips backward and bend the knee of the foot you have stepped out with in order to lower your weight over that thigh. Once your thigh is parallel with the floor, pause for a brief moment, exhale and push through the heel and thigh from that planted foot.",
+      "Throughout this process the leg that remained in the starting position should be straight.",
+      "Alternate legs as you go and repeat for the recommended amount of repetitions.",
+      "Variation: Leg Press (Wide Stance)."
+    ],
+    "legacyEquipmentRaw": "sandbag",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/sandbag_alternating_static_overhead_side_lunges/default/sandbag_alternating_static_overhead_side_lunges.mp4"
+  },
+  {
+    "id": "mypthub_107",
+    "name": "Standing Alternate Hammer Curls",
+    "instructions": [
+      "Grab a dumbbell in each hand and adopt a standing position with your elbows tucked in, palms facing your torso. This will be your starting position.",
+      "Whilst maintaining a stationary upper arm, curl the left dumbbell up towards your shoulder by contracting your bicep. Keep your elbow pinned to your side and exhale as you do so. Squeeze your bicep for a brief moment at the contracted position. Tip: Only the forearm should have moved.",
+      "After this brief pause, inhale and return the dumbbell to the starting posiiton along the same path.",
+      "Repeat the movement with your right hand.",
+      "Continue alternating for the recommended amount of repetitions.",
+      "Variations: Seated Hammer Curls or Seated Dumbbell Curls."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "biceps"
+    ],
+    "legacySecondaryMuscles": [
+      "forearms"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearm_flexors",
+        "forearm_extensors"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/standing_alternate_hammer_curls/default/standing_alternate_hammer_curls.mp4"
+  },
+  {
+    "id": "mypthub_1071",
+    "name": "Single Arm Pulldowns",
+    "instructions": [
+      "Attach a handle to the machine, set the weight to the recommended amount and check that the leg brace is positioned correctly. Take a seat facing the machine (tuck your hips in so they are touching the leg brace) and grab the handle with an overhand grip so your arm is extended towards the ceiling. This is your starting position.",
+      "To initiate the movement, exhale and pull the handle down towards your chest using the muscles across your back and bicep. Lean back ever so slightly as your pull the weight downwards and maintain your posture throughout. Continue to pull the handle down until either your muscles are optimally contracted or it is in contact with your chest.",
+      "After a brief pause, inhale and return the handle back along the same path into its starting position.",
+      "Repeat for the recommended amount of repetitions and swap sides.",
+      "Variations: Dumbbell Rows or Seated One-Arm Cable Pulley Rows."
+    ],
+    "legacyEquipmentRaw": "cable",
+    "legacyPrimaryMuscles": [
+      "lats"
+    ],
+    "legacySecondaryMuscles": [
+      "biceps",
+      "middle back"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "rhomboids",
+        "mid_traps"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "unilateral"
+      ],
+      "equipment": [
+        "cable"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/single_arm_pulldowns/default/single_arm_pulldowns.mp4"
+  },
+  {
+    "id": "mypthub_1073",
+    "name": "Abductor Machine External",
+    "instructions": [
+      "Take a seat on the machine, placing the knee pads on the outside of your thighs with your feet in the stirrups. Make sure your knees and hips are at 90 degrees and you have the correct weight applied.",
+      "To initiate the movement, exhale and pull your knees apart until the pads are as wide as possible.",
+      "After a brief pause, inhale and reverse the movement returning the pads back along the same path into their starting position."
+    ],
+    "legacyEquipmentRaw": "machine",
+    "legacyPrimaryMuscles": [
+      "abductors"
+    ],
+    "legacySecondaryMuscles": [
+      "glutes"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abductors"
+      ],
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "machine"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/abductor_machine_external/default/abductor_machine_external.mp4"
+  },
+  {
+    "id": "mypthub_1075",
+    "name": "Pec Deck",
+    "instructions": [
+      "Take a seat on the machine, facing forwards and adjust the height of the seat so that your hips and knees are at 90 degrees. Next adjust the handles to the correct position so that they gently stretch your pectoral muscles when you take hold of them. Grip the handles and make sure that your arms are parallel to the floor at this point. This is your starting position. Tip: Keep your elbows in line with your wrists and shoulders throughout the movement and they remain slightly bent.",
+      "To initiate the movement, exhale and bring your hands out on a wide arcing motion in front of you using your pectoral muscles to do so. Keep your chest as high as you can with your back in contact with the back rest. Continue to bring your hands together until they meet in the middle.",
+      "After a brief pause, inhale and return the handles back along the same path into their starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Dumbbell Flyes or Cable Crossovers."
+    ],
+    "legacyEquipmentRaw": "machine",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "machine"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/pec_deck/default/pec_deck.mp4"
+  },
+  {
+    "id": "mypthub_1078",
+    "name": "Seated Calf Raise Machine",
+    "instructions": [
+      "Place the recommended amount of weight on the machine and take a seat. Once you are seated, place the balls of your feet on the foot plate with your toes pointed forward. Next, adjust the height of the lever pad and place your lower thighs under it. Place your hands on top of the lever pad in order to prevent it from slipping.",
+      "Lift the lever slightly by pushing through the balls of your feet and release the safety bar. This will be your starting position.",
+      "Inhale as you slowly lower your heels towards the floor and continue until your calves are fully stretched.",
+      "As you exhale, press through the balls of your feet, contracting the calves until your ankles are as high as possible. Hold and squeeze your calves for a second before repeating the movement for the recommended amount of repetitions.",
+      "Variations: Seated Calf Raise Machine (Toes Out) or Seated Calf Raise Machine (Toes In)."
+    ],
+    "legacyEquipmentRaw": "machine",
+    "legacyPrimaryMuscles": [
+      "calves"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "calves"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "machine"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/seated_calf_raise_machine/default/seated_calf_raise_machine.mp4"
+  },
+  {
+    "id": "mypthub_1079",
+    "name": "Seated Leg Curl",
+    "instructions": [
+      "Set the machine to the desired weight and set the position of the back rest (when you sit on the machine, the back of your knees should be in contact with the edge of the seat). Next take a seat and check that when you rest your legs on the working pad, it is located just below your calves. The last guard to move is the one that gently locks your thighs in position. After you have done this, take hold of the handles in front of you and make sure your back is supported and in contact with the back rest. This is your starting position.",
+      "To initiate the movement, exhale as you squeeze your heels in towards your glutes in an arcing motion by flexing your knees. Continue to do so until your hamstrings are as tight as can be or that you cannot bend your knees anymore.",
+      "After a brief pause, inhale and return the pad back along the same path into its starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Lying Hamstring Curls or Natural Glute Ham Raise."
+    ],
+    "legacyEquipmentRaw": "machine",
+    "legacyPrimaryMuscles": [
+      "hamstrings"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "machine"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/seated_leg_curl/default/seated_leg_curl.mp4"
+  },
+  {
+    "id": "mypthub_1084",
+    "name": "Standing Hamstring Curl Machine",
+    "instructions": [
+      "Adjust the machine lever to fit your height and lie with your torso bent at the waist facing forward around 30-45 degrees (since an angled position is more favorable for hamstrings recruitment) with the pad of the lever on the back of your right leg (just a few inches under the calves) and the front of the right leg on top of the machine pad.",
+      "Keeping the torso bent forward, ensure your leg is fully stretched and grab the side handles of the machine.  Position your toes straight.  This will be your starting position.",
+      "As you exhale, curl your right leg up as far as possible without lifting the upper leg from the pad.  Once you hit the fully contracted position, hold it for a second.",
+      "As you inhale, bring the legs back to the initial position.  Repeat for the recommended amount of repetitions.",
+      "Perform the same exercise now for the left leg."
+    ],
+    "legacyEquipmentRaw": "machine",
+    "legacyPrimaryMuscles": [
+      "hamstrings"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "machine"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/standing_hamstring_curl_machine/default/standing_hamstring_curl_machine.mp4"
+  },
+  {
+    "id": "mypthub_1089",
+    "name": "Smith Machine Bench Press",
+    "instructions": [
+      "Load the machine with the desired weight and set the position of the bar so it is at waist height. Place a flat bench beneath the bar and lay down on your back so the bar is directly above your chest. Adopt an overhand grip (palms facing forwards) and lift the bar off the hooks. Press the bar upwards until your arms are at full extension (slight bend at your elbows) and make sure you have set the safety bars to the correct height. This is your starting position.",
+      "To initiate the movement, inhale and descend the bar towards your chest by flexing at your elbows, allowing them to flare out wide. Continue to descend the bar until either your elbows are at 90 degrees or the bar gently touches your chest.",
+      "After a brief pause, exhale and press the bar back along the same path into its starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Barbell Bench Press or Dumbbell Bench Press."
+    ],
+    "legacyEquipmentRaw": "machine",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "machine"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/smith_machine_bench_press/default/smith_machine_bench_press.mp4"
+  },
+  {
+    "id": "mypthub_1090",
+    "name": "Smith Machine Bent Over Rows",
+    "instructions": [
+      "Load the smith machine with the desired amount of weight and allow the bar to rest as low as possible in front of you. Take hold of it with a wider than shoulder width, overhand grip by bending at your knees and waist (more so at your waist) whilst maintaining a straight back. Your arms should be hanging perpendicular to the floor at this point. This is your starting position.",
+      "Exhale and squeeze the muscles in your back to bring the bar in towards your torso. Bend at the elbow to allow the movement but try not to take any weight through your forearms/biceps.",
+      "Once the bar is as close to your body as it can be or the muscles in your back are at tight as they can be, inhale and return the barbell along the same path back into the starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Caution: This exercise may not be suitable for people that suffer from any back pain/injuries.",
+      "Variations: Bent Over Barbell Row or Seated Row Machine (Neutral Grip)."
+    ],
+    "legacyEquipmentRaw": "machine",
+    "legacyPrimaryMuscles": [
+      "middle back"
+    ],
+    "legacySecondaryMuscles": [
+      "biceps",
+      "lats",
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "rhomboids",
+        "mid_traps"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "lats",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "machine"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/smith_machine_bent_over_rows/default/smith_machine_bent_over_rows.mp4"
+  },
+  {
+    "id": "mypthub_1096",
+    "name": "Smith Machine Incline Bench Press",
+    "instructions": [
+      "Load the machine with the desired weight and set the position of the bar so it is at chest height. Place an incline bench (around 30-45 degrees) beneath the bar and lay down on your back so the bar is directly above your chest. Adopt an overhand grip (palms facing forwards) and lift the bar off the hooks. Press the bar upwards until your arms are at full extension (slight bend at your elbows) and make sure you have set the safety bars to the correct height. This is your starting position.",
+      "To initiate the movement, inhale and descend the bar towards your chest by flexing at your elbows, allowing them to flare out wide. Continue to descend the bar until either your elbows are at 90 degrees or the bar gently touches your chest.",
+      "After a brief pause, exhale and press the bar back along the same path into its starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Barbell Incline Bench Press or Incline Dumbbell Chest Press."
+    ],
+    "legacyEquipmentRaw": "machine",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "machine"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/smith_machine_incline_bench_press/default/smith_machine_incline_bench_press.mp4"
+  },
+  {
+    "id": "mypthub_1099",
+    "name": "Smith Machine Shoulder Press",
+    "instructions": [
+      "Load up the smith machine with the prescribed amount of weight and set it at a shoulder height. Grab the bar with a wider than shoulder width overhand grip. Take a seat on an incline bench (just off vertical) so that the bar can pass just in front of your face when it descends. Set the safety hooks in the correct position and lift the bar off the rack so that your arms (which are fully extended towards the ceiling) are weight baring. This is your starting position.",
+      "To initiate the movement, inhale and slowly lower the bar down towards your shoulders (in front of your head). Pause for a brief moment when the bar gently touches your shoulders.",
+      "Exhale and press the bar back along the same path into the starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Seated Barbell Military Press or Seated Cable Shoulder Press."
+    ],
+    "legacyEquipmentRaw": "machine",
+    "legacyPrimaryMuscles": [
+      "shoulders"
+    ],
+    "legacySecondaryMuscles": [
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "triceps"
+      ],
+      "movementPattern": [
+        "vertical_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "machine"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/smith_machine_shoulder_press/default/smith_machine_shoulder_press.mp4"
+  },
+  {
+    "id": "mypthub_1103",
+    "name": "Smith Machine Squats",
+    "instructions": [
+      "Load the smith machine with the desired amount of weight and place the bar at shoulder height. Step underneath the bar and rotate it so that the weight is resting across the back of your shoulders. You should take hold of the bar loosely just to make sure it does not fall. Stand with a wider than shoulder width stance, toes pointing (slightly) outward. Throughout the movement you should keep your head up, chest out and maintain a straight back. This will be your starting position.",
+      "Descend slowly by bending at your knees and hips until your thighs are parallel with the floor. Keep a straight back so that your posture is not compromised. Tip: When at the bottom of the movement your knees should be behind your toes.",
+      "Once you have hit the bottom of the movement, pause for a second before pushing your torso back into the starting position through your heels. As you descend inhale and as you ascend, exhale. You should now be at the starting position, ready to go again.",
+      "Repeat for the recommended amount of repetitions.",
+      "Caution: Always be aware of your posture with this exercise as if performed incorrectly, could cause injury.",
+      "Variations: Barbell Squats or Dumbbell Squats."
+    ],
+    "legacyEquipmentRaw": "machine",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "calves",
+      "glutes",
+      "hamstrings",
+      "lower back"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "calves",
+        "glutes",
+        "hamstrings",
+        "lower_back"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "machine"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/smith_machine_squats/default/smith_machine_squats.mp4"
+  },
+  {
+    "id": "mypthub_1104",
+    "name": "Smith Machine Stiff Leg Deadlifts",
+    "instructions": [
+      "Load up the smith machine with the required amount of weight and place the bar at mid thigh height. Adopt a standing position with your feet shoulder width apart so that the bar is gently placed against your thighs. Allow your arms to hang perpendicular to the floor with an overhand grip (palms facing your thighs). Next, lift the bar off the rack and slightly bend your knees. Tip: Keep a straight back and legs throughout the movement. This will be your starting position.",
+      "Inhale as you lean forwards from your waist (remember to keep a straight back), keeping the bar close to your thighs as you go. Keep lowering the bar towards your feet until you feel a stretch in your hamstrings.",
+      "After a brief pause bring your torso upright again by pushing your hips forward. Tip: Remember, this whole movement is performed with 'stiff' legs (slight bend at the knee, but no more) and a straight back throughout. Exhale as you perform this part of the movement.",
+      "Repeat for the recommended amount of repetitions.",
+      "Caution: This is not an exercise for those with back issues. Avoid jerking motions as this could cause serious injury.",
+      "Variations: Dumbbell Stiff Legged Dead lifts or Barbell Stiff-Legged Deadlifts."
+    ],
+    "legacyEquipmentRaw": "machine",
+    "legacyPrimaryMuscles": [
+      "hamstrings"
+    ],
+    "legacySecondaryMuscles": [
+      "glutes",
+      "lower back"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "lower_back"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "machine"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/smith_machine_stiff_leg_deadlifts/default/smith_machine_stiff_leg_deadlifts.mp4"
+  }
+]

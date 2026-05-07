@@ -1,0 +1,1169 @@
+[
+  {
+    "id": "mypthub_100",
+    "name": "Lying Dumbbell Tricep Extension",
+    "instructions": [
+      "Grab two dumbbells and lay flat on a bench with the dumbbells pressed straight up towards the ceiling. Adopt a pronated grip (palms facing away from you), with the ends of the dumbbells gently touching one another and your elbows tucked in. This will be your starting position.",
+      "Inhale as you descend the dumbbells down towards your forehead. Be sure to keep your upper arms stationary and your elbows tucked in. When you get to within an inch of your forehead pause for a second.",
+      "Then whilst exhaling, use your triceps to return the dumbbells along the same path to the starting position. Your arms should be fully extended once again and pointing towards the ceiling.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: EZ-Bar Skullcrushers or Tricep Rope Extensions."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "triceps"
+    ],
+    "legacySecondaryMuscles": [
+      "chest",
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [
+        "chest",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/lying_dumbbell_tricep_extension/default/lying_dumbbell_tricep_extension.mp4"
+  },
+  {
+    "id": "mypthub_1004511",
+    "name": "Heel Elevated Barbell Back Squat",
+    "instructions": [
+      "Place a foam block or two weight plates on the ground, put your heels on the edge of the wedge/plates to create a shoulder width stance.",
+      "Once in the correct place, step under the bar and unrack the weight so the barbell is rested on your back.",
+      "Take a step back so that your heels are on the edge of the wedge/plates. This will be your starting position.",
+      "As you inhale, slowly squat down until your upper and lower legs make a 90-degree angle.",
+      "As you exhale, press through your heels to drive the bar up, engaging your quadriceps and glutes in order to do so.",
+      "Repeat for the recommended amount of repetitions."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "glutes"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "movementPattern": [
+        "squat"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/heel_elevated_barbell_back_squat/default/heel_elevated_barbell_back_squat.mp4"
+  },
+  {
+    "id": "mypthub_1004704",
+    "name": "Heel Elevated Goblet Squat",
+    "instructions": [
+      "Place a foam block or two weight plates on the ground, put your heels on the edge of the wedge/plates to create a shoulder-width stance.",
+      "Once in the correct position, squat down to pick up the dumbbell, resting your palms on the inner surface to keep it sturdy.",
+      "Squat up, keeping a neutral posture. This will be your starting position.",
+      "As you inhale, slowly squat down until your upper and lower legs make a 90-degree angle.",
+      "As you exhale, press through your heels to drive up, engaging your quadriceps and glutes in order to do so.",
+      "Repeat for the recommended amount of repetitions."
+    ],
+    "legacyEquipmentRaw": "",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "glutes",
+      "calves",
+      "hamstrings",
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "calves",
+        "hamstrings",
+        "abs"
+      ],
+      "movementPattern": [
+        "squat"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/heel_elevated_goblet_squat/default/heel_elevated_goblet_squat.mp4"
+  },
+  {
+    "id": "mypthub_1006060",
+    "name": "Heel Elevated Dumbbell Squat",
+    "instructions": [
+      "Place a foam block or two weight plates on the ground, put your heels on the edge of the wedge/plates to create a shoulder width stance.",
+      "Once in the correct position, step onto the platform so that your heels are on the edge.",
+      "From here, squat down to grab your dumbbells. This will be your starting position.",
+      "As you inhale, slowly squat down until your upper and lower legs make a 90-degree angle.",
+      "As you exhale, press through your heels to drive up, engaging your quadriceps and glutes throughout the movement.",
+      "Repeat for the recommended amount of repetitions."
+    ],
+    "legacyEquipmentRaw": "",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "abs"
+      ],
+      "movementPattern": [
+        "squat"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/heel_elevated_dumbbell_squat/default/heel_elevated_dumbbell_squat.mp4"
+  },
+  {
+    "id": "mypthub_1006064",
+    "name": "Squat Hold",
+    "instructions": [
+      "From standing, place your feet shoulder width apart with your toes pointing slightly outwards. This will be your starting position",
+      "As you inhale, slowly squat down until your upper and lower legs make a 90-degree angle and hold your position.",
+      "Hold this position for the recommended amount of time.",
+      "When it's time to return to standing, exhale and drive through your heels to stand up."
+    ],
+    "legacyEquipmentRaw": "",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "abs"
+      ],
+      "movementPattern": [
+        "squat"
+      ],
+      "forceType": [
+        "isometric"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/squat_hold/default/squat_hold.mp4"
+  },
+  {
+    "id": "mypthub_1006139",
+    "name": "Landmine Squat",
+    "instructions": [
+      "Place a barbell in a landmine attachment and load the free end of the bar with weight plates.",
+      "If your gym doesn't have a landmine attachment you can wedge the end of the barbell in a corner and place a heavy dumbbell over the bar to help keep it in place.",
+      "Stand with your feet shoulder-width apart, holding the barbell with both hands at chest height",
+      "Keeping the bar at chest height, slowly squat down until your upper and lower legs make a 90-degree angle.",
+      "As you exhale, press through your heels to drive up, keeping your quadriceps and glutes engaged throughout the rep.",
+      "Repeat for the recommended amount of repetitions."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "abdominals",
+      "glutes"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "abs",
+        "glutes"
+      ],
+      "movementPattern": [
+        "squat"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/landmine_squat/default/landmine_squat.mp4"
+  },
+  {
+    "id": "mypthub_1006147",
+    "name": "Landmine Shoulder Press",
+    "instructions": [
+      "Place a barbell in a landmine attachment and load the free end of the bar with weight plates.",
+      "If your gym doesn't have a landmine attachment you can wedge the end of the barbell in a corner and place a heavy dumbbell over the bar to help keep it in place.",
+      "Stand with your feet shoulder-width apart, holding the barbell with one hand at shoulder height",
+      "Keeping the bar at shoulder height, press the bar up and forwards so that your arm is extended with a slight bend in the elbow at the top of the rep.",
+      "In a controller manner, bring the barbell back down to shoulder height to complete the rep.",
+      "Repeat for the recommended amount of repetitions."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "shoulders"
+    ],
+    "legacySecondaryMuscles": [
+      "triceps",
+      "lats",
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "triceps",
+        "lats",
+        "abs"
+      ],
+      "movementPattern": [
+        "vertical_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/landmine_shoulder_press/default/landmine_shoulder_press.mp4"
+  },
+  {
+    "id": "mypthub_1006154",
+    "name": "Landmine Deadlift",
+    "instructions": [
+      "Place a barbell in a landmine attachment and load the free end of the bar with weight plates.",
+      "If your gym doesn't have a landmine attachment you can wedge the end of the barbell in a corner and place a heavy dumbbell over the bar to help keep it in place.",
+      "Stand with your feet slightly wider than shoulder-width apart, holding the end of the barbell with both hands supinated.",
+      "Keeping your arms extended below you and back straight, keep your core and lats braced and stand up from the lengthened position.",
+      "In a controller manner, bring the bar back down keeping your posture tight and chest up.",
+      "Repeat for the recommended amount of repetitions."
+    ],
+    "legacyEquipmentRaw": "",
+    "legacyPrimaryMuscles": [
+      "lower back"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "quadriceps",
+      "abdominals",
+      "traps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "lower_back"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "quadriceps",
+        "abs",
+        "traps"
+      ],
+      "movementPattern": [
+        "hinge"
+      ],
+      "forceType": [
+        "pull"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/landmine_deadlift/default/landmine_deadlift.mp4"
+  },
+  {
+    "id": "mypthub_1006158",
+    "name": "Single Leg Romanian Deadlift",
+    "instructions": [
+      "Hold a dumbbell by your thigh, keeping your other arm free.",
+      "Lift one leg off the ground and move the foot behind you whilst leaning forwards slightly.",
+      "Keeping your back straight, hinge at the hips to lean further forward, raising your back leg behind you to maintain balance.",
+      "Lower until you feel the stretch in your standing leg's hamstring, then return to the starting position."
+    ],
+    "legacyEquipmentRaw": "",
+    "legacyPrimaryMuscles": [
+      "hamstrings"
+    ],
+    "legacySecondaryMuscles": [
+      "glutes",
+      "calves",
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "calves",
+        "abs"
+      ],
+      "movementPattern": [
+        "hinge"
+      ],
+      "forceType": [
+        "pull"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "unilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/single_leg_romanian_deadlift/default/single_leg_romanian_deadlift.mp4"
+  },
+  {
+    "id": "mypthub_1006162",
+    "name": "Hip Dominant Lunges",
+    "instructions": [
+      "Start in a split stance keeping your feet roughly hip-width apart.",
+      "Lunge down keeping your weight above your leading leg.",
+      "As you stand back up from the lunge, aim to shift your weight back more towards your hips, creating a more vertical shin angle and forward lean.",
+      "Repeat for the recommended amount of repetitions."
+    ],
+    "legacyEquipmentRaw": "",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "glutes",
+      "calves"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "glutes",
+        "calves"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/hip_dominant_lunges/default/hip_dominant_lunges.mp4"
+  },
+  {
+    "id": "mypthub_1006166",
+    "name": "Quad Dominant Lunges",
+    "instructions": [
+      "1) Stand with your feet hip-width apart.",
+      "2) Take a small step forward with one foot, bending both knees to lower your body.",
+      "3) As you lunge, focus on driving your front knee forward over the toes.",
+      "4) Keep your torso upright and core engaged.",
+      "5) As you stand up think about driving the knee back.",
+      "6) Repeat for prescribed amount of reps on one side.",
+      "7) Repeat on the other leg.",
+      "This exercise targets your quads and improves lower body strength."
+    ],
+    "legacyEquipmentRaw": "",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "glutes"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "glutes"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/quad_dominant_lunges/default/quad_dominant_lunges.mp4"
+  },
+  {
+    "id": "mypthub_1006177",
+    "name": "Elevated Glute Bridge",
+    "instructions": [
+      "1) Sit on the ground with your knees bent and feet flat. Lean back, resting your upper back against a sturdy surface.",
+      "2) Drive through your heels to lift your hips towards the ceiling, squeezing your glutes at the top.",
+      "3) Pause briefly, then lower your hips back down.",
+      "4) Repeat for the desired number of repetitions.",
+      "5) Focus on squeezing your glutes at the top of the movement."
+    ],
+    "legacyEquipmentRaw": "",
+    "legacyPrimaryMuscles": [
+      "glutes"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "abs"
+      ],
+      "movementPattern": [
+        "hinge"
+      ],
+      "forceType": [
+        "pull"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/elevated_glute_bridge/default/elevated_glute_bridge.mp4"
+  },
+  {
+    "id": "mypthub_1006178",
+    "name": "Donkey Kicks",
+    "instructions": [
+      "1) Adopt an all fours position on the floor with hands directly under the shoulders and knees under the hips.",
+      "3) Brace abs and keep hips as stable as possible.",
+      "4) With one leg, flex the foot and push the heel towards the ceiling until you get full glute contraction without moving the hips.",
+      "5) Come back down until the knee is nearly back on the floor and repeat for the prescribed repetitions.",
+      "6) Complete on the other leg."
+    ],
+    "legacyEquipmentRaw": "",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "abs"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/donkey_kicks/default/donkey_kicks.mp4"
+  },
+  {
+    "id": "mypthub_1006179",
+    "name": "Duck Walks",
+    "instructions": [
+      "1) Stand with your feet hip-width apart and toes pointed slightly outwards.",
+      "2) Lower into a squat position, keeping your chest up and knees tracking over your toes.",
+      "3) Take small steps forward, staying low to the ground and maintaining the squat position.",
+      "4) Continue walking forward for a set distance or number of steps.",
+      "5) Focus on keeping your core engaged and your weight distributed evenly on both feet.",
+      "6) Reverse the movement to walk backward if desired.",
+      "Duck walks target your quads, glutes, and hip flexors while improving lower body strength and mobility."
+    ],
+    "legacyEquipmentRaw": "",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "calves",
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "calves",
+        "abs"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/duck_walks/default/duck_walks.mp4"
+  },
+  {
+    "id": "mypthub_1006180",
+    "name": "Crab Walks",
+    "instructions": [
+      "1) Start in a seated position with your knees bent and feet flat on the floor, hip-width apart. Place your hands under shoulders.",
+      "2) Lift your hips off the ground, forming a tabletop position with your torso and thighs parallel to the floor.",
+      "3) Begin to walk forwards by taking small steps with your hands and feet, moving in one direction.",
+      "4) Maintain tension in your core and keep your hips lifted throughout the movement.",
+      "5) Continue walking for the desired distance or number of steps.",
+      "6) Reverse direction and walk back to your starting point.",
+      "7) Focus on controlled movements and keep your core engaged to target your glutes and hip muscles."
+    ],
+    "legacyEquipmentRaw": "",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [
+      "triceps",
+      "lats",
+      "hamstrings",
+      "glutes"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "triceps",
+        "lats",
+        "hamstrings",
+        "glutes"
+      ],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/crab_walks/default/crab_walks.mp4"
+  },
+  {
+    "id": "mypthub_1006186",
+    "name": "Bodyweight Reverse Lunge",
+    "instructions": [
+      "1) Stand with your feet hip-width apart and hands on your hips.",
+      "2) Step back with one foot and lower your body until both knees are bent at a 90-degree angle.",
+      "3) Pause briefly, then push through your front heel to return to the starting position.",
+      "4) Switch legs and repeat.",
+      "5) Focus on keeping your torso upright and engaging your core for stability. This exercise targets your legs and glutes."
+    ],
+    "legacyEquipmentRaw": "",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "glutes",
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "glutes",
+        "abs"
+      ],
+      "movementPattern": [
+        "squat"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bodyweight_reverse_lunge/default/bodyweight_reverse_lunge.mp4"
+  },
+  {
+    "id": "mypthub_1006188",
+    "name": "Alternating Reverse Jump Lunges",
+    "instructions": [
+      "1) Stand with your feet hip-width apart.",
+      "2) Step back with one leg into a reverse lunge, lowering your body until your front thigh is parallel to the ground.",
+      "3) Push through your front heel and jump immediately switching legs, performing a reverse lunge on the other side.",
+      "4) Continue alternating legs with each repetition.",
+      "5) Keep your chest up and core engaged throughout the movement.",
+      "This exercise targets your legs, glutes, and core while also improving balance and coordination."
+    ],
+    "legacyEquipmentRaw": "",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "abdominals",
+      "glutes",
+      "calves"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "abs",
+        "glutes",
+        "calves"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/alternating_reverse_jump_lunges/default/alternating_reverse_jump_lunges.mp4"
+  },
+  {
+    "id": "mypthub_1006189",
+    "name": "Dumbbell Hip Thrust",
+    "instructions": [
+      "1) Sit on the ground with your upper back against a bench and a dumbbell across your hips.",
+      "2) Hold the dumbbell securely and plant your feet flat on the floor, hip-width apart.",
+      "3) Press through your heels to lift your hips up until your body forms a straight line from your knees to your shoulders.",
+      "4) Pause briefly at the top, then lower your hips back down.",
+      "5) Repeat for the desired number of repetitions.",
+      "6) Focus on squeezing your glutes at the top of the movement."
+    ],
+    "legacyEquipmentRaw": "",
+    "legacyPrimaryMuscles": [
+      "glutes"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "calves",
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "calves",
+        "abs"
+      ],
+      "movementPattern": [
+        "hinge"
+      ],
+      "forceType": [
+        "pull"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_hip_thrust/default/dumbbell_hip_thrust.mp4"
+  },
+  {
+    "id": "mypthub_1006192",
+    "name": "Plate Bicep Curl",
+    "instructions": [
+      "1) Stand with feet shoulder-width apart, holding a weight plate with both hands, palms facing in.",
+      "2) Keep elbows close to your sides, curl the plate towards your shoulders.",
+      "3) Pause briefly at the top, then slowly lower the plate back down.",
+      "4) Repeat for desired reps.",
+      "5) Focus on controlled movements and engage your biceps throughout. This exercise targets your biceps and improves arm strength."
+    ],
+    "legacyEquipmentRaw": "weight plate",
+    "legacyPrimaryMuscles": [
+      "biceps"
+    ],
+    "legacySecondaryMuscles": [
+      "forearms",
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearm_flexors",
+        "forearm_extensors",
+        "abs"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/plate_bicep_curl/default/plate_bicep_curl.mp4"
+  },
+  {
+    "id": "mypthub_1006194",
+    "name": "Russian Twist with Medicine Ball",
+    "instructions": [
+      "1) Sit on the floor with your knees bent, holding a medicine ball with both hands close to your chest.",
+      "2) Lean back slightly and lift your feet off the ground, balancing on your sit bones.",
+      "3) Twist your torso to one side, lowering the medicine ball towards the floor beside your hip.",
+      "4) Return to the centre and twist to the opposite side, alternating sides for each repetition.",
+      "5) Focus on controlled movements keeping the chin off the chest and engage your core throughout.",
+      "This exercise targets your obliques and improves core strength and rotational stability."
+    ],
+    "legacyEquipmentRaw": "medicine ball",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "obliques"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "obliques"
+      ],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "medicine_ball"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/russian_twist_with_medicine_ball/default/russian_twist_with_medicine_ball.mp4"
+  },
+  {
+    "id": "mypthub_1006196",
+    "name": "Russian Twist with Dumbbell",
+    "instructions": [
+      "1) Sit on the floor with your knees bent, holding a dumbbell with both hands close to your chest.",
+      "2) Lean back slightly and lift your feet off the ground, balancing on your sit bones.",
+      "3) Twist your torso to one side, lowering the dumbbell towards the floor beside your hip.",
+      "4) Return to the centre and twist to the opposite side, alternating sides for each repetition.",
+      "5) Focus on controlled movements keeping the chin off the chest and engage your core throughout. This exercise targets your obliques and improves core strength and rotational stability."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [
+      "obliques"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [
+        "obliques"
+      ],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/russian_twist_with_dumbbell/default/russian_twist_with_dumbbell.mp4"
+  },
+  {
+    "id": "mypthub_1025",
+    "name": "Chest Dips",
+    "instructions": [
+      "Set the bars of a dip machine to their 'wide' setting and take a hold of them. Once you are ready, take your feet off the foot plates so that your arms are weight baring. Bent your knees behind you so they are at a 90 degree angle. Keep your elbows extended at this point and gently lean your torso forward by 20-30 degrees. This will be your starting position. Tip: Keep a straight back throughout.",
+      "To initiate the movement, inhale, bend your elbows and descend your torso towards the floor until your elbows are at a 90 degree angle.",
+      "After a brief pause, exhale and return your torso back along the same path into its starting position by pushing through your chest and triceps.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Smith Machine Bench Press or Machine Bench Press."
+    ],
+    "legacyEquipmentRaw": "other",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/chest_dips/default/chest_dips.mp4"
+  },
+  {
+    "id": "mypthub_1027",
+    "name": "Chest Supported Rows",
+    "instructions": [
+      "Load up the T-bar Row Machine with the desired weight and adjust the leg height so that your upper chest is at the top of the pad. Tip: In some machines all you can do is stand on the appropriate step that allows you to be at a height that has the upper chest at the top of the pad.",
+      "Lay face down on the pad and grab the handles. You can either use a palms down, palms up, or palms in position depending on what part of your back you want to emphasize.",
+      "Lift the bar off the rack and extend your arms in front of you.  This will be your starting position.",
+      "As you exhale slowly pull the weight up and squeeze your back at the top of the movement. Tip: Keep the upper arms as close to the torso as possible throughout the movement in order to better engage the back muscles.  Also, do not lift your body off of the pad at any time and refrain from using the biceps to lift the weight.",
+      "After a second contraction at the top of the movement, as you inhale, slowly go back down to the starting position.",
+      "Repeat for the recommended amount of repetitions."
+    ],
+    "legacyEquipmentRaw": "machine",
+    "legacyPrimaryMuscles": [
+      "middle back"
+    ],
+    "legacySecondaryMuscles": [
+      "biceps",
+      "lats"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "rhomboids",
+        "mid_traps"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "lats"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "machine"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/chest_supported_rows/default/chest_supported_rows.mp4"
+  },
+  {
+    "id": "mypthub_1028",
+    "name": "Tricep Dips",
+    "instructions": [
+      "Set the bars of a dip machine to their 'narrow' setting and take a hold of them. Once you are ready, take your feet off the foot plates so that your arms are weight baring. Bent your knees behind you so they are at a 90 degree angle. Keep your elbows extended at this point with your elbows close to your torso. This will be your starting position. Tip: Keep your torso as up right as possible with a straight back throughout.",
+      "To initiate the movement, inhale, bend your elbows and descend your torso towards the floor until your elbows are at a 90 degree angle.",
+      "After a brief pause, exhale and return your torso back along the same path into its starting position by pushing through your triceps. Tip: Keep your elbows tucked in throughout the movement.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Bench Dips or Cable Skull Crushers."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "triceps"
+    ],
+    "legacySecondaryMuscles": [
+      "chest",
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [
+        "chest",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/tricep_dips/default/tricep_dips.mp4"
+  },
+  {
+    "id": "mypthub_1032",
+    "name": "Leverage Lat Pulldowns",
+    "instructions": [
+      "Load an appropriate weight onto the pins and adjust the seat height so that you can just reach the handles above you. Adjust the knee pad to help keep you down. Grasp the handles with a pronated grip. This will be your starting position.",
+      "Pull the handles towards your torso, retracting your shoulder blades as you flex the elbow.",
+      "Pause at the bottom of the motion, and then slowly return the handles to the starting position.",
+      "For multiple repetitions, avoid completely returning the weight to the stops to keep tension on the muscles being worked."
+    ],
+    "legacyEquipmentRaw": "machine",
+    "legacyPrimaryMuscles": [
+      "middle back"
+    ],
+    "legacySecondaryMuscles": [
+      "lats"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "rhomboids",
+        "mid_traps"
+      ],
+      "secondaryMuscles": [
+        "lats"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "machine"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/leverage_lat_pulldowns/default/leverage_lat_pulldowns.mp4"
+  }
+]

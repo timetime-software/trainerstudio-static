@@ -1,0 +1,1161 @@
+[
+  {
+    "id": "mypthub_26506",
+    "name": "Facepulls",
+    "instructions": [
+      "1) Stand facing a cable machine with a rope attachment set up at shoulder height.",
+      "2) Grab the ends of the rope with an overhand grip.",
+      "3) Step back slightly and position your feet shoulder-width apart, knees slightly bent.",
+      "4) Pull the rope towards your face, keeping elbows up high and spreading it apart as you pull.",
+      "5)  Squeeze your shoulder blades together.",
+      "6) Pause briefly at the peak contraction, then slowly return to the starting position.",
+      "7) Keep your core engaged and maintain a tall posture throughout the movement.",
+      "8) Repeat for the desired number of repetitions.",
+      "This exercise targets your rear deltoids and upper back muscles."
+    ],
+    "legacyEquipmentRaw": "cable",
+    "legacyPrimaryMuscles": [
+      "shoulders"
+    ],
+    "legacySecondaryMuscles": [
+      "biceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "biceps"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "cable"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/facepulls/default/facepulls.mp4"
+  },
+  {
+    "id": "mypthub_27",
+    "name": "Dumbbell Concentration Curls",
+    "instructions": [
+      "Stand on the reverse side of an incline bench as if you were spotting someone. Grab a dumbbell in one hand and rest your elbow on the headrest of the bench. Have a &lsquo;palms up&rsquo; grip and position yourself so that your arm is running down the length of the bench. Position your non-lifting hand on the incline bench for stability. Your chest should be pressed up against the top part of the incline bench and you should adopt a wide stance with your feet. This will be your starting position.",
+      "While holding the upper arm stationary, contract the bicep and curl the dumbbell upward as you exhale. Only your forearm should move. Continue the movement until your bicep is fully contracted and the dumbbell is at shoulder level. Hold this position for a second and as you inhale, slowly reverse the movement until you are in the starting position once again.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variation: Low Cable Bicep Curl."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "biceps"
+    ],
+    "legacySecondaryMuscles": [
+      "forearms"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearm_flexors",
+        "forearm_extensors"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_concentration_curls/default/dumbbell_concentration_curls.mp4"
+  },
+  {
+    "id": "mypthub_271",
+    "name": "Decline Barbell Bench Press",
+    "instructions": [
+      "Lay on a decline bench with a barbell in the rack above you. Take a medium grip (a grip which creates a 90 degree angle at your elbows half way through the movement) and lift the bar off the rack so that it is directly above your chest. Keep your elbows locked at this point for safety. This will be your starting position.",
+      "Whilst inhaling, start to lower the bar by bending at your elbows until the bar gently touches your lower chest.",
+      "After a brief pause, exhale and press the bar back into the starting position by contracting your pectoral muscles.",
+      "Repeat the movement for the recommended amount of repetitions.",
+      "When you are done, place the bar back in the rack.",
+      "Caution: You should always have a spotter when attempting this movement. If a spotter is not available you should be conservative with the weight you are using.",
+      "Variations: Smith Machine Decline Press or Decline Dumbbell Chest Press."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/decline_barbell_bench_press/default/decline_barbell_bench_press.mp4"
+  },
+  {
+    "id": "mypthub_28",
+    "name": "Cross Body Hammer Curl",
+    "instructions": [
+      "Grab a dumbbell in each hand and adopt a standing position with your elbows turned outwards and palms facing your thighs. This will be your starting position.",
+      "Whilst maintaining a stationary upper arm, bend at your right elbow to bring the dumbbell up and across your body towards your left shoulder. Exhale as you do so and contract your bicep to create the movement.",
+      "After a brief pause, inhale and return the dumbbell to the starting position along the same path.",
+      "Repeat the movement with your left side.",
+      "Continue alternating for the recommended amount of repetitions.",
+      "Variations: Alternate Hammer Curls or Cable Curls."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "biceps"
+    ],
+    "legacySecondaryMuscles": [
+      "forearms"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearm_flexors",
+        "forearm_extensors"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/cross_body_hammer_curl/default/cross_body_hammer_curl.mp4"
+  },
+  {
+    "id": "mypthub_281",
+    "name": "Narrow Grip EZ Bar Skullcrushers",
+    "instructions": [
+      "Grab an EZ bar (overhand grip) and lay flat on a bench with the bar pressed straight up towards the ceiling. Keep your elbows as close together as you can to initiate maximum tricep activity. This will be your starting position.",
+      "Inhale as you descend the bar towards your forehead. Be sure to keep your upper arms stationary and your elbows tucked in. When you get to within an inch of your forehead pause for a second.",
+      "Then whilst exhaling, use your triceps to return the bar to the starting position. Your arms should be fully extended once again and pointing towards the ceiling.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Narrow Grip Barbell Bench Press or Tricep Rope Extensions."
+    ],
+    "legacyEquipmentRaw": "e-z curl bar",
+    "legacyPrimaryMuscles": [
+      "triceps"
+    ],
+    "legacySecondaryMuscles": [
+      "forearms"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [
+        "forearm_flexors",
+        "forearm_extensors"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "ez_bar"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/narrow_grip_ez_bar_skullcrushers/default/narrow_grip_ez_bar_skullcrushers.mp4"
+  },
+  {
+    "id": "mypthub_284",
+    "name": "Barbell Floor Press",
+    "instructions": [
+      "Adjust the j-hooks so they are at the appropriate height to rack the bar. Begin lying on the floor with your head near the end of a power rack. Keeping your shoulder blades pulled together; pull the bar off of the hooks.",
+      "Lower the bar towards the bottom of your chest or upper stomach, squeezing the bar and attempting to pull it apart as you do so. Ensure that you tuck your elbows throughout the movement. Lower the bar until your upper arm contacts the ground and pause, preventing any slamming or bouncing of the weight.",
+      "Press the bar back up as fast as you can, keeping the bar, your wrists, and elbows in line as you do so."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "triceps"
+    ],
+    "legacySecondaryMuscles": [
+      "chest",
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [
+        "chest",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/barbell_floor_press/default/barbell_floor_press.mp4"
+  },
+  {
+    "id": "mypthub_289",
+    "name": "Barbell Front Squats Cross Grip",
+    "instructions": [
+      "Set the height of the pins in a squat rack so that the barbell can lay across your shoulders comfortably. Next, set the safety bars at the desired height (typically waist high) so that if you fail on a rep, they will take the weight and you will be safe. Load up the barbell with the correct amount of weight on it and you are now ready to go.",
+      "Step underneath the bar and take the weight across the front of your shoulders. You can either relax your wrists and place then under the bar to secure its position or you can cross your arms over and lift your elbows, which ever is most comfortable for yourself. Maintain a straight back and a small bend at your knees when unracking the bar. Press through your legs to lift the bar up and take a small step backwards into the middle of the rack.",
+      "Adopt a shoulder width stance with your toes slightly pointing outward. Maintain a straight back throughout the movement and keep your head up. This will be your starting position.",
+      "Inhale and begin to descend by bending at your knees and hips. Your weight should be put predominantly through your heels as you sit back into the movement until your thighs are either parallel or just past to the floor.",
+      "After a brief pause, exhale and return the bar to the starting position along the same path, push through your heels with the force being driven through your quads to do so. Stand to attention with your legs fully extended, back straight and shoulders relaxed.",
+      "Repeat for the recommended amount of repetitions.",
+      "Caution: This is a very complex movement and will require a spotter. If you do not have a spotter, be cautious with your weights. If you suffer from back issues, this exercise may not be suitable.",
+      "Variations: Barbell Squats or Kettlebell Squats."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "calves",
+      "glutes",
+      "hamstrings"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "calves",
+        "glutes",
+        "hamstrings"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/barbell_front_squats_cross_grip/default/barbell_front_squats_cross_grip.mp4"
+  },
+  {
+    "id": "mypthub_291",
+    "name": "Barbell Front Squats Clean Grip",
+    "instructions": [
+      "To begin, first set the bar in a rack slightly below shoulder level.  Rest the bar on top of the deltoids, pushing into the clavicles,  and lightly touching the throat. Your hands should be in a clean grip, touching the bar only with your fingers to help keep it in position.",
+      "Lift the bar off the rack by first pushing with your legs and at the same time straightening your torso.  Step away from the rack and position your legs using a shoulder width medium stance with the toes slightly pointed out.  Keep your head and elbows up at all times. This will be your starting position.",
+      "Bend at the knees, sitting down between your legs.  Continue down until your hamstrings are on your calves. Keep your knees aligned with your feet by consciously using your abductors to push your knees out as you squat.",
+      "Begin to raise the bar as you exhale by pushing the floor mainly with the heel or middle of your foot as you straighten the legs again and return to the starting position."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "abdominals",
+      "glutes",
+      "hamstrings"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "abs",
+        "glutes",
+        "hamstrings"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/barbell_front_squats_clean_grip/default/barbell_front_squats_clean_grip.mp4"
+  },
+  {
+    "id": "mypthub_293",
+    "name": "Barbell Good Mornings",
+    "instructions": [
+      "Set the height of the pins in a squat rack so that the barbell can lay across your shoulders comfortably. Next, set the safety bars at the desired height (typically waist high) so that if you fail on a rep, they will take the weight and you will be safe. Load up the barbell with the correct amount of weight on it and you are now ready to go.",
+      "Step underneath the bar and take the weight across your shoulders. Maintain a straight back and a small bend at your knees when unracking the bar. Press through your legs to lift the bar up and take a small step backwards into the middle of the rack.",
+      "Adopt a shoulder width stance, maintain a straight back throughout and keep your head up. This will be your starting position.",
+      "Inhale and begin to lean forward from your waist. Push your hips and glutes backward as you do so until your torso is just off being parallel to the floor. Your hamstrings should be under tension at this point.",
+      "After a brief pause, exhale and return the barbell to the starting position along the same path, thrusting your hips forward, squeezing your glutes as you do so. Stand to attention with your legs fully extended, back straight and shoulders relaxed. (Remember to keep your back straight throughout the whole movement).",
+      "Repeat for the recommended amount of repetitions.",
+      "Caution: If you suffer from any back injuries, this may not be the most suitable exercise for you.",
+      "Variations: Barbell Hip Thrusts or Stiff Leg Dumbbell Deadlifts."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "hamstrings"
+    ],
+    "legacySecondaryMuscles": [
+      "abdominals",
+      "glutes",
+      "lower back"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "abs",
+        "glutes",
+        "lower_back"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/barbell_good_mornings/default/barbell_good_mornings.mp4"
+  },
+  {
+    "id": "mypthub_3",
+    "name": "Alternating Deltoid Raise",
+    "instructions": [
+      "Grab a dumbbell in each hand and adopt an upright, standing position. Have your arms at full extension, relaxed by your sides.",
+      "Next, whilst maintaining a slight bend at your elbows, exhale and lift the dumbbells out in front of you until they are at shoulder height.",
+      "After a brief pause, inhale and return the weights to your side.",
+      "Again, exhale but this time lift the dumbbells out laterally to your sides, pause when you get to shoulder level.",
+      "After a brief pause, inhale and return the weights to your side.",
+      "Continue to alternate in this fashion until you have completed the prescribed amount of repetitions.",
+      "Variations: Seated Arnold Press or Bradford:Rocky Presses."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "shoulders"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/alternating_deltoid_raise/default/alternating_deltoid_raise.mp4"
+  },
+  {
+    "id": "mypthub_30",
+    "name": "Decline Dumbbell Chest Press",
+    "instructions": [
+      "Grab a dumbbell in each hand and secure your legs on a decline bench. Once you have done this, lay down on the decline bench bringing the dumbbells to the side of your chest at shoulders width. Have your palms facing away from you. This will be your starting position.",
+      "Whilst breathing out, press the dumbbells towards the ceiling using your pectoral muscles until your elbows are fully extended. Tip: Throughout the motion, the forearms should always be perpendicular to the floor.",
+      "Squeeze your chest at the top of the movement for a second and then descend the dumbbells back into their starting position, whilst inhaling.",
+      "Repeat the movement for the recommended amount of repetitions.",
+      "Caution: When you have completed your set, have a spotter help you with your dumbbells.",
+      "Variations: Decline Barbell Press."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/decline_dumbbell_chest_press/default/decline_dumbbell_chest_press.mp4"
+  },
+  {
+    "id": "mypthub_310",
+    "name": "Incline Barbell Bench Press",
+    "instructions": [
+      "Lay on an incline bench (between 30-45%) with a barbell in the rack above you. Take a medium grip (a grip which creates a 90 degree angle at your elbows half way through the movement) and lift the bar off the rack so that it is directly above your chest. Keep your elbows locked at this point for safety. This will be your starting position.",
+      "Whilst inhaling, start to lower the bar by bending at your elbows until the bar gently touches the top of your chest.",
+      "After a brief pause, exhale and press the bar back into the starting position by contracting your pectoral muscles.",
+      "Repeat the movement for the recommended amount of repetitions.",
+      "When you are done, place the bar back in the rack.",
+      "Caution: You should always have a spotter when attempting this movement. If a spotter is not available you should be conservative with the weight you are using.",
+      "Variations: Smith Machine Incline Bench Press or Incline Dumbbell Chest Press."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/incline_barbell_bench_press/default/incline_barbell_bench_press.mp4"
+  },
+  {
+    "id": "mypthub_312",
+    "name": "Incline Bicep Curls",
+    "instructions": [
+      "Hold a dumbbell in each hand and lie back on an incline bench.",
+      "The dumbbells should be at arm's length hanging at your sides and your palms should be facing out.  This will be your starting position.",
+      "Now as you exhale curl the weight outward and up while keeping your forearms in line with your side deltoids. Continue the curl until the dumbbells are at shoulder height and to the sides of your deltoids. Tip: The end of the movement should look similar to a double biceps pose.",
+      "After a second contraction at the top of the movement, start to inhale and slowly lower the weights back to the starting position using the same path used to bring them up.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: You can also perform this exercise with cables or exercise bands."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "biceps"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/incline_bicep_curls/default/incline_bicep_curls.mp4"
+  },
+  {
+    "id": "mypthub_316",
+    "name": "Narrow Grip Bench Press",
+    "instructions": [
+      "Lay flat on a bench with a barbell in the rack above you. Take a close grip (6-12 inches between your index fingers) and lift the bar off the rack so that it is directly above your chest. Keep your elbows locked at this point for safety. This will be your starting position.",
+      "Whilst inhaling, start to lower the bar by bending at your elbows until the bar gently touches the middle of your chest. Your elbows should remain close together and should brush along the sides of your torso as you go.",
+      "After a brief pause, exhale and press the bar back along the same path into the starting position by contracting your triceps and pectoral muscles.",
+      "Repeat the movement for the recommended amount of repetitions.",
+      "When you are done, place the bar back in the rack.",
+      "Caution: You should always have a spotter when attempting this movement. If a spotter is not available you should be conservative with the weight you are using.",
+      "Variation: Smith Machine Close Grip Bench Press."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "triceps"
+    ],
+    "legacySecondaryMuscles": [
+      "chest",
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [
+        "chest",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/narrow_grip_bench_press/default/narrow_grip_bench_press.mp4"
+  },
+  {
+    "id": "mypthub_317483",
+    "name": "Battle Rope Alternating Waves (Single Arm)",
+    "instructions": [
+      "For this exercise you will need a heavy rope anchored at its center 15-20 feet away. Standing in front of the rope, take an end one hand with your arm extended at your side. This will be your starting position.",
+      "Initiate the movement by rapidly raising one arm to shoulder level as quickly as you can.",
+      "As you let that arm drop to the starting position, raise the opposite side.",
+      "Continue alternating your left and right arms, whipping the ropes up and down as fast as you can."
+    ],
+    "legacyEquipmentRaw": "other",
+    "legacyPrimaryMuscles": [
+      "shoulders"
+    ],
+    "legacySecondaryMuscles": [
+      "chest",
+      "forearms"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "chest",
+        "forearm_flexors",
+        "forearm_extensors"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/battle_rope_alternating_waves_single_arm/default/battle_rope_alternating_waves_single_arm.mp4"
+  },
+  {
+    "id": "mypthub_330",
+    "name": "Barbell Overhead squats",
+    "instructions": [
+      "Set the pins of a squat rack at shoulder height. Place your barbell on those pins and load up with the required weight. Now take a wider than shoulder width grip and lift the bar off the rack keeping it close to your body. Next, press the bar above your head and fully extend your arms. Lock out your elbows and take a small step backwards. Adopt a shoulders width stance with your toes slightly pointing outward. Maintain a straight back throughout this movement. This will be your starting position.",
+      "Inhale and begin to descend by bending at your knees and hips. Your weight should be put predominantly through your heels as you sit back into the movement until your thighs are either parallel or just past to the floor.",
+      "After a brief pause, exhale and return the bar to the starting position along the same path, push through your heels with the force being driven through your quads and glutes to do so. Stand to attention with your legs fully extended, back straight and arms perpendicular to the ground..",
+      "Repeat for the recommended amount of repetitions.",
+      "Caution: This is a very complex movement and will require a spotter. If you do not have a spotter, be cautious with your weights. If you suffer from back issues, this exercise may not be suitable.",
+      "Variations: Dumbbell Squats or Kettlebell Squats."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "abdominals",
+      "calves",
+      "glutes",
+      "hamstrings",
+      "lower back",
+      "shoulders",
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "abs",
+        "calves",
+        "glutes",
+        "hamstrings",
+        "lower_back",
+        "shoulders",
+        "triceps"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/barbell_overhead_squats/default/barbell_overhead_squats.mp4"
+  },
+  {
+    "id": "mypthub_346",
+    "name": "Rack Pulls",
+    "instructions": [
+      "Place a barbell on the safety bars within a squat rack. Make sure that the bars are set up at the desired height (below/above your knees or mid thigh) and adopt a deadlift position. So step up to the bar with your feet placed underneath your hips, a slight bend at your knees, hips pushed back, a slight arch in your lower back as you lean forward to grab the barbell with an overhand, shoulder width grip. This will be your starting position.",
+      "Keeping your head up, drive force through your heels and hips to lift the barbell. Exhale as you do so and use the muscles in your back to help achieve an upright standing position. Tip: Keep the bar close to your body and maintain a straight back throughout the movement. Once you are in this position, pull your shoulder blades together and push your chest out.",
+      "Next, inhale and reverse the movement, returning the barbell along the same path back into the starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variation: Barbell Deadlifts"
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "lower back"
+    ],
+    "legacySecondaryMuscles": [
+      "forearms",
+      "glutes",
+      "hamstrings",
+      "traps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "lower_back"
+      ],
+      "secondaryMuscles": [
+        "forearm_flexors",
+        "forearm_extensors",
+        "glutes",
+        "hamstrings",
+        "traps"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/rack_pulls/default/rack_pulls.mp4"
+  },
+  {
+    "id": "mypthub_348",
+    "name": "Barbell Bulgarian Split Squat",
+    "instructions": [
+      "Place a barbell on the back of your shoulders and position yourself so that one foot is flat on the floor and the other is behind you, at knee height supported by a bench (an exaggerated step's distance away). This will be your starting position.",
+      "From here, start to descend by bending at your knees (maintaining good posture) until you create a 90 degree angle at your front knee. As you descend you should be inhaling and ensuring that your front knee does not extend past your toes.",
+      "Pause for a brief moment at the bottom of the movement, before exhaling and driving up through your front heel and thigh, until you return to your starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Dumbbell Split Squats or TRX Split Squats."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "calves",
+      "glutes",
+      "hamstrings"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "calves",
+        "glutes",
+        "hamstrings"
+      ],
+      "movementPattern": [
+        "squat"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/barbell_bulgarian_split_squat/default/barbell_bulgarian_split_squat.mp4"
+  },
+  {
+    "id": "mypthub_35",
+    "name": "Flat Dumbbell Chest Press",
+    "instructions": [
+      "Grab a dumbbell in each hand and lay down on a bench, bringing the dumbbells beside your chest. Keep your elbows at a 90-degree angle and your forearms perpendicular to the floor. Once here, keep your palms facing away from you, exhale and press the dumbbells towards the ceiling.",
+      "Squeeze your pectoral muscles when your arms are at full extension. Once you have completed this, inhale and bring your arms back down beside your chest until your elbows are at 90-degrees once more.",
+      "Repeat the movement for the recommended amount of repetitions.",
+      "Caution: Always have a spotter with you to help you throughout the movement and to help unload the dumbbells after completion.",
+      "Variations: Neutral Grip Dumbbell Chest Press or Barbell Bench Press."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/flat_dumbbell_chest_press/default/flat_dumbbell_chest_press.mp4"
+  },
+  {
+    "id": "mypthub_368",
+    "name": "Skull Crushers (Behind The Head)",
+    "instructions": [
+      "Grab a barbell and lay flat on a bench with the bar pressed straight up towards the ceiling. Adopt a pronated (overhand) grip with your elbows tucked in. This will be your starting position.",
+      "Inhale as you descend the barbell down towards the back of your head. Be sure to keep your elbows tucked in and stretch your triceps as you go. When you get to within an inch of the bench pause for a second.",
+      "Then whilst exhaling, use your triceps to return the bar along the same path to the starting position. Your arms should be fully extended once again and pointing towards the ceiling.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Dumbbell Skull Crusher or Tricep Rope Extensions."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "triceps"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/skull_crushers_behind_the_head/default/skull_crushers_behind_the_head.mp4"
+  },
+  {
+    "id": "mypthub_37",
+    "name": "Standing Bicep Curls",
+    "instructions": [
+      "Grab a dumbbell in each hand, in a standing position, with your arms at full length, palms facing away from you. This will be your starting position.",
+      "Whilst exhaling, contract your biceps and bring the dumbbells up to shoulder height. Hold the contraction for a second as you squeeze your biceps. Tip: Only the forearms should move.",
+      "Inhale as you lower the dumbbells toward the starting position.",
+      "Continue for the recommended amount of repetitions.",
+      "Variations: Seated Rotating Bicep Curls or Standing Barbell Curls."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "biceps"
+    ],
+    "legacySecondaryMuscles": [
+      "forearms"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearm_flexors",
+        "forearm_extensors"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/standing_bicep_curls/default/standing_bicep_curls.mp4"
+  },
+  {
+    "id": "mypthub_387",
+    "name": "Standing Barbell Shoulder Press",
+    "instructions": [
+      "Grab a barbell and adopt a shoulder width, over hand grip. Lift the bar above your head so that it is directly above your shoulders. Keep your elbows locked at this point for safety. Maintain a straight back throughout this movement. This will be your starting position.",
+      "Whilst inhaling, start to lower the bar by bending at your elbows until the bar is below your chin.",
+      "After a brief pause, exhale and press the bar back into the starting position by contracting your deltoid muscles (shoulders).",
+      "Repeat for the recommended amount of repetitions.",
+      "Caution: Those with back problems, may find a seated version more comfortable.",
+      "Variations: Dumbbell Shoulder Press or Smith Machine Shoulder Press."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "shoulders"
+    ],
+    "legacySecondaryMuscles": [
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "triceps"
+      ],
+      "movementPattern": [
+        "vertical_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/standing_barbell_shoulder_press/default/standing_barbell_shoulder_press.mp4"
+  },
+  {
+    "id": "mypthub_40",
+    "name": "Dumbbell Curls",
+    "instructions": [
+      "Grab a dumbbell in each hand and adopt a shoulder width stance with your arms hanging perpendicular to the floor, by your sides.This will be your starting position.",
+      "To initiate the movement, exhale and curl the dumbbells both up and outward whilst rotating your palms to face the ceiling.",
+      "Continue on an upward motion until your biceps are optimally contracted.",
+      "After this, inhale and return the dumbbells along the same path back to their starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Standing Concentration Curls or Concentration Curls."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "biceps"
+    ],
+    "legacySecondaryMuscles": [
+      "forearms"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearm_flexors",
+        "forearm_extensors"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_curls/default/dumbbell_curls.mp4"
+  },
+  {
+    "id": "mypthub_402",
+    "name": "Sumo Deadlifts",
+    "instructions": [
+      "Load up a barbell and stand behind it with a wide stance. Your shins should be gently touching the bar.",
+      "Whilst maintaining good posture (a straight back), bend at your knees and hips to lower your torso enabling you to take a narrow (index finger 6-12 inches apart), overhand grip between your legs. Your hips should be higher than your knees at this point. This will be the starting position. Tip: You can adopt an alternate grip (one overhand and one underhand) if it is more comfortable for you.",
+      "Grip the bar and initiate the movement by pressing through your heels and quads whilst simultaneously use the muscles in your back to bring your torso into a vertical position. Throughout the movement keep the bar close to your body, maintain strict form (straight back) and exhale. Once you are in a standing position you should push your chest out by pulling your shoulder blades together.",
+      "After a brief pause, descend the barbell back along the same path and inhale until you are back in the starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Caution: Be very careful when performing this exercise and if you suffer from any back pain, this may not be suitable movement for you.",
+      "Variation: Rack Pulls or Plie Dumbbell Squats."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "hamstrings"
+    ],
+    "legacySecondaryMuscles": [
+      "adductors",
+      "forearms",
+      "glutes",
+      "lower back",
+      "middle back",
+      "quadriceps",
+      "traps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "adductors",
+        "forearm_flexors",
+        "forearm_extensors",
+        "glutes",
+        "lower_back",
+        "rhomboids",
+        "mid_traps",
+        "quadriceps",
+        "traps"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/sumo_deadlifts/default/sumo_deadlifts.mp4"
+  },
+  {
+    "id": "mypthub_414",
+    "name": "Alternating Barbell Lunges",
+    "instructions": [
+      "Set the height of the pins in a squat rack so that the barbell can lay across your shoulders comfortably. Next, set the safety bars at the desired height (typically waist high) so that if you fail on a rep, they will take the weight and you will be safe. Load up the barbell with the correct amount of weight on it and you are now ready to go.",
+      "Step underneath the bar so that it is resting on your shoulders. Take hold of the bar and step back from the rack maintaining a straight back throughout.This will be your starting position.",
+      "Inahle and take a slightly exaggerated step forwardand plant your foot firmly on the floor. Whilst maintaining a stragiht back descend your torso towards the floor by bending both knees into a 90 degree position. Tip: Keep your weight central and drop directly downward rather than forward or back, your knees should be at right angles when at the bottom of the movement.",
+      "After a brief pause press through your front thigh and heel to push your body back along the same path into the starting position.",
+      "Alternate in this fashion and repeat the movement for the recommended amount of repetitions.",
+      "Caution: If you have any balance issues, you should use an alternative method of adding weight to this exercise. For example, use dumbbells.",
+      "Variations: Alternating Dumbbell Lunges or Dumbbell Walking Lunges."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "calves",
+      "glutes",
+      "hamstrings"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "calves",
+        "glutes",
+        "hamstrings"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/alternating_barbell_lunges/default/alternating_barbell_lunges.mp4"
+  }
+]

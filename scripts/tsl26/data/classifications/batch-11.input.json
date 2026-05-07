@@ -1,0 +1,1135 @@
+[
+  {
+    "id": "mypthub_76487",
+    "name": "BOSU - Glute Bridges (Feet On Dome)",
+    "instructions": [
+      "1) Lie on your back with your feet placed on the dome of a BOSU ball.",
+      "2) Press through your heels to lift your hips towards the ceiling, squeezing your glutes at the top.",
+      "3) Lower your hips back down with control whilst bracing the abs.",
+      "4) Repeat for the desired number of repetitions, focusing on engaging your glutes throughout the movement."
+    ],
+    "legacyEquipmentRaw": "bosu",
+    "legacyPrimaryMuscles": [
+      "glutes"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "abdominals"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "abs"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bosu"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bosu_glute_bridges_feet_on_dome/default/bosu_glute_bridges_feet_on_dome.mp4"
+  },
+  {
+    "id": "mypthub_76490",
+    "name": "Chest Supported Single Arm Dumbbell Rear Lateral Raise",
+    "instructions": [
+      "1) Lie facedown on an incline bench, holding a dumbbell in one hand.",
+      "2) Keep your arm slightly bent and palm facing inward.",
+      "3) Lift the dumbbell out to the side until your arm is parallel to the ground.",
+      "4) Lower back down with control.",
+      "5) Switch sides and repeat.",
+      "6) Focus on engaging your shoulder muscles and maintaining stability throughout."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "shoulders"
+    ],
+    "legacySecondaryMuscles": [
+      "triceps",
+      "middle back"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "triceps",
+        "rhomboids",
+        "mid_traps"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "unilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/chest_supported_single_arm_dumbbell_rear_lateral_raise/default/chest_supported_single_arm_dumbbell_rear_lateral_raise.mp4"
+  },
+  {
+    "id": "mypthub_76575",
+    "name": "Cable Hip Abduction",
+    "instructions": [
+      "1) Stand beside a low pulley cable machine with the cable attached to your ankle. Keep your core engaged and hold onto the machine for balance. Allow the leg to cross over in front of the other.",
+      "2) Lift your leg sideways against the resistance of the cable, keeping it straight.",
+      "3) Pause briefly at the top of the movement squeezing the glutes and outer thigh, then slowly lower your leg back down.",
+      "4) Repeat for the desired number of repetitions, then switch sides.",
+      "5) Focus on controlled movements and feel the tension in your outer hip muscles.",
+      "This exercise targets hip abduction and helps strengthen the muscles around your hips."
+    ],
+    "legacyEquipmentRaw": "cable",
+    "legacyPrimaryMuscles": [
+      "abductors"
+    ],
+    "legacySecondaryMuscles": [
+      "quadriceps",
+      "glutes",
+      "hamstrings"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abductors"
+      ],
+      "secondaryMuscles": [
+        "quadriceps",
+        "glutes",
+        "hamstrings"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "cable"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/cable_hip_abduction/default/cable_hip_abduction.mp4"
+  },
+  {
+    "id": "mypthub_78",
+    "name": "Dumbbell Upright Rows",
+    "instructions": [
+      "Grab two dumbbells with an overhand grip. The ends of the dumbbells gently touching one another as they rest on your thighs, arms hanging perpendicular to the floor. Tip: Maintain a straight back and keep the dumbbells as close to your body as possible throughout the movement.",
+      "Exhale and pull the dumbbells up towards your chin by contracting your shoulders and flaring your elbows out wide. Continue to pull them upward until you reach your chin. At this point your elbows should be above the dumbbells.",
+      "Pause for a brief moment, then inhale and return the dumbbells along the same path towards the starting position.",
+      "Variations: Barbell Upright Rows or Smith Machine Upright Row"
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "shoulders"
+    ],
+    "legacySecondaryMuscles": [
+      "biceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "biceps"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_upright_rows/default/dumbbell_upright_rows.mp4"
+  },
+  {
+    "id": "mypthub_82",
+    "name": "Standing Dumbbell Front Raises",
+    "instructions": [
+      "Pick a couple of dumbbells and stand with a straight torso and the dumbbells on front of your thighs at arms length with the palms of the hand facing your thighs.  This will be your starting position.",
+      "While maintaining the torso stationary (no swinging), lift the left dumbbell to the front with a slight bend on the elbow and the palms of the hands always facing down.  Continue to go up until you arm is slightly above parallel to the floor.  Exhale as you execute this portion of the movement and pause for a second at the top. Inhale after the second pause.",
+      "Now lower the dumbbell back down slowly to the starting position as you simultaneously lift the right dumbbell.",
+      "Continue alternating in this fashion until all of the recommended amount of repetitions have been performed for each arm.",
+      "Variations: This exercise can also be performed both arms at the same time.  Also, you could use a barbell as well."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "shoulders"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/standing_dumbbell_front_raises/default/standing_dumbbell_front_raises.mp4"
+  },
+  {
+    "id": "mypthub_854",
+    "name": "Bodyweight Squats",
+    "instructions": [
+      "Adopt a wide standing stance with your hands behind your head, elbows relaxed out wide. This will be your starting position.",
+      "To initiate the movement, inhale and bend at your knees and hips to descend your pelvis either in line or just past your knees. Tip: Keep a straight back throughout and maintain good posture.",
+      "Once you get to the bottom of the movement, exhale and press through your heels to extend your hip and knee joints, elevating your torso back along the same path into the starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Dumbbell Squats or Barbell Squats."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bodyweight_squats/default/bodyweight_squats.mp4"
+  },
+  {
+    "id": "mypthub_857",
+    "name": "Ankle Circles",
+    "instructions": [
+      "Adopt either a standing or seated stance with your torso supported. This will be your starting position.",
+      "Lift your right foot a couple of inches off the floor and draw a big circle with your big toe.",
+      "Continue in this fashion until you have completed the required amount of repetitions and swap sides."
+    ],
+    "legacyEquipmentRaw": "none",
+    "legacyPrimaryMuscles": [
+      "calves"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "calves"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "isometric"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/ankle_circles/default/ankle_circles.mp4"
+  },
+  {
+    "id": "mypthub_859",
+    "name": "Bench Dips",
+    "instructions": [
+      "Place your hands just wider than shoulder width on the side of a bench and elevate your feet onto a parallel bench. Your legs should be straight with your hips at a 90 degree angle suspended off the floor. This will be your starting position.",
+      "To initiate this movement, inhale and descend your pelvis towards the floor through gently bending your elbows until they create a 90 degree angle.",
+      "Pause for a brief moment in this position, then exhale and flex your triceps to extend your elbows, returning your torso back along the same path into the starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Narrow Grip Bench Press or Tricep Rope Extension."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "triceps"
+    ],
+    "legacySecondaryMuscles": [
+      "chest",
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [
+        "chest",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bench_dips/default/bench_dips.mp4"
+  },
+  {
+    "id": "mypthub_860",
+    "name": "Bent Knee Hip Raises",
+    "instructions": [
+      "Lay down on a mat (face up) with your knees bent to a 90 degree angle (feet still on the floor) with your arms placed beside your torso. This will be your starting position.",
+      "Exhale and use your lower abs to lift your feet up and off the floor and contract your knees in towards your chest (maintain the bend at your knees throughout the movement).",
+      "Once your abs are as tight as they can be, inhale and return your knees back along the same path into the starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variation: Cocoons or Reverse Crunches."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bent_knee_hip_raises/default/bent_knee_hip_raises.mp4"
+  },
+  {
+    "id": "mypthub_865",
+    "name": "Bodyweight Box Squats",
+    "instructions": [
+      "Adopt a shoulder width stance with your toes slightly pointing outward just in front of a box. Maintain a straight back throughout the movement and keep your head up. This will be your starting position.",
+      "Inhale and begin to descend by bending at your knees and hips. Your weight should be put predominantly through your heels as you sit back into the movement until your glutes gently touch the box.",
+      "After a brief pause, exhale and return your torso back into its starting position along the same path, push through your heels with the force being driven through your quads and glutes to do so. Stand to attention with your legs fully extended, back straight and shoulders relaxed.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Dumbbell Squats To A Bench or Barbell Squats To A Box."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "adductors",
+      "calves",
+      "glutes",
+      "hamstrings",
+      "lower back"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "adductors",
+        "calves",
+        "glutes",
+        "hamstrings",
+        "lower_back"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bodyweight_box_squats/default/bodyweight_box_squats.mp4"
+  },
+  {
+    "id": "mypthub_87",
+    "name": "Dumbbell Goblet Squats",
+    "instructions": [
+      "Grab a dumbbell and hold it by one of it's ends, close to your chest. Adopt a standing position with a shoulder width stance. This will be your starting position.",
+      "As you inhale, bend at your knees and waist in order to squat until your thighs become parallel (or just past) to the floor. Tip: Maintain an upright torso throughout the movement.",
+      "At the bottom of the movement, pause for a moment, then push through your heels whilst exhaling until you return to a standing position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Caution: If you have any lower back issues, this may not be the most suitable exercise for you. A suggestion would be to try a Leg Press Machine instead.",
+      "Variation: Kettlebell Goblet Squat or Wide Stance Leg Press."
+    ],
+    "legacyEquipmentRaw": "kettlebells",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "calves",
+      "glutes",
+      "hamstrings",
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "calves",
+        "glutes",
+        "hamstrings",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "kettlebell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_goblet_squats/default/dumbbell_goblet_squats.mp4"
+  },
+  {
+    "id": "mypthub_870",
+    "name": "Chin Ups",
+    "instructions": [
+      "Take hold of a pull up bar with a shoulder width, underhand grip (palms facing towards you). After you have securely taken hold of the handles, take your feet off the floor so that your body is now hanging from your grip. Pull your heels in towards your glutes so your knees are bent to a 90 degree angle and your hips are pushed forwards. Your arms should be at full extension at this point. This will be your starting position.",
+      "To initiate this movement, exhale and pull your torso upward towards your palms as you contract your biceps and the muscles across your back. Continue to pull yourself up until your chest is as high as you can get it.",
+      "After a brief pause, return your torso back along the same path into its starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Underhand Cable Pulldowns or Horizontal Barbell Pull Ups."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "lats"
+    ],
+    "legacySecondaryMuscles": [
+      "biceps",
+      "forearms",
+      "middle back"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "forearm_flexors",
+        "forearm_extensors",
+        "rhomboids",
+        "mid_traps"
+      ],
+      "movementPattern": [
+        "vertical_pull"
+      ],
+      "forceType": [
+        "pull"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/chin_ups/default/chin_ups.mp4"
+  },
+  {
+    "id": "mypthub_872",
+    "name": "Alternating Bodyweight Curtsy Squats",
+    "instructions": [
+      "Stand with your feet shoulder width apart. This will be your starting position.",
+      "Perform a rear lunge by stepping back with one foot and flexing the hips and front knee. As you do so, rotate your torso across the front leg.",
+      "After a brief pause, return to the starting position and repeat on the other side, continuing in an alternating fashion."
+    ],
+    "legacyEquipmentRaw": "none",
+    "legacyPrimaryMuscles": [
+      "lower back"
+    ],
+    "legacySecondaryMuscles": [
+      "abdominals",
+      "abductors",
+      "glutes",
+      "hamstrings",
+      "quadriceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "lower_back"
+      ],
+      "secondaryMuscles": [
+        "abs",
+        "abductors",
+        "glutes",
+        "hamstrings",
+        "quadriceps"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "isometric"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/alternating_bodyweight_curtsy_squats/default/alternating_bodyweight_curtsy_squats.mp4"
+  },
+  {
+    "id": "mypthub_886",
+    "name": "Bodyweight Squat Jumps",
+    "instructions": [
+      "Stand with a slightly wider than shoulder width stance, toes pointing (slightly) outward with your back straight and chest out.",
+      "Throughout the movement you should keep your head up and maintain good posture. This will be your starting position.",
+      "Inhale and descend slowly by bending your knees and hips until your thighs are parallel with the floor. Tip: When at the bottom of the movement your knees should be behind your toes.",
+      "Once you have hit the bottom of the movement, exhale and push hard through your heels to drive your hips forward. Extend at your knee and ankle joints in order to jump as high as you can before landing into your next rep.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Kettlebell Jump Squats or Barbell Jump Squats."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "calves",
+      "glutes",
+      "hamstrings"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "calves",
+        "glutes",
+        "hamstrings"
+      ],
+      "movementPattern": [
+        "squat"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bodyweight_squat_jumps/default/bodyweight_squat_jumps.mp4"
+  },
+  {
+    "id": "mypthub_89",
+    "name": "Neutral Grip Incline Dumbbell Chest Press",
+    "instructions": [
+      "Grab a dumbbell in each hand and lay down on an incline bench (around 30 degrees), bringing the dumbbells beside your chest. Keep your elbows at a 90-degree angle and your forearms perpendicular to the floor. Once here, bring your thumb the same side of the dumbbell as your fingers. keep your palms facing away from you.",
+      "To initiate this movement, exhale and press the dumbbells towards the ceiling. Squeeze your pectoral muscles as you go and continue to press until your arms are at full extension.",
+      "After a brief pause, inhale and bring your arms back down beside your chest until your elbows are at 90 degrees once more.",
+      "Repeat the movement for the recommended amount of repetitions.",
+      "Caution: Always have a spotter with you (especially with this grip) to help you throughout the movement and to help unload the dumbbells after completion.",
+      "Variations: Incline Barbell Bench Press or Smith Machine Incline Bench Press."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/neutral_grip_incline_dumbbell_chest_press/default/neutral_grip_incline_dumbbell_chest_press.mp4"
+  },
+  {
+    "id": "mypthub_931",
+    "name": "Mountain Climbers",
+    "instructions": [
+      "Start off in a press up position with your hands just wider than shoulder width and your toes being the only other point of contact with the floor. Your body should be suspended in a straight line from your heels to your shoulders above the floor. This will be your starting position.",
+      "Bring your right knee underneath your body so that it is as close to your chest as you can get it.",
+      "Exhale and swap your right leg for your left and as fast as you can.",
+      "Continue to alternate your legs and bring each knee in as close to your chest as possible. Tip: Take shallow breaths whilst you are performing the movement.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Ab Bike or High Knees."
+    ],
+    "legacyEquipmentRaw": "none",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "chest",
+      "hamstrings",
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "chest",
+        "hamstrings",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/mountain_climbers/default/mountain_climbers.mp4"
+  },
+  {
+    "id": "mypthub_937",
+    "name": "Parallel Bar Dips",
+    "instructions": [
+      "Stand between a set of parallel bars. Place a hand on each bar, and then take a small jump to help you get into the starting position with your arms locked out.",
+      "Begin by flexing the elbow, lowering your body until your arms break 90 degrees. Avoid swinging, and maintain good posture throughout the descent.",
+      "Reverse the motion by extending the elbow, pushing yourself back up into the starting position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "legacyEquipmentRaw": "other",
+    "legacyPrimaryMuscles": [
+      "triceps"
+    ],
+    "legacySecondaryMuscles": [
+      "chest",
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [
+        "chest",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "other"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/parallel_bar_dips/default/parallel_bar_dips.mp4"
+  },
+  {
+    "id": "mypthub_94",
+    "name": "Incline Dumbbell Flyes",
+    "instructions": [
+      "Grab two dumbbells and lie on an incline bench (chest facing the ceiling) that is set to an incline angle of around 30 degrees.",
+      "With a slight bend at the elbows, extend your arms until they are nearly locked out, towards the ceiling.",
+      "Rotate your wrists so that your palms are now facing one another. This will be your starting position.",
+      "As you inhale, Lower your arms down on a wide arc until you feel a stretch across your chest. Tip: Keep your elbows slightly bent throughout the movement to reduce stress on your joints.",
+      "Once you have reached the bottom of the movement, pause for a brief moment before exhaling and returning the dumbbells (along the same path) to their starting position, above your chest. At this point your arms should still be extended and the motion is controlled through your pectoral muscles.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Incline Flyes With A Twist or Pec Deck"
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/incline_dumbbell_flyes/default/incline_dumbbell_flyes.mp4"
+  },
+  {
+    "id": "mypthub_942",
+    "name": "Wide Grip Pull Ups",
+    "instructions": [
+      "Take hold of a pull up bar with a wide, overhand grip (palms facing away from you). After you have securely taken hold of the handles, take your feet off the floor so that your body is now hanging from your grip. Pull your heels in towards your glutes so your knees are bent to a 90 degree angle and your hips are pushed forwards. Your arms should be at full extension at this point. This will be your starting position.",
+      "To initiate this movement, exhale and pull your torso upward towards your hands as you contract your biceps and the muscles across your back (more so with your back). Continue to pull yourself up until your chest is as high as it can be.",
+      "After a brief pause, return your torso back along the same path into its starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Lat Pulldowns or T-Bar Rows with a Handle."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "lats"
+    ],
+    "legacySecondaryMuscles": [
+      "biceps",
+      "middle back"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "rhomboids",
+        "mid_traps"
+      ],
+      "movementPattern": [
+        "vertical_pull"
+      ],
+      "forceType": [
+        "pull"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/wide_grip_pull_ups/default/wide_grip_pull_ups.mp4"
+  },
+  {
+    "id": "mypthub_945",
+    "name": "Narrow Grip Press Ups",
+    "instructions": [
+      "Lie on the floor face down and place your hands closer than shoulder width for a close hand position. Make sure that you are holding your torso up at arms' length.",
+      "Lower yourself until your chest almost touches the floor as you inhale.",
+      "Using your triceps and some of your pectoral muscles, press your upper body back up to the starting position and squeeze your chest. Breathe out as you perform this step.",
+      "After a second pause at the contracted position, repeat the movement for the prescribed amount of repetitions.",
+      "Variations:",
+      "If you are new at this exercise and do not have the strength to perform it, you can either bend your legs at the knees to take off resistance or perform the exercise against the wall instead of the floor.",
+      "For the most advanced lifters, you can place your feet at a high surface such as a bench in order to increase the resistance.",
+      "See Also: Push-Up"
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "triceps"
+    ],
+    "legacySecondaryMuscles": [
+      "chest",
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [
+        "chest",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/narrow_grip_press_ups/default/narrow_grip_press_ups.mp4"
+  },
+  {
+    "id": "mypthub_96",
+    "name": "Incline Dumbbell Chest Press",
+    "instructions": [
+      "Grab a dumbbell in each hand and lay down on an incline bench (around 30 degrees), bringing the dumbbells beside your chest. Keep your elbows at a 90-degree angle and your forearms perpendicular to the floor. Once here, keep your palms facing away from you, exhale and press the dumbbells towards the ceiling.",
+      "Squeeze your pectoral muscles when your arms are at full extension. Once you have completed this, inhale and bring your arms back down beside your chest until your elbows are at 90-degrees once more.",
+      "Repeat the movement for the recommended amount of repetitions.",
+      "Caution: Always have a spotter with you to help you throughout the movement and to help unload the dumbbells after completion.",
+      "Variations: Incline Barbell Bench Press or Smith Machine Incline Bench Press"
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/incline_dumbbell_chest_press/default/incline_dumbbell_chest_press.mp4"
+  },
+  {
+    "id": "mypthub_96388",
+    "name": "Feet Elevated Inverted Rows",
+    "instructions": [
+      "1) Grab hold of a bar with an overhand grip, and position yourself underneath with your feet elevated on a bench or box.",
+      "2) Have hands just wider than shoulder width apart.",
+      "3) Keep your body straight from head to heels, engage your core, and pull your chest towards the bar drawing the elbows down.",
+      "4) Lower yourself back down with control.",
+      "5) Repeat for the desired number of repetitions, focusing on maintaining proper form and engaging your back muscles."
+    ],
+    "legacyEquipmentRaw": "barbell",
+    "legacyPrimaryMuscles": [
+      "middle back",
+      "biceps"
+    ],
+    "legacySecondaryMuscles": [
+      "shoulders",
+      "lats",
+      "glutes"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "rhomboids",
+        "mid_traps",
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "lats",
+        "glutes"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "barbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/feet_elevated_inverted_rows/default/feet_elevated_inverted_rows.mp4"
+  },
+  {
+    "id": "mypthub_965",
+    "name": "Bodyweight Bulgarian Split Squats",
+    "instructions": [
+      "Being in a standing position. Jump into a split leg position, with one leg forward and one leg back, flexing the knees and lowering your hips slightly as you do so.",
+      "As you descend, immediately reverse direction, standing back up and jumping, reversing the position of your legs. Repeat 5-10 times on each leg."
+    ],
+    "legacyEquipmentRaw": "none",
+    "legacyPrimaryMuscles": [
+      "hamstrings"
+    ],
+    "legacySecondaryMuscles": [
+      "calves",
+      "glutes",
+      "quadriceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "calves",
+        "glutes",
+        "quadriceps"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "isometric"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/bodyweight_bulgarian_split_squats/default/bodyweight_bulgarian_split_squats.mp4"
+  },
+  {
+    "id": "mypthub_969",
+    "name": "Step Up With Knee Raise",
+    "instructions": [
+      "Stand facing a box or bench of an appropriate height with your feet together. This will be your starting position.",
+      "Begin the movement by stepping up, putting your left foot on the top of the bench. Extend through the hip and knee of your front leg to stand up on the box. As you stand on the box with your left leg, flex your right knee and hip, bringing your knee as high as you can.",
+      "Reverse this motion to step down off the box, and then repeat the sequence on the opposite leg."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "glutes"
+    ],
+    "legacySecondaryMuscles": [
+      "hamstrings",
+      "quadriceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "quadriceps"
+      ],
+      "movementPattern": [
+        "squat"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/step_up_with_knee_raise/default/step_up_with_knee_raise.mp4"
+  },
+  {
+    "id": "mypthub_97",
+    "name": "Incline Hammer Curls",
+    "instructions": [
+      "Grab two dumbbells and take a seat on an incline bench (around 45 degrees) with your arms by your side.",
+      "The palms of your hands should be facing your torso. This will be your starting position.",
+      "Whilst holding the upper arm stationary, exhale as you curl both dumbbells forward, contracting your biceps. Continue the movement until your biceps are fully contracted and the dumbbells are at shoulder level. Hold the contracted position for a second as you squeeze your biceps.",
+      "(Tip: Only the forearms should move.)",
+      "Inhale as you slowly begin to bring the dumbbells back down to the starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Standing Hammer Curls or Cable Curls."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "biceps"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/incline_hammer_curls/default/incline_hammer_curls.mp4"
+  }
+]

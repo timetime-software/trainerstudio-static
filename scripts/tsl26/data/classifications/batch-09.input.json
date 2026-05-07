@@ -1,0 +1,1087 @@
+[
+  {
+    "id": "mypthub_59",
+    "name": "Dumbbell Rear Delt Raise",
+    "instructions": [
+      "Grab a dumbbell in your left hand and lay face down on an incline bench (around 30-45 degrees) and allow your left arm to hang perpendicular to the floor. Have your head off the end of the bench so that only your torso is supported with your right arm, placed behind your back. This will be your starting position.",
+      "Inhale and pull the back of your left hand towards the ceiling.",
+      "Once the dumbbell is horizontal to the floor, pause for a brief second, exhale and slowly return the dumbbell along the same path, back into its starting position.",
+      "Repeat until you have completed the prescribed amount of repetitions and swap sides.",
+      "Variations: Rear Delt Machine Flyes or Cable Rear Delt Fly."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "shoulders"
+    ],
+    "legacySecondaryMuscles": [
+      "middle back"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "rhomboids",
+        "mid_traps"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_rear_delt_raise/default/dumbbell_rear_delt_raise.mp4"
+  },
+  {
+    "id": "mypthub_593",
+    "name": "Crunches Hands Overhead",
+    "instructions": [
+      "Grab a mat and lay down flat on your back. Extend and place your arms on the floor above your head and bend your knees so that you have a 90 degree angle. This will be your starting position.",
+      "To initiate the movement, exhale and curl your shoulders up and off the mat towards your knees by contracting your abdominal muscles. Continue in this fashion until your abdominals cannot be any tighter. Keep your arms at full extension behind your head adding resistance to your crunches.",
+      "After a brief pause, inhale and return your body back along the same path into the starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Crunches or Rope Crunches."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/crunches_hands_overhead/default/crunches_hands_overhead.mp4"
+  },
+  {
+    "id": "mypthub_594",
+    "name": "Crunches",
+    "instructions": [
+      "Grab a mat and lay down flat on your back. Place your hands gently on your temples/chest and bend your knees so that you have a 90 degree angle. This will be your starting position.",
+      "To initiate the movement, exhale and curl your shoulders up and off the mat towards your knees by contracting your abdominal muscles. Continue in this fashion until your abdominals cannot be any tighter.",
+      "After a brief pause, inhale and return your body back along the same path into the starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Cocoons or Cable Crunches."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/crunches/default/crunches.mp4"
+  },
+  {
+    "id": "mypthub_596",
+    "name": "Decline Crunches",
+    "instructions": [
+      "Find yourself a decline bench (around 30 degrees) and lay down flat on your back. Place your hands gently on your temples/chest and secure your legs so you don't slip down the bench (you can tuck your feet under a couple of dumbbells for assistance). This will be your starting position.",
+      "To initiate the movement, exhale and curl your shoulders up and off the bench towards your knees by contracting your abdominal muscles. Continue in this fashion until your torso is vertical to the floor and your chest is very close to your knees.",
+      "After a brief pause, inhale and return your body back along the same path into the starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Crunches or Cable Crunches."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/decline_crunches/default/decline_crunches.mp4"
+  },
+  {
+    "id": "mypthub_6",
+    "name": "Alternating Front Raise",
+    "instructions": [
+      "Grab a couple of dumbbells and stand with a straight torso. Keep the dumbbells in front of your thighs and at arms length, your palms facing your thighs. This will be your starting position.",
+      "While maintaining a stationary torso (no swinging), raise the left dumbbell in front of your body with a slight bend on the elbow, palm facing down. Continue contracting your deltoids until your arm is slightly above parallel to the floor. Exhale as you execute this portion of the movement and pause for a second at the top.",
+      "Inhale and lower the dumbbell back down slowly to the starting position.",
+      "Continue alternating in this fashion until you have performed the recommended amount of repetitions.",
+      "Variations: Cable Front Raises or Bradford:Rocky Press."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "shoulders"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/alternating_front_raise/default/alternating_front_raise.mp4"
+  },
+  {
+    "id": "mypthub_60",
+    "name": "Alternating Reverse Dumbbell Lunges",
+    "instructions": [
+      "Whilst in a standing position, grab two dumbbells and keep your arms by your sides. This will be your starting position.",
+      "Take a step backwards (slightly larger than a normal step) and as you land, drop your body down so that you create two right angles at your knees. Inhale as you do so whilst maintaining a straight torso.",
+      "Make sure that you keep your front knee over your hell and not over your toes. Your front shin should now be perpendicular to the floor.",
+      "As you exhale, use mainly the heel of your front foot and push off the floor towards the starting position again.",
+      "Alternate legs as you go and repeat for the recommended amount of repetitions.",
+      "Variations: Dumbbell Walking Lunges or Alternating Barbell Lunges."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "calves",
+      "glutes",
+      "hamstrings"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "calves",
+        "glutes",
+        "hamstrings"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/alternating_reverse_dumbbell_lunges/default/alternating_reverse_dumbbell_lunges.mp4"
+  },
+  {
+    "id": "mypthub_601",
+    "name": "Flat Bench Lying Leg Raises",
+    "instructions": [
+      "Grab a bench and lay flat on your back, your arms should be holding onto the bench by the side of your head. Elevate your legs (at full extension) vertically towards the ceiling until you create a 90 degree bend at your hips. Tip: Keep your legs extended throughout the movement. This will be your starting position.",
+      "To initiate the movement, inhale and start to descend your legs on an arcing motion towards the floor. Continue to descend until your legs are parallel with the floor.",
+      "After a brief pause, exhale and return your legs along the same path back into their starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Hanging Leg Raises or Reverse Crunches."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/flat_bench_lying_leg_raises/default/flat_bench_lying_leg_raises.mp4"
+  },
+  {
+    "id": "mypthub_605",
+    "name": "Hanging Leg Raises",
+    "instructions": [
+      "Take hold of a chin up bar/handles and allow your body to hang perpendicular to the floor. This will be your starting position.",
+      "To initiate the movement, exhale and elevate your legs in front of your body by contracting your abdominal muscles (either keeping them as straight as possible, or bending at the knees) until they create a 90 degree angle with your torso (if you have bent your knees, you should have a 90 degree angle at both your hips and knees).",
+      "After a brief pause, inhale and return your legs back along the same path into the starting position. Tip: This movement should be slow and controlled so that you do not swing.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Hip Raises or Flat Bench Leg Pull Ins."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/hanging_leg_raises/default/hanging_leg_raises.mp4"
+  },
+  {
+    "id": "mypthub_609",
+    "name": "Leg Pull Ins",
+    "instructions": [
+      "Grab a flat bench, take a seat on it and grip the bench with your hands behind your back. At this point you should bend at your knees and hips in order to tuck your knees in as close to your chest as possible. Lean your torso forward into your knees to create optimal contraction within your abdominal muscles. This will be your starting position.",
+      "To initiate the movement, inhale and simultaneously extend your knee and hip joints so that your legs are just above parallel to the floor whilst leaning your torso backwards to lengthen your abdominals. Your arms should be taking as little weight as possible so that your core is working at it's maximum, this is at your discretion.",
+      "After a brief pause, exhale and return your torso and legs back along the same path into the starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Cocoons or Flat Bench Leg Pull Ins."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "vertical_pull"
+      ],
+      "forceType": [
+        "pull"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/leg_pull_ins/default/leg_pull_ins.mp4"
+  },
+  {
+    "id": "mypthub_613",
+    "name": "Plank",
+    "instructions": [
+      "Firstly, place a mat on the floor underneath your torso as you adopt an 'all-fours' position above it. From here you will need to bend your elbows to a 90 degree angle and place your upper body weight onto your forearms. After you have done that, take a step backwards with your feet and place your remaining bodyweight through your toes. At this point your body should be suspended (in a straight line) above the floor with just your forearms and toes as points of contact. This will be your starting position.",
+      "Keep your abdominal muscles tight throughout this exercise and keep your pelvis in line with the rest of your body to minimise risk of injury to your lower back (you can elevate your pelvis slightly to reduce lower back pain).",
+      "Hold this position for as long as you can or for the recommended amount of time."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "isometric"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/plank/default/plank.mp4"
+  },
+  {
+    "id": "mypthub_616",
+    "name": "Push Up to Side Plank",
+    "instructions": [
+      "To start this exercise kneel down on the floor, and lean forward so that you are now weight baring on your arms. Have your hands placed just outside of where your chest would be. Now you should come up onto your feet so that your body is suspended above the floor, the only points of contact (with the floor) should be your hands and feet. Your body should be in one straight line from head to toe and your arms perpendicular to the floor under your chest. This will be your starting position.",
+      "Whilst inhaling, slowly lower your chest towards the ground whist flaring your elbows out wide. When you are about an inch or so from the ground, you should have created a triangle with your hand positions and your eye line.",
+      "Pause for a brief movement, exhale and press through your palms to return your body along the same path to the starting position. Tip: Squeeze your pectoral muscles as you do so and when you get to the top of the movement, do not lock your elbows out.",
+      "Next, Whilst still exhaling, lift one of your hands off the floor whilst roating your torso. You should continue to rotate until your chest is perpendicular to the floor (facing the wall rather than the floor) creating a side on 'T' position.",
+      "After a brief pause, inhale and return your torso back along the same path into the starting position.",
+      "You can either complete all repetitions on one side first or alternate as you go.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variation: Plank With Twist or Plank."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "chest"
+    ],
+    "legacySecondaryMuscles": [
+      "abdominals",
+      "shoulders",
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "abs",
+        "shoulders",
+        "triceps"
+      ],
+      "movementPattern": [
+        "horizontal_push"
+      ],
+      "forceType": [
+        "isometric"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/push_up_to_side_plank/default/push_up_to_side_plank.mp4"
+  },
+  {
+    "id": "mypthub_617",
+    "name": "Reverse Crunches",
+    "instructions": [
+      "Grab a mat and lay down flat on your back. Have your hands gently placed on your temples with your knees and hips bent at a 90 degree angle. Your thighs should be vertical from the floor and lower legs parallel to the floor. This will be your starting position.",
+      "To initiate the movement, exhale and pull your knees in towards your torso by contracting your abdominal muscles. Continue with this movement until your knees are as close to your shoulders as they can be.",
+      "After a brief pause, inhale and return your body along the same path back to the starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Flat Bench Leg Pull-In or Cocoons."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/reverse_crunches/default/reverse_crunches.mp4"
+  },
+  {
+    "id": "mypthub_62",
+    "name": "Single Arm Rows",
+    "instructions": [
+      "Grab two dumbbells and place them next a flat bench. With your right knee, kneel on one end of the bench with your left leg remaining straight and on the floor for support. Lean on the bench with your right hand whilst taking hold of the dumbbell with your left hand. Your torso at this point should be parallel with the floor with a neutral spine. This will be your starting position.",
+      "Keeping your upper arm close to your body, pull the dumbbell up to the side of your hip whilst maintaining a stationary torso. Exhale as you lift the dumbbell. Tip: Contract your back muscles in order to create this movement. Your arms should remain as passive as possible.",
+      "Lower the dumbbell back down to the starting position. Inhale as you perform this step.",
+      "Repeat the movement for the recommended amount of repetitions and then switch sides.",
+      "Variations: Seated Cable Row or Alternating Kettlebell Row."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "middle back"
+    ],
+    "legacySecondaryMuscles": [
+      "biceps",
+      "lats",
+      "shoulders"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "rhomboids",
+        "mid_traps"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "lats",
+        "shoulders"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "unilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/single_arm_rows/default/single_arm_rows.mp4"
+  },
+  {
+    "id": "mypthub_624",
+    "name": "Sit Ups",
+    "instructions": [
+      "Grab a mat and lay down flat on your back. Place your hands gently on your temples/chest and bend your knees so that you have a 90 degree angle (you can tuck your feet under a couple of dumbbells for assistance). This will be your starting position.",
+      "To initiate the movement, exhale and curl your shoulders up and off the mat towards your knees by contracting your abdominal muscles. Continue in this fashion until your torso is vertical to the floor and your chest is very close to your knees.",
+      "After a brief pause, inhale and return your body back along the same path into the starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Crunches or Cable Crunches."
+    ],
+    "legacyEquipmentRaw": "body only",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/sit_ups/default/sit_ups.mp4"
+  },
+  {
+    "id": "mypthub_631",
+    "name": "Alternating Kettlebell Bent Over Rows",
+    "instructions": [
+      "Grab a kettlebell in each hand (palms facing your torso), bend your knees slightly and bring your torso forward by bending at your hips; as you bend make sure to keep your back straight until it is almost parallel to the floor. Tip: Make sure that you keep your spine in a neutral position. The weights should hang directly in front of you as your arms are perpendicular to the floor and your torso. This is your starting position.",
+      "While keeping the torso stationary, lift one of the kettlebells to your side (as you exhale), elevating your elbow towards the ceiling (do not exert any force with the forearm other than holding the weights). At the top contracted position, squeeze the back muscles and hold for a second.",
+      "Slowly lower the weight to the starting position as you inhale.",
+      "Once you have completed this movement, repeat for the opposite side.",
+      "Continue in this manner until you have completed the recommended amount of repetitions.",
+      "Caution:",
+      "This exercise is not recommended for people with back issues. A Low Cable Row is a better choice for people with back pain.",
+      "Ensure perfect form and never round the back as this can cause injury.",
+      "Be cautious with the weights you are using. If you are in doubt, use a lesser weight.",
+      "Variations: Dumbbell Bent Over Rows or Barbell Bent Over Rows."
+    ],
+    "legacyEquipmentRaw": "kettlebells",
+    "legacyPrimaryMuscles": [
+      "middle back"
+    ],
+    "legacySecondaryMuscles": [
+      "biceps",
+      "lats"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "rhomboids",
+        "mid_traps"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "lats"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "kettlebell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/alternating_kettlebell_bent_over_rows/default/alternating_kettlebell_bent_over_rows.mp4"
+  },
+  {
+    "id": "mypthub_632",
+    "name": "Alternating Kettlebell Hang Clean",
+    "instructions": [
+      "Grab a kettlebell in each hand and adopt a slightly wider than shoulder width stance. Take hold of the kettlebells with an overhand grip (palms facing your thighs) and stand upright with your arms hanging perpendicular to the floor in front of your body. This will be your starting position.",
+      "To initiate the movement, exhale and bring one of the kettlebells up to shoulder height whilst relaxing your grip to allow the kettlebell to swing up and over to the back of your wrist. To do this, you will need to pull your elbow up toward the ceiling as fast as you can.",
+      "Immediately after doing this, take shallow breaths and return the kettlebell back along the same path back to its starting position. Whilst you are returning the first kettlebell back to its original position, pull your other kettlebell up to your shoulder. Once again, pull your elbow upwards as fast as you can and relax your grip to allow the kettlebell to flip over to the reverse side of your wrist.",
+      "Continue to alternate as you go and repeat this movement for the recommended amount of repetitions.",
+      "Variations: Cleans or Dumbbell Cleans."
+    ],
+    "legacyEquipmentRaw": "kettlebells",
+    "legacyPrimaryMuscles": [
+      "hamstrings"
+    ],
+    "legacySecondaryMuscles": [
+      "biceps",
+      "calves",
+      "forearms",
+      "glutes",
+      "lower back",
+      "traps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "calves",
+        "forearm_flexors",
+        "forearm_extensors",
+        "glutes",
+        "lower_back",
+        "traps"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "kettlebell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/alternating_kettlebell_hang_clean/default/alternating_kettlebell_hang_clean.mp4"
+  },
+  {
+    "id": "mypthub_638",
+    "name": "Alternating Kettlebell Renegade Rows",
+    "instructions": [
+      "Place two kettlebells on the floor about shoulder width apart. Adopt an 'all-fours' position but instead of having your hands on the floor, take hold of the kettlebells with a neutral (palms facing each other) grip. At this point you should extend your legs out behind you so that your body is suspended above the floor in a straight line with your toes and the kettlebells being the only points of contact you have with the floor. The kettlebells should be directly below your chest so that your arms are perpendicular to the floor. This will be your starting position.",
+      "Whilst exhaling, row one of the kettlebells towards the side of your torso by squeezing the muscles in your back. Continue to pull your elbow as high as you can until your body wants to rotate. Keep your other arm stationary in the starting position.",
+      "After a brief pause, inhale and return the kettlebell back along the same path to the starting position.",
+      "Repeat for the opposite side and alternate between arms.",
+      "Continue in this manner until you complete the recommended amount of repetitions.",
+      "Variations: Single Arm Rows or Alternating Dumbbell Renegade Rows."
+    ],
+    "legacyEquipmentRaw": "kettlebells",
+    "legacyPrimaryMuscles": [
+      "middle back"
+    ],
+    "legacySecondaryMuscles": [
+      "abdominals",
+      "biceps",
+      "chest",
+      "lats",
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "rhomboids",
+        "mid_traps"
+      ],
+      "secondaryMuscles": [
+        "abs",
+        "biceps",
+        "chest",
+        "lats",
+        "triceps"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "alternating"
+      ],
+      "equipment": [
+        "kettlebell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/alternating_kettlebell_renegade_rows/default/alternating_kettlebell_renegade_rows.mp4"
+  },
+  {
+    "id": "mypthub_68",
+    "name": "Standing Dumbbell Shoulder Press",
+    "instructions": [
+      "Grab a dumbbell in each hand and adopt a shoulder width stance. Without leaning backward or putting your posture into jeopardy, press the dumbbells above your head so that you arms are fully extended, yet slightly flexed/bent at your elbows. Make sure your palms are facing forward at this point. This will be your starting position.",
+      "Slowly and in a controlled fashion, descend the dumbbells until they reach the side of your head (parallel with your ears), creating a 90 degree angle at your elbows. Inhale on the downward motion and flare your elbows out wide.",
+      "After a brief pause, exhale and press the dumbbells back along this path to their starting position.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Seated Dumbbell Shoulder Press or Cable Shoulder Press."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "shoulders"
+    ],
+    "legacySecondaryMuscles": [
+      "triceps"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "triceps"
+      ],
+      "movementPattern": [
+        "vertical_push"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/standing_dumbbell_shoulder_press/default/standing_dumbbell_shoulder_press.mp4"
+  },
+  {
+    "id": "mypthub_69",
+    "name": "Dumbbell Shrugs",
+    "instructions": [
+      "Grab a dumbbell in each hand and stand with a shoulder width stance. Your arms should be fully extended by your sides, your palms facing each other. This will be your starting position.",
+      "As you exhale, lift the dumbbells by lifting your shoulders and squeezing them in towards your ears. Hold this position for a second. Tip: This movement is generated through the lifting motion created from your shoulders. Therefore your arms should remain by your sides throughout and relaxed for the most part.",
+      "After this pause, return the dumbbells back to the starting position through the descent of your shoulders.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: Barbell Shrugs or Smith Machine Shrugs."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "traps"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "traps"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_shrugs/default/dumbbell_shrugs.mp4"
+  },
+  {
+    "id": "mypthub_70",
+    "name": "Dumbbell Side Bends",
+    "instructions": [
+      "Grab a dumbbell in your right hand with a neutral grip and adopt a shoulder width stance. Allow your arm to hang perpendicular to the floor by your side. Place your left hand across your body to reduce influence. This is your starting position.",
+      "To initiate the movement, inhale and lean laterally towards your right side, descending the dumbbell towards your knee. Continue to descend until either you cannot lean any further or the dumbbell is next to your knee.",
+      "After a brief pause, exhale and flex the obliques and intercostal muscles on your left side and return your torso along the same path back to its starting position.",
+      "Repeat for the recommended amount of repetitions and swap sides.",
+      "Variations: Oblique Crunch or Kneeling Oblique Cable Crunch."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "abdominals"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_side_bends/default/dumbbell_side_bends.mp4"
+  },
+  {
+    "id": "mypthub_71",
+    "name": "Dumbbell Skull Crusher",
+    "instructions": [
+      "Grab two dumbbells and lay flat on a bench with the dumbbells pressed straight up towards the ceiling. Adopt a pronated grip (palms facing away from you), with the ends of the dumbbells gently touching one another and your elbows tucked in. This will be your starting position.",
+      "Inhale as you descend the dumbbells down towards your forehead. Be sure to keep your upper arms stationary and your elbows tucked in. When you get to within an inch of your forehead pause for a second.",
+      "Then whilst exhaling, use your triceps to return the dumbbells along the same path to the starting position. Your arms should be fully extended once again and pointing towards the ceiling.",
+      "Repeat for the recommended amount of repetitions.",
+      "Variations: EZ Bar Skull Crushers or Tricep Rope Extensions."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "triceps"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_skull_crusher/default/dumbbell_skull_crusher.mp4"
+  },
+  {
+    "id": "mypthub_72",
+    "name": "Dumbbell Deadlifts",
+    "instructions": [
+      "Grab two dumbbells and stand with a shoulder width stance, toes pointing slightly outward (palms facing the side of your legs).",
+      "Throughout the movement you should keep your head up and maintain a straight back. This will be your starting position.",
+      "Descend slowly by bending your knees until your thighs are parallel with the floor. Keep a straight back so that your posture is not compromised. Tip: When at the bottom of the movement your knees should be behind your toes.",
+      "Once you have hit the bottom of the movement, pause for a second before pushing your torso back into the starting position through your heels. As you descend inhale and as you ascend, exhale. You should now be at the starting position, ready to go again.",
+      "Repeat for the recommended amount of repetitions.",
+      "Caution: Always be aware of your posture with this exercise as if performed incorrectly, could cause injury.",
+      "Variations: Barbell Squats or Smith Machine Squats."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "calves",
+      "glutes",
+      "hamstrings",
+      "lower back"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "calves",
+        "glutes",
+        "hamstrings",
+        "lower_back"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_deadlifts/default/dumbbell_deadlifts.mp4"
+  },
+  {
+    "id": "mypthub_74",
+    "name": "Dumbbell Step Ups",
+    "instructions": [
+      "Grab a dumbbell in each hand and stand with a shoulder width stance in front of a step. The height of the step should be realistic to the ability of the user (palms facing each other). This is your starting position.",
+      "Place your right foot on the step/bench. Step up onto the step/bench by pushing through your right heel. As your do so your hip and knee joints should straighten out. Lift your left leg onto the step/bench at this point. Exhale as you perform this part of the movement.",
+      "Step off the step/bench with the left leg by bending at the hip and knee joints of the right leg, inhale as you do so. Return to the original standing position by taking your right foot off the step/bench.",
+      "Alternate as you go along and repeat until you have performed the recommended amount of repetitions.",
+      "Variations: Barbell Step Ups or Single Leg Leg Press."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "quadriceps"
+    ],
+    "legacySecondaryMuscles": [
+      "calves",
+      "glutes",
+      "hamstrings"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "calves",
+        "glutes",
+        "hamstrings"
+      ],
+      "movementPattern": [
+        "squat"
+      ],
+      "forceType": [
+        "push"
+      ],
+      "mechanic": [
+        "compound"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/dumbbell_step_ups/default/dumbbell_step_ups.mp4"
+  },
+  {
+    "id": "mypthub_75",
+    "name": "Stiff Leg Dumbbell Deadlifts",
+    "instructions": [
+      "Grab a couple of dumbbells and adopt a standing position with your feet shoulder width apart. Have your arms in front of you but still perpendicular to the floor (palms facing your thighs). Slightly bend at your knees and maintain a straight back throughout. This will be your starting position.",
+      "Whilst keeping your knees stationary, inhale as you lean forwards from your waist (remember to keep a straight back), keeping the dumbbells close to you as you go. Keep lowering the dumbbells towards your feet until you feel a stretch in your hamstrings.",
+      "After a brief pause bring your torso straight again by pushing your hips forward. Tip: Remember, this whole movement is performed with 'stiff' legs (slight bend at the knee, but no more) and a straight back throughout. Exhale as you perform this part of the movement.",
+      "Repeat for the recommended amount of repetitions.",
+      "Caution: This is not an exercise for those with back issues. Avoid jerking motions as this could cause serious injury.",
+      "Variation: Barbell Stiff Legged Deadlift."
+    ],
+    "legacyEquipmentRaw": "dumbbell",
+    "legacyPrimaryMuscles": [
+      "hamstrings"
+    ],
+    "legacySecondaryMuscles": [
+      "glutes",
+      "lower back"
+    ],
+    "currentClassification": {
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "lower_back"
+      ],
+      "movementPattern": [
+        "isolation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "dumbbell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/stiff_leg_dumbbell_deadlifts/default/stiff_leg_dumbbell_deadlifts.mp4"
+  },
+  {
+    "id": "mypthub_76269",
+    "name": "Double Kettlebell Split Snatch",
+    "instructions": [
+      "1) Stand with your feet shoulder-width apart, holding a kettlebell in each hand at arms length.",
+      "2) Swing the kettlebells through the legs and explosively push through your legs and hips to drive the kettlebells overhead, simultaneously splitting your stance so one foot is forward and one back.",
+      "3) Lower the kettlebells back down to shoulder height and return to the starting position.",
+      "4) Repeat for the desired number of repetitions.",
+      "5) Focus on explosive power and stability throughout the movement."
+    ],
+    "legacyEquipmentRaw": "kettlebells",
+    "legacyPrimaryMuscles": [
+      "full body"
+    ],
+    "legacySecondaryMuscles": [],
+    "currentClassification": {
+      "primaryMuscles": [
+        "abs",
+        "glutes",
+        "quadriceps",
+        "hamstrings",
+        "chest",
+        "lats",
+        "shoulders"
+      ],
+      "secondaryMuscles": [],
+      "movementPattern": [
+        "anti_rotation"
+      ],
+      "forceType": [
+        "mixed"
+      ],
+      "mechanic": [
+        "isolation"
+      ],
+      "laterality": [
+        "bilateral"
+      ],
+      "equipment": [
+        "kettlebell"
+      ]
+    },
+    "currentLevel": "beginner",
+    "defaultVideoUrl": "https://cdn.trainerstudio.com/libraries/tsl26/double_kettlebell_split_snatch/default/double_kettlebell_split_snatch.mp4"
+  }
+]

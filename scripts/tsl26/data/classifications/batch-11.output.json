@@ -1,0 +1,639 @@
+[
+  {
+    "id": "mypthub_76487",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["glutes"],
+      "secondaryMuscles": ["hamstrings", "lower_back"],
+      "movementPattern": ["hinge"],
+      "forceType": ["pull"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["bosu"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Glutes"], "es": ["Glúteos"] },
+      "secondaryMuscles": { "en": ["Hamstrings", "Lower Back"], "es": ["Isquiotibiales", "Lumbar"] },
+      "equipment": { "en": "BOSU", "es": "BOSU" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "compound",
+      "equipment": "bosu",
+      "primaryMuscles": ["Glutes"],
+      "secondaryMuscles": ["Hamstrings", "Lower Back"]
+    }
+  },
+  {
+    "id": "mypthub_76490",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["rear_delts"],
+      "secondaryMuscles": ["rhomboids", "mid_traps"],
+      "movementPattern": ["isolation"],
+      "forceType": ["pull"],
+      "mechanic": ["isolation"],
+      "laterality": ["unilateral"],
+      "equipment": ["dumbbell", "bench"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Rear Delts"], "es": ["Deltoides posterior"] },
+      "secondaryMuscles": { "en": ["Rhomboids", "Mid Traps"], "es": ["Romboides", "Trapecio medio"] },
+      "equipment": { "en": "Dumbbell", "es": "Mancuerna" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "isolation",
+      "equipment": "dumbbell",
+      "primaryMuscles": ["Rear Delts"],
+      "secondaryMuscles": ["Rhomboids", "Mid Traps"]
+    }
+  },
+  {
+    "id": "mypthub_76575",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["abductors"],
+      "secondaryMuscles": ["glute_med", "glutes"],
+      "movementPattern": ["isolation"],
+      "forceType": ["pull"],
+      "mechanic": ["isolation"],
+      "laterality": ["unilateral"],
+      "equipment": ["cable"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Abductors"], "es": ["Abductores"] },
+      "secondaryMuscles": { "en": ["Glute Med", "Glutes"], "es": ["Glúteo medio", "Glúteos"] },
+      "equipment": { "en": "Cable", "es": "Polea" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "isolation",
+      "equipment": "cable",
+      "primaryMuscles": ["Abductors"],
+      "secondaryMuscles": ["Glute Med", "Glutes"]
+    },
+    "_notes": "Cable hip abduction es unilateral (un tobillo conectado al cable a la vez)."
+  },
+  {
+    "id": "mypthub_78",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["side_delts"],
+      "secondaryMuscles": ["upper_traps", "biceps"],
+      "movementPattern": ["vertical_pull"],
+      "forceType": ["pull"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["dumbbell"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Side Delts"], "es": ["Deltoides lateral"] },
+      "secondaryMuscles": { "en": ["Upper Traps", "Biceps"], "es": ["Trapecio superior", "Bíceps"] },
+      "equipment": { "en": "Dumbbell", "es": "Mancuerna" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "compound",
+      "equipment": "dumbbell",
+      "primaryMuscles": ["Side Delts"],
+      "secondaryMuscles": ["Upper Traps", "Biceps"]
+    }
+  },
+  {
+    "id": "mypthub_82",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["front_delts"],
+      "secondaryMuscles": ["shoulders"],
+      "movementPattern": ["isolation"],
+      "forceType": ["push"],
+      "mechanic": ["isolation"],
+      "laterality": ["alternating"],
+      "equipment": ["dumbbell"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Front Delts"], "es": ["Deltoides anterior"] },
+      "secondaryMuscles": { "en": ["Shoulders"], "es": ["Hombros"] },
+      "equipment": { "en": "Dumbbell", "es": "Mancuerna" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "isolation",
+      "equipment": "dumbbell",
+      "primaryMuscles": ["Front Delts"],
+      "secondaryMuscles": ["Shoulders"]
+    },
+    "_notes": "Instrucciones describen alternancia (left/right alternating)."
+  },
+  {
+    "id": "mypthub_854",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["quadriceps"],
+      "secondaryMuscles": ["glutes", "hamstrings"],
+      "movementPattern": ["squat"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["bodyweight"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Quadriceps"], "es": ["Cuádriceps"] },
+      "secondaryMuscles": { "en": ["Glutes", "Hamstrings"], "es": ["Glúteos", "Isquiotibiales"] },
+      "equipment": { "en": "Bodyweight", "es": "Peso corporal" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "bodyweight",
+      "primaryMuscles": ["Quadriceps"],
+      "secondaryMuscles": ["Glutes", "Hamstrings"]
+    }
+  },
+  {
+    "id": "mypthub_857",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["tibialis"],
+      "secondaryMuscles": ["calves", "peroneals"],
+      "movementPattern": ["isolation"],
+      "forceType": ["mixed"],
+      "mechanic": ["isolation"],
+      "laterality": ["unilateral"],
+      "equipment": ["bodyweight"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Tibialis"], "es": ["Tibial"] },
+      "secondaryMuscles": { "en": ["Calves", "Peroneals"], "es": ["Pantorrillas", "Peroneos"] },
+      "equipment": { "en": "Bodyweight", "es": "Peso corporal" }
+    },
+    "legacy": {
+      "force": "mixed",
+      "mechanic": "isolation",
+      "equipment": "bodyweight",
+      "primaryMuscles": ["Tibialis"],
+      "secondaryMuscles": ["Calves", "Peroneals"]
+    },
+    "_notes": "Movilidad de tobillo; un pie a la vez."
+  },
+  {
+    "id": "mypthub_859",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["triceps"],
+      "secondaryMuscles": ["chest", "front_delts"],
+      "movementPattern": ["vertical_push"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["bench", "bodyweight"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Triceps"], "es": ["Tríceps"] },
+      "secondaryMuscles": { "en": ["Chest", "Front Delts"], "es": ["Pecho", "Deltoides anterior"] },
+      "equipment": { "en": "Bench", "es": "Banco" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "bench",
+      "primaryMuscles": ["Triceps"],
+      "secondaryMuscles": ["Chest", "Front Delts"]
+    }
+  },
+  {
+    "id": "mypthub_860",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["lower_abs"],
+      "secondaryMuscles": ["hip_flexors", "abs"],
+      "movementPattern": ["isolation"],
+      "forceType": ["pull"],
+      "mechanic": ["isolation"],
+      "laterality": ["bilateral"],
+      "equipment": ["bodyweight"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Lower Abs"], "es": ["Abs inferiores"] },
+      "secondaryMuscles": { "en": ["Hip Flexors", "Abs"], "es": ["Flexores de cadera", "Abdominales"] },
+      "equipment": { "en": "Bodyweight", "es": "Peso corporal" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "isolation",
+      "equipment": "bodyweight",
+      "primaryMuscles": ["Lower Abs"],
+      "secondaryMuscles": ["Hip Flexors", "Abs"]
+    }
+  },
+  {
+    "id": "mypthub_865",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["quadriceps"],
+      "secondaryMuscles": ["glutes", "hamstrings", "lower_back"],
+      "movementPattern": ["squat"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["box", "bodyweight"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Quadriceps"], "es": ["Cuádriceps"] },
+      "secondaryMuscles": { "en": ["Glutes", "Hamstrings", "Lower Back"], "es": ["Glúteos", "Isquiotibiales", "Lumbar"] },
+      "equipment": { "en": "Box", "es": "Cajón" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "box",
+      "primaryMuscles": ["Quadriceps"],
+      "secondaryMuscles": ["Glutes", "Hamstrings", "Lower Back"]
+    },
+    "_notes": "Nombre dice 'Bodyweight' aunque legacy es barbell; las instrucciones son sin carga, se usa el cajón."
+  },
+  {
+    "id": "mypthub_87",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["quadriceps"],
+      "secondaryMuscles": ["glutes", "hamstrings", "lower_back"],
+      "movementPattern": ["squat"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["dumbbell"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Quadriceps"], "es": ["Cuádriceps"] },
+      "secondaryMuscles": { "en": ["Glutes", "Hamstrings", "Lower Back"], "es": ["Glúteos", "Isquiotibiales", "Lumbar"] },
+      "equipment": { "en": "Dumbbell", "es": "Mancuerna" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "dumbbell",
+      "primaryMuscles": ["Quadriceps"],
+      "secondaryMuscles": ["Glutes", "Hamstrings", "Lower Back"]
+    },
+    "_notes": "Dumbbell goblet squat (legacy raw decía kettlebells; nombre dice dumbbell)."
+  },
+  {
+    "id": "mypthub_870",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["lats"],
+      "secondaryMuscles": ["biceps", "rhomboids", "mid_traps"],
+      "movementPattern": ["vertical_pull"],
+      "forceType": ["pull"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["pull_up_bar", "bodyweight"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Lats"], "es": ["Dorsales"] },
+      "secondaryMuscles": { "en": ["Biceps", "Rhomboids", "Mid Traps"], "es": ["Bíceps", "Romboides", "Trapecio medio"] },
+      "equipment": { "en": "Pull-Up Bar", "es": "Barra de dominadas" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "compound",
+      "equipment": "pull_up_bar",
+      "primaryMuscles": ["Lats"],
+      "secondaryMuscles": ["Biceps", "Rhomboids", "Mid Traps"]
+    }
+  },
+  {
+    "id": "mypthub_872",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["glutes"],
+      "secondaryMuscles": ["quadriceps", "adductors", "hamstrings"],
+      "movementPattern": ["lunge"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["alternating"],
+      "equipment": ["bodyweight"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Glutes"], "es": ["Glúteos"] },
+      "secondaryMuscles": { "en": ["Quadriceps", "Adductors", "Hamstrings"], "es": ["Cuádriceps", "Aductores", "Isquiotibiales"] },
+      "equipment": { "en": "Bodyweight", "es": "Peso corporal" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "bodyweight",
+      "primaryMuscles": ["Glutes"],
+      "secondaryMuscles": ["Quadriceps", "Adductors", "Hamstrings"]
+    },
+    "_notes": "Curtsy squat es realmente un lunge cruzado por detrás."
+  },
+  {
+    "id": "mypthub_886",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["quadriceps"],
+      "secondaryMuscles": ["glutes", "hamstrings", "calves"],
+      "movementPattern": ["squat"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["bodyweight"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Quadriceps"], "es": ["Cuádriceps"] },
+      "secondaryMuscles": { "en": ["Glutes", "Hamstrings", "Calves"], "es": ["Glúteos", "Isquiotibiales", "Pantorrillas"] },
+      "equipment": { "en": "Bodyweight", "es": "Peso corporal" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "bodyweight",
+      "primaryMuscles": ["Quadriceps"],
+      "secondaryMuscles": ["Glutes", "Hamstrings", "Calves"]
+    }
+  },
+  {
+    "id": "mypthub_89",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["upper_chest"],
+      "secondaryMuscles": ["front_delts", "triceps"],
+      "movementPattern": ["horizontal_push"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["dumbbell", "bench"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Upper Chest"], "es": ["Pecho superior"] },
+      "secondaryMuscles": { "en": ["Front Delts", "Triceps"], "es": ["Deltoides anterior", "Tríceps"] },
+      "equipment": { "en": "Dumbbell", "es": "Mancuerna" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "dumbbell",
+      "primaryMuscles": ["Upper Chest"],
+      "secondaryMuscles": ["Front Delts", "Triceps"]
+    }
+  },
+  {
+    "id": "mypthub_931",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["hip_flexors"],
+      "secondaryMuscles": ["abs", "shoulders", "quadriceps"],
+      "movementPattern": ["isolation"],
+      "forceType": ["mixed"],
+      "mechanic": ["compound"],
+      "laterality": ["alternating"],
+      "equipment": ["bodyweight"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Hip Flexors"], "es": ["Flexores de cadera"] },
+      "secondaryMuscles": { "en": ["Abs", "Shoulders", "Quadriceps"], "es": ["Abdominales", "Hombros", "Cuádriceps"] },
+      "equipment": { "en": "Bodyweight", "es": "Peso corporal" }
+    },
+    "legacy": {
+      "force": "mixed",
+      "mechanic": "compound",
+      "equipment": "bodyweight",
+      "primaryMuscles": ["Hip Flexors"],
+      "secondaryMuscles": ["Abs", "Shoulders", "Quadriceps"]
+    },
+    "_notes": "Mountain climbers son cardio/core dinámico; piernas alternantes."
+  },
+  {
+    "id": "mypthub_937",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["triceps"],
+      "secondaryMuscles": ["lower_chest", "front_delts"],
+      "movementPattern": ["vertical_push"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["other"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Triceps"], "es": ["Tríceps"] },
+      "secondaryMuscles": { "en": ["Lower Chest", "Front Delts"], "es": ["Pecho inferior", "Deltoides anterior"] },
+      "equipment": { "en": "Parallel Bars", "es": "Barras paralelas" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "other",
+      "primaryMuscles": ["Triceps"],
+      "secondaryMuscles": ["Lower Chest", "Front Delts"]
+    },
+    "_notes": "Parallel bars no tiene equipo dedicado en el enum, usado 'other'."
+  },
+  {
+    "id": "mypthub_94",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["upper_chest"],
+      "secondaryMuscles": ["front_delts"],
+      "movementPattern": ["isolation"],
+      "forceType": ["push"],
+      "mechanic": ["isolation"],
+      "laterality": ["bilateral"],
+      "equipment": ["dumbbell", "bench"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Upper Chest"], "es": ["Pecho superior"] },
+      "secondaryMuscles": { "en": ["Front Delts"], "es": ["Deltoides anterior"] },
+      "equipment": { "en": "Dumbbell", "es": "Mancuerna" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "isolation",
+      "equipment": "dumbbell",
+      "primaryMuscles": ["Upper Chest"],
+      "secondaryMuscles": ["Front Delts"]
+    }
+  },
+  {
+    "id": "mypthub_942",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["lats"],
+      "secondaryMuscles": ["biceps", "rhomboids", "mid_traps"],
+      "movementPattern": ["vertical_pull"],
+      "forceType": ["pull"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["pull_up_bar", "bodyweight"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Lats"], "es": ["Dorsales"] },
+      "secondaryMuscles": { "en": ["Biceps", "Rhomboids", "Mid Traps"], "es": ["Bíceps", "Romboides", "Trapecio medio"] },
+      "equipment": { "en": "Pull-Up Bar", "es": "Barra de dominadas" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "compound",
+      "equipment": "pull_up_bar",
+      "primaryMuscles": ["Lats"],
+      "secondaryMuscles": ["Biceps", "Rhomboids", "Mid Traps"]
+    }
+  },
+  {
+    "id": "mypthub_945",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["triceps"],
+      "secondaryMuscles": ["chest", "front_delts"],
+      "movementPattern": ["horizontal_push"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["bodyweight"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Triceps"], "es": ["Tríceps"] },
+      "secondaryMuscles": { "en": ["Chest", "Front Delts"], "es": ["Pecho", "Deltoides anterior"] },
+      "equipment": { "en": "Bodyweight", "es": "Peso corporal" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "bodyweight",
+      "primaryMuscles": ["Triceps"],
+      "secondaryMuscles": ["Chest", "Front Delts"]
+    }
+  },
+  {
+    "id": "mypthub_96",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["upper_chest"],
+      "secondaryMuscles": ["front_delts", "triceps"],
+      "movementPattern": ["horizontal_push"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["dumbbell", "bench"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Upper Chest"], "es": ["Pecho superior"] },
+      "secondaryMuscles": { "en": ["Front Delts", "Triceps"], "es": ["Deltoides anterior", "Tríceps"] },
+      "equipment": { "en": "Dumbbell", "es": "Mancuerna" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "dumbbell",
+      "primaryMuscles": ["Upper Chest"],
+      "secondaryMuscles": ["Front Delts", "Triceps"]
+    }
+  },
+  {
+    "id": "mypthub_96388",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["rhomboids", "mid_traps"],
+      "secondaryMuscles": ["lats", "biceps", "rear_delts"],
+      "movementPattern": ["horizontal_pull"],
+      "forceType": ["pull"],
+      "mechanic": ["compound"],
+      "laterality": ["bilateral"],
+      "equipment": ["barbell", "bench"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Rhomboids", "Mid Traps"], "es": ["Romboides", "Trapecio medio"] },
+      "secondaryMuscles": { "en": ["Lats", "Biceps", "Rear Delts"], "es": ["Dorsales", "Bíceps", "Deltoides posterior"] },
+      "equipment": { "en": "Barbell", "es": "Barra" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "compound",
+      "equipment": "barbell",
+      "primaryMuscles": ["Rhomboids", "Mid Traps"],
+      "secondaryMuscles": ["Lats", "Biceps", "Rear Delts"]
+    },
+    "_notes": "Inverted row con pies elevados; barra fija (suele estar en rack), banca/box para pies."
+  },
+  {
+    "id": "mypthub_965",
+    "level": "intermediate",
+    "classification": {
+      "primaryMuscles": ["quadriceps"],
+      "secondaryMuscles": ["glutes", "hamstrings", "calves"],
+      "movementPattern": ["lunge"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["alternating"],
+      "equipment": ["bodyweight"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Quadriceps"], "es": ["Cuádriceps"] },
+      "secondaryMuscles": { "en": ["Glutes", "Hamstrings", "Calves"], "es": ["Glúteos", "Isquiotibiales", "Pantorrillas"] },
+      "equipment": { "en": "Bodyweight", "es": "Peso corporal" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "bodyweight",
+      "primaryMuscles": ["Quadriceps"],
+      "secondaryMuscles": ["Glutes", "Hamstrings", "Calves"]
+    },
+    "_notes": "Las instrucciones describen split squat jumps alternantes (pliométrico)."
+  },
+  {
+    "id": "mypthub_969",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["quadriceps"],
+      "secondaryMuscles": ["glutes", "hamstrings", "hip_flexors"],
+      "movementPattern": ["lunge"],
+      "forceType": ["push"],
+      "mechanic": ["compound"],
+      "laterality": ["alternating"],
+      "equipment": ["box", "bodyweight"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Quadriceps"], "es": ["Cuádriceps"] },
+      "secondaryMuscles": { "en": ["Glutes", "Hamstrings", "Hip Flexors"], "es": ["Glúteos", "Isquiotibiales", "Flexores de cadera"] },
+      "equipment": { "en": "Box", "es": "Cajón" }
+    },
+    "legacy": {
+      "force": "push",
+      "mechanic": "compound",
+      "equipment": "box",
+      "primaryMuscles": ["Quadriceps"],
+      "secondaryMuscles": ["Glutes", "Hamstrings", "Hip Flexors"]
+    },
+    "_notes": "Step-up con knee raise; alterna piernas."
+  },
+  {
+    "id": "mypthub_97",
+    "level": "beginner",
+    "classification": {
+      "primaryMuscles": ["brachialis"],
+      "secondaryMuscles": ["biceps", "forearm_flexors"],
+      "movementPattern": ["isolation"],
+      "forceType": ["pull"],
+      "mechanic": ["isolation"],
+      "laterality": ["bilateral"],
+      "equipment": ["dumbbell", "bench"]
+    },
+    "i18n": {
+      "primaryMuscles": { "en": ["Brachialis"], "es": ["Braquial"] },
+      "secondaryMuscles": { "en": ["Biceps", "Forearm Flexors"], "es": ["Bíceps", "Flexores del antebrazo"] },
+      "equipment": { "en": "Dumbbell", "es": "Mancuerna" }
+    },
+    "legacy": {
+      "force": "pull",
+      "mechanic": "isolation",
+      "equipment": "dumbbell",
+      "primaryMuscles": ["Brachialis"],
+      "secondaryMuscles": ["Biceps", "Forearm Flexors"]
+    },
+    "_notes": "Hammer curl en banco inclinado; agarre neutro enfatiza braquial."
+  }
+]
