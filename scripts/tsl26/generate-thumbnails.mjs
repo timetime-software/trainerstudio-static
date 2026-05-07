@@ -75,7 +75,7 @@ async function extractThumbnail(inputPath, outputPath, timeSeconds, height) {
 
 async function main() {
   const libraryRoot = path.resolve(getArgValue('library-root') ?? DEFAULT_LIBRARY_ROOT);
-  const mode = getArgValue('from') ?? 'source';
+  const mode = getArgValue('from') ?? 'default';
   const timeSeconds = Number(getArgValue('time') ?? 1.5);
   const height = Number(getArgValue('height') ?? 480);
   const limit = getArgValue('limit') ? Number(getArgValue('limit')) : Infinity;
