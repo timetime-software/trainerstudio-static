@@ -239,6 +239,7 @@ function App() {
       const hasSource = (slug && sourceSlugs.has(slug)) || Boolean(videoBySource(exercise, 'source'));
       const hasDefault = (slug && defaultSlugs.has(slug)) || hasDefaultVideo(exercise);
       const shouldRegenerate = exercise.metadata?.defaultVideoInvalid === true || /regener/i.test(String(exercise.metadata?.notes || ''));
+      const isNew = exercise.metadata?.status === 'new';
       const haystack = [
         exercise.id,
         exercise.cdnslug,
@@ -255,7 +256,8 @@ function App() {
         (filter === 'missingSource' && !hasSource) ||
         (filter === 'hasDefault' && hasDefault) ||
         (filter === 'missingDefault' && !hasDefault) ||
-        (filter === 'regenerate' && shouldRegenerate);
+        (filter === 'regenerate' && shouldRegenerate) ||
+        (filter === 'new' && isNew);
       return matchesTerm && matchesFilter;
     }).sort((a, b) => {
       const aSlug = a.cdnslug || a.cdnSlug;
@@ -786,6 +788,7 @@ function App() {
               <option value="hasDefault">Default created</option>
               <option value="missingDefault">Missing default</option>
               <option value="regenerate">Regenerate</option>
+              <option value="new">Nuevos / WIP</option>
             </select>
           </div>
           <div className="count">
@@ -816,6 +819,7 @@ function App() {
                   <span className="badges">
                     {rowAiJob?.status === 'running' && <LoaderCircle size={13} className="rowSpinner" aria-label={rowAiJob.label || 'Generando'} />}
                     {rowAiJob?.status === 'failed' && <AlertTriangle size={13} className="warningIcon" title={rowAiJob.error || rowAiJob.label || 'Falló la generación'} />}
+                    {exercise.metadata?.status === 'new' && <span className="newBadge" title="Nuevo / WIP">NEW</span>}
                     {exercise.priority === true && <Star size={13} className="priorityIcon" />}
                     {exercise.metadata?.defaultVideoInvalid === true && <AlertTriangle size={13} className="warningIcon" />}
                     {librarySlugs.includes(exercise.cdnslug || exercise.cdnSlug) && <span title="In library">L</span>}

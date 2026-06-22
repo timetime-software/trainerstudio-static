@@ -237,6 +237,16 @@ select {
   font-weight: 700;
 }
 
+.badges span.newBadge {
+  width: auto;
+  height: 17px;
+  padding: 0 6px;
+  border-color: #b26b00;
+  background: #fff3d6;
+  color: #8a5200;
+  letter-spacing: 0.4px;
+}
+
 .preview {
   padding: 18px;
 }
