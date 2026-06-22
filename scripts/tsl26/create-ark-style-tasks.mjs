@@ -39,6 +39,7 @@ const DEFAULT_PROMPT = [
   'Important: the athlete\'s face in [Video 1] is intentionally blurred or pixelated for privacy. Do NOT preserve the blur, mosaic, or any anonymization artifact in the output. The trainer in the result must have a clear, fully visible illustrated face that matches the coach identity from [Image 1] and [Image 2] — same hairstyle, beard, skin tone, and facial features as the reference character.',
   'Use a clean pure white background matching the references. Keep the trainer centered and fully visible.',
   'Do not add text, labels, logos, captions, watermarks, extra people, extra props, gym backgrounds, decorative elements, or equipment that is not required by the exercise context.',
+  'The output must contain absolutely NO visible text of any kind: no letters, numbers, words, characters, symbols, subtitles, captions, timestamps, counters, on-screen instructions, signs, or writing anywhere in the frame, in any language. If [Video 1] contains any visible text (overlays, subtitles, channel names, watermarks, numbers, or text printed on clothing, equipment, walls, or background), remove it completely and leave a clean, text-free illustration.',
   'Remove or neutralize any visible brand marks from the source video or generated illustration, including sportswear logos, shoe logos, sock logos, equipment brands, and small trademark details such as Nike swooshes.',
   'The output must be silent, seamless, instructional, and suitable for a public exercise CDN.',
 ].join(' ');
