@@ -19,7 +19,7 @@ function parseArgs(argv) {
     slugs: null,
     all: false,
     thresh: 0.2,
-    maskScale: 1.5,
+    maskScale: 1,
     replaceWith: 'blur',
     mosaicSize: 20,
     passes: 1,
