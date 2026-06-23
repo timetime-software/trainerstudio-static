@@ -15,10 +15,10 @@ Rama: `feat/exercise-demand-backlog`.
 - Total dataset: 1204 → 1229 ejercicios.
 
 Las nuevas entradas ya son **buscables en el editor** y quedan **encoladas** para
-generación de vídeo. Se marcan con `metadata.status = "new"`: en el editor visual
-hay un filtro **"Nuevos / WIP"** y un badge `NEW` en la lista para revisarlas de
-un vistazo. Ese flag se descarta en `build:public` (no llega a MongoDB); borrarlo
-o cambiarlo cuando el ejercicio esté terminado. Lo que NO se ha hecho aquí es la generación de vídeo en sí
+generación de vídeo. Se marcan con `metadata.batch = "2026-06-22"` (lote de
+ideación): en el editor visual hay un filtro **"Lote 2026-06-22"** y un badge con
+la fecha del lote en la lista para revisarlas por tandas. Ese campo se descarta en
+`build:public` (no llega a MongoDB). Lo que NO se ha hecho aquí es la generación de vídeo en sí
 (descarga de YouTube + Ark), porque requiere `ARK_API_KEY`, es asíncrona y
 commitea binarios grandes: es el paso supervisado descrito abajo.
 

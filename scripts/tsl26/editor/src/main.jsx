@@ -239,7 +239,6 @@ function App() {
       const hasSource = (slug && sourceSlugs.has(slug)) || Boolean(videoBySource(exercise, 'source'));
       const hasDefault = (slug && defaultSlugs.has(slug)) || hasDefaultVideo(exercise);
       const shouldRegenerate = exercise.metadata?.defaultVideoInvalid === true || /regener/i.test(String(exercise.metadata?.notes || ''));
-      const isNew = exercise.metadata?.status === 'new';
       const haystack = [
         exercise.id,
         exercise.cdnslug,
@@ -257,7 +256,7 @@ function App() {
         (filter === 'hasDefault' && hasDefault) ||
         (filter === 'missingDefault' && !hasDefault) ||
         (filter === 'regenerate' && shouldRegenerate) ||
-        (filter === 'new' && isNew);
+        (filter.startsWith('batch:') && exercise.metadata?.batch === filter.slice(6));
       return matchesTerm && matchesFilter;
     }).sort((a, b) => {
       const aSlug = a.cdnslug || a.cdnSlug;
@@ -268,6 +267,15 @@ function App() {
       return (a.name || '').localeCompare(b.name || '');
     });
   }, [defaultSlugs, exercises, filter, librarySlugs, query, sourceSlugs]);
+
+  const batches = useMemo(() => {
+    const set = new Set();
+    for (const exercise of exercises) {
+      const batch = exercise.metadata?.batch;
+      if (batch) set.add(String(batch));
+    }
+    return [...set].sort().reverse();
+  }, [exercises]);
 
   const options = useMemo(() => ({
     categories: CATEGORY_VALUES,
@@ -788,7 +796,13 @@ function App() {
               <option value="hasDefault">Default created</option>
               <option value="missingDefault">Missing default</option>
               <option value="regenerate">Regenerate</option>
-              <option value="new">Nuevos / WIP</option>
+              {batches.length > 0 && (
+                <optgroup label="Lotes">
+                  {batches.map((batch) => (
+                    <option key={batch} value={`batch:${batch}`}>{`Lote ${batch}`}</option>
+                  ))}
+                </optgroup>
+              )}
             </select>
           </div>
           <div className="count">
@@ -819,7 +833,7 @@ function App() {
                   <span className="badges">
                     {rowAiJob?.status === 'running' && <LoaderCircle size={13} className="rowSpinner" aria-label={rowAiJob.label || 'Generando'} />}
                     {rowAiJob?.status === 'failed' && <AlertTriangle size={13} className="warningIcon" title={rowAiJob.error || rowAiJob.label || 'Falló la generación'} />}
-                    {exercise.metadata?.status === 'new' && <span className="newBadge" title="Nuevo / WIP">NEW</span>}
+                    {exercise.metadata?.batch && <span className="newBadge" title={`Lote ${exercise.metadata.batch}`}>{exercise.metadata.batch}</span>}
                     {exercise.priority === true && <Star size={13} className="priorityIcon" />}
                     {exercise.metadata?.defaultVideoInvalid === true && <AlertTriangle size={13} className="warningIcon" />}
                     {librarySlugs.includes(exercise.cdnslug || exercise.cdnSlug) && <span title="In library">L</span>}

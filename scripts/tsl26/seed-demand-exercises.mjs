@@ -659,10 +659,10 @@ function buildExercise(def) {
       defaultVideoInvalid: false,
       defaultVideoInvalidAt: null,
       identityKey,
-      // Marca de trabajo: el editor las filtra como "Nuevos / WIP". Se descarta
-      // en build:public (no llega a MongoDB). Cambiar/borrar al terminar.
-      status: 'new',
-      source: 'demand-backlog-2026',
+      // Lote de ideacion: fecha en que se concibieron. El editor permite filtrar
+      // por lote ("Lote 2026-06-22"). Se descarta en build:public (no llega a
+      // MongoDB).
+      batch: '2026-06-22',
     },
   };
 }
