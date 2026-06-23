@@ -48,7 +48,7 @@ fuentes externas / editor
   -> npm run videos:sync-data
   -> npm run build:public
   -> data/exercises-public.json
-  -> npm run import
+  -> subir desde el panel de admin
   -> MongoDB publicExercises
 ```
 
@@ -330,27 +330,30 @@ un video de YouTube detectable en `media`.
 
 ## Importar en MongoDB
 
-Regla operativa: la libreria oficial de MongoDB se carga solo desde
-`data/exercises-public.json`.
-
-No importar `data/exercises.ndjson` directamente en la libreria oficial. Ese
-archivo es el dataset de trabajo completo: incluye ejercicios traducidos y
-etiquetados, pero tambien ejercicios que solo tienen video `source` y todavia no
-tienen video `default` publicable.
-
-Generar la libreria final desde la fuente de trabajo:
+Flujo actual: para cargar la libreria solo hay que **generar el JSON publico** y
+**subirlo desde el panel de admin**. Ya no hace falta correr un import contra
+MongoDB desde este repo.
 
 ```bash
 cd /Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26
 npm run build:public
+# -> data/exercises-public.json  (este es el archivo que se sube desde admin)
 ```
+
+Regla operativa: la libreria oficial de MongoDB se carga solo desde
+`data/exercises-public.json`.
+
+No subir `data/exercises.ndjson` directamente. Ese archivo es el dataset de
+trabajo completo: incluye ejercicios traducidos y etiquetados, pero tambien
+ejercicios que solo tienen video `source` y todavia no tienen video `default`
+publicable.
 
 El pipeline no tiene pasos auxiliares de shards de traduccion ni batches de
 clasificacion. Cualquier correccion de traduccion o clasificacion debe aplicarse
 directamente en `data/exercises.ndjson`; la salida publica se reconstruye con
 `build:public`.
 
-Ese comando lee `data/exercises.ndjson`, conserva los ids opacos y escribe
+`build:public` lee `data/exercises.ndjson`, conserva los ids opacos y escribe
 `data/exercises-public.json` / `data/exercises-public.ndjson` solo con ejercicios
 que tienen video `default` en `libraries/tsl26`.
 
@@ -380,21 +383,20 @@ El input correcto debe tener el mismo numero en `total`, `classified`, `es` y
 `default`, y `source: 0`. Si `source` es mayor que cero, se esta mirando el
 archivo equivocado para importar a MongoDB.
 
-Crear o recuperar una libreria por nombre:
+Con los conteos correctos, subir `data/exercises-public.json` desde el panel de
+admin. Ese es el unico paso de carga.
+
+### Import directo (heredado, opcional)
+
+Existe todavia un import por CLI contra MongoDB para uso local/manual. Ya no es
+el flujo recomendado (se usa el panel de admin), pero se mantiene por si hace
+falta:
 
 ```bash
 cd /Users/iagolast/Workspace/trainerstudio-static/scripts/tsl26
+# crear/recuperar libreria por nombre (imprime el _id)
 npm run library:ensure -- --name="TrainerStudio official" --mongodb-uri=mongodb://localhost:27017/trainerStudioDB --database=trainerStudioDB
-```
-
-El comando imprime el `_id` de la libreria. Usar ese valor para validar o importar
-los ejercicios:
-
-```bash
+# importar usando ese library-id
 npm run import -- --input=data/exercises-public.json --library-id=<libraryId> --mongodb-uri=mongodb://localhost:27017/trainerStudioDB --database=trainerStudioDB --dry-run
 npm run import -- --input=data/exercises-public.json --library-id=<libraryId> --mongodb-uri=mongodb://localhost:27017/trainerStudioDB --database=trainerStudioDB
 ```
-
-Si se importo `data/exercises.ndjson` por error, limpiar primero los documentos de
-esa libreria que no esten en `data/exercises-public.json` y despues reimportar
-`data/exercises-public.json`.
