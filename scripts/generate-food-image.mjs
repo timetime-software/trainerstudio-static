@@ -107,31 +107,43 @@ async function exists(p) {
   try { await access(p); return true; } catch { return false; }
 }
 
-async function generate({ apiKey, prompt, outPath, size, quality, label }) {
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function generate({ apiKey, prompt, outPath, size, quality, label }, retries = 4) {
   console.log(`→ Generando ${label} (${size}, quality=${quality})...`);
-  const res = await fetch("https://api.openai.com/v1/images/generations", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
-    body: JSON.stringify({
-      model: "gpt-image-1",
-      prompt,
-      n: 1,
-      size,
-      quality,
-      output_format: "jpeg",
-      background: "opaque",
-    }),
-  });
-  if (!res.ok) {
+  for (let attempt = 0; ; attempt++) {
+    const res = await fetch("https://api.openai.com/v1/images/generations", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
+      body: JSON.stringify({
+        model: "gpt-image-1",
+        prompt,
+        n: 1,
+        size,
+        quality,
+        output_format: "jpeg",
+        background: "opaque",
+      }),
+    });
+    if (res.ok) {
+      const json = await res.json();
+      const b64 = json?.data?.[0]?.b64_json;
+      if (!b64) throw new Error(`Respuesta inesperada: ${JSON.stringify(json).slice(0, 400)}`);
+      await mkdir(dirname(outPath), { recursive: true });
+      await writeFile(outPath, Buffer.from(b64, "base64"));
+      console.log(`✓ ${outPath}`);
+      return;
+    }
     const text = await res.text();
+    // 429 (rate limit) y 5xx → reintento con backoff exponencial
+    if ((res.status === 429 || res.status >= 500) && attempt < retries) {
+      const wait = Math.min(30000, 2000 * 2 ** attempt);
+      console.warn(`· ${res.status} en ${label}, reintento ${attempt + 1}/${retries} en ${wait}ms`);
+      await sleep(wait);
+      continue;
+    }
     throw new Error(`API ${res.status}: ${text}`);
   }
-  const json = await res.json();
-  const b64 = json?.data?.[0]?.b64_json;
-  if (!b64) throw new Error(`Respuesta inesperada: ${JSON.stringify(json).slice(0, 400)}`);
-  await mkdir(dirname(outPath), { recursive: true });
-  await writeFile(outPath, Buffer.from(b64, "base64"));
-  console.log(`✓ ${outPath}`);
 }
 
 async function main() {
@@ -156,28 +168,47 @@ async function main() {
     const data = rows.slice(1);
     const from = Math.max(1, parseInt(args.from ?? "1", 10));
     const count = args.count ? parseInt(args.count, 10) : data.length - (from - 1);
+    const concurrency = Math.max(1, parseInt(args.concurrency ?? "6", 10));
     const slice = data.slice(from - 1, from - 1 + count);
 
-    console.log(`Batch: filas ${from}..${from + slice.length - 1} de ${data.length}`);
-    const generated = [];
-    for (const r of slice) {
-      const id = r[idx("id")];
-      const name = r[idx("name")];
-      const desc = r[idx("description")];
-      const outPath = outFor(id);
-      if (!args.force && (await exists(outPath))) {
-        console.log(`· salto (existe) ${name} → ${outPath}`);
-        generated.push(outPath);
-        continue;
+    console.log(
+      `Batch: filas ${from}..${from + slice.length - 1} de ${data.length} (concurrency=${concurrency})`,
+    );
+
+    let done = 0;
+    let skipped = 0;
+    const failures = [];
+    let cursor = 0;
+    async function worker() {
+      while (cursor < slice.length) {
+        const r = slice[cursor++];
+        const id = r[idx("id")];
+        const name = r[idx("name")];
+        const desc = r[idx("description")];
+        const outPath = outFor(id);
+        if (!args.force && (await exists(outPath))) { skipped++; continue; }
+        try {
+          await generate({
+            apiKey, prompt: buildPrompt(name, desc), outPath, size, quality,
+            label: `"${name}"`,
+          });
+          done++;
+        } catch (err) {
+          const msg = err.message ?? String(err);
+          failures.push({ id, name, error: msg });
+          console.error(`✗ FALLO "${name}" (${id}): ${msg}`);
+        }
       }
-      await generate({
-        apiKey, prompt: buildPrompt(name, desc), outPath, size, quality,
-        label: `"${name}"`,
-      });
-      generated.push(outPath);
     }
-    console.log(`\nGeneradas/listas: ${generated.length}`);
-    process.stdout.write(generated.join("\n") + "\n");
+    await Promise.all(
+      Array.from({ length: Math.min(concurrency, slice.length) }, worker),
+    );
+
+    console.log(`\nResumen: generadas=${done}, saltadas=${skipped}, fallos=${failures.length}`);
+    if (failures.length) {
+      console.log("Fallos (relanza el batch para reintentarlos):");
+      for (const f of failures) console.log(`  - ${f.name} (${f.id}): ${f.error}`);
+    }
     return;
   }
 
