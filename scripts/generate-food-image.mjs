@@ -88,17 +88,18 @@ function buildPrompt(name, description) {
       ? `${name} (${desc})`
       : name;
   return [
-    `Professional studio product photograph of ${subject}, a single food ingredient,`,
-    "shown in its most natural, recognizable and appetizing presentation:",
-    "a whole fruit/vegetable/food as the whole item (add one cut piece if it aids recognition);",
-    "a liquid (oil, milk, juice, wine) in a simple clear glass or glass bottle;",
-    "a powder, flour, sugar, sauce, cream or paste as a neat portion in a small plain white dish;",
-    "a cut of meat or fish as a fresh representative piece; a prepared dish plated simply.",
-    "Centered on a pure seamless white background (#FFFFFF).",
+    `Minimalist professional product photograph of ${subject}, a single food ingredient,`,
+    "shown as ONE clean, simple item in its most natural and recognizable form:",
+    "a whole fruit/vegetable/food as a single whole piece;",
+    "a liquid (oil, milk, juice, wine) in one simple clear glass or glass bottle;",
+    "a powder, flour, sugar, sauce, cream or paste as one small neat mound;",
+    "a cut of meat or fish as one fresh piece.",
+    "Centered on a pure seamless white background (#FFFFFF) with generous empty negative space around it.",
     "Soft, even, diffused studio lighting with a subtle natural soft shadow directly beneath.",
-    "Photorealistic, ultra high detail, sharp focus, natural appetizing colors, clean and minimal.",
-    "Slight 3/4 top-down angle, the subject filling about 70% of a square frame.",
-    "A single subject only. No text, no labels, no logos, no brand, no packaging, no props, no hands, no cutlery.",
+    "Photorealistic, high detail, sharp focus, natural colors, clean and minimal.",
+    "Slight 3/4 top-down angle, the subject filling about 55% of a square frame.",
+    "Exactly one single subject — no extra pieces, no cut slices, no garnish, no accompaniments.",
+    "No text, no labels, no logos, no brand, no packaging, no props, no hands, no cutlery.",
   ].join(" ");
 }
 
