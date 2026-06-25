@@ -26,7 +26,7 @@
  *   --variant   Variante (default: default)
  *   --index     Índice del fichero (default: 0)
  *   --size      Tamaño (default: 1024x1024)
- *   --quality   low|medium|high (default: medium). medium ≈ 4× más barato que high.
+ *   --quality   low|medium|high (default: low). Suficiente para thumbnails; ~16× más barato que high.
  */
 
 import { writeFile, mkdir, readFile, access } from "node:fs/promises";
@@ -155,7 +155,7 @@ async function main() {
   const variant = args.variant ?? "default";
   const index = args.index ?? "0";
   const size = args.size ?? "1024x1024";
-  const quality = args.quality ?? "medium";
+  const quality = args.quality ?? "low";
 
   const outFor = (id) =>
     resolve(`libraries/foods/${library}/${id}/${variant}/${index}.jpg`);
