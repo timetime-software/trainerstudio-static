@@ -16,6 +16,24 @@ export function findExerciseByIdentifier(exercises, identifier) {
   return exercises.find((exercise) => exerciseMatchesIdentifier(exercise, identifier));
 }
 
+// Linear workflow each exercise moves through: source clip → AI video → review/OK,
+// plus a "recheck" escape hatch when a generated video is flagged as bad.
+export const WORKFLOW_STAGES = [
+  { key: 'no-source', label: 'Sin fuente', dot: 'missingDefault' },
+  { key: 'needs-video', label: 'Falta vídeo IA', dot: 'hasDefault pendingSync' },
+  { key: 'needs-review', label: 'Por revisar', dot: 'hasDefault' },
+  { key: 'recheck', label: 'Revisar vídeo', dot: 'invalidDefault' },
+  { key: 'done', label: 'OK', dot: 'validated' },
+];
+
+export function workflowStage(exercise, { hasSource, hasDefault }) {
+  if (exercise?.metadata?.defaultVideoInvalid) return 'recheck';
+  if (exercise?.metadata?.reviewed) return 'done';
+  if (hasDefault) return 'needs-review';
+  if (hasSource) return 'needs-video';
+  return 'no-source';
+}
+
 export function defaultIndicatorFor(exercise, defaultSlugSet) {
   if (exercise?.metadata?.defaultVideoInvalid) {
     return { className: 'invalidDefault', label: 'Default invalid' };

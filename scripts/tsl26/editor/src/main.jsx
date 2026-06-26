@@ -17,7 +17,7 @@ import { ReviewSection } from './components/ReviewSection.jsx';
 import { YouTubeSourcePicker } from './components/YouTubeSourcePicker.jsx';
 import { buildPatchFromProposal } from './lib/reviewPatch.js';
 import { useReviewProposal } from './lib/useReviewProposal.js';
-import { cdnSlugFor, defaultIndicatorFor, findExerciseByIdentifier, updateExercise } from './lib/exercise.js';
+import { WORKFLOW_STAGES, cdnSlugFor, defaultIndicatorFor, findExerciseByIdentifier, updateExercise, workflowStage } from './lib/exercise.js';
 import {
   extractYoutubeId,
   extractYoutubeStart,
@@ -55,7 +55,8 @@ function App() {
   const [exercises, setExercises] = useState([]);
   const [selectedId, setSelectedId] = useState('');
   const [query, setQuery] = useState('');
-  const [filter, setFilter] = useState('all');
+  const [stageFilters, setStageFilters] = useState(() => new Set());
+  const [batchFilter, setBatchFilter] = useState('');
   const [mediaVariant, setMediaVariant] = useState('default');
   const [status, setStatus] = useState(emptyStatus);
   const [dirty, setDirty] = useState(false);
@@ -224,21 +225,29 @@ function App() {
     setClipDuration(Number.isFinite(stored?.duration) ? stored.duration : 4);
     setSearchQuery('');
     setSearchResults([]);
-    setSourceMode('ai');
+    const hasSourceAlready = Boolean(videoBySource(selected, 'source')) || Boolean(selected.metadata?.sourceClip?.youtubeId);
+    setSourceMode(hasSourceAlready ? 'ai' : 'youtube');
     setDefaceOpen(false);
     setSyncPlaying(false);
     setSyncTime(0);
     setSyncDuration(0);
   }, [selected?.id]);
 
+  const stageOf = useMemo(() => {
+    const map = new Map();
+    for (const exercise of exercises) {
+      const slug = exercise.cdnslug || exercise.cdnSlug;
+      const hasSource = (slug && sourceSlugs.has(slug)) || Boolean(videoBySource(exercise, 'source'));
+      const hasDefault = (slug && defaultSlugs.has(slug)) || hasDefaultVideo(exercise);
+      map.set(exercise.id, workflowStage(exercise, { hasSource, hasDefault }));
+    }
+    return map;
+  }, [defaultSlugs, exercises, sourceSlugs]);
+
   const filtered = useMemo(() => {
     const term = query.trim().toLowerCase();
     const libraryOrder = new Map(librarySlugs.map((slug, index) => [slug, index]));
     return exercises.filter((exercise) => {
-      const slug = exercise.cdnslug || exercise.cdnSlug;
-      const hasSource = (slug && sourceSlugs.has(slug)) || Boolean(videoBySource(exercise, 'source'));
-      const hasDefault = (slug && defaultSlugs.has(slug)) || hasDefaultVideo(exercise);
-      const shouldRegenerate = exercise.metadata?.defaultVideoInvalid === true || /regener/i.test(String(exercise.metadata?.notes || ''));
       const haystack = [
         exercise.id,
         exercise.cdnslug,
@@ -250,14 +259,9 @@ function App() {
         ...(exercise.aliases || []),
       ].join(' ').toLowerCase();
       const matchesTerm = !term || haystack.includes(term);
-      const matchesFilter =
-        filter === 'all' ||
-        (filter === 'missingSource' && !hasSource) ||
-        (filter === 'hasDefault' && hasDefault) ||
-        (filter === 'missingDefault' && !hasDefault) ||
-        (filter === 'regenerate' && shouldRegenerate) ||
-        (filter.startsWith('batch:') && exercise.metadata?.batch === filter.slice(6));
-      return matchesTerm && matchesFilter;
+      const matchesStage = stageFilters.size === 0 || stageFilters.has(stageOf.get(exercise.id));
+      const matchesBatch = !batchFilter || exercise.metadata?.batch === batchFilter;
+      return matchesTerm && matchesStage && matchesBatch;
     }).sort((a, b) => {
       const aSlug = a.cdnslug || a.cdnSlug;
       const bSlug = b.cdnslug || b.cdnSlug;
@@ -266,7 +270,26 @@ function App() {
       if (aOrder !== bOrder) return aOrder - bOrder;
       return (a.name || '').localeCompare(b.name || '');
     });
-  }, [defaultSlugs, exercises, filter, librarySlugs, query, sourceSlugs]);
+  }, [batchFilter, exercises, librarySlugs, query, stageFilters, stageOf]);
+
+  const stageCounts = useMemo(() => {
+    const counts = {};
+    for (const exercise of exercises) {
+      if (batchFilter && exercise.metadata?.batch !== batchFilter) continue;
+      const stage = stageOf.get(exercise.id);
+      counts[stage] = (counts[stage] || 0) + 1;
+    }
+    return counts;
+  }, [batchFilter, exercises, stageOf]);
+
+  function toggleStageFilter(key) {
+    setStageFilters((current) => {
+      const next = new Set(current);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  }
 
   const batches = useMemo(() => {
     const set = new Set();
@@ -304,6 +327,17 @@ function App() {
       metadata: {
         reviewed,
         reviewedAt: reviewed ? new Date().toISOString() : null,
+      },
+    });
+  }
+
+  function setVideoInvalid(exercise, invalid) {
+    patchExercise(exercise.id, {
+      metadata: {
+        defaultVideoInvalid: invalid,
+        defaultVideoInvalidAt: invalid ? new Date().toISOString() : null,
+        // Flagging a bad video sends it back to the queue, so it is no longer "OK".
+        ...(invalid ? { reviewed: false, reviewedAt: null } : {}),
       },
     });
   }
@@ -772,6 +806,23 @@ function App() {
   const defaultState = status.defaultClip ? 'Listo' : selectedAiRunning ? `Generando ${aiEstimatedPercent}%` : taskStatusLabels[aiTaskStatus] || 'Pendiente';
   const defaultStateClass = status.defaultClip ? 'ready' : selectedAiRunning || ['created', 'queued', 'running'].includes(aiTaskStatus) ? 'working' : 'missing';
   const sourceState = status.sourceClip ? 'Listo' : 'Falta source';
+  const liveHasSource = Boolean(sourceVideo);
+  const liveHasDefault = Boolean(defaultVideo);
+  const videoInvalid = selected.metadata?.defaultVideoInvalid === true;
+  const isReviewed = selected.metadata?.reviewed === true;
+  const workflowSteps = [
+    { key: 'source', label: 'Buscar fuente', state: liveHasSource ? 'done' : 'current' },
+    {
+      key: 'video',
+      label: 'Generar vídeo IA',
+      state: videoInvalid ? 'warn' : liveHasDefault ? 'done' : liveHasSource ? 'current' : 'todo',
+    },
+    {
+      key: 'review',
+      label: 'Revisar y OK',
+      state: isReviewed ? 'done' : videoInvalid || !liveHasDefault ? 'todo' : 'current',
+    },
+  ];
   const selectedSlug = selected.cdnslug || selected.cdnSlug;
   const selectedHasFolder = selectedSlug ? librarySlugs.includes(selectedSlug) : false;
   const relationIssues = (libraryRelation?.orphanFolders?.length || 0) + (libraryRelation?.missingFolders?.length || 0) + (libraryRelation?.duplicateSlugs?.length || 0);
@@ -790,20 +841,34 @@ function App() {
               <Search size={16} />
               <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search exercises" />
             </div>
-            <select value={filter} onChange={(event) => setFilter(event.target.value)}>
-              <option value="all">All</option>
-              <option value="missingSource">Missing source</option>
-              <option value="hasDefault">Default created</option>
-              <option value="missingDefault">Missing default</option>
-              <option value="regenerate">Regenerate</option>
-              {batches.length > 0 && (
-                <optgroup label="Lotes">
-                  {batches.map((batch) => (
-                    <option key={batch} value={`batch:${batch}`}>{`Lote ${batch}`}</option>
-                  ))}
-                </optgroup>
+            <div className="stageFilters" role="group" aria-label="Filtrar por estado del flujo">
+              {WORKFLOW_STAGES.map((stage) => (
+                <button
+                  key={stage.key}
+                  type="button"
+                  className={stageFilters.has(stage.key) ? 'stageChip active' : 'stageChip'}
+                  aria-pressed={stageFilters.has(stage.key)}
+                  onClick={() => toggleStageFilter(stage.key)}
+                >
+                  <span className={`defaultDot ${stage.dot}`} />
+                  {stage.label}
+                  <span className="stageChipCount">{stageCounts[stage.key] || 0}</span>
+                </button>
+              ))}
+              {stageFilters.size > 0 && (
+                <button type="button" className="stageChip clear" onClick={() => setStageFilters(new Set())}>
+                  Limpiar
+                </button>
               )}
-            </select>
+            </div>
+            {batches.length > 0 && (
+              <select value={batchFilter} onChange={(event) => setBatchFilter(event.target.value)}>
+                <option value="">Todos los lotes</option>
+                {batches.map((batch) => (
+                  <option key={batch} value={batch}>{`Lote ${batch}`}</option>
+                ))}
+              </select>
+            )}
           </div>
           <div className="count">
             {filtered.length} / {exercises.length} · {librarySlugs.length} folders
@@ -875,16 +940,35 @@ function App() {
               </button>
             </div>
             <button
-              className={selected.metadata?.reviewed ? 'review reviewed' : 'review'}
-              onClick={() => setReviewed(selected, selected.metadata?.reviewed !== true)}
+              className={videoInvalid ? 'review flagged' : 'review'}
+              title="Marcar el vídeo como malo para regenerarlo"
+              onClick={() => setVideoInvalid(selected, !videoInvalid)}
+              disabled={!liveHasDefault && !videoInvalid}
             >
-              <Check size={17} /> {selected.metadata?.reviewed ? 'Reviewed' : 'Mark reviewed'}
+              <AlertTriangle size={17} /> {videoInvalid ? 'A revisar' : 'Revisar vídeo'}
+            </button>
+            <button
+              className={isReviewed ? 'review reviewed' : 'review'}
+              title="Aprobar el vídeo y marcar el ejercicio como listo"
+              onClick={() => setReviewed(selected, !isReviewed)}
+              disabled={!liveHasDefault && !isReviewed}
+            >
+              <Check size={17} /> {isReviewed ? 'OK ✓' : 'Dar OK'}
             </button>
             <button className="primary" onClick={save} disabled={!dirty || saving}>
               <Save size={17} /> {saving ? 'Saving' : dirty ? 'Save' : 'Saved'}
             </button>
           </div>
         </div>
+
+        <ol className="workflowStepper" aria-label="Flujo del ejercicio">
+          {workflowSteps.map((step, index) => (
+            <li key={step.key} className={`workflowStep ${step.state}`}>
+              <span className="workflowStepDot">{step.state === 'done' ? <Check size={13} /> : step.state === 'warn' ? <AlertTriangle size={13} /> : index + 1}</span>
+              <span className="workflowStepLabel">{step.label}</span>
+            </li>
+          ))}
+        </ol>
 
         {hasComparisonVideo ? (
           <section className="comparePanel" aria-label="Source and default video comparison">
@@ -1104,19 +1188,19 @@ function App() {
         <div className="sourceTabs" role="tablist">
           <button
             role="tab"
-            aria-selected={sourceMode === 'ai'}
-            className={sourceMode === 'ai' ? 'sourceTab active' : 'sourceTab'}
-            onClick={() => setSourceMode('ai')}
-          >
-            <Sparkles size={14} /> Generar con IA
-          </button>
-          <button
-            role="tab"
             aria-selected={sourceMode === 'youtube'}
             className={sourceMode === 'youtube' ? 'sourceTab active' : 'sourceTab'}
             onClick={() => setSourceMode('youtube')}
           >
-            <Search size={14} /> Buscar video fuente
+            <Search size={14} /> 1 · Buscar vídeo fuente
+          </button>
+          <button
+            role="tab"
+            aria-selected={sourceMode === 'ai'}
+            className={sourceMode === 'ai' ? 'sourceTab active' : 'sourceTab'}
+            onClick={() => setSourceMode('ai')}
+          >
+            <Sparkles size={14} /> 2 · Generar con IA
           </button>
         </div>
 
@@ -1361,14 +1445,9 @@ function App() {
                 <input
                   type="checkbox"
                   checked={selected.metadata?.defaultVideoInvalid === true}
-                  onChange={(event) => patchSelected({
-                    metadata: {
-                      defaultVideoInvalid: event.target.checked,
-                      defaultVideoInvalidAt: event.target.checked ? new Date().toISOString() : null,
-                    },
-                  })}
+                  onChange={(event) => setVideoInvalid(selected, event.target.checked)}
                 />
-                Regenerate default
+                Revisar vídeo (regenerar default)
               </label>
               <label className="check">
                 <input

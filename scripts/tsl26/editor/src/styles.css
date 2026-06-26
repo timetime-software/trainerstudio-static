@@ -109,6 +109,57 @@ select {
   font-weight: 650;
 }
 
+.stageFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.stageChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #45524c;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.stageChip.active {
+  border-color: #27745f;
+  background: #dcefe8;
+  color: #1d5f4d;
+  font-weight: 650;
+}
+
+.stageChip .defaultDot {
+  width: 9px;
+  height: 9px;
+}
+
+.stageChipCount {
+  min-width: 17px;
+  padding: 1px 5px;
+  border-radius: 999px;
+  background: #eef3f0;
+  color: #5b6861;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.stageChip.active .stageChipCount {
+  background: #bfe3d6;
+  color: #1d5f4d;
+}
+
+.stageChip.clear {
+  color: #8a2a2a;
+}
+
 .list {
   display: grid;
   gap: 6px;
@@ -324,6 +375,88 @@ p {
   border-color: #27745f;
   background: #dcefe8;
   color: #1d5f4d;
+}
+
+.review.flagged {
+  border-color: #d99a2b;
+  background: #fdf2da;
+  color: #8a5200;
+}
+
+.workflowStepper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.workflowStep {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex: 1;
+  min-width: 0;
+  padding: 7px 10px;
+  border: 1px solid #d7ded9;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #7a857f;
+  font-size: 12px;
+}
+
+.workflowStepDot {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #eef3f0;
+  color: #5b6861;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.workflowStepLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workflowStep.current {
+  border-color: #27745f;
+  background: #f0faf6;
+  color: #1d5f4d;
+  font-weight: 650;
+}
+
+.workflowStep.current .workflowStepDot {
+  background: #27745f;
+  color: #ffffff;
+}
+
+.workflowStep.done {
+  border-color: #bfe3d6;
+  color: #2a342f;
+}
+
+.workflowStep.done .workflowStepDot {
+  background: #2fac82;
+  color: #ffffff;
+}
+
+.workflowStep.warn {
+  border-color: #e6c277;
+  background: #fdf6e7;
+  color: #8a5200;
+  font-weight: 650;
+}
+
+.workflowStep.warn .workflowStepDot {
+  background: #f2a51a;
+  color: #ffffff;
 }
 
 .mediaToolbar {
