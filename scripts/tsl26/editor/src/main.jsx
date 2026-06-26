@@ -90,9 +90,9 @@ function App() {
   const [syncTime, setSyncTime] = useState(0);
   const [syncDuration, setSyncDuration] = useState(0);
   const [sourceMode, setSourceMode] = useState('ai');
-  const [defaceMode, setDefaceMode] = useState(() => localStorage.getItem('tsl26.defaceMode') || 'solid');
-  const [defaceThresh, setDefaceThresh] = useState(() => Number(localStorage.getItem('tsl26.defaceThresh')) || 0.15);
-  const [defaceMaskScale, setDefaceMaskScale] = useState(() => Number(localStorage.getItem('tsl26.defaceMaskScale')) || 2);
+  const [defaceMode, setDefaceMode] = useState(() => localStorage.getItem('tsl26.defaceMode') || 'blur');
+  const [defaceThresh, setDefaceThresh] = useState(() => Number(localStorage.getItem('tsl26.defaceThresh')) || 0.1);
+  const [defaceMaskScale, setDefaceMaskScale] = useState(() => Number(localStorage.getItem('tsl26.defaceMaskScale')) || 1);
   const [defaceMosaicSize, setDefaceMosaicSize] = useState(() => Number(localStorage.getItem('tsl26.defaceMosaicSize')) || 20);
   const [defacePasses, setDefacePasses] = useState(() => Number(localStorage.getItem('tsl26.defacePasses')) || 1);
   const [defaceKeepOriginal, setDefaceKeepOriginal] = useState(() => localStorage.getItem('tsl26.defaceKeepOriginal') === 'true');
