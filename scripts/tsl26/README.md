@@ -330,6 +330,14 @@ un video de YouTube detectable en `media`.
 
 ## Importar en MongoDB
 
+> [!IMPORTANT]
+> **Produccion se importa desde el panel de administracion, no por API ni desde
+> scripts propios.** El panel ya permite importar el JSON completo. Antes de
+> programar o ejecutar una integracion contra MongoDB, generar
+> `data/exercises-public.json` con `npm run build:public` y subir ese archivo
+> desde el admin. El importador CLI de este repositorio es heredado y queda solo
+> para usos locales/manuales excepcionales.
+
 Flujo actual: para cargar la libreria solo hay que **generar el JSON publico** y
 **subirlo desde el panel de admin**. Ya no hace falta correr un import contra
 MongoDB desde este repo.
