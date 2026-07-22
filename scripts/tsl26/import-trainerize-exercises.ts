@@ -5,6 +5,14 @@ import { identityKeyForSlug, idForIdentityKey } from './exercise-ids.mjs';
 
 type TrainerizeTag = { type: string; name: string };
 
+type TrainerizeMediaVariant = {
+  videoToken?: string;
+  loopVideoToken?: string;
+  videoUrls?: Record<string, string | null>;
+  loopVideoUrls?: Record<string, string | null>;
+  thumbnailUrls?: Record<string, string | null>;
+};
+
 type TrainerizeMedia = {
   type?: string;
   token?: string;
@@ -13,6 +21,8 @@ type TrainerizeMedia = {
   loopVideoUrl?: Record<string, string | null>;
   thumbnailUrl?: Record<string, string | null>;
   audioUrl?: string | null;
+  default?: TrainerizeMediaVariant | null;
+  female?: TrainerizeMediaVariant | null;
 };
 
 type TrainerizeExercise = {
@@ -213,13 +223,34 @@ function firstUrl(...groups: Array<Record<string, string | null> | undefined>): 
   return undefined;
 }
 
-function mediaFor(exercise: TrainerizeExercise): Array<Record<string, unknown>> {
-  const thumbnail = firstUrl(exercise.media?.thumbnailUrl);
-  const video = firstUrl(exercise.media?.loopVideoUrl, exercise.media?.videoUrl, exercise.videoMobileUrl)
-    ?? (exercise.videoUrl || undefined);
+function mediaItemsForVariant(
+  variantName: 'default' | 'female',
+  variant: TrainerizeMediaVariant | null | undefined,
+  fallback?: { video?: string; thumbnail?: string },
+): Array<Record<string, unknown>> {
+  if (!variant && !fallback?.video && !fallback?.thumbnail) return [];
+  const video = firstUrl(variant?.loopVideoUrls, variant?.videoUrls) ?? fallback?.video;
+  const thumbnail = firstUrl(variant?.thumbnailUrls) ?? fallback?.thumbnail;
+  const providerMetadata = {
+    provider: 'trainerize',
+    providerVariant: variantName,
+    presenterGender: variantName === 'female' ? 'female' : 'male',
+  };
   return [
-    ...(video ? [{ type: 'video', url: video, ...(thumbnail ? { thumbnailUrl: thumbnail } : {}), source: 'external' }] : []),
-    ...(thumbnail ? [{ type: 'image', url: thumbnail, source: 'external' }] : []),
+    ...(video ? [{ type: 'video', url: video, ...(thumbnail ? { thumbnailUrl: thumbnail } : {}), source: 'external', ...providerMetadata }] : []),
+    ...(thumbnail ? [{ type: 'image', url: thumbnail, source: 'external', ...providerMetadata }] : []),
+  ];
+}
+
+function mediaFor(exercise: TrainerizeExercise): Array<Record<string, unknown>> {
+  const fallback = {
+    video: firstUrl(exercise.media?.loopVideoUrl, exercise.media?.videoUrl, exercise.videoMobileUrl)
+      ?? (exercise.videoUrl || undefined),
+    thumbnail: firstUrl(exercise.media?.thumbnailUrl),
+  };
+  return [
+    ...mediaItemsForVariant('default', exercise.media?.default, fallback),
+    ...mediaItemsForVariant('female', exercise.media?.female),
   ];
 }
 
@@ -306,6 +337,10 @@ function transform(
         originalTags: exercise.tags ?? [],
         mediaToken: exercise.media?.token || null,
         loopVideoToken: exercise.media?.loopVideoToken || null,
+        mediaVariants: {
+          default: exercise.media?.default ?? null,
+          female: exercise.media?.female ?? null,
+        },
       },
     },
   };

@@ -37,6 +37,15 @@ const emptyStatus = { sourceClip: false, defaultClip: false, downloadedOriginals
 const AI_VIDEO_MAX_ATTEMPTS = 90;
 const AI_VIDEO_POLL_INTERVAL_MS = 10000;
 const AI_VIDEO_TYPICAL_ATTEMPT = 19;
+const EXERCISE_NAME_COLLATOR = new Intl.Collator(['en', 'es'], {
+  numeric: true,
+  sensitivity: 'base',
+});
+
+function isTypingTarget(target) {
+  if (!(target instanceof HTMLElement)) return false;
+  return target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName);
+}
 
 function estimateAiVideoPercent(attempt) {
   if (!attempt || attempt < 1) return 0;
@@ -103,6 +112,7 @@ function App() {
   const defaultVideoRef = useRef(null);
   const suppressSyncRef = useRef(false);
   const selectedIdRef = useRef(selectedId);
+  const activeRowRef = useRef(null);
 
   useEffect(() => {
     selectedIdRef.current = selectedId;
@@ -246,7 +256,6 @@ function App() {
 
   const filtered = useMemo(() => {
     const term = query.trim().toLowerCase();
-    const libraryOrder = new Map(librarySlugs.map((slug, index) => [slug, index]));
     return exercises.filter((exercise) => {
       const haystack = [
         exercise.id,
@@ -263,14 +272,40 @@ function App() {
       const matchesBatch = !batchFilter || exercise.metadata?.batch === batchFilter;
       return matchesTerm && matchesStage && matchesBatch;
     }).sort((a, b) => {
-      const aSlug = a.cdnslug || a.cdnSlug;
-      const bSlug = b.cdnslug || b.cdnSlug;
-      const aOrder = libraryOrder.has(aSlug) ? libraryOrder.get(aSlug) : Number.MAX_SAFE_INTEGER;
-      const bOrder = libraryOrder.has(bSlug) ? libraryOrder.get(bSlug) : Number.MAX_SAFE_INTEGER;
-      if (aOrder !== bOrder) return aOrder - bOrder;
-      return (a.name || '').localeCompare(b.name || '');
+      const byName = EXERCISE_NAME_COLLATOR.compare(a.name || '', b.name || '');
+      return byName || String(a.id || '').localeCompare(String(b.id || ''));
     });
-  }, [batchFilter, exercises, librarySlugs, query, stageFilters, stageOf]);
+  }, [batchFilter, exercises, query, stageFilters, stageOf]);
+
+  useEffect(() => {
+    activeRowRef.current?.scrollIntoView({ block: 'nearest' });
+  }, [selectedId]);
+
+  useEffect(() => {
+    function handleArrowNavigation(event) {
+      if (
+        (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')
+        || event.altKey
+        || event.ctrlKey
+        || event.metaKey
+        || event.shiftKey
+        || isTypingTarget(event.target)
+        || document.querySelector('[role="dialog"]')
+      ) return;
+
+      const selectedIndex = filtered.findIndex((exercise) => exercise.id === selectedId);
+      if (selectedIndex < 0) return;
+      const offset = event.key === 'ArrowLeft' ? -1 : 1;
+      const targetExercise = filtered[selectedIndex + offset];
+      if (!targetExercise) return;
+
+      event.preventDefault();
+      selectExercise(targetExercise.id);
+    }
+
+    window.addEventListener('keydown', handleArrowNavigation);
+    return () => window.removeEventListener('keydown', handleArrowNavigation);
+  }, [filtered, selectedId]);
 
   const stageCounts = useMemo(() => {
     const counts = {};
@@ -884,6 +919,7 @@ function App() {
               <button
                 className={exercise.id === selected.id ? 'row active' : 'row'}
                 key={exercise.id}
+                ref={exercise.id === selected.id ? activeRowRef : null}
                 onClick={() => selectExercise(exercise.id)}
               >
                 <span className="rowTop">
