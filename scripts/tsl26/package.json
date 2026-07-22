@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "transform": "node --experimental-strip-types transform-mypthub-to-public-exercises.ts",
+    "import:trainerize": "node --experimental-strip-types import-trainerize-exercises.ts",
     "library:ensure": "node --experimental-strip-types ensure-library.ts",
     "import": "npm run build:public && node --experimental-strip-types import-public-exercises.ts",
     "editor": "npm --prefix editor run dev",
