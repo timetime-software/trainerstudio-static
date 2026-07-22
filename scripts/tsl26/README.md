@@ -315,6 +315,8 @@ libraries/tsl26/barbell_squats/default/barbell_squats.mp4
 ## Scripts Disponibles
 
 ```bash
+npm run import:trainerize -- --dry-run
+npm run import:trainerize
 npm run videos:clips
 npm run videos:style-tasks
 npm run videos:style-status
@@ -325,8 +327,27 @@ npm run build:public
 npm run import
 ```
 
-El dataset contiene 1203 ejercicios. En la ultima comprobacion local, 833 tenian
-un video de YouTube detectable en `media`.
+## Importar ejercicios de Trainerize
+
+El importador consulta todas las paginas de la busqueda de Trainerize, convierte
+sus tags a los enums canonicos y mezcla los resultados en
+`data/exercises.ndjson`. Es reejecutable: reconoce cada registro por
+`metadata.source.exerciseId`, actualiza los ya importados y no duplica filas.
+El token solo se lee del entorno y nunca se escribe en los datos ni en el
+informe:
+
+```bash
+TRAINERIZE_TOKEN='...' npm run import:trainerize -- --dry-run
+TRAINERIZE_TOKEN='...' npm run import:trainerize
+```
+
+Cada ejercicio conserva en `metadata.source` el proveedor, ID original,
+endpoint, version, tags y tokens de media. Los videos e imagenes se mantienen
+como referencias externas en `media`; no se descargan automaticamente.
+
+El dataset contiene 3478 ejercicios: 1252 preexistentes y 2226 importados desde
+Trainerize. De los registros de Trainerize, 2191 tienen video y 2198 miniatura
+detectables en `media`.
 
 ## Importar en MongoDB
 
