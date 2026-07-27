@@ -13,6 +13,7 @@
     "videos:thumbnails": "node generate-thumbnails.mjs",
     "build:public": "node --experimental-strip-types build-public-exercises.ts",
     "videos:clips": "node download-youtube-clips.mjs",
+    "videos:anonymize-sources": "node download-and-anonymize-sources.mjs",
     "videos:style-tasks": "node create-ark-style-tasks.mjs",
     "videos:style-status": "node poll-ark-style-tasks.mjs"
   },
