@@ -4,10 +4,45 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { basename, dirname, join, relative, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { createHash } from 'crypto';
+import { execFileSync } from 'child_process';
 import { cdnSlugFor, matchesExerciseIdentifier } from './exercise-ids.mjs';
 
 function sha256OfFile(localPath) {
   return createHash('sha256').update(readFileSync(localPath)).digest('hex');
+}
+
+// Ark solo acepta duraciones enteras dentro de este rango. Comprobado contra la
+// API el 28-jul-2026 con dreamina-seedance-2-0-mini-260615: 2, 3, 16, 20 y 7.5
+// se rechazan con InvalidParameter; 4, 5 y 15 se aceptan. Es decir, cualquier
+// entero del rango vale, no solo valores discretos tipo 4/8/12.
+const MIN_DURATION = 4;
+const MAX_DURATION = 15;
+
+function probeDurationSeconds(localPath) {
+  const out = execFileSync('ffprobe', [
+    '-v', 'error',
+    '-show_entries', 'format=duration',
+    '-of', 'default=noprint_wrappers=1:nokey=1',
+    localPath,
+  ], { encoding: 'utf8' }).trim();
+  const seconds = Number(out);
+  if (!Number.isFinite(seconds) || seconds <= 0) {
+    throw new Error(`No se pudo leer la duracion de ${localPath}`);
+  }
+  return seconds;
+}
+
+// Duracion a pedir a Ark para un clip. Con `--duration=auto` (por defecto) se
+// redondea la duracion real del source al entero mas cercano y se recorta al
+// rango admitido; con `--duration=N` se fuerza N para todos los clips.
+//
+// Importa que coincida: si el source dura 11s y se piden 4s, el modelo trunca o
+// comprime el movimiento y el resultado no muestra la repeticion completa.
+function durationForClip(args, clip) {
+  if (args.duration !== 'auto') return args.duration;
+  const actual = probeDurationSeconds(clip.localPath);
+  const rounded = Math.round(actual);
+  return Math.min(MAX_DURATION, Math.max(MIN_DURATION, rounded));
 }
 
 function dedupeKey(clipUrl, sha256) {
@@ -33,7 +68,9 @@ const DEFAULT_REFERENCE_IMAGES = [
 
 const DEFAULT_PROMPT = [
   'Restyle [Video 1] into the TrainerStudio visual style shown in [Image 1] and [Image 2].',
-  'The result must be exactly the same exercise demonstration as the original video: preserve the movement, repetitions, timing, body pose sequence, camera angle, framing, crop, scale, and 4-second duration from [Video 1].',
+  // {{DURATION}} lo sustituye buildPayload con la duracion real que se pide a
+  // Ark, para que el texto no contradiga al parametro `duration`.
+  'The result must be exactly the same exercise demonstration as the original video: preserve the movement, repetitions, timing, body pose sequence, camera angle, framing, crop, scale, and full {{DURATION}}-second duration from [Video 1].',
   'Only change the visual appearance. Replace the real athlete with the illustrated trainer character from the reference images, keeping a consistent coach identity, clean fitness illustration style, crisp outlines, simplified anatomy, and smooth vector-like shading.',
   'Required exercise equipment from the exercise context must be clearly visible in the result, even if it is subtle, partially hidden, or missing in [Video 1]. If the context says a resistance band is required, draw a visible colored loop band in the correct anatomical position and keep it present for the full clip.',
   'Important: the athlete\'s face in [Video 1] is intentionally blurred or pixelated for privacy. Do NOT preserve the blur, mosaic, or any anonymization artifact in the output. The trainer in the result must have a clear, fully visible illustrated face that matches the coach identity from [Image 1] and [Image 2] — same hairstyle, beard, skin tone, and facial features as the reference character.',
@@ -54,7 +91,7 @@ function parseArgs(argv) {
     output: DEFAULT_OUTPUT,
     referenceImages: [...DEFAULT_REFERENCE_IMAGES],
     prompt: DEFAULT_PROMPT,
-    duration: 4,
+    duration: 'auto',
     ratio: '16:9',
     limit: null,
     ids: null,
@@ -78,7 +115,17 @@ function parseArgs(argv) {
       args.referenceImages = value.split(',').map((path) => resolve(path.trim())).filter(Boolean);
     } else if (key === '--prompt') args.prompt = value;
     else if (key === '--prompt-file') args.prompt = readFileSync(resolve(value), 'utf8').trim();
-    else if (key === '--duration') args.duration = Number(value);
+    else if (key === '--duration') {
+      if (value === 'auto') {
+        args.duration = 'auto';
+      } else {
+        const parsed = Number(value);
+        if (!Number.isInteger(parsed) || parsed < MIN_DURATION || parsed > MAX_DURATION) {
+          throw new Error(`--duration debe ser "auto" o un entero entre ${MIN_DURATION} y ${MAX_DURATION}, recibido: ${value}`);
+        }
+        args.duration = parsed;
+      }
+    }
     else if (key === '--ratio') args.ratio = value;
     else if (key === '--limit') args.limit = Number(value);
     else if (key === '--ids') args.ids = new Set(value.split(',').map((id) => id.trim()).filter(Boolean));
@@ -258,7 +305,11 @@ function exerciseContextFor(exercise) {
 
 function buildPayload(args, referenceImageUrls, clip) {
   const exerciseContext = exerciseContextFor(clip.exercise);
-  const prompt = [args.prompt, exerciseContext].filter(Boolean).join(' ');
+  const duration = durationForClip(args, clip);
+  const prompt = [args.prompt, exerciseContext]
+    .filter(Boolean)
+    .join(' ')
+    .replaceAll('{{DURATION}}', String(duration));
 
   return {
     model: args.model,
@@ -280,7 +331,7 @@ function buildPayload(args, referenceImageUrls, clip) {
     ],
     generate_audio: args.generateAudio,
     ratio: args.ratio,
-    duration: args.duration,
+    duration,
     watermark: args.watermark,
   };
 }
