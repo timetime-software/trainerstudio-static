@@ -34,6 +34,13 @@ import { asLines, fromLines } from './lib/text.js';
 import './styles.css';
 
 const emptyStatus = { sourceClip: false, defaultClip: false, downloadedOriginals: [], arkTask: null };
+// Idiomas traducibles. `en` vive en la pestana Main como fuente, no aqui.
+const TRANSLATION_LANGS = [
+  { code: 'es', label: 'Spanish' },
+  { code: 'it', label: 'Italian' },
+  { code: 'fr', label: 'French' },
+  { code: 'pt', label: 'Portuguese' },
+];
 const AI_VIDEO_MAX_ATTEMPTS = 90;
 const AI_VIDEO_POLL_INTERVAL_MS = 10000;
 const AI_VIDEO_TYPICAL_ATTEMPT = 19;
@@ -1505,19 +1512,27 @@ function App() {
           </>
         )}
 
-        {editorTab === 'translations' && (
-          <div className="editorSection">
-            <h2>Spanish translation</h2>
-            <label>
-              Name
-              <input value={selected.i18n?.name?.es || ''} onChange={(event) => patchSelected({ i18n: { name: { ...selected.i18n?.name, es: event.target.value } } })} />
-            </label>
-            <label>
-              Instructions
-              <textarea className="tall" value={asLines(selected.i18n?.instructions?.es)} onChange={(event) => patchSelected({ i18n: { instructions: { ...selected.i18n?.instructions, es: fromLines(event.target.value) } } })} />
-            </label>
-          </div>
-        )}
+        {editorTab === 'translations' && TRANSLATION_LANGS.map(({ code, label }) => {
+          const name = selected.i18n?.name?.[code] || '';
+          const instructions = selected.i18n?.instructions?.[code];
+          const missing = !name || !instructions?.length;
+          return (
+            <div className="editorSection" key={code}>
+              <h2>
+                {label} translation
+                <span className={missing ? 'state missing' : 'state ready'}>{missing ? 'Falta' : 'Listo'}</span>
+              </h2>
+              <label>
+                Name
+                <input value={name} onChange={(event) => patchSelected({ i18n: { name: { ...selected.i18n?.name, [code]: event.target.value } } })} />
+              </label>
+              <label>
+                Instructions
+                <textarea className="tall" value={asLines(instructions)} onChange={(event) => patchSelected({ i18n: { instructions: { ...selected.i18n?.instructions, [code]: fromLines(event.target.value) } } })} />
+              </label>
+            </div>
+          );
+        })}
 
         {editorTab === 'settings' && (
           <div className="editorSection">

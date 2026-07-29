@@ -1,6 +1,6 @@
 # Backlog de ejercicios por demanda de búsquedas
 
-Actualizado: **28-jul-2026**. Sustituye a la versión anterior (lista manual del
+Actualizado: **29-jul-2026**. Sustituye a la versión anterior (lista manual del
 equipo, 10-may → 22-jun).
 
 ## Fuente de datos
@@ -106,6 +106,29 @@ Casos concretos detectados, todos vivos a día de hoy:
 - **`hiptrust` / `hip trhus` / `hip trush` / `hipthrus`** — el fuzzy no cubre
   errores en palabras pegadas. Conviene añadir las variantes al seed.
 
+Comprobados uno a uno contra `publicExercises` de producción el 29-jul-2026: el
+ejercicio destino existe, está publicado y tiene nombre en español, así que el
+único trabajo pendiente es la entrada de sinónimo.
+
+| Término | Ceros | Destino en producción | Nombre ES publicado |
+| --- | --- | --- | --- |
+| `espinales` / `espinal` | 102 | `Hyperextensions (Back Extensions)` | Hiperextensiones de espalda |
+| `vuelos laterales` | 390 | familia `Lateral Raise` | Elevación lateral… |
+| `drop jump` | 121 | `Depth Jump Leap`, `Linear Depth Jump` | Salto en profundidad… |
+| `soga` / `saltos a la soga` | 22 | `Skipping` | Comba (Saltar a la Cuerda) |
+| `multisaltos` | 44 | `Hurdle Hops` | Saltos sobre vallas |
+
+`drop jump` es el caso más caro de los cinco: 121 ceros y el ejercicio existe
+publicado y traducido. **No se ha creado entrada nueva a propósito** — "drop
+jump" y "depth jump" son el mismo ejercicio en la literatura y crear un
+`drop_jump` duplicaría `linear_depth_jump`. Es sinónimo, no contenido.
+
+`almeja` (30) es un caso distinto de los anteriores: hay 6 variantes de
+`clamshell` en `data/exercises.ndjson`, pero **ninguna está publicada** (ninguna
+tiene `default`) y además ninguna tiene `i18n.name.es`. Ahí no falta un sinónimo
+ni un ejercicio: falta pasar por Ark y traducir. Mismo cuello de botella que la
+sección final.
+
 ### 4. Familia `iso *` — el mayor clúster por volumen
 
 `iso hold` (192), `iso push` (145), y detrás `iso split`, `iso back squat`,
@@ -147,6 +170,50 @@ traducciones completas en EN/ES/IT/FR/PT y clasificación según
 
 Se marcan con `metadata.batch = "2026-07-28"`: en el editor hay filtro **"Lote
 2026-07-28"**. Ese campo se descarta en `build:public` (no llega a MongoDB).
+Completado el 29-jul con source, default de Ark, miniaturas y sync a CDN.
+
+## Lote 2026-07-29 — los 10 siguientes
+
+Mismo análisis repetido el 29-jul sobre la ventana completa desde el 23-may
+(**58.860 términos distintos, 175.752 búsquedas sin resultados**), con dos
+diferencias de método respecto al lote anterior:
+
+1. **La demanda se agrega por concepto, no por cadena tecleada.** `serrat` (22),
+   `serrucho` (17), `serratus` (16), `serrato` (10) y `serratu` (9) son la misma
+   búsqueda; contarlas por separado escondía el concepto en el puesto 40 y suma
+   148 al juntarlas.
+2. **Se descarta todo término cuyo ejercicio ya exista publicado**, aunque la
+   búsqueda devuelva cero. Eso saca de la lista a `drop jump` (121),
+   `vuelos laterales` (390), `espinales` (102), `multisaltos` (44) y `soga` (22),
+   que van a la sección de sinónimos. Es la razón de que el nº 1 de este lote
+   tenga menos volumen bruto que varios términos descartados.
+
+Creados con `seed-batch-2026-07-29.mjs` (idempotente por `cdnslug`), con textos
+y traducciones completas en EN/ES/IT/FR/PT y clasificación validada contra
+`classification-reference.mjs`. Se crean **sin media**.
+
+| # | Slug | Nombre | Demanda |
+| --- | --- | --- | --- |
+| 1 | `serratus_wall_slide` | Serratus Wall Slide / Deslizamiento en Pared para el Serrato | 148 |
+| 2 | `high_hang_snatch` | High Hang Snatch / Arrancada desde Suspensión Alta | 103 |
+| 3 | `scapular_depression` | Scapular Depression / Depresión Escapular | 74 |
+| 4 | `banded_psoas_march` | Banded Psoas March / Marcha de Psoas con Banda | 61 |
+| 5 | `cable_step_up` | Cable Step-Up / Step Up en Polea | 26 |
+| 6 | `hang_pull` | Hang Pull / Tirón desde Suspensión | 19 |
+| 7 | `wall_push_up` | Wall Push-Up / Flexión en Pared | 19 |
+| 8 | `tibialis_raise` | Tibialis Raise / Elevación de Tibial Anterior | 8 |
+| 9 | `reverse_nordic_curl` | Reverse Nordic Curl / Curl Nórdico Inverso | 5 |
+| 10 | `meadows_row` | Meadows Row / Remo Meadows | 3 |
+
+Consume 5 de los 6 candidatos que quedaban apuntados del lote anterior. El
+sexto, `tibial_rotations` (rotaciones tibiales, 5), se sustituye por
+`tibialis_raise`: mismo músculo, más demanda y es el ejercicio canónico; las
+rotaciones tibiales son una progresión de rehab que encaja mejor como variante.
+
+Se marcan con `metadata.batch = "2026-07-29"`. El desplegable de lotes del
+editor se construye solo con los valores de `metadata.batch` presentes en el
+dataset (`editor/src/main.jsx:903`), así que **"Lote 2026-07-29" aparece sin
+tocar código**.
 
 Siguiente paso:
 
@@ -155,7 +222,7 @@ cd scripts/tsl26
 # 1) añadir referencia de YouTube a cada uno desde el editor
 npm run editor
 # 2) clip source de 4s
-npm run videos:clips -- --ids=bayesian_curl,suitcase_carry,tandem_stance_hold,dragon_flag,spanish_squat,lateral_pogo_hops,negative_pull_up,seal_row,hand_release_push_up,triple_hop
+npm run videos:clips -- --ids=serratus_wall_slide,high_hang_snatch,scapular_depression,banded_psoas_march,cable_step_up,hang_pull,wall_push_up,tibialis_raise,reverse_nordic_curl,meadows_row
 # 3) default con Ark + descarga + sync
 npm run videos:style-tasks  -- --ids=<mismos> --overwrite-output
 npm run videos:style-status -- --poll --download --ids=<mismos>
@@ -167,11 +234,23 @@ npm run videos:sync-data
 
 ## Siguientes candidatos (demanda menor, ya verificados como inexistentes)
 
-Para el próximo lote, sin necesidad de repetir el análisis:
+Para el próximo lote, sin necesidad de repetir el análisis. Comprobados contra
+`data/exercises.ndjson` el 29-jul: no hay ninguna entrada que los cubra.
 
-`scapular_depression` (depresión escapular, 8) · `cable_step_up` (step up en
-polea, 6) · `wall_push_up` (push ups pared, 5) · `tibial_rotations`
-(rotaciones tibiales, 5) · `hang_pull` (5) · `meadows_row` (3)
+`hip_lock` (24, jerga de preparación física: `sl rdl to a frame hip lock`) ·
+`tibial_rotations` (rotaciones tibiales, 5) · `shrimp_squat` · `pendlay_row` ·
+`kroc_row` · `kelso_shrug` (2) · `peterson_step_up` (1)
+
+Los cinco últimos tienen demanda casi nula pero son ejercicios estándar que
+cualquier catálogo serio debería cubrir; sirven de relleno cuando la demanda
+medida ya no dé para 10.
+
+**Aviso para el próximo análisis:** la demanda por contenido está agotándose. En
+la ventana de dos meses ya no queda ningún concepto ausente con más de ~150
+ceros, y los tres buckets de arriba (1 carácter, sinónimos que no aplican al
+teclear, sinónimos sin mapear) concentran el grueso del 19,6 % de búsquedas
+fallidas. El siguiente lote rendirá menos que arreglar `minGrams` o publicar
+sinónimos.
 
 ## Cuello de botella real: pasar Ark, no crear ejercicios
 
@@ -226,7 +305,9 @@ clip. Es esperado, no un fallo del seed.
 - **2026-07-03** (10): 5 con clip source, 5 aún sin media
   (`nordic_curl`, `turkish_get_up`, `landmine_press`, `jefferson_curl`,
   `kettlebell_clean_and_press`).
-- **2026-07-28** (10): recién creado, sin media.
+- **2026-07-28** (10): completo, los 10 con `default` + thumbnail y sincronizados
+  al CDN el 29-jul. Pendiente solo el OK humano.
+- **2026-07-29** (10): creados y con clip `source` de los 10. Falta pasar Ark.
 
 ## Leyenda de estado de media
 

@@ -1198,12 +1198,20 @@ p {
 }
 
 .editorSection h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
   margin: 0;
   color: #27332e;
   font-size: 13px;
   line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: 0;
+}
+
+.editorSection h2 .state {
+  margin-left: auto;
+  font-size: 11px;
 }
 
 .tabs {
